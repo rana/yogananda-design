@@ -1,0 +1,117 @@
+{
+  "$description": "YSS (Yogoda Satsanga Society of India) visual language. SCAFFOLD — awaiting YSS editorial input (PRO-043). Values derived from yssofindia.org analysis (March 2026). YSS is a sister organization to SRF, not a subsidiary. This design language is independent — informed by shared lineage but expressing a distinctly Indian aesthetic tradition. Metaphor: entering an ashram — devotional warmth, Indian earth tones, the red soil of Ranchi.",
+  "$deprecated": "Draft — awaiting YSS editorial input. Do not treat these values as finalized.",
+
+  "color": {
+    "$type": "color",
+    "$description": "YSS color palette. Terracotta and earth tones replace navy and gold. The warmth of Indian earth, not the cool depth of Pacific contemplation. Values extracted from yssofindia.org; require YSS approval before production use.",
+
+    "terracotta": {
+      "$value": "#bb4f27",
+      "$description": "YSS Terracotta. The rust-red earth of Ranchi, the clay of Indian tradition. Primary accent. Equivalent role to SRF Gold but warmer, earthier."
+    },
+    "earth-dark": {
+      "$value": "#3a2518",
+      "$description": "Deep earth. Primary text color. Warm dark brown, not cold black. The ink of handwritten Sanskrit manuscripts."
+    },
+    "clay": {
+      "$value": "#f2e8de",
+      "$description": "Warm clay. Primary background. The sun-baked walls of an ashram courtyard."
+    },
+    "clay-dark": {
+      "$value": "#e6dacf",
+      "$description": "Secondary clay. Differentiation surface. Deeper warmth."
+    },
+    "surface": {
+      "$value": "#ede3d8",
+      "$description": "Elevated surface. Warmer than the SRF equivalent — even 'white' is warm here."
+    },
+    "saffron": {
+      "$value": "#e8a830",
+      "$description": "Saffron accent. PROVISIONAL — may replace or complement terracotta for spiritual emphasis. The color of renunciation in Indian tradition.",
+      "$deprecated": "Provisional — requires YSS input on whether saffron is appropriate for their digital presence."
+    }
+  },
+
+  "typography": {
+    "$description": "YSS type system. Hindi/Devanagari-primary for Indian audiences, with English as secondary. Raleway for UI (from yssofindia.org). Noto Serif Devanagari for Hindi reading text (ADR-080).",
+
+    "reading-hi": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["Noto Serif Devanagari", "serif"],
+        "fontSize": { "value": 20, "unit": "px" },
+        "fontWeight": 400,
+        "lineHeight": 1.9
+      },
+      "$description": "Hindi reading font. Noto Serif Devanagari at 20px (11% larger than Latin 18px). 1.9 line height for shirorekha (headline) clearance. ADR-080.",
+      "$extensions": { "org.yogananda.design": { "adr": "ADR-080" } }
+    },
+    "reading-en": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["Merriweather", "Georgia", "serif"],
+        "fontSize": { "value": 18, "unit": "px" },
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$description": "English reading font for YSS context. Same as SRF — Merriweather for consistency across the lineage."
+    },
+    "ui": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["Raleway", "system-ui", "-apple-system", "sans-serif"],
+        "fontSize": { "value": 14, "unit": "px" },
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$description": "UI font. Raleway from yssofindia.org. Geometric sans-serif — more modern than Open Sans, reflecting YSS's contemporary digital presence."
+    },
+    "ui-hi": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["Noto Sans Devanagari", "system-ui", "sans-serif"],
+        "fontSize": { "value": 15, "unit": "px" },
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$description": "Hindi UI font. Noto Sans (not Serif) for UI chrome — cleaner at small sizes. Slightly larger than Latin UI to match optical weight."
+    }
+  },
+
+  "theme": {
+    "$description": "YSS themes. SCAFFOLD — only earth theme exists as proof-of-concept in the portal. Full YSS theme set needs YSS input.",
+
+    "earth": {
+      "$description": "The primary YSS theme. Warm clay and terracotta. Already implemented as portal's 'earth' theme.",
+      "bg":             { "$type": "color", "$value": "#f2e8de" },
+      "bg-secondary":   { "$type": "color", "$value": "#e6dacf" },
+      "text":           { "$type": "color", "$value": "#3a2518" },
+      "text-secondary": { "$type": "color", "$value": "#6b5240" },
+      "border":         { "$type": "color", "$value": "#c4a988" },
+      "accent":         { "$type": "color", "$value": "#bb4f27" },
+      "surface":        { "$type": "color", "$value": "#ede3d8" }
+    },
+    "night": {
+      "$description": "SCAFFOLD. YSS dark theme — needs design. Should be warm dark (deep brown/maroon), not cool dark (navy). The darkness of a temple interior at evening aarti.",
+      "$deprecated": "Scaffold — requires design.",
+      "bg":           { "$type": "color", "$value": "#1a0f08" },
+      "text":         { "$type": "color", "$value": "#e8ddd2" },
+      "accent":       { "$type": "color", "$value": "#d4693d" }
+    }
+  },
+
+  "motifs": {
+    "$description": "YSS visual motifs. SCAFFOLD. YSS uses different ornamental traditions than SRF — Indian geometric patterns, rangoli-inspired dividers, possibly ashram imagery. Requires YSS creative input.",
+    "$deprecated": "Scaffold — no YSS motif assets created yet.",
+    "divider": "Rangoli-inspired geometric pattern (TBD)",
+    "icon": "YSS emblem or lotus variant (TBD)"
+  },
+
+  "languages": {
+    "$description": "YSS serves 9 Indian languages. The design system must support all Indic scripts from yssofindia.org: Hindi, Bengali, Tamil, Telugu, Kannada, Odia, Assamese, Marathi, Malayalam.",
+    "supported": ["hi", "bn", "ta", "te", "kn", "or", "as", "mr", "ml", "en"],
+    "primary-script": "Devanagari",
+    "secondary-scripts": ["Bengali", "Tamil", "Telugu", "Kannada", "Odia", "Malayalam"]
+  }
+}

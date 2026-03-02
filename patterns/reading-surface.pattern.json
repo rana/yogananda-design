@@ -1,0 +1,94 @@
+{
+  "$description": "Composition patterns for reading surfaces — the primary experience of the portal. A reading surface is where Yogananda's words meet the seeker's eyes. Every detail serves sustained, contemplative reading.",
+
+  "chapter-reader": {
+    "$description": "The full chapter reading experience. The most important surface in the entire ecosystem.",
+    "register": "sacred",
+    "layout": {
+      "max-width": "42em (line-length-latin) or 35em (line-length-devanagari)",
+      "margin": "auto (centered)",
+      "padding": "generous (24px) inline, spacious (32px) block"
+    },
+    "tokens": {
+      "background": "theme.bg",
+      "text": "theme.text, reading typography",
+      "texture": "paper texture overlay at opacity.texture (0.03)",
+      "border": "none — reading surfaces float, they don't contain"
+    },
+    "typography": {
+      "body": "srf.typography.reading (Merriweather 400, 18px, 1.8)",
+      "first-paragraph": "drop capital (Latin only) — Merriweather 700, 3.5em",
+      "epigraph": "srf.typography.reading-light, italic, centered, gold quotation mark",
+      "citation": "srf.typography.citation — em-dash + non-breaking-space + full attribution"
+    },
+    "modes": {
+      "normal": "Full chrome (header, footer, nav visible)",
+      "focus": "Chrome hidden. Reading column only. Next chapter nav preserved.",
+      "present": "Chrome hidden. Font size scaled up (24px mobile → 36px wide). For group reading.",
+      "quiet": "Chrome hidden. Article dimmed. Contextual quiet corner overlay."
+    },
+    "features": {
+      "dwell": "1200ms settled paragraph → related teachings panel. Gold subliminal background on active paragraph.",
+      "keyboard": "j/k paragraph navigation, h/l chapter, d dwell toggle, f focus mode, ? help",
+      "scroll-indicator": "2px gold bar at top, opacity ambient (0.3), z-index top",
+      "chapter-transition": "DES-012 'Breath Between Chapters' — contemplative fade (800ms)"
+    }
+  },
+
+  "passage-card": {
+    "$description": "A single passage displayed outside the chapter reader — search results, Today's Wisdom, related teachings panel.",
+    "register": "sacred (the words are still Yogananda's, even in a card)",
+    "tokens": {
+      "background": "theme.surface",
+      "text": "theme.text, reading typography",
+      "border": "none (floats on surface color difference) or border.subtle on hover",
+      "padding": "generous (24px)",
+      "radius": "radius.default (4px)"
+    },
+    "content": {
+      "passage-text": "reading typography, sacred register",
+      "attribution": "citation typography — always visible, never truncated (PRI-02)",
+      "chapter-link": "'Read in context' — UI typography, gold interactive, links to chapter position"
+    },
+    "states": {
+      "default": "surface background, no border",
+      "hover": "gold subliminal (0.06) background shift, border appears",
+      "focus": "gold interactive (1.0) outline, 2px offset",
+      "active": "gold subliminal background, slightly darker"
+    },
+    "animation": "interaction transition (150ms) on hover/focus. Content transition (300ms) on appear."
+  },
+
+  "todays-wisdom": {
+    "$description": "Daily featured passage on the home page. Single passage at sacred register with generous framing.",
+    "register": "sacred",
+    "tokens": {
+      "background": "theme.bg (same as page — no card boundary)",
+      "padding": "vast (64px) vertical, generous (24px) horizontal",
+      "text-align": "center"
+    },
+    "content": {
+      "passage": "reading typography, slightly larger (display size for short quotes)",
+      "attribution": "citation typography, centered below",
+      "ornament": "small gold lotus divider below attribution"
+    }
+  },
+
+  "print": {
+    "$description": "Print stylesheet for reading surfaces. Removes all chrome, sets print-appropriate typography.",
+    "tokens": {
+      "background": "white",
+      "text": "black",
+      "font": "Merriweather, Georgia, serif at 12pt, line-height 1.6",
+      "page-margin": "2cm (3cm top on first page)"
+    },
+    "rules": [
+      "Hide: header, footer, nav, scroll indicator, dwell icon",
+      "Article max-width 42em, centered",
+      "Page breaks: never inside passage-card, always before h2 (chapter titles)",
+      "External link URLs shown as parenthetical after the link text",
+      "Internal links: no URL display",
+      "Citations: always visible, font-style italic, 10pt"
+    ]
+  }
+}

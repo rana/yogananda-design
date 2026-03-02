@@ -1,0 +1,102 @@
+{
+  "$description": "Composition patterns for transitions — how elements arrive, depart, and transform. Every transition in the ecosystem serves one of three purposes: responsive feedback, content revelation, or spiritual pacing. Decorative transitions are forbidden (PRI-08).",
+
+  "transition-types": {
+    "responsive-feedback": {
+      "$description": "The portal acknowledges the seeker's action. Instant or near-instant.",
+      "duration": "interaction (150ms)",
+      "easing": "standard",
+      "examples": ["button hover", "link focus", "theme toggle", "input focus border"]
+    },
+    "content-revelation": {
+      "$description": "New content appears or existing content transforms. Smooth but purposeful.",
+      "duration": "content (300ms)",
+      "easing": "standard",
+      "examples": ["search results appearing", "sidebar panel opening", "dropdown expanding", "theme color change"]
+    },
+    "spiritual-pacing": {
+      "$description": "Moments where the transition IS the experience — not overhead between states, but a contemplative breath in its own right.",
+      "duration": "contemplative (800ms) or arrival (1200ms)",
+      "easing": "contemplative",
+      "examples": ["chapter transition", "portal threshold", "dwell mode activation", "quiet corner entry"]
+    }
+  },
+
+  "page-transitions": {
+    "within-book": {
+      "$description": "Navigating between chapters of the same book. The 'Breath Between Chapters' (DES-012).",
+      "exit": "current chapter fades out (content, 300ms)",
+      "pause": "brief moment of pure background (200-400ms)",
+      "enter": "new chapter fades in (contemplative, 800ms)",
+      "scroll": "auto-scroll to top of new chapter (smooth scroll, respects reduced-motion)"
+    },
+    "to-different-page": {
+      "$description": "Navigating between major pages (home → search, search → reader). Standard page navigation — no special transitions. The router handles it.",
+      "approach": "no custom page transitions. Next.js App Router default behavior. Fast is better than animated."
+    },
+    "within-page": {
+      "$description": "State changes on the same page — filters, sorts, panel reveals.",
+      "duration": "content (300ms)",
+      "easing": "standard",
+      "approach": "CSS transitions on the changing elements. Never animate layout shifts."
+    }
+  },
+
+  "element-transitions": {
+    "appear": {
+      "$description": "An element becoming visible (dropdown, panel, modal).",
+      "opacity": "0 → 1",
+      "transform": "none (no slide-in, no scale-up — clean opacity fade)",
+      "duration": "content (300ms)",
+      "note": "Slide-in is acceptable for mobile drawers (transform: translateX). Never use scale or bounce."
+    },
+    "disappear": {
+      "$description": "An element becoming hidden.",
+      "opacity": "1 → 0",
+      "duration": "interaction (150ms) — faster than appear. Disappearing should be quick; appearing should be noticed.",
+      "note": "Asymmetric timing is intentional. Arrivals are celebrated; departures are swift."
+    },
+    "hover": {
+      "$description": "Mouse hover state changes.",
+      "duration": "interaction (150ms)",
+      "properties": "background-color, border-color, color only. Never animate size, position, or shadow on hover.",
+      "touch": "hover effects are suppressed on touch devices (@media (hover: none))"
+    },
+    "focus": {
+      "$description": "Keyboard focus indicator appearance.",
+      "duration": "instant (0ms) — focus indicators must appear immediately for accessibility",
+      "style": "2px solid gold, 2px offset. No transition on outline.",
+      "note": ":focus-visible only (not :focus) to avoid showing outlines on mouse clicks."
+    }
+  },
+
+  "theme-transitions": {
+    "$description": "When the seeker switches color themes. The entire page transforms. This is a content revelation — smooth but not slow.",
+    "duration": "content (300ms)",
+    "properties": "background-color, color, border-color. All CSS custom properties transition simultaneously.",
+    "reduced-motion": "instant — no transition when prefers-reduced-motion: reduce",
+    "circadian": "background color shifts are NOT transitioned — they're too subtle to notice, and transitioning would draw attention to something that should be unconscious."
+  },
+
+  "loading-states": {
+    "$description": "How the portal communicates 'waiting' without violating calm technology principles.",
+    "approach": "minimal indication that something is happening. No skeleton screens, no spinning circles, no progress bars (except for actual file operations).",
+    "search": {
+      "indicator": "subtle gold pulse on the search input border. 1 cycle, not looping.",
+      "duration": "content (300ms) pulse",
+      "fallback": "if search takes > 3s, show a calm text message: 'Searching the teachings...'"
+    },
+    "page": {
+      "indicator": "none for cached/fast loads. For slow loads (> 1s), show the scroll indicator bar at 50% as a gentle hint.",
+      "never": "never a full-screen loader, never a spinning animation, never a skeleton screen"
+    }
+  },
+
+  "stagger-patterns": {
+    "$description": "When multiple elements appear together (search results, suggestion list), they can stagger for a sense of natural arrival. Like books being placed on a shelf one at a time.",
+    "delay-between-items": "100ms",
+    "max-items-staggered": 5,
+    "beyond-max": "all remaining items appear simultaneously (don't keep the seeker waiting)",
+    "reduced-motion": "all items appear simultaneously"
+  }
+}

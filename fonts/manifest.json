@@ -1,0 +1,95 @@
+{
+  "$description": "Font manifest. Canonical metadata for all self-hosted fonts in the Yogananda ecosystem. Zero external font requests — GDPR compliance (ADR-099). All fonts use SIL Open Font License (OFL).",
+
+  "loading-strategy": {
+    "display": "swap",
+    "rationale": "Show system font immediately, swap to custom font when loaded. Prevents invisible text during load. Acceptable flash of unstyled text is better than a blank screen on 2G.",
+    "formats": ["woff2"],
+    "preload": ["merriweather-latin-400-normal.woff2", "open-sans-latin-400-normal.woff2"],
+    "preload-rationale": "Only preload the two most critical fonts (body reading + UI). Other weights/styles load on demand."
+  },
+
+  "families": {
+    "merriweather": {
+      "role": "reading",
+      "description": "Primary reading font. Warm serifs, excellent screen rendering, wide language support. The seeker reads Merriweather for hours — it must never tire the eyes.",
+      "license": "SIL Open Font License 1.1",
+      "source": "Google Fonts (self-hosted)",
+      "variants": [
+        { "weight": 300, "style": "normal", "files": ["merriweather-latin-300-normal.woff2", "merriweather-latin-ext-300-normal.woff2"], "use": "Epigraphs, citations, light emphasis" },
+        { "weight": 400, "style": "normal", "files": ["merriweather-latin-400-normal.woff2", "merriweather-latin-ext-400-normal.woff2"], "use": "Body text — the primary reading experience" },
+        { "weight": 400, "style": "italic", "files": ["merriweather-latin-400-italic.woff2"], "use": "Emphasis, epigraph text, book titles in citations" },
+        { "weight": 700, "style": "normal", "files": ["merriweather-latin-700-normal.woff2", "merriweather-latin-ext-700-normal.woff2"], "use": "Drop capitals, bold emphasis" }
+      ],
+      "unicode-ranges": {
+        "latin": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+        "latin-ext": "U+0100-024F, U+0259, U+1E00-1EFF, U+2000-206F, U+2070-209F, U+20A0-20CF, U+2100-214F, U+2150-218F, U+2C60-2C7F, U+A720-A7FF"
+      }
+    },
+
+    "lora": {
+      "role": "display",
+      "description": "Display/heading accent font. Calligraphic warmth — more expressive than Merriweather at large sizes. Anchors the page with visual authority.",
+      "license": "SIL Open Font License 1.1",
+      "source": "Google Fonts (self-hosted)",
+      "variants": [
+        { "weight": 400, "style": "normal", "files": ["lora-latin-400-normal.woff2", "lora-latin-ext-400-normal.woff2"], "use": "Display text, subtitles" },
+        { "weight": 400, "style": "italic", "files": ["lora-latin-400-italic.woff2"], "use": "Display italic accents" },
+        { "weight": 700, "style": "normal", "files": ["lora-latin-700-normal.woff2"], "use": "Chapter titles, major headings" }
+      ]
+    },
+
+    "open-sans": {
+      "role": "ui",
+      "description": "UI/system font. Clarity and neutrality — it disappears. The UI typography should never compete with the reading typography for attention.",
+      "license": "SIL Open Font License 1.1",
+      "source": "Google Fonts (self-hosted)",
+      "variants": [
+        { "weight": 400, "style": "normal", "files": ["open-sans-latin-400-normal.woff2", "open-sans-latin-ext-400-normal.woff2"], "use": "Navigation, labels, system text" },
+        { "weight": 600, "style": "normal", "files": ["open-sans-latin-600-normal.woff2"], "use": "Button labels, active nav items, emphasis" }
+      ]
+    },
+
+    "noto-serif-devanagari": {
+      "role": "reading-hi",
+      "description": "Hindi reading font. Serif warmth for sustained Devanagari reading. Optical size scaled to 20px (vs 18px Latin) with 1.9 line height for shirorekha clearance. ADR-080.",
+      "license": "SIL Open Font License 1.1",
+      "source": "Google Fonts (to be self-hosted)",
+      "status": "planned — fonts not yet included. Will be added when Hindi content activates (Milestone 5b).",
+      "variants": [
+        { "weight": 400, "style": "normal", "use": "Hindi body text" },
+        { "weight": 700, "style": "normal", "use": "Hindi headings" }
+      ]
+    },
+
+    "noto-sans-devanagari": {
+      "role": "ui-hi",
+      "description": "Hindi UI font. Sans-serif for chrome — cleaner than Serif at small UI sizes. 15px (vs 14px Latin) for optical matching.",
+      "license": "SIL Open Font License 1.1",
+      "source": "Google Fonts (to be self-hosted)",
+      "status": "planned — fonts not yet included.",
+      "variants": [
+        { "weight": 400, "style": "normal", "use": "Hindi navigation, labels" },
+        { "weight": 600, "style": "normal", "use": "Hindi button labels, emphasis" }
+      ]
+    },
+
+    "raleway": {
+      "role": "ui-yss",
+      "description": "YSS UI font. Geometric sans-serif from yssofindia.org. More modern than Open Sans, reflecting YSS's contemporary digital presence.",
+      "license": "SIL Open Font License 1.1",
+      "source": "Google Fonts (to be self-hosted)",
+      "status": "planned — fonts not yet included. Will be added when YSS surface activates (PRO-043).",
+      "variants": [
+        { "weight": 400, "style": "normal", "use": "YSS navigation, labels" },
+        { "weight": 600, "style": "normal", "use": "YSS button labels, emphasis" }
+      ]
+    }
+  },
+
+  "total-weight": {
+    "critical-path": "~68KB (Merriweather 400 + Open Sans 400)",
+    "full-latin": "~454KB (all 14 woff2 files)",
+    "note": "Font loading is progressive — only critical-path fonts are preloaded. Remaining fonts load as needed."
+  }
+}

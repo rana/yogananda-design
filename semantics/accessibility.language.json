@@ -1,0 +1,89 @@
+{
+  "$description": "Accessibility requirements for the Yogananda ecosystem. WCAG 2.1 AA from the first component (PRI-07). These are non-negotiable minimums — every surface must meet them. A seeker in rural Bihar on 2G and a seeker in Los Angeles on fiber both get the complete experience (PRI-05).",
+
+  "standard": "WCAG 2.1 AA",
+  "principle": "PRI-07",
+
+  "visual": {
+    "contrast": {
+      "normal-text-min": 4.5,
+      "large-text-min": 3.0,
+      "ui-component-min": 3.0,
+      "$description": "Minimum contrast ratios. Large text is ≥18pt (24px) or ≥14pt (18.67px) bold. All theme combinations must meet these ratios. High contrast mode (prefers-contrast: more) increases to pure black/white."
+    },
+    "focus-indicators": {
+      "style": "2px solid gold",
+      "offset": "2px",
+      "selector": ":focus-visible",
+      "$description": "Gold outline on all interactive elements when keyboard-focused. :focus-visible (not :focus) to avoid showing outlines on mouse clicks."
+    },
+    "color-independence": {
+      "$description": "Information must not be conveyed by color alone. Error states use icon + text + color. Success states use icon + text. Links use underline + color."
+    }
+  },
+
+  "motor": {
+    "touch-targets": {
+      "minimum": { "value": 44, "unit": "px" },
+      "preferred": { "value": 48, "unit": "px" },
+      "$description": "WCAG 2.5.8. All interactive elements. ~70% of target audience is mobile-first."
+    },
+    "keyboard": {
+      "$description": "Every interactive element reachable via Tab. Logical tab order. Escape closes modals/drawers. Arrow keys navigate lists. No keyboard traps.",
+      "reading-navigation": "j/k paragraphs, h/l chapters, d dwell, f focus mode, ? help overlay"
+    }
+  },
+
+  "cognitive": {
+    "$description": "Calm technology principles (PRI-08) serve cognitive accessibility. The portal's restraint benefits everyone, especially those with attention difficulties.",
+    "reading-level": "Content descriptions and UI labels at 8th-grade reading level or below",
+    "animation": "All motion functional, never decorative. prefers-reduced-motion respected.",
+    "consistency": "Same patterns everywhere. Navigation doesn't change. Predictable behavior.",
+    "error-recovery": "Clear error messages with constructive guidance. No dead ends."
+  },
+
+  "assistive-technology": {
+    "landmarks": {
+      "$description": "ARIA landmarks on all major regions.",
+      "required": ["banner (header)", "navigation (nav)", "main (main content)", "contentinfo (footer)"],
+      "optional": ["complementary (sidebar)", "search (search region)"]
+    },
+    "live-regions": {
+      "$description": "Dynamic content updates announced to screen readers.",
+      "search-results": "aria-live='polite' — results update without interrupting current reading",
+      "theme-change": "aria-live='polite' — theme name announced on switch",
+      "loading-state": "aria-busy='true' on containers during fetch"
+    },
+    "reading-order": {
+      "$description": "DOM order matches visual order. No CSS reordering that breaks screen reader flow. Chapter content before sidebar. Main content before navigation."
+    },
+    "footnotes": {
+      "$description": "DPUB-ARIA roles. role='doc-noteref' on inline references. role='doc-endnotes' on chapter notes section. role='doc-backlink' on return arrows.",
+      "spec": "DPUB-ARIA 1.0"
+    }
+  },
+
+  "performance-as-accessibility": {
+    "$description": "Performance IS accessibility for PRI-05 (Global-First). A seeker on 2G cannot use a site that takes 10 seconds to load.",
+    "budgets": {
+      "javascript": { "max": "100KB", "$description": "Total JS bundle. Below this, 2G connections load acceptably." },
+      "fcp": { "target": "1.5s", "$description": "First Contentful Paint. The seeker sees content, not a blank screen." },
+      "lcp": { "target": "2.5s", "$description": "Largest Contentful Paint. The main content is readable." }
+    },
+    "progressive-enhancement": {
+      "$description": "HTML is the foundation, CSS enriches, JavaScript enhances. Core reading experience works without JS. Search degrades to server-rendered results.",
+      "layers": [
+        "HTML: semantic structure, all content readable",
+        "CSS: layout, typography, themes (no JS required for basic reading)",
+        "JavaScript: search suggestions, dwell mode, keyboard navigation, theme persistence"
+      ]
+    }
+  },
+
+  "ci-enforcement": {
+    "$description": "Accessibility violations block merges. axe-core in CI pipeline. Playwright accessibility audit on all pages.",
+    "tool": "axe-core",
+    "threshold": "zero violations at level A and AA",
+    "scope": "all rendered pages and components"
+  }
+}

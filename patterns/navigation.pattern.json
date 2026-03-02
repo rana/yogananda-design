@@ -1,0 +1,106 @@
+{
+  "$description": "Composition patterns for navigation and wayfinding. Navigation in this portal is self-revealing (DES-015) — it shows itself when needed and disappears when the seeker is reading. The navigation should never compete with the content for attention.",
+
+  "primary-navigation": {
+    "$description": "Top-level site navigation. Minimal items, clear hierarchy.",
+    "register": "functional",
+    "tokens": {
+      "background": "theme.bg (same as page — no distinct header bar in light themes)",
+      "text": "theme.text, ui typography",
+      "active-indicator": "gold interactive (1.0) — underline or bottom border",
+      "padding": "default (16px) horizontal, compact (8px) vertical",
+      "height": "48px minimum (touch-target-comfortable)"
+    },
+    "behavior": {
+      "self-revealing": "Header fades away on scroll down, reappears on scroll up or pause (DES-015). The reader shouldn't see navigation while immersed in text.",
+      "sticky": "Becomes sticky at top on scroll up. Subtle shadow.subtle on sticky state.",
+      "mobile": "Hamburger menu (44px touch target). Slide-in drawer from inline-end."
+    },
+    "items": {
+      "typography": "ui-semibold for active, ui for others",
+      "spacing": "generous (24px) gap between items on desktop, full-width rows on mobile",
+      "touch-target": "48px height on mobile menu items"
+    }
+  },
+
+  "breadcrumbs": {
+    "$description": "Location indicator for chapter reading. Where am I in the book?",
+    "register": "functional",
+    "tokens": {
+      "text": "theme.text-secondary, ui typography at smaller size (12-13px)",
+      "separator": "thin gold rule or › character at ambient opacity (0.3)",
+      "padding": "compact (8px) vertical"
+    },
+    "pattern": "Book Title › Chapter Title",
+    "behavior": "Links back to book table of contents and chapter list. Disappears in focus mode."
+  },
+
+  "chapter-navigation": {
+    "$description": "Previous/next chapter navigation. Always available at the end of a chapter, optionally available in the sidebar.",
+    "register": "functional transitioning to instructional",
+    "tokens": {
+      "background": "theme.bg-secondary (subtle differentiation from reading surface)",
+      "text": "theme.text, ui typography for labels, display typography for chapter titles",
+      "border-top": "border.default — a quiet line separating navigation from content",
+      "padding": "spacious (32px) vertical, generous (24px) horizontal"
+    },
+    "layout": {
+      "previous": "inline-start aligned, arrow pointing inline-start",
+      "next": "inline-end aligned, arrow pointing inline-end",
+      "mobile": "stacked vertically, full width"
+    },
+    "behavior": "After DES-012 'Breath Between Chapters' transition, next chapter begins. The navigation is the gate between chapters."
+  },
+
+  "sidebar-toc": {
+    "$description": "Table of contents sidebar. Shows the book's chapter structure with current position highlighted.",
+    "register": "functional",
+    "tokens": {
+      "background": "theme.bg-secondary",
+      "text": "ui typography",
+      "active-chapter": "gold interactive (1.0) accent + ui-semibold",
+      "other-chapters": "theme.text-secondary",
+      "width": "w-72 (288px) — wide enough for chapter titles, narrow enough to not crowd reading"
+    },
+    "behavior": {
+      "desktop": "Fixed sidebar when screen width ≥ lg breakpoint",
+      "tablet": "Slide-in drawer from inline-start",
+      "mobile": "Full-screen overlay"
+    }
+  },
+
+  "related-teachings-panel": {
+    "$description": "Side panel showing passages related to the settled paragraph (DES-009, DES-010). The 'Following the Thread' experience.",
+    "register": "reverential for passage content, functional for chrome",
+    "tokens": {
+      "background": "theme.bg-secondary",
+      "width": "w-72 (288px)",
+      "border-inline-start": "border.subtle"
+    },
+    "content": {
+      "trigger": "Settled paragraph (1200ms dwell in focus zone)",
+      "items": "Up to 5 related passages (relations-display-limit)",
+      "passage-mini-card": "Compact passage-card variant — smaller typography, truncated to 3 lines, full attribution",
+      "thread-breadcrumb": "Position history in the 'thread' (max 10 deep)"
+    },
+    "animation": "content transition (300ms) on appear. Passages stagger in with 100ms delay between items."
+  },
+
+  "footer": {
+    "$description": "Site footer. Practice bridge, SRF links, legal. The bottom of every page is an invitation to go deeper — into SRF practice, not just more reading.",
+    "register": "functional",
+    "tokens": {
+      "background": "theme.bg-secondary",
+      "text": "theme.text-secondary, ui typography",
+      "border-top": "border.default",
+      "padding": "spacious (32px) vertical"
+    },
+    "sections": [
+      "Practice Bridge: links to SRF Lessons, meditation information (PRI-04 signpost)",
+      "Cross-site links: yogananda.org sections via three-room model",
+      "Language selector (if multilingual content available)",
+      "Text-only mode toggle",
+      "Legal: copyright, privacy, terms"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "$description": "Hindi/Devanagari typography overrides (ADR-080). These tokens override the default Latin typography when content is in Hindi. Devanagari script has different optical properties: wider glyphs, shirorekha (headline), higher x-height equivalent. These differences require specific typographic treatment, not just font substitution.",
+
+  "typography": {
+    "reading": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["Noto Serif Devanagari", "serif"],
+        "fontSize": { "value": 20, "unit": "px" },
+        "fontWeight": 400,
+        "lineHeight": 1.9
+      },
+      "$description": "Hindi reading. 20px (vs 18px Latin) — 11% larger due to Devanagari optical size. 1.9 line height (vs 1.8 Latin) — shirorekha needs more vertical clearance. Noto Serif for reading warmth.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "adr": "ADR-080",
+          "rationale": "Devanagari aksharas are optically wider and taller than Latin glyphs. Without size adjustment, Hindi text feels smaller than equivalent English text. The 11% increase achieves optical parity."
+        }
+      }
+    },
+    "ui": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["Noto Sans Devanagari", "system-ui", "sans-serif"],
+        "fontSize": { "value": 15, "unit": "px" },
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$description": "Hindi UI text. Noto Sans (not Serif) for chrome — cleaner at small sizes. 15px (vs 14px Latin) for optical matching."
+    }
+  },
+
+  "reading": {
+    "line-length": {
+      "$type": "number",
+      "$value": 45,
+      "$description": "Optimal Hindi line length in aksharas (40-50 range). Devanagari glyphs occupy more horizontal space — fewer characters per comfortable line."
+    },
+    "drop-capitals": {
+      "$type": "number",
+      "$value": 0,
+      "$description": "Drop capitals are OMITTED for Devanagari. No equivalent in Hindi typographic tradition. The shirorekha makes drop capitals visually awkward.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "adr": "ADR-080",
+          "rationale": "Devanagari's shirorekha (headline connecting bar) conflicts with drop-capital spacing. Hindi literary tradition does not use drop capitals."
+        }
+      }
+    }
+  },
+
+  "quotation-marks": {
+    "$description": "Hindi quotation conventions. Hindi typically uses the same quotation marks as English (double quotes), but some publishers use guillemets. SRF/YSS publications should be checked for their convention.",
+    "primary":   { "open": "\u201C", "close": "\u201D", "$description": "Left/right double quotation marks. Standard in most Hindi publishing." },
+    "secondary": { "open": "\u2018", "close": "\u2019", "$description": "Left/right single quotation marks. Quotes within quotes." }
+  },
+
+  "terminology": {
+    "$description": "Hindi is PRIMARY for many Yogananda terms, not derivative. Many terms originated in Hindi/Sanskrit. The vocabulary bridge maps colloquial Hindi states to Yogananda's formal vocabulary — the reverse direction from English. (ADR-130, DES-059)",
+    "direction": "colloquial-to-formal",
+    "review": "Requires YSS editorial review for cultural fidelity (PRO-043)"
+  }
+}

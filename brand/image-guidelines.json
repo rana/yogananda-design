@@ -1,0 +1,98 @@
+{
+  "$description": "Brand image guidelines for the Yogananda ecosystem. Covers photography, illustrations, and generated imagery. Key constraint: PRI-01 prohibits AI generation of any media representing Yogananda or the lineage gurus. All SRF photographs are copyrighted.",
+
+  "photography": {
+    "copyright": {
+      "owner": "Self-Realization Fellowship",
+      "notice": "All photographs of Paramahansa Yogananda, the lineage gurus, SRF properties, and SRF events are copyrighted by Self-Realization Fellowship. Authorization required for any use.",
+      "contact": "SRF must authorize use of any photographic assets."
+    },
+
+    "lineage-gurus": {
+      "$description": "The spiritual lineage. Photographs exist for all four gurus. Authorization required from SRF.",
+      "figures": [
+        { "name": "Paramahansa Yogananda", "role": "Founder, SRF/YSS", "images-available": true },
+        { "name": "Swami Sri Yukteswar", "role": "Guru of Yogananda", "images-available": true },
+        { "name": "Lahiri Mahasaya", "role": "Guru of Sri Yukteswar", "images-available": true },
+        { "name": "Mahavatar Babaji", "role": "Guru of Lahiri Mahasaya", "images-available": true, "note": "Fewer photographs available. The most sacred representations." }
+      ]
+    },
+
+    "usage-rules": [
+      "Never crop, filter, colorize, or digitally alter photographs of the gurus",
+      "Never use AI to generate, enhance, upscale, or modify guru images (PRI-01)",
+      "Never use guru images as decorative backgrounds or textures",
+      "Always display at respectful size — never thumbnails smaller than 120px",
+      "Always include proper attribution: 'Photo courtesy of Self-Realization Fellowship'",
+      "Never place guru images adjacent to commercial content or advertising",
+      "Images should appear in reverential context only — biography pages, about sections, not search results or navigation"
+    ],
+
+    "placeholder-approach": {
+      "$description": "Until SRF authorizes specific photographs, use text-based representations or the lotus motif. Never use stock photos or AI-generated placeholders for guru images.",
+      "guru-pages": "Full name in display typography, with biographical text. The lotus motif as visual anchor.",
+      "about-page": "Lotus motif + text description of the lineage."
+    }
+  },
+
+  "favicon-and-icons": {
+    "primary": {
+      "file": "motifs/srf/lotus.svg",
+      "description": "Gold lotus on transparent background. 33x23 viewBox. Two-path SVG — upper petals and lower petals.",
+      "colors": { "fill": "#dcbd23 (SRF Gold)" },
+      "usage": "Browser favicon, PWA icon, social sharing fallback"
+    },
+    "apple-touch-icon": {
+      "description": "Gold lotus on navy background. 180x180 PNG generated from lotus SVG.",
+      "spec": {
+        "width": 180,
+        "height": 180,
+        "background": "#1a2744 (SRF Navy)",
+        "border-radius": 36,
+        "lotus-width": 140,
+        "lotus-fill": "#dcbd23 (SRF Gold)"
+      }
+    },
+    "yss-variant": {
+      "status": "not yet designed",
+      "note": "YSS may use a different emblem or lotus variant. Requires YSS input (PRO-043)."
+    }
+  },
+
+  "lotus-motif": {
+    "$description": "DES-016: Lotus as Unified Visual Motif. The lotus appears throughout the portal as a section divider, loading indicator, ornamental accent, and favicon. It is the single visual symbol connecting all parts of the experience.",
+    "canonical-svg": "motifs/srf/lotus.svg",
+    "applications": [
+      { "use": "favicon", "size": "32x32", "treatment": "Gold fill, transparent background" },
+      { "use": "section-divider", "size": "24px height", "treatment": "Gold at decorative opacity (0.4), centered, with generous vertical margin" },
+      { "use": "loading-state", "size": "32px", "treatment": "Gold at ambient opacity (0.3), gentle pulse (not rotation)" },
+      { "use": "chapter-ornament", "size": "16px", "treatment": "Gold at decorative opacity (0.4), centered below chapter ending" },
+      { "use": "empty-state", "size": "48px", "treatment": "Gold at ambient opacity (0.3), centered above 'no results' message" }
+    ],
+    "never": [
+      "Never rotate the lotus (it should always be upright — it's a spiritual symbol)",
+      "Never use as a background pattern or repeating tile",
+      "Never scale below 16px (loses clarity)",
+      "Never apply filters or effects (drop shadow, glow, etc.)"
+    ]
+  },
+
+  "illustrations": {
+    "$description": "The portal currently uses no custom illustrations. If illustrations are added in the future, they should follow these guidelines.",
+    "style": "Line art in SRF Gold or Navy. Simple, elegant, non-photorealistic. The illustration style should echo woodcut or engraving traditions — scholarly, not whimsical.",
+    "subjects": "Natural motifs (lotus, mountains, water), geometric patterns (mandalas, yantras for YSS), architectural elements (temple domes, library arches)",
+    "never": "Never illustrate the gurus. Never create cartoon or stylized versions. Never use AI-generated illustrations of spiritual figures."
+  },
+
+  "social-sharing": {
+    "$description": "Open Graph and social media card images. Used when portal links are shared on social platforms.",
+    "default": {
+      "approach": "Gold lotus centered on navy background with portal title. Simple, dignified.",
+      "dimensions": "1200x630 (OG standard)"
+    },
+    "per-chapter": {
+      "approach": "Chapter title in display typography on navy background with gold lotus ornament. No book cover images (copyright).",
+      "note": "Per-page social images are a future feature. Default image is sufficient initially."
+    }
+  }
+}

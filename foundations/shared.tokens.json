@@ -1,0 +1,177 @@
+{
+  "$description": "Shared design foundations for the Yogananda digital ecosystem. These tokens express calm technology principles (PRI-08), accessibility requirements (PRI-07), and the 10-year design horizon (PRI-10). They apply regardless of organization (SRF or YSS). Organization-specific tokens override or extend these.",
+
+  "space": {
+    "$type": "dimension",
+    "$description": "Spacing rhythm. Base unit 8px. Generous by default — digital silence is whitespace (ADR-065). Never cramped; the teachings deserve breathing room.",
+    "base":      { "$value": { "value": 8, "unit": "px" }, "$description": "Atomic unit. Internal component math." },
+    "tight":     { "$value": { "value": 4, "unit": "px" }, "$description": "Minimum. Inline icon gaps, tight label spacing." },
+    "compact":   { "$value": { "value": 8, "unit": "px" }, "$description": "Dense UI: search results list, settings rows." },
+    "default":   { "$value": { "value": 16, "unit": "px" }, "$description": "Standard gap between elements. Comfortable without being lavish." },
+    "generous":  { "$value": { "value": 24, "unit": "px" }, "$description": "Reading content margins. The default generosity of this design language." },
+    "spacious":  { "$value": { "value": 32, "unit": "px" }, "$description": "Section padding. Distinct regions of content." },
+    "expansive": { "$value": { "value": 48, "unit": "px" }, "$description": "Major section separation. The digital equivalent of a page turn." },
+    "vast":      { "$value": { "value": 64, "unit": "px" }, "$description": "Page-level breathing. Hero spacing. The portal threshold." }
+  },
+
+  "motion": {
+    "$description": "All motion is functional, never decorative (PRI-08). Maximum 0.3s for standard UI transitions. Contemplative transitions may be slower — they serve spiritual pacing, not decoration. prefers-reduced-motion: reduce → instant all transitions.",
+
+    "instant": {
+      "$type": "duration",
+      "$value": { "value": 0, "unit": "ms" },
+      "$description": "No transition. State changes that must feel immediate (toggle, dismiss)."
+    },
+    "interaction": {
+      "$type": "transition",
+      "$value": {
+        "duration": { "value": 150, "unit": "ms" },
+        "timingFunction": [0.4, 0, 0.2, 1],
+        "delay": { "value": 0, "unit": "ms" }
+      },
+      "$description": "Hover, focus, click response. Fast enough to feel instant, slow enough to be smooth.",
+      "$extensions": { "org.yogananda.design": { "principle": "PRI-08", "evaluationTrigger": "If users report lag, reduce to 100ms." } }
+    },
+    "content": {
+      "$type": "transition",
+      "$value": {
+        "duration": { "value": 300, "unit": "ms" },
+        "timingFunction": [0.4, 0, 0.2, 1],
+        "delay": { "value": 0, "unit": "ms" }
+      },
+      "$description": "Content appearing or disappearing. Theme switches, panel reveals, result loading. The maximum for standard UI.",
+      "$extensions": { "org.yogananda.design": { "principle": "PRI-08", "rationale": "0.3s is the calm technology ceiling for UI transitions." } }
+    },
+    "contemplative": {
+      "$type": "transition",
+      "$value": {
+        "duration": { "value": 800, "unit": "ms" },
+        "timingFunction": [0.25, 0, 0.1, 1],
+        "delay": { "value": 0, "unit": "ms" }
+      },
+      "$description": "Sacred pacing. Chapter transitions (DES-012 'Breath Between Chapters'), portal threshold (DES-007), dwell activation. Content worthy of Yogananda's words deserves unhurried transitions.",
+      "$extensions": { "org.yogananda.design": { "principle": "PRI-03" } }
+    },
+    "arrival": {
+      "$type": "transition",
+      "$value": {
+        "duration": { "value": 1200, "unit": "ms" },
+        "timingFunction": [0.25, 0, 0.1, 1],
+        "delay": { "value": 200, "unit": "ms" }
+      },
+      "$description": "Portal entry. The Opening Moment (DES-007). Slow enough to feel like crossing a threshold. The slight delay is intentional — the portal pauses before greeting.",
+      "$extensions": { "org.yogananda.design": { "principle": "PRI-03", "rationale": "Entering a sacred space is not instantaneous." } }
+    },
+
+    "easing": {
+      "$description": "Named easing curves. All use cubic-bezier.",
+      "standard":      { "$type": "cubicBezier", "$value": [0.4, 0, 0.2, 1], "$description": "Material-inspired standard easing. Most UI transitions." },
+      "decelerate":    { "$type": "cubicBezier", "$value": [0.0, 0, 0.2, 1], "$description": "Elements entering the screen. Arrives quickly, settles slowly." },
+      "accelerate":    { "$type": "cubicBezier", "$value": [0.4, 0, 1.0, 1], "$description": "Elements leaving the screen. Departs slowly, exits quickly." },
+      "contemplative": { "$type": "cubicBezier", "$value": [0.25, 0, 0.1, 1], "$description": "Gentle, unhurried. For sacred content transitions." }
+    }
+  },
+
+  "touch": {
+    "$type": "dimension",
+    "$description": "Touch target requirements. Non-negotiable accessibility minimums (PRI-07, WCAG 2.5.8). ~70% of Hindi/Spanish audience is mobile-first (ADR-128).",
+    "target-min": { "$value": { "value": 44, "unit": "px" }, "$description": "Minimum interactive touch target. Buttons, links, toggles. No exceptions." },
+    "target-comfortable": { "$value": { "value": 48, "unit": "px" }, "$description": "Preferred touch target. Primary actions, frequently tapped elements." }
+  },
+
+  "reading": {
+    "$description": "Reading experience parameters. These govern how the portal presents text — the core activity of the entire ecosystem.",
+
+    "settled-debounce": {
+      "$type": "duration",
+      "$value": { "value": 1200, "unit": "ms" },
+      "$description": "How long a seeker dwells on a paragraph before the portal responds with related teachings. 1.2 seconds of stillness. The portal waits; it does not interrupt.",
+      "$extensions": { "org.yogananda.design": { "principle": "PRI-08", "adr": "ADR-123", "evaluationTrigger": "User testing Milestone 3a. Shorter = more responsive but interrupts reading." } }
+    },
+    "focus-zone": {
+      "$type": "number",
+      "$value": 35,
+      "$description": "Percentage of viewport top/bottom to exclude from focus detection. Middle 30% is the 'focus zone' — paragraphs here are candidates for settled paragraph. Value represents the margin percentage.",
+      "$extensions": { "org.yogananda.design": { "adr": "ADR-123", "evaluationTrigger": "Wider margin = more focused detection. Narrower = more sensitive." } }
+    },
+    "line-length": {
+      "$description": "Optimal line length per script. Based on typographic research for comfortable sustained reading.",
+      "latin": {
+        "$type": "number",
+        "$value": 70,
+        "$description": "Optimal English/Spanish line length in characters (65-75 range). Bringhurst standard. ~42em at body size."
+      },
+      "devanagari": {
+        "$type": "number",
+        "$value": 45,
+        "$description": "Optimal Hindi line length in aksharas (40-50 range). ADR-080. Devanagari glyphs are wider; fewer characters per line maintains rhythm."
+      }
+    }
+  },
+
+  "breakpoint": {
+    "$type": "dimension",
+    "$description": "Responsive breakpoints. Mobile-first progressive enhancement (PRI-05, PRI-07). A seeker in rural Bihar on 2G and a seeker in Los Angeles on fiber both get the complete experience.",
+    "sm": { "$value": { "value": 640, "unit": "px" }, "$description": "Small tablets, large phones landscape." },
+    "md": { "$value": { "value": 768, "unit": "px" }, "$description": "Tablets portrait. Suggestion count changes here." },
+    "lg": { "$value": { "value": 1024, "unit": "px" }, "$description": "Tablets landscape, small desktops. Side panel appears." },
+    "xl": { "$value": { "value": 1280, "unit": "px" }, "$description": "Full desktop. Presentation mode enlarges further." }
+  },
+
+  "radius": {
+    "$type": "dimension",
+    "$description": "Border radius. Soft but not bubbly — a library, not a playground.",
+    "none":  { "$value": { "value": 0, "unit": "px" }, "$description": "Sharp corners. Reading surfaces, content blocks." },
+    "small": { "$value": { "value": 2, "unit": "px" }, "$description": "Subtle rounding. Keyboard focus indicators, hover highlights." },
+    "default": { "$value": { "value": 4, "unit": "px" }, "$description": "Standard rounding. Cards, inputs, dropdowns." },
+    "pill": { "$value": { "value": 9999, "unit": "px" }, "$description": "Fully rounded. Buttons, tags, badges. SRF's established interaction pattern from yogananda.org." }
+  },
+
+  "shadow": {
+    "$description": "Shadows are minimal. The design language prefers borders and background shifts over drop shadows. When shadows appear, they are subtle and warm.",
+    "subtle": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#1a274408",
+        "offsetX": { "value": 0, "unit": "px" },
+        "offsetY": { "value": 1, "unit": "px" },
+        "blur": { "value": 3, "unit": "px" },
+        "spread": { "value": 0, "unit": "px" }
+      },
+      "$description": "Barely perceptible elevation. Floating elements that need just a hint of lift."
+    },
+    "elevated": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#1a274412",
+        "offsetX": { "value": 0, "unit": "px" },
+        "offsetY": { "value": 4, "unit": "px" },
+        "blur": { "value": 12, "unit": "px" },
+        "spread": { "value": 0, "unit": "px" }
+      },
+      "$description": "Modals, dropdown menus, floating panels. The most elevation this design language uses."
+    }
+  },
+
+  "opacity": {
+    "$type": "number",
+    "$description": "Named opacity levels for consistent transparency across the system.",
+    "invisible": { "$value": 0, "$description": "Fully transparent. Hidden elements." },
+    "ghost":     { "$value": 0.03, "$description": "Paper texture noise. The ghost of physicality." },
+    "whisper":   { "$value": 0.06, "$description": "Paragraph hover backgrounds. Felt, not seen." },
+    "muted":     { "$value": 0.12, "$description": "Borders, dividers. Present but undemanding." },
+    "subdued":   { "$value": 0.15, "$description": "Dimmed paragraphs in dwell mode. Background content." },
+    "secondary": { "$value": 0.30, "$description": "Secondary text, scroll indicators. Supporting role." },
+    "primary":   { "$value": 0.70, "$description": "Primary secondary text. Readable but not dominant." },
+    "full":      { "$value": 1.0, "$description": "Full opacity. Primary text, interactive elements." }
+  },
+
+  "z-index": {
+    "$type": "number",
+    "$description": "Stacking context. Flat hierarchy — avoid z-index wars.",
+    "base":    { "$value": 0, "$description": "Default content layer." },
+    "raised":  { "$value": 10, "$description": "Sticky headers, floating action buttons." },
+    "overlay": { "$value": 30, "$description": "Modals, drawers, dialog backdrops." },
+    "top":     { "$value": 50, "$description": "Scroll indicator, toast notifications. Always visible." }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "$description": "PRI-08: Calm Technology. The portal waits; it does not interrupt. Technology requires the smallest possible amount of attention. This file codifies what every surface in the Yogananda ecosystem MUST and MUST NOT do. Use this as a validation checklist for every component.",
+
+  "forbidden": {
+    "$description": "Patterns the design system will NEVER include. These are commitments, not preferences. Each entry names the pattern, explains why it violates calm technology, and references the governing principle.",
+    "patterns": [
+      {
+        "name": "push-notifications",
+        "why": "The portal does not interrupt. The seeker comes to the teachings; the teachings do not chase the seeker.",
+        "principle": "PRI-08"
+      },
+      {
+        "name": "autoplay-media",
+        "why": "The seeker initiates; the portal responds. No video, audio, or animation begins without explicit user action.",
+        "principle": "PRI-08"
+      },
+      {
+        "name": "engagement-tracking",
+        "why": "No behavioral profiling, no session tracking, no user identification. Amplitude event allowlist only.",
+        "principle": "PRI-09",
+        "adr": "ADR-095"
+      },
+      {
+        "name": "gamification",
+        "why": "Reading streaks, points, badges, levels, achievements — all commodify contemplation. The teachings are not a game to be won.",
+        "principle": "PRI-08"
+      },
+      {
+        "name": "time-pressure-ui",
+        "why": "No countdown timers, flash sales, urgency language, 'limited time' indicators. The teachings are eternal; urgency is antithetical.",
+        "principle": "PRI-08"
+      },
+      {
+        "name": "decorative-animation",
+        "why": "All motion is functional. Parallax scrolling, particle effects, animated backgrounds, loading spinners beyond simple indicators — all forbidden. Maximum 0.3s for standard transitions.",
+        "principle": "PRI-08",
+        "adr": "ADR-065"
+      },
+      {
+        "name": "pure-white-background",
+        "why": "Always warm (#FAF8F5 minimum in light mode). A library, not a hospital. Pure white is clinical; warm cream is inviting.",
+        "principle": "ADR-065"
+      },
+      {
+        "name": "infinite-scroll",
+        "why": "Content has natural endings. Chapters end. Books end. Search results are paginated. Infinite scroll erases boundaries that give structure to reading.",
+        "principle": "PRI-08"
+      },
+      {
+        "name": "social-sharing-buttons",
+        "why": "The portal is not a marketing channel. No 'Share on Twitter/Facebook' buttons. The seeker's reading experience is private.",
+        "principle": "PRI-08, PRI-09"
+      },
+      {
+        "name": "ai-generated-content",
+        "why": "The AI is a librarian, not an oracle. It finds and ranks verbatim published words — it NEVER generates, paraphrases, or synthesizes content in any medium.",
+        "principle": "PRI-01"
+      },
+      {
+        "name": "behavior-based-algorithms",
+        "why": "Curation derives intelligence from the corpus, never from user behavior patterns — even anonymized. No 'readers also liked' based on usage.",
+        "principle": "PRI-09",
+        "adr": "ADR-099"
+      },
+      {
+        "name": "skeleton-loaders",
+        "why": "Content is either present or honestly absent. Skeleton screens create false expectation. Use a simple, calm loading state instead — or better, serve from cache/CDN.",
+        "principle": "PRI-08"
+      },
+      {
+        "name": "tooltip-on-sacred-text",
+        "why": "Yogananda's own words (sacred register) receive no hover tooltips, inline annotations, or overlay UI. The text stands alone.",
+        "principle": "PRI-01, PRI-03"
+      },
+      {
+        "name": "ai-generated-imagery",
+        "why": "AI generation, synthesis, or cloning of any media representing Yogananda or the lineage gurus is prohibited. All photographs are copyrighted SRF property.",
+        "principle": "PRI-01"
+      }
+    ]
+  },
+
+  "required": {
+    "$description": "Patterns every surface in the ecosystem MUST include. Non-negotiable accessibility and calm technology requirements.",
+    "patterns": [
+      {
+        "name": "reduced-motion-respect",
+        "how": "prefers-reduced-motion: reduce → all transitions instant (0.01ms). No exceptions.",
+        "principle": "PRI-07",
+        "css": "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }"
+      },
+      {
+        "name": "high-contrast-support",
+        "how": "prefers-contrast: more → pure black/white text, solid borders. No opacity-based text.",
+        "principle": "PRI-07"
+      },
+      {
+        "name": "keyboard-navigation",
+        "how": "Every interactive element reachable via Tab. :focus-visible indicators on all interactive elements (2px solid gold, 2px offset).",
+        "principle": "PRI-07"
+      },
+      {
+        "name": "screen-reader-semantics",
+        "how": "ARIA landmarks on all major regions. role='doc-noteref' for footnotes. Proper heading hierarchy (h1 → h2 → h3, never skip). Live regions for dynamic content.",
+        "principle": "PRI-07"
+      },
+      {
+        "name": "full-attribution",
+        "how": "Every displayed passage carries: author, book, chapter, page. No orphaned quotes. Full author name always displayed.",
+        "principle": "PRI-02"
+      },
+      {
+        "name": "honest-absence",
+        "how": "When content doesn't exist in a language, say so clearly and guide constructively. Never substitute machine translation. Honest absence as invitation, never a dead end.",
+        "principle": "PRI-02, PRI-06"
+      },
+      {
+        "name": "logical-properties",
+        "how": "Use CSS logical properties (inline-start, block-end) instead of physical (left, top). Enables RTL support without code changes.",
+        "principle": "PRI-06"
+      },
+      {
+        "name": "touch-targets",
+        "how": "Minimum 44x44px for all interactive elements. 48px preferred for primary actions.",
+        "principle": "PRI-07",
+        "adr": "ADR-003"
+      }
+    ]
+  },
+
+  "guidelines": {
+    "$description": "Qualitative guidelines that require judgment. Not checklistable, but essential for review.",
+    "patterns": [
+      {
+        "name": "is-this-worthy",
+        "question": "Is this worthy of presenting Yogananda's words?",
+        "guidance": "Before shipping any component, ask this. Not just typography that renders text, but typography that honors its rhythm. Not just search that returns results, but search that feels curated. Restraint as excellence.",
+        "principle": "PRI-03"
+      },
+      {
+        "name": "smallest-attention",
+        "question": "Does this require the smallest possible amount of attention?",
+        "guidance": "Every UI element should justify its attentional cost. If removing it wouldn't harm the experience, remove it. The best technology is invisible.",
+        "principle": "PRI-08"
+      },
+      {
+        "name": "signpost-not-destination",
+        "question": "Does this lead toward practice, or does it substitute for it?",
+        "guidance": "The portal leads seekers toward SRF/YSS practice. It never interprets meditation techniques. Practice queries route to SRF Lessons information.",
+        "principle": "PRI-04"
+      }
+    ]
+  }
+}

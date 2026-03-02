@@ -1,0 +1,95 @@
+{
+  "$description": "Composition patterns for the search experience. Search is the AI librarian's interface (DES-003). Pure hybrid retrieval — no AI in the search path. The search experience should feel curated, not algorithmic.",
+
+  "search-input": {
+    "$description": "The search bar. The seeker's primary question to the librarian.",
+    "register": "functional",
+    "tokens": {
+      "background": "theme.surface",
+      "text": "theme.text, ui typography",
+      "placeholder": "theme.text-secondary",
+      "border": "border.default (opacity 0.12)",
+      "border-focus": "gold interactive (1.0)",
+      "padding": "default (16px) horizontal, compact (8px) vertical",
+      "radius": "radius.pill"
+    },
+    "behavior": {
+      "debounce-first": "0ms — instant response to first keystroke",
+      "debounce-subsequent": "100ms (200ms on slow connections)",
+      "clear-button": "appears when input has value, 44px touch target"
+    },
+    "states": {
+      "empty": "placeholder text: locale-appropriate search prompt",
+      "typing": "suggestions dropdown appears below",
+      "loading": "subtle gold pulse on border (not a spinner)",
+      "results": "navigates to search results page"
+    }
+  },
+
+  "suggestions-dropdown": {
+    "$description": "Typeahead suggestions. Corpus-derived, not behavior-derived (ADR-049). Static JSON at CDN edge + pg_trgm fuzzy fallback.",
+    "register": "functional",
+    "tokens": {
+      "background": "theme.surface",
+      "shadow": "shadow.elevated",
+      "padding": "compact (8px)",
+      "radius": "radius.default (4px)",
+      "max-items-desktop": 8,
+      "max-items-mobile": 5
+    },
+    "suggestion-item": {
+      "padding": "compact (8px) vertical, default (16px) horizontal",
+      "touch-target": "44px minimum height",
+      "hover": "gold subliminal (0.06) background",
+      "keyboard-selected": "gold subliminal background + subtle border",
+      "category-badge": "ui typography, small, theme-text-secondary"
+    },
+    "tiers": {
+      "A": "Prefix matches from static suggestion list (CDN edge, instant)",
+      "B": "pg_trgm fuzzy matches (async, fires when Tier A < 3 results)"
+    }
+  },
+
+  "search-results": {
+    "$description": "Search results page. Each result is a passage card with the search query highlighted.",
+    "register": "sacred for passage text, functional for chrome",
+    "layout": {
+      "max-width": "48em — wider than reader (42em) to accommodate metadata",
+      "gap": "generous (24px) between results"
+    },
+    "result-card": {
+      "extends": "passage-card",
+      "additions": {
+        "highlight": "Search terms highlighted with gold subliminal (0.06) background + subtle gold border. Not bold — highlighting is background-based, not weight-based.",
+        "snippet-context": "Surrounding text shown at secondary opacity (0.7)",
+        "metadata": "Book title, chapter, language badge — ui typography, text-secondary"
+      }
+    },
+    "pagination": {
+      "style": "cursor-based, not page numbers (ADR-011)",
+      "ui": "'Load more' button rather than page numbers. No infinite scroll.",
+      "position": "centered below results, generous top margin"
+    },
+    "empty-state": {
+      "$description": "When search returns no results. Honest absence as invitation.",
+      "message": "Gentle, constructive. 'No passages found for [query]. Try [suggestions].'",
+      "suggestions": "Related search terms from vocabulary bridge (DES-059)",
+      "never": "Never say 'No results' without guidance. Never leave the seeker at a dead end."
+    }
+  },
+
+  "search-filters": {
+    "$description": "Optional filters for narrowing search. Unobtrusive — visible but not dominant.",
+    "register": "functional",
+    "tokens": {
+      "padding": "compact (8px)",
+      "typography": "ui"
+    },
+    "filters": [
+      { "name": "language", "type": "dropdown", "values": "available languages" },
+      { "name": "book", "type": "dropdown", "values": "available books" },
+      { "name": "author", "type": "dropdown", "values": "author tiers" }
+    ],
+    "behavior": "Filters are additive. Default is 'all'. Changing a filter re-runs the search."
+  }
+}

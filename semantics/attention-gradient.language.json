@@ -1,0 +1,97 @@
+{
+  "$description": "The attention gradient maps emphasis levels to visual treatment across the design system. It answers: 'How prominent should this element be?' Every element exists somewhere on this gradient, from interactive (demands attention) to subliminal (felt, not seen). The gradient uses gold opacity as its primary expression, but also governs size, weight, spacing, and motion.",
+
+  "levels": {
+    "interactive": {
+      "gold-opacity": 1.0,
+      "purpose": "The seeker is actively engaging. This element demands and deserves full attention.",
+      "treatment": {
+        "color": "full gold or full theme-text",
+        "weight": "semibold or bold",
+        "size": "standard or slightly enlarged",
+        "motion": "interaction speed (150ms)",
+        "cursor": "pointer (interactive affordance)"
+      },
+      "elements": ["focus rings", "active links", "call-to-action buttons", "search input", "selected navigation item"]
+    },
+    "prominent": {
+      "gold-opacity": 0.7,
+      "purpose": "Important but not interactive. Draws the eye without requiring action.",
+      "treatment": {
+        "color": "theme-text at full opacity",
+        "weight": "bold",
+        "size": "larger than body (display typography)",
+        "motion": "content speed (300ms)"
+      },
+      "elements": ["chapter titles", "section headings", "passage card titles", "primary labels"]
+    },
+    "decorative": {
+      "gold-opacity": 0.4,
+      "purpose": "Beautiful without calling. Background beauty that enriches without distracting.",
+      "treatment": {
+        "color": "gold at 40% opacity",
+        "weight": "normal or light",
+        "size": "large (decorative elements are often larger but visually lighter)",
+        "motion": "contemplative speed (800ms)"
+      },
+      "elements": ["epigraph quotation marks", "chapter ornaments", "lotus dividers", "section transition marks"]
+    },
+    "ambient": {
+      "gold-opacity": 0.3,
+      "purpose": "Peripheral awareness. Orientation without distraction — the seeker knows where they are without looking directly.",
+      "treatment": {
+        "color": "gold or theme-text at 30% opacity",
+        "weight": "light or normal",
+        "size": "small",
+        "motion": "slow continuous (no sudden changes)"
+      },
+      "elements": ["scroll progress indicator", "meditate-theme gold", "chapter progress markers", "breadcrumb separators"]
+    },
+    "highlight": {
+      "gold-opacity": 0.2,
+      "purpose": "Guiding without grabbing. Showing the seeker where they are in the text.",
+      "treatment": {
+        "color": "gold at 20% opacity for outlines/borders",
+        "weight": "n/a",
+        "motion": "content speed (300ms)"
+      },
+      "elements": ["keyboard-navigated paragraph outline", "active paragraph indicator"]
+    },
+    "subliminal": {
+      "gold-opacity": 0.06,
+      "purpose": "Felt, not seen. Registers as warmth or presence, not as a visible color.",
+      "treatment": {
+        "color": "gold at 6% opacity for backgrounds",
+        "weight": "n/a",
+        "motion": "interaction speed (150ms) — fast because it shouldn't be noticed transitioning"
+      },
+      "elements": ["paragraph hover background", "dwell mode active paragraph background", "selected search result background"]
+    },
+    "texture": {
+      "gold-opacity": 0.03,
+      "purpose": "The ghost of physicality. Present only as a feeling — 'this doesn't feel like a screen.'",
+      "treatment": {
+        "color": "noise pattern at 3% opacity",
+        "effect": "SVG fractalNoise filter",
+        "weight": "n/a"
+      },
+      "elements": ["paper texture overlay on reading surfaces"]
+    }
+  },
+
+  "secondary-text-hierarchy": {
+    "$description": "Text opacity levels for non-primary text. Follows the same gradient principle.",
+    "primary":   { "opacity": 1.0, "use": "Body text, headings, interactive labels" },
+    "secondary": { "opacity": 0.7, "use": "Supporting text, metadata, timestamps" },
+    "tertiary":  { "opacity": 0.5, "use": "Placeholder text, disabled labels, hint text" },
+    "disabled":  { "opacity": 0.3, "use": "Disabled interactive elements" }
+  },
+
+  "border-hierarchy": {
+    "$description": "Border visibility follows the attention gradient. Most boundaries in this design language are implied (whitespace, background shifts), not drawn.",
+    "prominent": { "opacity": 0.3, "width": "2px", "use": "Section dividers, card borders on hover" },
+    "default":   { "opacity": 0.12, "width": "1px", "use": "Standard card borders, input fields" },
+    "subtle":    { "opacity": 0.06, "width": "1px", "use": "Internal dividers within a card, table rows" },
+    "none":      { "opacity": 0, "width": "0", "use": "Reading surfaces, clean content areas. Preferred." }
+  }
+}

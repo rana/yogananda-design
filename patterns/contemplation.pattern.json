@@ -1,0 +1,107 @@
+{
+  "$description": "Composition patterns for contemplative experiences — moments where the portal invites the seeker to slow down, go deeper, and enter a more reflective state. These patterns embody the portal's spiritual purpose most directly.",
+
+  "dwell-mode": {
+    "$description": "DES-009: Passage Contemplation Mode. When a seeker lingers on a paragraph, the portal dims everything else and highlights just that passage. An invitation to contemplate, not a forced interaction.",
+    "register": "sacred (the passage receives full reverence)",
+    "trigger": "1200ms settled in the focus zone (middle 30% of viewport)",
+    "tokens": {
+      "dimmed-paragraphs": "opacity.subdued (0.15) — everything else fades",
+      "active-paragraph": "opacity.full (1.0) — the focused passage remains vivid",
+      "background-glow": "gold subliminal (0.06) — barely-there warmth on the active paragraph",
+      "transition": "content (300ms) — smooth dim/undim, not abrupt"
+    },
+    "behavior": {
+      "activation": "automatic after settled debounce. Visual shift is the only indicator.",
+      "deactivation": "scroll away, click elsewhere, or press 'd' to toggle",
+      "side-panel": "related teachings panel appears (if not already visible)",
+      "mobile": "dwell icon appears subtly near the paragraph, inviting deeper exploration"
+    },
+    "accessibility": {
+      "reduced-motion": "instant transitions, no fade effect",
+      "screen-reader": "aria-live='polite' announces 'Related teachings available for this passage'"
+    }
+  },
+
+  "quiet-corner": {
+    "$description": "A contextual contemplative space overlaying the current page. The seeker enters a pause — breathing space between reading sessions or when moved by a passage.",
+    "register": "ambient (the experience IS the absence of content)",
+    "tokens": {
+      "background": "theme.bg at full opacity (everything behind is hidden, not dimmed)",
+      "text": "theme.text at secondary opacity — sparse, centered",
+      "accent": "gold decorative (0.4)",
+      "content-behind": "opacity 0.05 (nearly invisible — a ghost of the page, not a visible backdrop)"
+    },
+    "content": {
+      "passage": "A short contemplative passage (max 500 chars, REFLECTION_MAX_LENGTH)",
+      "attribution": "full citation below the passage",
+      "ornament": "small lotus divider",
+      "guidance": "optional one-line text: 'Sit quietly with this thought...'"
+    },
+    "behavior": {
+      "entry": "contemplative transition (800ms) — slow fade in",
+      "exit": "press Escape, click 'Return to reading', or any navigation",
+      "chrome": "all header, footer, nav hidden (data-mode='quiet')"
+    }
+  },
+
+  "opening-moment": {
+    "$description": "DES-007: Portal Threshold. The first impression when a seeker arrives. Not a splash screen — a threshold crossing. Brief, beautiful, optional (skip on return visits).",
+    "register": "ambient transitioning to sacred",
+    "tokens": {
+      "background": "theme.bg",
+      "text": "display typography, centered",
+      "accent": "gold decorative (0.4)",
+      "transition": "arrival (1200ms with 200ms delay)"
+    },
+    "content": {
+      "greeting": "Time-aware greeting (Good morning/afternoon/evening)",
+      "passage": "Today's Wisdom passage — a single contemplative excerpt",
+      "attribution": "full citation"
+    },
+    "behavior": {
+      "first-visit": "full threshold experience with slow arrival",
+      "returning": "abbreviated — greeting + quick passage, faster transition",
+      "skip": "any scroll or click bypasses the threshold immediately"
+    }
+  },
+
+  "breath-between-chapters": {
+    "$description": "DES-012: Chapter Transition Pacing. When a seeker finishes one chapter and begins the next, there's a moment of pause — like turning a page in a physical book. Not a loading screen; a contemplative breath.",
+    "register": "ambient",
+    "tokens": {
+      "animation": "chapterFadeIn keyframe — simple opacity 0 → 1",
+      "duration": "contemplative (800ms)",
+      "background": "theme.bg (clean, empty space during the pause)"
+    },
+    "sequence": [
+      "Chapter content fades out (300ms)",
+      "Brief pause (pure background, 200-400ms)",
+      "New chapter content fades in (800ms)",
+      "Drop capital and first paragraph appear last (slight delay for dramatic entrance)"
+    ],
+    "accessibility": {
+      "reduced-motion": "instant transition, no fade",
+      "screen-reader": "aria-live='polite' announces new chapter title"
+    }
+  },
+
+  "session-closure": {
+    "$description": "DES-014: Departure Grace. When a seeker leaves the portal, the experience ends with intention, not abruptness. Like closing a book with a bookmark.",
+    "register": "instructional (helpful guidance) transitioning to ambient",
+    "concept": {
+      "bookmark-offer": "Save your reading position (localStorage, DELTA-compliant)",
+      "gratitude": "Simple, warm closing text — not 'Come back!' but 'Thank you for reading.'",
+      "practice-bridge": "Gentle pointer to SRF Lessons or meditation practice (PRI-04)"
+    },
+    "note": "Implementation deferred — captures the design intent for when departure moments are built."
+  },
+
+  "haptic-dwell": {
+    "$description": "On supported mobile devices, a subtle haptic pulse when dwell mode activates. The seeker feels a gentle physical 'click' — like a book settling into a reading stand. Implemented in M2b stretch.",
+    "trigger": "dwell mode activation (1200ms settled)",
+    "feedback": "navigator.vibrate(10) — shortest possible pulse",
+    "condition": "only on touch devices with haptic support",
+    "reduced-motion": "disabled when prefers-reduced-motion: reduce"
+  }
+}

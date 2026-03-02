@@ -1,0 +1,88 @@
+{
+  "$description": "Emotional registers map content types to design treatment intensity. Different content deserves different reverence. This is how PRI-03 ('Is this worthy of presenting Yogananda's words?') becomes implementable. When building a component, identify which register the content belongs to, then apply the corresponding design treatment.",
+
+  "registers": {
+    "sacred": {
+      "$description": "Yogananda's own words. Maximum reverence. The text is the primary experience — everything else retreats.",
+      "content-types": ["guru text (Yogananda, Sri Yukteswar)", "scripture quotations", "meditation instruction signposts"],
+      "whitespace": "expansive — generous margins, no crowding, content breathes",
+      "typography": "reading (serif, warm, large enough for sustained immersion)",
+      "accent-level": "decorative (gold at 0.4 — present but not calling)",
+      "motion": "contemplative (800ms transitions — unhurried)",
+      "distractions": "none — no hover effects on the text itself, no tooltips, no inline annotations",
+      "background": "primary surface — the cleanest, most neutral ground",
+      "interaction": "text selection only; dwell mode available; no clicks within sacred text",
+      "attribution": "always visible, never truncated (PRI-02)",
+      "examples": ["Chapter reading view body text", "Search result passage display", "Today's Wisdom quote"]
+    },
+    "reverential": {
+      "$description": "SRF presidential and monastic authors. Deep respect — same typographic care, slightly less ceremonial spacing.",
+      "content-types": ["Daya Mata text", "Mrinalini Mata text", "Rajarsi Janakananda text", "monastic talks"],
+      "whitespace": "generous — slightly less than sacred, but still unhurried",
+      "typography": "reading (same font as sacred — all author tiers receive verbatim fidelity)",
+      "accent-level": "ambient (gold at 0.3)",
+      "motion": "content (300ms)",
+      "distractions": "minimal — related teachings panel is appropriate, tooltips on references are fine",
+      "attribution": "always visible (PRI-02)",
+      "examples": ["Monastic speaker transcripts", "Presidential writings in reader view"]
+    },
+    "instructional": {
+      "$description": "Portal-authored editorial content. Clear, helpful, warm — the librarian speaking, not the teacher.",
+      "content-types": ["reading threads (DES-026)", "glossary entries (DES-042)", "guide text", "about pages", "help content"],
+      "whitespace": "default — efficient but not cramped",
+      "typography": "reading body with UI accents (links in sans-serif, section labels in ui font)",
+      "accent-level": "interactive (gold at 1.0 for links and actions)",
+      "motion": "interaction (150ms)",
+      "distractions": "standard — links, cross-references, navigation aids are appropriate",
+      "attribution": "for quoted passages only",
+      "examples": ["Reading thread narrative", "Glossary definition", "How-to-use guides"]
+    },
+    "functional": {
+      "$description": "Navigation, search, settings. Invisible infrastructure — the seeker shouldn't notice the UI, only the content it serves.",
+      "content-types": ["navigation elements", "search interface", "settings panel", "footer", "breadcrumbs", "pagination"],
+      "whitespace": "compact to default — efficient use of space",
+      "typography": "ui (sans-serif, smaller, neutral)",
+      "accent-level": "interactive only (gold for active/selected states)",
+      "motion": "interaction (150ms — snap-responsive)",
+      "distractions": "minimal — UI should be learnable, not attention-demanding",
+      "attribution": "n/a",
+      "examples": ["Top navigation bar", "Search suggestions dropdown", "Reader settings drawer", "Chapter list sidebar"]
+    },
+    "ambient": {
+      "$description": "Background presence. Elements that orient without demanding attention — the peripheral awareness of the reading environment.",
+      "content-types": ["scroll progress indicator", "circadian color shifts", "chapter markers", "section dividers"],
+      "whitespace": "n/a (these are typically overlays or decorative elements)",
+      "typography": "n/a or smallest UI size",
+      "accent-level": "ambient to subliminal (gold at 0.3 to 0.06)",
+      "motion": "slow and continuous (no abrupt changes)",
+      "distractions": "zero — if a seeker notices these, they're too prominent",
+      "examples": ["Scroll indicator bar (2px, gold at 0.3)", "Paper texture overlay (noise at 0.03)", "Circadian background warmth shifts"]
+    }
+  },
+
+  "register-selection-guide": {
+    "$description": "Decision tree for choosing the right register. Follow this when building any component.",
+    "questions": [
+      {
+        "ask": "Is this Yogananda's or a lineage guru's verbatim words?",
+        "if-yes": "sacred",
+        "if-no": "continue"
+      },
+      {
+        "ask": "Is this text by an SRF/YSS presidential or monastic author?",
+        "if-yes": "reverential",
+        "if-no": "continue"
+      },
+      {
+        "ask": "Is this portal-authored content meant to guide or teach?",
+        "if-yes": "instructional",
+        "if-no": "continue"
+      },
+      {
+        "ask": "Is this interactive UI (navigation, search, settings)?",
+        "if-yes": "functional",
+        "if-no": "ambient"
+      }
+    ]
+  }
+}

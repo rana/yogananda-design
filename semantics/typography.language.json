@@ -1,0 +1,130 @@
+{
+  "$description": "Typographic conventions, special characters, and script-specific rules. This file captures what font files alone cannot express: how text is formatted, what symbols are used, and how different scripts interact in the same interface.",
+
+  "characters": {
+    "$description": "Named Unicode characters used in the design language. Every character here has a specific semantic role — they are not decorative.",
+
+    "punctuation": {
+      "em-dash":              { "unicode": "U+2014", "character": "\u2014", "role": "Citation separator. Always followed by non-breaking space (U+00A0). Pattern: \u2014\u00A0Author Name", "example": "\u2014\u00A0Paramahansa Yogananda" },
+      "non-breaking-space":   { "unicode": "U+00A0", "character": "\u00A0", "role": "Prevents line break between em-dash and author name in citations." },
+      "ellipsis":             { "unicode": "U+2026", "character": "\u2026", "role": "Indicates omitted text in truncated passages. Single character, not three periods." },
+      "thin-space":           { "unicode": "U+2009", "character": "\u2009", "role": "Between number and unit, between initials. Narrower than regular space." }
+    },
+
+    "quotation-marks": {
+      "$description": "Per-language quotation mark conventions. Use the correct marks for each language — never straight quotes in published text.",
+      "en": {
+        "primary":   { "open": "\u201C", "close": "\u201D", "name": "Left/right double quotation marks" },
+        "secondary": { "open": "\u2018", "close": "\u2019", "name": "Left/right single quotation marks" }
+      },
+      "es": {
+        "primary":   { "open": "\u00AB", "close": "\u00BB", "name": "Guillemets (angle quotes) — standard in Spanish publishing" },
+        "secondary": { "open": "\u201C", "close": "\u201D", "name": "Double quotation marks for nested quotes" },
+        "note": "Some Latin American publishers use English-style double quotes as primary. SRF Spanish publications should be checked."
+      },
+      "hi": {
+        "primary":   { "open": "\u201C", "close": "\u201D", "name": "Double quotation marks — standard in Hindi publishing" },
+        "secondary": { "open": "\u2018", "close": "\u2019", "name": "Single quotation marks for nested quotes" }
+      }
+    },
+
+    "ornamental": {
+      "$description": "Characters used as visual ornaments or section dividers. Sparingly applied.",
+      "asterism":       { "unicode": "U+2042", "character": "\u2042", "role": "Section break within a chapter. Three dots in triangle. Alternative to lotus divider when SVG unavailable." },
+      "fleuron":        { "unicode": "U+2767", "character": "\u2767", "role": "Decorative section mark. Rotated floral heart. Available but lotus SVG preferred." },
+      "lotus-divider":  { "source": "motifs/srf/lotus-divider.svg", "role": "Primary section divider. Gold lotus simplified to horizontal ornament. Preferred over Unicode ornaments." }
+    },
+
+    "special": {
+      "om":             { "unicode": "U+0950", "character": "\u0950", "role": "Om/Aum symbol. Used in Sanskrit/Hindi context only. Never as decoration." },
+      "sri":            { "unicode": "U+0936 U+094D U+0930 U+0940", "role": "Shri prefix. Used before guru names in Hindi context. Written in Devanagari, not transliterated." }
+    }
+  },
+
+  "typographic-features": {
+    "$description": "CSS typographic features applied to the reading experience. These are the invisible details that make text feel professionally set.",
+
+    "drop-capitals": {
+      "$description": "Large initial letter at the start of each chapter. Merriweather 700 weight, 3.5em, floated inline-start. Creates a classic book-opening feel.",
+      "latin": {
+        "enabled": true,
+        "font-weight": 700,
+        "font-size": "3.5em",
+        "line-height": 0.8,
+        "color": "theme-text (same as body — not gold, not decorative)"
+      },
+      "devanagari": {
+        "enabled": false,
+        "rationale": "Devanagari shirorekha conflicts with drop-capital spacing. Hindi literary tradition does not use drop capitals. ADR-080."
+      }
+    },
+
+    "small-caps": {
+      "$description": "font-variant: small-caps with letter-spacing: 0.05em. Used for chapter labels ('CHAPTER I'), proper noun emphasis in editorial context.",
+      "usage": "Chapter labels, section titles in some contexts",
+      "css": "font-variant: small-caps; letter-spacing: 0.05em;"
+    },
+
+    "hanging-punctuation": {
+      "$description": "hanging-punctuation: first allow-end. Opens quotes and punctuation extend into the margin for optical alignment. Progressive enhancement — degrades gracefully in browsers that don't support it.",
+      "css": "hanging-punctuation: first allow-end;",
+      "support": "Safari, progressive enhancement in others"
+    },
+
+    "font-smoothing": {
+      "$description": "Antialiased rendering on macOS/iOS for sharper serif text. Standard subpixel rendering on other platforms.",
+      "css": "-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;"
+    }
+  },
+
+  "text-formatting": {
+    "$description": "How different content types are formatted. These are recipes for text treatment.",
+
+    "citation": {
+      "pattern": "em-dash + non-breaking-space + Author Full Name",
+      "typography": "reading-light at citation size (14px, weight 300)",
+      "color": "text-secondary",
+      "example": "\u2014\u00A0Paramahansa Yogananda, Autobiography of a Yogi, Chapter 12",
+      "principle": "PRI-02: Full attribution always"
+    },
+
+    "epigraph": {
+      "typography": "reading-light, italic, centered",
+      "opacity": 0.8,
+      "decoration": "Large decorative opening quotation mark (\u201C) in gold at decorative opacity (0.4), positioned absolute top-left",
+      "padding": "generous vertical, extra horizontal for the quotation mark"
+    },
+
+    "chapter-heading": {
+      "typography": "display (Lora 700)",
+      "treatment": "Small caps label above ('CHAPTER XII'), followed by chapter title in display size",
+      "spacing": "vast top margin (page-level separation), expansive bottom margin before first paragraph"
+    },
+
+    "verse": {
+      "$description": "Poetry and verse quotations from the teachings. Preserve line breaks. Center-aligned with generous surrounding whitespace.",
+      "alignment": "center",
+      "typography": "reading-light, italic",
+      "whitespace": "generous vertical margins",
+      "line-breaks": "preserved as authored — never reflowed"
+    }
+  },
+
+  "font-loading": {
+    "$description": "Font loading strategy. Self-hosted for GDPR compliance (ADR-099). Zero requests to external font services.",
+    "strategy": "font-display: swap — show system font immediately, swap to custom font when loaded",
+    "subset": "Latin + Latin Extended unicode ranges for Merriweather, Lora, Open Sans. Devanagari subset loaded only when Hindi content detected.",
+    "formats": ["woff2"],
+    "fallback-stack": {
+      "serif": "Georgia → Times New Roman → serif",
+      "sans": "system-ui → -apple-system → sans-serif",
+      "devanagari": "system Devanagari → serif"
+    }
+  },
+
+  "text-only-mode": {
+    "$description": "ADR-006 §1. Text-only mode strips all images, SVGs, decorative elements, and custom fonts. Georgia + Times New Roman replace all fonts. Background images removed. Essential for low-bandwidth connections (PRI-05).",
+    "activates": "CSS class .text-only on body",
+    "effect": "All img, svg:not([role='img']), [data-decorative] hidden. All fonts → Georgia, Times New Roman, serif. All background-image → none."
+  }
+}
