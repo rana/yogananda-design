@@ -58,8 +58,8 @@ export default function TypographySpecimen() {
               className="reading-text"
               style={{ color: "var(--color-text)", marginBottom: "8px" }}
             >
-              The season of failure is the best time for sowing the seeds of
-              success.
+              Be as simple as you can be; you will be astonished to see how
+              uncomplicated and happy your life can become.
             </div>
             <div className="token-value text-xs">
               18px / 400 / 1.8 line-height

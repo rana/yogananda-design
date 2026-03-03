@@ -4,7 +4,7 @@ import { useState } from "react";
 import { srfTokens } from "@/lib/tokens";
 
 const passage =
-  "\u201CThe season of failure is the best time for sowing the seeds of success.\u201D";
+  "\u201CBe as simple as you can be; you will be astonished to see how uncomplicated and happy your life can become.\u201D";
 const attribution = "\u2014\u00A0Paramahansa Yogananda, Autobiography of a Yogi";
 
 const themes = [
@@ -40,31 +40,42 @@ function CircadianDemo() {
     {
       name: "Morning",
       time: "5:00\u201309:59",
-      bg: "#FDFBF8",
-      bgSec: "#f2eee6",
-      desc: "Cooler cream \u2014 the clarity of early light",
+      bg: "#F5F8FC",
+      bgSec: "#e8edf3",
+      text: "#1a2744",
+      textSec: "#1a2744b3",
+      gold: "#dcbd23",
+      desc: "Cool clarity of early light",
     },
     {
       name: "Midday",
       time: "10:00\u201315:59",
       bg: "#FAF8F5",
       bgSec: "#f0ece4",
+      text: "#1a2744",
+      textSec: "#1a2744b3",
+      gold: "#dcbd23",
       desc: "Default palette \u2014 full natural light",
     },
     {
       name: "Evening",
       time: "16:00\u201320:59",
-      bg: "#F7F2EC",
-      bgSec: "#ebe5db",
-      desc: "Warmer cream \u2014 golden hour warmth",
+      bg: "#F5EEE4",
+      bgSec: "#e8dfd2",
+      text: "#1a2744",
+      textSec: "#1a2744b3",
+      gold: "#dcbd23",
+      desc: "Golden hour warmth",
     },
     {
       name: "Night",
       time: "21:00\u201304:59",
       bg: "#0f1923",
       bgSec: "#1a2744",
-      desc: "Dark theme applies if auto-theme is active",
-      dark: true,
+      text: "#e8e4dc",
+      textSec: "#a9a49a",
+      gold: "#e8cf4a",
+      desc: "Dark theme takes over",
     },
   ];
 
@@ -85,34 +96,99 @@ function CircadianDemo() {
           lineHeight: 1.6,
         }}
       >
-        In Light theme, the background subtly shifts with time of day. The
-        portal breathes with the seeker&rsquo;s day. These changes are not
-        transitioned &mdash; they&rsquo;re too subtle to notice, and
-        transitioning would draw attention to something that should be
-        unconscious.
+        In Light theme, the background temperature shifts with time of day
+        &mdash; cooler at dawn, neutral at midday, amber by evening. The portal
+        breathes with the seeker&rsquo;s day. Changes are never transitioned;
+        they register as feeling, not event.
       </p>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+
+      {/* Gradient arc showing the day's color temperature journey */}
+      <div
+        style={{
+          height: 6,
+          borderRadius: 3,
+          background:
+            "linear-gradient(to right, #F5F8FC 0%, #FAF8F5 30%, #F5EEE4 65%, #1a2744 85%, #0f1923 100%)",
+          marginBottom: 20,
+        }}
+      />
+
+      {/* Full reading panels — large enough to see the warmth shift */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {periods.map((p) => (
           <div
             key={p.name}
-            className="rounded overflow-hidden"
+            className="rounded-md overflow-hidden"
             style={{ border: "1px solid var(--color-border)" }}
           >
-            <div
-              className="p-4 flex items-center justify-center"
-              style={{
-                backgroundColor: p.bg,
-                height: "80px",
-              }}
-            >
+            {/* Reading surface preview */}
+            <div style={{ backgroundColor: p.bg, padding: "20px 16px" }}>
               <div
-                className="w-8 h-8 rounded"
-                style={{ backgroundColor: p.bgSec }}
-              />
+                className="reading-text"
+                style={{
+                  fontSize: "14px",
+                  lineHeight: 1.7,
+                  color: p.text,
+                  marginBottom: 8,
+                }}
+              >
+                {passage}
+              </div>
+              <div
+                className="citation-text"
+                style={{ color: p.textSec, fontSize: "11px" }}
+              >
+                {attribution}
+              </div>
+
+              {/* Secondary surface card */}
+              <div
+                style={{
+                  backgroundColor: p.bgSec,
+                  borderRadius: 4,
+                  padding: "8px 10px",
+                  marginTop: 12,
+                }}
+              >
+                <div
+                  style={{
+                    width: 16,
+                    height: 3,
+                    borderRadius: 1.5,
+                    backgroundColor: p.gold,
+                    marginBottom: 6,
+                    opacity: 0.6,
+                  }}
+                />
+                <div
+                  style={{
+                    height: 3,
+                    borderRadius: 1.5,
+                    backgroundColor: p.text,
+                    opacity: 0.12,
+                    marginBottom: 4,
+                    width: "90%",
+                  }}
+                />
+                <div
+                  style={{
+                    height: 3,
+                    borderRadius: 1.5,
+                    backgroundColor: p.text,
+                    opacity: 0.08,
+                    width: "70%",
+                  }}
+                />
+              </div>
             </div>
+
+            {/* Period label */}
             <div
               className="theme-transition p-3"
-              style={{ backgroundColor: "var(--color-bg-secondary)" }}
+              style={{
+                backgroundColor: "var(--color-bg-secondary)",
+                borderTop: "1px solid var(--color-border)",
+              }}
             >
               <div
                 className="font-semibold text-xs"
@@ -131,6 +207,16 @@ function CircadianDemo() {
                 }}
               >
                 {p.time}
+              </div>
+              <div
+                className="text-xs mt-1"
+                style={{
+                  fontFamily: "var(--font-ui)",
+                  color: "var(--color-text-secondary)",
+                  opacity: 0.7,
+                }}
+              >
+                {p.desc}
               </div>
             </div>
           </div>

@@ -34,9 +34,28 @@ export default function Hero() {
         >
           Two organizational expressions &mdash;{" "}
           <strong style={{ color: "var(--color-text)" }}>SRF</strong>{" "}
-          <span className="token-value">#1a2744</span> and{" "}
+          <span
+            className="token-value"
+            style={{
+              backgroundColor: "#1a2744",
+              color: "#e8e4dc",
+              borderColor: "transparent",
+            }}
+          >
+            #1a2744
+          </span>{" "}
+          and{" "}
           <strong style={{ color: "var(--color-text)" }}>YSS</strong>{" "}
-          <span className="token-value">#bb4f27</span> &mdash; sharing common
+          <span
+            className="token-value"
+            style={{
+              backgroundColor: "#bb4f27",
+              color: "#fff",
+              borderColor: "transparent",
+            }}
+          >
+            #bb4f27
+          </span> &mdash; sharing common
           foundations. Built for AI-first authorship. Every token is
           self-documenting. Every constraint is machine-readable.
         </p>

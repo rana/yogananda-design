@@ -95,17 +95,17 @@
   "circadian": {
     "$description": "Time-aware background shifts (DES-011). Subtle warmth changes based on time of day. Only active in light theme. The portal breathes with the seeker's day.",
     "morning": {
-      "$description": "5:00–9:59. Cooler cream — the clarity of early light.",
-      "bg":           { "$type": "color", "$value": "#FDFBF8" },
-      "bg-secondary": { "$type": "color", "$value": "#f2eee6" }
+      "$description": "5:00–9:59. Cooler cream — the clarity of early light. Blue channel rises, red recedes. The cool stillness before the day warms.",
+      "bg":           { "$type": "color", "$value": "#F5F8FC" },
+      "bg-secondary": { "$type": "color", "$value": "#e8edf3" }
     },
     "midday": {
       "$description": "10:00–15:59. Default palette — no override needed. Full natural light."
     },
     "evening": {
-      "$description": "16:00–20:59. Warmer cream — golden hour warmth.",
-      "bg":           { "$type": "color", "$value": "#F7F2EC" },
-      "bg-secondary": { "$type": "color", "$value": "#ebe5db" }
+      "$description": "16:00–20:59. Warmer cream — golden hour warmth. Amber rises, blue recedes. The day exhaling toward rest.",
+      "bg":           { "$type": "color", "$value": "#F5EEE4" },
+      "bg-secondary": { "$type": "color", "$value": "#e8dfd2" }
     },
     "night": {
       "$description": "21:00–4:59. Circadian attribute removed; dark theme applies if auto-theme is active."

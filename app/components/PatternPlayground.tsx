@@ -216,9 +216,9 @@ function ReadingSurface() {
         </div>
 
         <div className="reading-text" style={{ color: "var(--color-text)" }}>
-          The season of failure is the best time for sowing the seeds of
-          success. Live quietly in the moment and see the beauty of all before
-          you. The future will take care of itself.
+          Be as simple as you can be; you will be astonished to see how
+          uncomplicated and happy your life can become. Live quietly in the
+          moment and see the beauty of all before you.
         </div>
 
         {/* Citation */}
