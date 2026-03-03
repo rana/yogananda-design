@@ -1,20 +1,22 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useDesign } from "./DesignProvider";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 const sections = [
   { id: "themes", label: "Themes" },
   { id: "registers", label: "Registers" },
   { id: "gradient", label: "Gradient" },
-  { id: "typography", label: "Typography" },
-  { id: "calm", label: "Calm Tech" },
+  { id: "typography", label: "Type" },
+  { id: "calm", label: "Calm" },
   { id: "transitions", label: "Transitions" },
   { id: "patterns", label: "Patterns" },
 ];
 
 export default function Nav() {
   const [activeSection, setActiveSection] = useState("");
+  const { org, setOrg } = useDesign();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -45,40 +47,70 @@ export default function Nav() {
       }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-14">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center h-12 gap-3">
+          {/* Left: logo + org toggle */}
+          <div className="flex items-center gap-3 shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/lotus.svg" alt="" className="h-5 w-auto" />
-            <span
-              className="font-semibold text-sm hidden sm:inline"
-              style={{ fontFamily: "var(--font-ui)", color: "var(--color-text)" }}
-            >
-              Design Languages
-            </span>
+
+            {/* Org toggle — individual rounded buttons to avoid overflow clip */}
+            <div className="flex" style={{ gap: "1px" }}>
+              <button
+                onClick={() => setOrg("srf")}
+                className="theme-transition px-3 py-0.5 text-xs font-semibold cursor-pointer rounded-l-full"
+                style={{
+                  fontFamily: "var(--font-ui)",
+                  backgroundColor: org === "srf" ? "var(--color-gold)" : "var(--color-bg-secondary)",
+                  color: org === "srf" ? "var(--color-navy)" : "var(--color-text-secondary)",
+                  letterSpacing: "0.05em",
+                  border: "1px solid var(--color-border)",
+                  borderRight: "none",
+                }}
+              >
+                SRF
+              </button>
+              <button
+                onClick={() => setOrg("yss")}
+                className="theme-transition px-3 py-0.5 text-xs font-semibold cursor-pointer rounded-r-full"
+                style={{
+                  fontFamily: "var(--font-ui)",
+                  backgroundColor: org === "yss" ? "var(--color-gold)" : "var(--color-bg-secondary)",
+                  color: org === "yss" ? "#fff" : "var(--color-text-secondary)",
+                  letterSpacing: "0.05em",
+                  border: "1px solid var(--color-border)",
+                }}
+              >
+                YSS
+              </button>
+            </div>
           </div>
 
-          <div className="flex items-center gap-4 overflow-x-auto">
-            <div className="hidden md:flex gap-1">
-              {sections.map((s) => (
-                <a
-                  key={s.id}
-                  href={`#${s.id}`}
-                  className="theme-transition px-2 py-1 rounded text-xs"
-                  style={{
-                    fontFamily: "var(--font-ui)",
-                    fontWeight: activeSection === s.id ? 600 : 400,
-                    color:
-                      activeSection === s.id
-                        ? "var(--color-gold)"
-                        : "var(--color-text-secondary)",
-                  }}
-                >
-                  {s.label}
-                </a>
-              ))}
-            </div>
-            <ThemeSwitcher />
+          {/* Section links — hidden below xl */}
+          <div className="hidden xl:flex gap-1 shrink-0">
+            {sections.map((s) => (
+              <a
+                key={s.id}
+                href={`#${s.id}`}
+                className="theme-transition px-1.5 py-1 rounded text-xs whitespace-nowrap"
+                style={{
+                  fontFamily: "var(--font-ui)",
+                  fontWeight: activeSection === s.id ? 600 : 400,
+                  color:
+                    activeSection === s.id
+                      ? "var(--color-gold)"
+                      : "var(--color-text-secondary)",
+                }}
+              >
+                {s.label}
+              </a>
+            ))}
           </div>
+
+          {/* Spacer */}
+          <div className="flex-1" />
+
+          {/* Theme chips — right-aligned, scrollable */}
+          <ThemeSwitcher />
         </div>
       </div>
     </nav>

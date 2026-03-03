@@ -92,6 +92,18 @@ This design system serves the **Yogananda digital ecosystem**:
 - `yogananda-platform` — Infrastructure and deployment platform.
 - `yogananda-skills` — Claude cognitive toolkit (analysis skills, commands).
 
+## Showcase Website
+
+This repo includes an interactive showcase site (`app/`) built with Next.js that demonstrates the design language live. The showcase is the source of truth for how tokens render.
+
+**When any token file changes, update the showcase site to reflect those changes.** This includes:
+- `foundations/*.tokens.json` changes → update `app/globals.css` (theme CSS custom properties), `lib/tokens.ts` (typed access), and any component that references the changed tokens
+- `semantics/*.language.json` changes → update the relevant showcase section (registers, gradient, calm tech)
+- New themes → add CSS custom property block in `globals.css`, add to `DesignProvider.tsx` theme lists, add theme card in `ThemeGallery.tsx`
+- New organization → add to `DesignProvider.tsx` Org type, add org-level CSS overrides, update all org-aware components
+
+The showcase uses a `DesignProvider` React context (`app/components/DesignProvider.tsx`) that manages organization (SRF/YSS) and theme state via `data-org` and `data-theme` attributes on `<html>`. All components consume this context via `useDesign()`.
+
 ## Copyright and Licensing
 
 - **Design tokens, patterns, and semantic rules**: Open (MIT license with this repo).

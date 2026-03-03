@@ -1,45 +1,87 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useDesign, orgThemes } from "./DesignProvider";
+import type { ThemeName } from "./DesignProvider";
 
-const themes = [
-  { id: "light", label: "Light", desc: "A warm library in daylight" },
-  { id: "sepia", label: "Sepia", desc: "Antique paper, physical book" },
-  { id: "earth", label: "Earth", desc: "YSS-inspired warm clay" },
-  { id: "dark", label: "Dark", desc: "Deep navy evening reading" },
-  { id: "meditate", label: "Meditate", desc: "Pre-dawn contemplation" },
-] as const;
+const themeLabels: Record<ThemeName, { label: string; desc: string }> = {
+  // SRF
+  light:     { label: "Light",     desc: "A warm library in daylight" },
+  sepia:     { label: "Sepia",     desc: "Antique paper, physical book" },
+  earth:     { label: "Earth",     desc: "Warm clay, immersive reading" },
+  dark:      { label: "Dark",      desc: "Deep navy evening reading" },
+  meditate:  { label: "Meditate",  desc: "Pre-dawn contemplation" },
+  gathering: { label: "Gathering", desc: "The communal voice — events" },
+  // YSS
+  ashram:    { label: "Ashram",    desc: "The sunlit courtyard" },
+  sandstone: { label: "Sandstone", desc: "Prayer hall lamplight" },
+  night:     { label: "Night",     desc: "The evening aarti" },
+  devotion:  { label: "Devotion",  desc: "The inner sanctum" },
+};
 
 export default function ThemeSwitcher() {
-  const [active, setActive] = useState<string>("light");
+  const { org, theme, setTheme, availableThemes } = useDesign();
 
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", active);
-  }, [active]);
+  // For SRF, separate contemplative from communal (gathering)
+  const isSrf = org === "srf";
+  const mainThemes = isSrf ? availableThemes.filter((t) => t !== "gathering") : availableThemes;
+  const communalThemes = isSrf ? availableThemes.filter((t) => t === "gathering") : [];
 
   return (
-    <div className="flex gap-2 flex-wrap">
-      {themes.map((t) => (
+    <div className="flex gap-1 items-center flex-nowrap shrink-0">
+      {mainThemes.map((t) => (
         <button
-          key={t.id}
-          onClick={() => setActive(t.id)}
-          className="theme-transition px-3 py-1.5 rounded-full text-sm cursor-pointer"
+          key={t}
+          onClick={() => setTheme(t)}
+          className="theme-transition px-2 py-0.5 rounded-full cursor-pointer whitespace-nowrap"
           style={{
             fontFamily: "var(--font-ui)",
+            fontSize: "11px",
             backgroundColor:
-              active === t.id
-                ? "var(--color-gold)"
-                : "var(--color-bg-secondary)",
+              theme === t ? "var(--color-gold)" : "var(--color-bg-secondary)",
             color:
-              active === t.id ? "var(--color-navy)" : "var(--color-text)",
-            border: `1px solid ${active === t.id ? "var(--color-gold)" : "var(--color-border)"}`,
-            fontWeight: active === t.id ? 600 : 400,
+              theme === t
+                ? isSrf ? "var(--color-navy)" : "#fff"
+                : "var(--color-text)",
+            border: `1px solid ${theme === t ? "var(--color-gold)" : "var(--color-border)"}`,
+            fontWeight: theme === t ? 600 : 400,
           }}
-          title={t.desc}
+          title={themeLabels[t]?.desc}
         >
-          {t.label}
+          {themeLabels[t]?.label ?? t}
         </button>
       ))}
+      {communalThemes.length > 0 && (
+        <>
+          <div
+            className="theme-transition"
+            style={{
+              width: "1px",
+              height: "14px",
+              background: "var(--color-border)",
+              margin: "0 1px",
+            }}
+          />
+          {communalThemes.map((t) => (
+            <button
+              key={t}
+              onClick={() => setTheme(t)}
+              className="theme-transition px-2 py-0.5 rounded-full cursor-pointer whitespace-nowrap"
+              style={{
+                fontFamily: "var(--font-ui)",
+                fontSize: "11px",
+                backgroundColor:
+                  theme === t ? "#DC6A10" : "var(--color-bg-secondary)",
+                color: theme === t ? "#FFFFFF" : "var(--color-text)",
+                border: `1px solid ${theme === t ? "#DC6A10" : "var(--color-border)"}`,
+                fontWeight: theme === t ? 600 : 400,
+              }}
+              title={themeLabels[t]?.desc}
+            >
+              {themeLabels[t]?.label ?? t}
+            </button>
+          ))}
+        </>
+      )}
     </div>
   );
 }

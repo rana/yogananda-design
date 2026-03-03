@@ -47,15 +47,16 @@ Uses the [W3C Design Tokens Community Group](https://www.designtokens.org/) form
 
 ## Organizations
 
-| | SRF | YSS |
-|---|-----|-----|
-| **Metaphor** | Entering a library | Entering an ashram |
-| **Primary color** | Navy #1a2744 | Terracotta #bb4f27 |
-| **Accent** | Gold #dcbd23 | (TBD — awaiting YSS input) |
-| **Background** | Warm Cream #FAF8F5 | Warm Clay #f2e8de |
-| **Reading font** | Merriweather | Noto Serif Devanagari |
-| **UI font** | Open Sans | Raleway |
-| **Status** | Complete | Scaffold |
+| | SRF Contemplative | SRF Communal | YSS |
+|---|-----|-----|-----|
+| **Metaphor** | Entering a library | The temple courtyard | Entering an ashram |
+| **Primary color** | Navy #1a2744 | Charcoal #4C4C4C | Terracotta #bb4f27 |
+| **Accent** | Gold #dcbd23 | Marigold #DC6A10 | (TBD — awaiting YSS input) |
+| **Background** | Warm Cream #FAF8F5 | White #FFFFFF | Warm Clay #f2e8de |
+| **Display font** | Lora | ArcherPro | Noto Serif Devanagari |
+| **UI font** | Open Sans | Helvetica Neue | Raleway |
+| **Surfaces** | Reading portal, meditation | Events, convocation, outreach | (scaffold) |
+| **Status** | Complete | Complete | Scaffold |
 
 ## How to Use
 

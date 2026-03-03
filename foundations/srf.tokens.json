@@ -1,9 +1,9 @@
 {
-  "$description": "SRF (Self-Realization Fellowship) visual language. Derived from yogananda.org, the Online Meditation Center, and the Convocation site (ADR-065). Metaphor: entering a library — contemplative cool, scholarly warmth, spiritual dignity. The portal's visual language should feel like entering a library, not a marketplace.",
+  "$description": "SRF (Self-Realization Fellowship) visual language. Two complementary voices serve SRF's dual mission of meditation and community. The Contemplative Voice (gold, navy, cream) is the library — deep reading, spiritual stillness, inner illumination. Derived from yogananda.org and the Online Meditation Center. The Communal Voice (marigold, charcoal, white) is the gathering — convocations, events, joyful welcome. Derived from convocation.yogananda.org. Both voices share the same semantic rules (calm technology, emotional registers, accessibility); each composes different accent, text, and background palettes. The contemplative voice is the default for reading surfaces; the communal voice serves event and outreach surfaces.",
 
   "color": {
     "$type": "color",
-    "$description": "SRF color palette. Navy and gold are the two pillars — depth and warmth, meditation and illumination. Cream backgrounds echo aged paper, never clinical white.",
+    "$description": "SRF color palette. Two accent pillars: gold (contemplative — the halo, inner light) and marigold (communal — the garland, warm welcome). Navy and charcoal serve as text colors for each voice. Cream backgrounds for contemplation; white for gathering.",
 
     "gold": {
       "$value": "#dcbd23",
@@ -24,6 +24,47 @@
     "surface": {
       "$value": "#ffffff",
       "$description": "Surface white. Used sparingly — elevated cards in light theme. Even this is warmed by the cream context."
+    },
+
+    "marigold": {
+      "$value": "#DC6A10",
+      "$description": "SRF Marigold. The warmth of community gathering, the burnt orange of marigold garlands offered in devotion. Primary accent for the communal voice — event surfaces, convocation pages, community-facing UX. Where gold says 'contemplate,' marigold says 'welcome.' Passes WCAG AA for large text on white (3.4:1); use for buttons, headings, and interactive elements, not body text.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "principle": "PRI-03",
+          "rationale": "Extracted from convocation.yogananda.org (2026). SRF uses this orange for all event and community surfaces. Marigold connects to Indian devotional tradition — garlands offered at temples, the warmth of communal worship.",
+          "evaluationTrigger": "If SRF event sites shift away from this orange, re-evaluate."
+        }
+      }
+    },
+    "marigold-hover": {
+      "$value": "#BE5706",
+      "$description": "Marigold deepened for hover and active states. The pressed-petal intensity of engagement. Passes WCAG AA for large text on white (4.2:1)."
+    },
+    "marigold-light": {
+      "$value": "#FCEFE9",
+      "$description": "Warm peach. The communal voice's secondary surface — like cream but orange-warm rather than yellow-warm. Event page section backgrounds, highlighted content on gathering surfaces."
+    },
+    "charcoal": {
+      "$value": "#4C4C4C",
+      "$description": "Warm charcoal. Neutral body text for the communal voice — approachable, readable, emotionally unloaded. Where navy carries the depth of meditation, charcoal carries no metaphor; it simply serves readability. WCAG AAA on white (8.5:1).",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Extracted from convocation.yogananda.org body text. SRF uses this neutral gray for community surfaces where navy's contemplative weight would feel overly formal."
+        }
+      }
+    },
+    "charcoal-secondary": {
+      "$value": "#4C4C4CA3",
+      "$description": "Charcoal at 64% opacity. Secondary text in the communal voice. Parallels navy text-secondary in the contemplative voice."
+    },
+    "gold-dark": {
+      "$value": "#C39314",
+      "$description": "Amber gold. A bridge between gold and marigold — gold deepened toward warmth. Appropriate for large text and decorative elements on white backgrounds (3.0:1). Not for body text — use charcoal or navy for that."
+    },
+    "border-neutral": {
+      "$value": "#EDEDED",
+      "$description": "Neutral gray border for the communal voice. Where contemplative borders derive from navy at 12% opacity (blue-tinted), these are true neutral — clean, modern, uncolored."
     }
   },
 
@@ -37,8 +78,35 @@
     "texture":      { "$type": "number", "$value": 0.03, "$description": "Paper texture noise overlay (SVG fractal noise). The ghost of physical pages." }
   },
 
+  "marigold-opacity": {
+    "$description": "Marigold at calibrated community-engagement levels. Parallels gold-opacity but for the communal voice. Where gold dissolves into contemplative atmosphere, marigold dissolves into welcoming warmth.",
+    "interactive":  { "$type": "number", "$value": 1.0,  "$description": "CTAs, registration buttons, primary actions. Full warmth — the community is inviting you in." },
+    "decorative":   { "$type": "number", "$value": 0.4,  "$description": "Section dividers, icon tints, schedule markers. Present but not urgent — the event continues around you." },
+    "ambient":      { "$type": "number", "$value": 0.2,  "$description": "Background accent tints, card hover states (bg-accent/20). The warmth of a room full of fellow seekers." },
+    "subliminal":   { "$type": "number", "$value": 0.06, "$description": "Subtle background warmth on white surfaces. The faintest glow of shared purpose." }
+  },
+
+  "category": {
+    "$description": "Categorical color set for multi-track content: event schedules, program types, content classifications. Four distinct hues that complement the marigold accent without competing. Extracted from the Convocation 2026 schedule interface.",
+    "teal": {
+      "$type": "color",
+      "$value": "#63A3A3",
+      "$description": "Teal. Cool, grounded — meditation sessions, quiet events, contemplative programs. The still water complement to marigold's warm fire."
+    },
+    "indigo": {
+      "$type": "color",
+      "$value": "#5D7BE3",
+      "$description": "Soft indigo. Engaged learning — classes, workshops, study circles. The blue of active intellect in service of understanding."
+    },
+    "amber": {
+      "$type": "color",
+      "$value": "#CC9900",
+      "$description": "Dark amber. A deeper, earthier gold — keynote events, featured talks, distinguished content. Bridges gold's spiritual gravitas with the communal context."
+    }
+  },
+
   "theme": {
-    "$description": "Six complete color themes. Each has an emotional purpose. Light is the default. data-theme attribute on <html> selects the active theme. Auto follows OS preference.",
+    "$description": "Seven complete color themes. Six for the contemplative voice (light, sepia, earth, dark, meditate) plus one for the communal voice (gathering). Each has an emotional purpose. data-theme attribute on <html> selects the active theme. Auto follows OS preference.",
 
     "light": {
       "$description": "Default. A warm library in daylight. Contemplative cool with scholarly warmth.",
@@ -89,6 +157,16 @@
       "border":         { "$type": "color", "$value": "#253050" },
       "gold":           { "$type": "color", "$value": "#e8cf4a99", "$description": "Gold at 60% opacity. Even the accent retreats in meditation." },
       "surface":        { "$type": "color", "$value": "#0e1a30" }
+    },
+    "gathering": {
+      "$description": "The communal voice. Event sites, convocation pages, community-facing surfaces. Marigold accent on clean white — open, warm, modern, welcoming. Where the light theme is a library in daylight, the gathering theme is the temple courtyard alive with fellow seekers. Not a reading theme but a doing theme — registering, scheduling, connecting, arriving.",
+      "bg":             { "$type": "color", "$value": "#FFFFFF", "$description": "Pure white. The communal voice embraces clean white — open, modern, unintimidating. Not the library's aged paper but the courtyard's clear light." },
+      "bg-secondary":   { "$type": "color", "$value": "#FCEFE9", "$description": "Warm peach (marigold-light). Sections differentiated by a breath of orange warmth." },
+      "text":           { "$type": "color", "$value": "#4C4C4C", "$description": "Charcoal. Approachable, readable, emotionally neutral." },
+      "text-secondary": { "$type": "color", "$value": "#4C4C4CA3", "$description": "Charcoal at 64% opacity." },
+      "border":         { "$type": "color", "$value": "#EDEDED", "$description": "Neutral gray borders. Clean lines without navy's contemplative tint." },
+      "gold":           { "$type": "color", "$value": "#DC6A10", "$description": "In gathering theme, the accent slot is SRF marigold. The communal voice speaks in orange, not gold." },
+      "surface":        { "$type": "color", "$value": "#FFFFFF", "$description": "White surfaces. Cards and elevated elements share the open white ground." }
     }
   },
 
@@ -113,7 +191,7 @@
   },
 
   "typography": {
-    "$description": "SRF type system. Three roles: reading (immersive body text), display (titles and headers), UI (navigation and chrome). Each role serves a different attentional purpose.",
+    "$description": "SRF type system. Four roles: reading (immersive body text), display (titles and headers), display-event (communal voice headings), UI (navigation and chrome). The contemplative voice uses Merriweather/Lora for reading and display; the communal voice uses ArcherPro for display and Helvetica Neue for UI. Both voices share the reading stack for any sacred or reverential text.",
 
     "reading": {
       "$type": "typography",
@@ -174,6 +252,32 @@
         "lineHeight": 1.5
       },
       "$description": "Attribution lines (PRI-02). Author, book, chapter, page. Small, light, always present. Preceded by em-dash + non-breaking space (U+2014 U+00A0)."
+    },
+    "display-event": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["ArcherPro", "Archer", "Georgia", "serif"],
+        "fontSize": { "value": 28, "unit": "px" },
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$description": "Communal voice display font. ArcherPro — a transitional serif with humanist warmth and subtle slab-serif geometry from Hoefler&Co. More personality than Lora at large sizes; more approachability than Merriweather. SRF uses this for convocation headings and event marketing. The font that says 'you are invited.' Falls back to Georgia on systems without the licensed font.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Extracted from convocation.yogananda.org (2026). ArcherPro is licensed by SRF from Hoefler&Co. Not all consumers will have access — Georgia is the closest freely available fallback with similar transitional warmth.",
+          "evaluationTrigger": "If SRF changes event site typography or if the license lapses, re-evaluate."
+        }
+      }
+    },
+    "ui-event": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["Helvetica Neue", "Helvetica", "system-ui", "-apple-system", "sans-serif"],
+        "fontSize": { "value": 15, "unit": "px" },
+        "fontWeight": 375,
+        "lineHeight": 1.5
+      },
+      "$description": "Communal voice UI font. Helvetica Neue at the distinctive 375 weight (between light and regular) that the Convocation site uses. Cleaner and more neutral than Open Sans — appropriate for event interfaces where the content is schedules, forms, and logistics rather than sacred text. The slight lightness signals 'infrastructure' without feeling thin."
     }
   },
 

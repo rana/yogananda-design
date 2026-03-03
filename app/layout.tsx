@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { DesignProvider } from "@/app/components/DesignProvider";
 
 export const metadata: Metadata = {
   title: "Yogananda Design Languages",
@@ -14,8 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="light">
-      <body>{children}</body>
+    <html lang="en" data-theme="light" data-org="srf">
+      <body>
+        <DesignProvider>{children}</DesignProvider>
+      </body>
     </html>
   );
 }

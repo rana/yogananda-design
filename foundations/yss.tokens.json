@@ -1,52 +1,164 @@
 {
-  "$description": "YSS (Yogoda Satsanga Society of India) visual language. SCAFFOLD — awaiting YSS editorial input (PRO-043). Values derived from yssofindia.org analysis (March 2026). YSS is a sister organization to SRF, not a subsidiary. This design language is independent — informed by shared lineage but expressing a distinctly Indian aesthetic tradition. Metaphor: entering an ashram — devotional warmth, Indian earth tones, the red soil of Ranchi.",
-  "$deprecated": "Draft — awaiting YSS editorial input. Do not treat these values as finalized.",
+  "$description": "YSS (Yogoda Satsanga Society of India) visual language. Values grounded in yssofindia.org analysis (March 2026) with elevated design intent. YSS is a sister organization to SRF, not a subsidiary. This design language expresses modern Indian spirituality \u2014 clean white foundations with warm devotional moments. Two registers coexist: the Modern Voice (white, terracotta, Raleway \u2014 functional, welcoming) and the Devotional Voice (cream, gold, Merienda \u2014 spiritual, warm). Metaphor: the ashram campus \u2014 sunlit courtyards for gathering, warm prayer halls for the teachings, terracotta earth underfoot, temple brass catching the light.",
 
   "color": {
     "$type": "color",
-    "$description": "YSS color palette. Terracotta and earth tones replace navy and gold. The warmth of Indian earth, not the cool depth of Pacific contemplation. Values extracted from yssofindia.org; require YSS approval before production use.",
+    "$description": "YSS color palette. Grounded in yssofindia.org Elementor globals (March 2026). The primary accent is terracotta \u2014 the red earth of Ranchi. The spiritual accent is devotional gold \u2014 aged temple brass, not bright. The site is white-forward with warm moments, not uniformly earth-toned.",
 
     "terracotta": {
-      "$value": "#bb4f27",
-      "$description": "YSS Terracotta. The rust-red earth of Ranchi, the clay of Indian tradition. Primary accent. Equivalent role to SRF Gold but warmer, earthier."
+      "$value": "#BB4F27",
+      "$description": "YSS Terracotta. Primary accent. The rust-red earth of Ranchi, the clay of Indian tradition. Used for H1 headings, section titles, CTAs, language selector backgrounds. WCAG AA large text on white (3.8:1).",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Confirmed from yssofindia.org Elementor global --e-global-color-primary: #BB4F27.",
+          "evaluationTrigger": "If yssofindia.org primary color changes from this terracotta."
+        }
+      }
     },
-    "earth-dark": {
-      "$value": "#3a2518",
-      "$description": "Deep earth. Primary text color. Warm dark brown, not cold black. The ink of handwritten Sanskrit manuscripts."
+    "terracotta-hover": {
+      "$value": "#A04321",
+      "$description": "Terracotta deepened for hover and active states. The clay fired darker."
     },
-    "clay": {
-      "$value": "#f2e8de",
-      "$description": "Warm clay. Primary background. The sun-baked walls of an ashram courtyard."
+    "terracotta-light": {
+      "$value": "#FFE4C6",
+      "$description": "Warm peach. Terracotta's ambient glow for highlighted content blocks and warm surface accents.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "From yssofindia.org Elementor globals --e-global-color-58dd929 and --e-global-color-507ac9a."
+        }
+      }
     },
-    "clay-dark": {
-      "$value": "#e6dacf",
-      "$description": "Secondary clay. Differentiation surface. Deeper warmth."
+    "devotional-gold": {
+      "$value": "#A87D25",
+      "$description": "Muted temple brass. The devotional accent \u2014 aged gold, not bright. Used for Quote of the Day titles, decorative text, spiritual emphasis. Distinct from SRF's bright halo gold (#dcbd23). WCAG AA large text on white (4.2:1).",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Extracted from yssofindia.org Quote of the Day section heading and Elementor global --e-global-color-ef030a3: #A87D25.",
+          "evaluationTrigger": "If YSS spiritual content surfaces change accent color."
+        }
+      }
     },
-    "surface": {
-      "$value": "#ede3d8",
-      "$description": "Elevated surface. Warmer than the SRF equivalent — even 'white' is warm here."
+    "devotional-cream": {
+      "$value": "#FCF4D2",
+      "$description": "Warm devotional cream. The color of aged manuscript paper, temple lamplight on white walls. Background for spiritual content sections (Quote of the Day, featured teachings).",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Confirmed from yssofindia.org Elementor global --e-global-color-6e97c36: #FCF4D2."
+        }
+      }
+    },
+    "orange": {
+      "$value": "#EC8724",
+      "$description": "Bright orange. Secondary accent for events, CTAs, urgency. The marigold garland's vivid center.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "From yssofindia.org Elementor global --e-global-color-7c571da: #EC8724."
+        }
+      }
     },
     "saffron": {
-      "$value": "#e8a830",
-      "$description": "Saffron accent. PROVISIONAL — may replace or complement terracotta for spiritual emphasis. The color of renunciation in Indian tradition.",
-      "$deprecated": "Provisional — requires YSS input on whether saffron is appropriate for their digital presence."
+      "$value": "#E8A830",
+      "$description": "Saffron. The color of renunciation in Indian tradition. Spiritual accent for meditative and devotional surfaces. YSS sannyasis wear saffron robes."
+    },
+    "text-primary": {
+      "$value": "#000000",
+      "$description": "Primary text. The site uses strong, clear black text.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Confirmed from yssofindia.org Elementor global --e-global-color-text: #000000."
+        }
+      }
+    },
+    "text-body": {
+      "$value": "#666666",
+      "$description": "Body text gray. Neutral, readable, approachable. The primary body text color across yssofindia.org content paragraphs.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Confirmed from yssofindia.org body paragraph computed style: rgb(102, 102, 102)."
+        }
+      }
+    },
+    "text-secondary": {
+      "$value": "#696969",
+      "$description": "Secondary text. Dimgray for captions, metadata, attribution, card subtitles."
+    },
+    "text-warm": {
+      "$value": "#3A2518",
+      "$description": "Warm brown text. For use on warm backgrounds (devotional cream, clay, sandstone) where neutral gray feels cold. The earth-ink color."
+    },
+    "bg-white": {
+      "$value": "#FFFFFF",
+      "$description": "Primary background. The site uses true white \u2014 the sunlit ashram courtyard.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Confirmed from yssofindia.org page background: rgb(255, 255, 255)."
+        }
+      }
+    },
+    "bg-neutral": {
+      "$value": "#FAFBFC",
+      "$description": "Very light neutral gray. Alternating section backgrounds.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "From yssofindia.org Elementor global --e-global-color-0b58797: #FAFBFC."
+        }
+      }
+    },
+    "bg-warm": {
+      "$value": "#F2E8DE",
+      "$description": "Warm clay. The reading surface background for immersive spiritual content. The ashram wall."
+    },
+    "surface": {
+      "$value": "#F1F1F1",
+      "$description": "Neutral surface for cards and elevated elements.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "From yssofindia.org computed section background: rgb(241, 241, 241)."
+        }
+      }
+    },
+    "border": {
+      "$value": "#EDEDED",
+      "$description": "Default border. Clean, neutral."
+    },
+    "border-warm": {
+      "$value": "#C4A988",
+      "$description": "Warm border for devotional and earth surfaces. The color of dried clay."
+    },
+    "link": {
+      "$value": "#337AB7",
+      "$description": "Content link blue. Bootstrap-inherited but present across the site. Consider mapping to terracotta in future redesign.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Confirmed from yssofindia.org content links: rgb(51, 122, 183). Bootstrap default.",
+          "evaluationTrigger": "If YSS moves away from Bootstrap/WordPress, evaluate whether links should use terracotta."
+        }
+      }
+    },
+    "navy-accent": {
+      "$value": "#052956",
+      "$description": "Deep navy. Defined in YSS Elementor globals as accent, used sparingly for dark UI elements.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "From yssofindia.org Elementor global --e-global-color-accent: #052956."
+        }
+      }
     }
   },
 
-  "typography": {
-    "$description": "YSS type system. Hindi/Devanagari-primary for Indian audiences, with English as secondary. Raleway for UI (from yssofindia.org). Noto Serif Devanagari for Hindi reading text (ADR-080).",
+  "terracotta-opacity": {
+    "$description": "Terracotta at calibrated attention levels. Parallels SRF's gold-opacity system. How terracotta serves different roles from call-to-action to ambient warmth.",
+    "interactive":  { "$type": "number", "$value": 1.0,  "$description": "CTAs, active links, primary buttons. Full terracotta presence." },
+    "decorative":   { "$type": "number", "$value": 0.4,  "$description": "Section dividers, ornamental marks. Present but quiet." },
+    "ambient":      { "$type": "number", "$value": 0.2,  "$description": "Scroll indicators, progress bars. Peripheral warmth." },
+    "highlight":    { "$type": "number", "$value": 0.12, "$description": "Focus outlines, hover backgrounds. Guiding, not grabbing." },
+    "subliminal":   { "$type": "number", "$value": 0.06, "$description": "Hover backgrounds on content cards. Barely visible warmth." },
+    "texture":      { "$type": "number", "$value": 0.03, "$description": "Paper texture overlay. The ghost of ashram walls." }
+  },
 
-    "reading-hi": {
-      "$type": "typography",
-      "$value": {
-        "fontFamily": ["Noto Serif Devanagari", "serif"],
-        "fontSize": { "value": 20, "unit": "px" },
-        "fontWeight": 400,
-        "lineHeight": 1.9
-      },
-      "$description": "Hindi reading font. Noto Serif Devanagari at 20px (11% larger than Latin 18px). 1.9 line height for shirorekha (headline) clearance. ADR-080.",
-      "$extensions": { "org.yogananda.design": { "adr": "ADR-080" } }
-    },
+  "typography": {
+    "$description": "YSS type system. Four families: Raleway (UI \u2014 the modern voice, the site's workhorse), Merriweather (reading \u2014 shared lineage with SRF), Merienda (display/devotional \u2014 YSS's distinctive handcrafted warmth for spiritual headings), Noto Sans (Indic scripts \u2014 unified variable font with Devanagari subset for all 9 supported languages).",
+
     "reading-en": {
       "$type": "typography",
       "$value": {
@@ -55,7 +167,33 @@
         "fontWeight": 400,
         "lineHeight": 1.8
       },
-      "$description": "English reading font for YSS context. Same as SRF — Merriweather for consistency across the lineage."
+      "$description": "English reading font. Merriweather \u2014 shared with SRF for consistency across the lineage. The teachings are the same; the reading experience should honor that."
+    },
+    "reading-hi": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["Noto Serif Devanagari", "serif"],
+        "fontSize": { "value": 20, "unit": "px" },
+        "fontWeight": 400,
+        "lineHeight": 1.9
+      },
+      "$description": "Hindi reading font. Noto Serif Devanagari at 20px (11% larger than Latin 18px). 1.9 line height for shirorekha clearance. ADR-080.",
+      "$extensions": { "org.yogananda.design": { "adr": "ADR-080" } }
+    },
+    "display": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["Merienda", "cursive"],
+        "fontSize": { "value": 30, "unit": "px" },
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$description": "Display/devotional heading font. Merienda \u2014 a handcrafted cursive that gives YSS spiritual content a warm, human touch. Used for 'Quote of the Day' titles and devotional section headers on yssofindia.org. Where SRF uses Lora (formal serif), YSS uses Merienda (informal warmth).",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Confirmed from yssofindia.org: Merienda used at 30px/500 with 0.5px letter-spacing for Quote of the Day heading."
+        }
+      }
     },
     "ui": {
       "$type": "typography",
@@ -63,55 +201,180 @@
         "fontFamily": ["Raleway", "system-ui", "-apple-system", "sans-serif"],
         "fontSize": { "value": 14, "unit": "px" },
         "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$description": "UI font. Raleway \u2014 the workhorse of yssofindia.org. Geometric sans-serif used for headings, body text, buttons, navigation. Weight range 400\u2013600.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Confirmed from yssofindia.org Elementor globals: primary, secondary, text, and accent typography all use Raleway."
+        }
+      }
+    },
+    "ui-semibold": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["Raleway", "system-ui", "-apple-system", "sans-serif"],
+        "fontSize": { "value": 14, "unit": "px" },
+        "fontWeight": 600,
         "lineHeight": 1.5
       },
-      "$description": "UI font. Raleway from yssofindia.org. Geometric sans-serif — more modern than Open Sans, reflecting YSS's contemporary digital presence."
+      "$description": "UI semibold. For buttons, labels, navigation items. Raleway 600."
     },
     "ui-hi": {
       "$type": "typography",
       "$value": {
-        "fontFamily": ["Noto Sans Devanagari", "system-ui", "sans-serif"],
+        "fontFamily": ["Noto Sans", "system-ui", "sans-serif"],
         "fontSize": { "value": 15, "unit": "px" },
         "fontWeight": 400,
         "lineHeight": 1.6
       },
-      "$description": "Hindi UI font. Noto Sans (not Serif) for UI chrome — cleaner at small sizes. Slightly larger than Latin UI to match optical weight."
+      "$description": "Hindi/Indic UI font. Noto Sans (unified variable font) — not the standalone Noto Sans Devanagari. The site loads Noto Sans with Devanagari subset (U+0900-097F) via unicode-range. Covers all 9 supported Indic scripts. Slightly larger than Latin to match optical weight.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Confirmed from yssofindia.org: loads google-fonts/css/notosans.css (Elementor local Google Fonts). The @font-face uses font-family: 'Noto Sans' with unicode-range subsetting for devanagari, latin, cyrillic, greek, and vietnamese."
+        }
+      }
+    },
+    "heading": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["Raleway", "system-ui", "sans-serif"],
+        "fontSize": { "value": 30, "unit": "px" },
+        "fontWeight": 500,
+        "lineHeight": 1.35,
+        "letterSpacing": { "value": 0.5, "unit": "px" }
+      },
+      "$description": "Page heading (H1). Raleway 500 at 30px with 0.5px letter-spacing. Terracotta color. From yssofindia.org.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Confirmed from yssofindia.org H1 computed style: Raleway 30px / 500 / 0.5px / rgb(187, 79, 39)."
+        }
+      }
+    },
+    "section-label": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["Raleway", "system-ui", "sans-serif"],
+        "fontSize": { "value": 30, "unit": "px" },
+        "fontWeight": 400,
+        "lineHeight": 1.3,
+        "letterSpacing": { "value": 0.5, "unit": "px" },
+        "textTransform": "uppercase"
+      },
+      "$description": "Section label (e.g. 'VIDEO & AUDIO TEACHINGS'). Uppercase Raleway 400 in terracotta. From yssofindia.org.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Confirmed from yssofindia.org section heading computed style."
+        }
+      }
+    },
+    "hero-quote": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["serif"],
+        "fontSize": { "value": 24, "unit": "px" },
+        "fontWeight": 500,
+        "fontStyle": "italic",
+        "lineHeight": 1.25
+      },
+      "$description": "Hero banner quote. Italic serif overlaid on ashram photography with text-shadow. From yssofindia.org banner."
     }
   },
 
   "theme": {
-    "$description": "YSS themes. SCAFFOLD — only earth theme exists as proof-of-concept in the portal. Full YSS theme set needs YSS input.",
+    "$description": "YSS themes. Five expressions of the YSS visual language, from bright modern to deep devotional. Each theme has a metaphor grounded in the ashram experience. All themes share the same token structure as SRF (bg, bg-secondary, text, text-secondary, border, gold, surface) where 'gold' is the accent color.",
 
+    "ashram": {
+      "$description": "The sunlit courtyard. White and terracotta. The default \u2014 clean, modern, welcoming. This is how yssofindia.org presents itself today.",
+      "bg":             { "$type": "color", "$value": "#FFFFFF" },
+      "bg-secondary":   { "$type": "color", "$value": "#FAFBFC" },
+      "text":           { "$type": "color", "$value": "#333333" },
+      "text-secondary": { "$type": "color", "$value": "#666666" },
+      "border":         { "$type": "color", "$value": "#EDEDED" },
+      "gold":           { "$type": "color", "$value": "#BB4F27" },
+      "surface":        { "$type": "color", "$value": "#F5F5F5" }
+    },
+    "sandstone": {
+      "$description": "The prayer hall's lamplight. Warm cream with devotional gold. For spiritual content surfaces \u2014 where the teachings breathe. The Quote of the Day aesthetic expanded to a full theme.",
+      "bg":             { "$type": "color", "$value": "#FCF4D2" },
+      "bg-secondary":   { "$type": "color", "$value": "#F5ECC0" },
+      "text":           { "$type": "color", "$value": "#3A2518" },
+      "text-secondary": { "$type": "color", "$value": "#6B5240" },
+      "border":         { "$type": "color", "$value": "#D4C4A0" },
+      "gold":           { "$type": "color", "$value": "#A87D25" },
+      "surface":        { "$type": "color", "$value": "#FFF8E7" }
+    },
     "earth": {
-      "$description": "The primary YSS theme. Warm clay and terracotta. Already implemented as portal's 'earth' theme.",
-      "bg":             { "$type": "color", "$value": "#f2e8de" },
-      "bg-secondary":   { "$type": "color", "$value": "#e6dacf" },
-      "text":           { "$type": "color", "$value": "#3a2518" },
-      "text-secondary": { "$type": "color", "$value": "#6b5240" },
-      "border":         { "$type": "color", "$value": "#c4a988" },
-      "accent":         { "$type": "color", "$value": "#bb4f27" },
-      "surface":        { "$type": "color", "$value": "#ede3d8" }
+      "$description": "The garden path. Warm clay and terracotta. The most immersive warm theme \u2014 for deep reading of the teachings. Shared name with SRF earth theme.",
+      "bg":             { "$type": "color", "$value": "#F2E8DE" },
+      "bg-secondary":   { "$type": "color", "$value": "#E6DACF" },
+      "text":           { "$type": "color", "$value": "#3A2518" },
+      "text-secondary": { "$type": "color", "$value": "#6B5240" },
+      "border":         { "$type": "color", "$value": "#C4A988" },
+      "gold":           { "$type": "color", "$value": "#BB4F27" },
+      "surface":        { "$type": "color", "$value": "#EDE3D8" }
     },
     "night": {
-      "$description": "SCAFFOLD. YSS dark theme — needs design. Should be warm dark (deep brown/maroon), not cool dark (navy). The darkness of a temple interior at evening aarti.",
-      "$deprecated": "Scaffold — requires design.",
-      "bg":           { "$type": "color", "$value": "#1a0f08" },
-      "text":         { "$type": "color", "$value": "#e8ddd2" },
-      "accent":       { "$type": "color", "$value": "#d4693d" }
+      "$description": "The evening aarti. Deep warm brown \u2014 the darkness of a temple interior when oil lamps are lit. Not cool navy \u2014 warm darkness.",
+      "bg":             { "$type": "color", "$value": "#1A0F08" },
+      "bg-secondary":   { "$type": "color", "$value": "#2A1F18" },
+      "text":           { "$type": "color", "$value": "#E8DDD2" },
+      "text-secondary": { "$type": "color", "$value": "#A89888" },
+      "border":         { "$type": "color", "$value": "#3D2E22" },
+      "gold":           { "$type": "color", "$value": "#D4693D" },
+      "surface":        { "$type": "color", "$value": "#2A1F18" }
+    },
+    "devotion": {
+      "$description": "The inner sanctum. Deep saffron-brown with golden light. For meditative, immersive spiritual experiences. The color of closing your eyes in a candlelit temple.",
+      "bg":             { "$type": "color", "$value": "#2E1810" },
+      "bg-secondary":   { "$type": "color", "$value": "#3A2218" },
+      "text":           { "$type": "color", "$value": "#F5D3AD" },
+      "text-secondary": { "$type": "color", "$value": "#C4A988" },
+      "border":         { "$type": "color", "$value": "#4A3528" },
+      "gold":           { "$type": "color", "$value": "#E8A830" },
+      "surface":        { "$type": "color", "$value": "#3A2218" }
     }
   },
 
   "motifs": {
-    "$description": "YSS visual motifs. SCAFFOLD. YSS uses different ornamental traditions than SRF — Indian geometric patterns, rangoli-inspired dividers, possibly ashram imagery. Requires YSS creative input.",
-    "$deprecated": "Scaffold — no YSS motif assets created yet.",
-    "divider": "Rangoli-inspired geometric pattern (TBD)",
-    "icon": "YSS emblem or lotus variant (TBD)"
+    "$description": "YSS visual motifs. Based on yssofindia.org analysis (March 2026).",
+    "divider": {
+      "$description": "Para-ornament: a stylized scroll/flourish divider used between content sections on yssofindia.org. Not rangoli-geometric as previously hypothesized \u2014 a more universal spiritual ornament with warm tones.",
+      "source": "yssofindia.org para-ornament-2",
+      "style": "Scroll/flourish, horizontal, warm earth tones"
+    },
+    "emblem": {
+      "$description": "YSS emblem \u2014 circular spiritual emblem used as site logo and footer decorative element on yssofindia.org.",
+      "source": "yssofindia.org yss-site-logo-emblem.png"
+    },
+    "guru-legacy": {
+      "$description": "PY-legacy footer motif: Paramahansa Yogananda portrait with 'The Spiritual Legacy of Paramahansa Yogananda' in decorative script. Positioned as an architectural anchor between navigation and copyright. A distinctly YSS pattern \u2014 the guru's presence as a UI element, not just content."
+    }
   },
 
   "languages": {
-    "$description": "YSS serves 9 Indian languages. The design system must support all Indic scripts from yssofindia.org: Hindi, Bengali, Tamil, Telugu, Kannada, Odia, Assamese, Marathi, Malayalam.",
-    "supported": ["hi", "bn", "ta", "te", "kn", "or", "as", "mr", "ml", "en"],
+    "$description": "YSS serves 9 Indian languages plus English. The design system must support all Indic scripts available on yssofindia.org.",
+    "supported": ["en", "hi", "gu", "ta", "te", "bn", "mr", "ml", "kn"],
     "primary-script": "Devanagari",
-    "secondary-scripts": ["Bengali", "Tamil", "Telugu", "Kannada", "Odia", "Malayalam"]
+    "secondary-scripts": ["Bengali", "Gujarati", "Tamil", "Telugu", "Kannada", "Marathi", "Malayalam"],
+    "$extensions": {
+      "org.yogananda.design": {
+        "rationale": "Language list and order from yssofindia.org Quote of the Day tabs: English, Hindi, Gujarati, Tamil, Telugu, Bengali, Marathi, Malayalam, Kannada. Added Gujarati (gu) \u2014 confirmed present. Removed Odia (or) and Assamese (as) \u2014 not found on current site."
+      }
+    }
+  },
+
+  "layout": {
+    "$description": "YSS layout tokens from yssofindia.org.",
+    "container-max-width": {
+      "$type": "dimension",
+      "$value": { "value": 1170, "unit": "px" },
+      "$description": "Max content width. 1170px from yssofindia.org Elementor --container-max-width."
+    },
+    "widget-spacing": {
+      "$type": "dimension",
+      "$value": { "value": 20, "unit": "px" },
+      "$description": "Default gap between content blocks. From yssofindia.org Elementor --widgets-spacing."
+    }
   }
 }

@@ -1,3 +1,6 @@
+/* ── Google Fonts for YSS ────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Merienda:wght@400;500;700&display=swap");
+
 @import "tailwindcss";
 
 /* ── Self-hosted fonts ─────────────────────────────────────────── */
@@ -83,9 +86,22 @@
   --color-gold: #dcbd23;
   --color-surface: #ffffff;
 
-  /* SRF brand colors */
+  /* SRF brand colors — contemplative voice */
   --color-navy: #1a2744;
   --color-cream: #FAF8F5;
+
+  /* SRF brand colors — communal voice */
+  --color-marigold: #DC6A10;
+  --color-marigold-hover: #BE5706;
+  --color-marigold-light: #FCEFE9;
+  --color-charcoal: #4C4C4C;
+  --color-border-neutral: #EDEDED;
+  --color-gold-dark: #C39314;
+
+  /* Category colors */
+  --color-category-teal: #63A3A3;
+  --color-category-indigo: #5D7BE3;
+  --color-category-amber: #CC9900;
 
   /* Gold opacity levels */
   --gold-interactive: 1.0;
@@ -94,6 +110,12 @@
   --gold-highlight: 0.2;
   --gold-subliminal: 0.06;
   --gold-texture: 0.03;
+
+  /* Marigold opacity levels */
+  --marigold-interactive: 1.0;
+  --marigold-decorative: 0.4;
+  --marigold-ambient: 0.2;
+  --marigold-subliminal: 0.06;
 
   /* Motion */
   --motion-instant: 0ms;
@@ -115,9 +137,14 @@
   --space-vast: 64px;
 
   /* Typography */
+  /* Contemplative voice typography */
   --font-reading: "Merriweather", "Lora", Georgia, "Times New Roman", serif;
   --font-display: "Lora", "Merriweather", Georgia, serif;
   --font-ui: "Open Sans", system-ui, -apple-system, sans-serif;
+
+  /* Communal voice typography */
+  --font-display-event: "ArcherPro", "Archer", Georgia, serif;
+  --font-ui-event: "Helvetica Neue", Helvetica, system-ui, -apple-system, sans-serif;
 
   /* Radius */
   --radius-none: 0px;
@@ -165,6 +192,87 @@
   --color-border: #253050;
   --color-gold: #e8cf4a99;
   --color-surface: #0e1a30;
+}
+
+[data-theme="gathering"] {
+  --color-bg: #FFFFFF;
+  --color-bg-secondary: #FCEFE9;
+  --color-text: #4C4C4C;
+  --color-text-secondary: #4C4C4CA3;
+  --color-border: #EDEDED;
+  --color-gold: #DC6A10;
+  --color-surface: #FFFFFF;
+}
+
+/* ── YSS Themes ──────────────────────────────────────────────── */
+
+[data-theme="ashram"] {
+  /* The sunlit courtyard — white and terracotta */
+  --color-bg: #FFFFFF;
+  --color-bg-secondary: #FAFBFC;
+  --color-text: #333333;
+  --color-text-secondary: #666666;
+  --color-border: #EDEDED;
+  --color-gold: #BB4F27;
+  --color-surface: #F5F5F5;
+}
+
+[data-theme="sandstone"] {
+  /* The prayer hall's lamplight — cream and devotional gold */
+  --color-bg: #FCF4D2;
+  --color-bg-secondary: #F5ECC0;
+  --color-text: #3A2518;
+  --color-text-secondary: #6B5240;
+  --color-border: #D4C4A0;
+  --color-gold: #A87D25;
+  --color-surface: #FFF8E7;
+}
+
+[data-theme="night"] {
+  /* The evening aarti — warm darkness, oil-lamp glow */
+  --color-bg: #1A0F08;
+  --color-bg-secondary: #2A1F18;
+  --color-text: #E8DDD2;
+  --color-text-secondary: #A89888;
+  --color-border: #3D2E22;
+  --color-gold: #D4693D;
+  --color-surface: #2A1F18;
+}
+
+[data-theme="devotion"] {
+  /* The inner sanctum — saffron-brown, golden candlelight */
+  --color-bg: #2E1810;
+  --color-bg-secondary: #3A2218;
+  --color-text: #F5D3AD;
+  --color-text-secondary: #C4A988;
+  --color-border: #4A3528;
+  --color-gold: #E8A830;
+  --color-surface: #3A2218;
+}
+
+/* ── YSS Organization Overrides ──────────────────────────────── */
+
+[data-org="yss"] {
+  /* Typography — YSS's distinct voice */
+  --font-reading: "Merriweather", Georgia, "Times New Roman", serif;
+  --font-display: "Merienda", cursive;
+  --font-ui: "Raleway", system-ui, -apple-system, sans-serif;
+
+  /* YSS brand colors (constant across themes) */
+  --color-terracotta: #BB4F27;
+  --color-devotional-gold: #A87D25;
+  --color-devotional-cream: #FCF4D2;
+  --color-saffron: #E8A830;
+  --color-navy: #052956;
+  --color-cream: #FFFFFF;
+
+  /* Terracotta opacity levels (parallel to SRF gold-opacity) */
+  --gold-interactive: 1.0;
+  --gold-decorative: 0.4;
+  --gold-ambient: 0.2;
+  --gold-highlight: 0.12;
+  --gold-subliminal: 0.06;
+  --gold-texture: 0.03;
 }
 
 /* ── Base Styles ──────────────────────────────────────────────── */
@@ -254,6 +362,26 @@ body {
 .gold-ambient { color: var(--color-gold); opacity: var(--gold-ambient); }
 .gold-highlight { color: var(--color-gold); opacity: var(--gold-highlight); }
 .gold-subliminal { color: var(--color-gold); opacity: var(--gold-subliminal); }
+
+/* Marigold accent at various attention levels */
+.marigold-interactive { color: var(--color-marigold); opacity: var(--marigold-interactive); }
+.marigold-decorative { color: var(--color-marigold); opacity: var(--marigold-decorative); }
+.marigold-ambient { color: var(--color-marigold); opacity: var(--marigold-ambient); }
+.marigold-subliminal { color: var(--color-marigold); opacity: var(--marigold-subliminal); }
+
+/* Communal voice typography */
+.display-event-text {
+  font-family: var(--font-display-event);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.ui-event-text {
+  font-family: var(--font-ui-event);
+  font-size: 15px;
+  font-weight: 375;
+  line-height: 1.5;
+}
 
 /* Section styling */
 .showcase-section {

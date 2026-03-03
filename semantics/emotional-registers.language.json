@@ -1,5 +1,5 @@
 {
-  "$description": "Emotional registers map content types to design treatment intensity. Different content deserves different reverence. This is how PRI-03 ('Is this worthy of presenting Yogananda's words?') becomes implementable. When building a component, identify which register the content belongs to, then apply the corresponding design treatment.",
+  "$description": "Emotional registers map content types to design treatment intensity. Different content deserves different reverence. This is how PRI-03 ('Is this worthy of presenting Yogananda's words?') becomes implementable. Two orthogonal axes govern design treatment: Register (vertical — sacred to ambient, how much reverence) and Voice (horizontal — contemplative to communal, what kind of surface). Choose register by content type; choose voice by surface purpose. Both apply simultaneously. A Yogananda quote on an event page still receives sacred register treatment — but the surrounding chrome uses the communal voice's palette.",
 
   "registers": {
     "sacred": {
@@ -84,5 +84,77 @@
         "if-no": "ambient"
       }
     ]
+  },
+
+  "voices": {
+    "$description": "Design voices are orthogonal to emotional registers. Registers govern reverence level (sacred → ambient) — the vertical axis. Voices govern surface purpose (contemplative → communal) — the horizontal axis. Voice determines the palette, accent hue, display typography, and atmospheric mood of the chrome surrounding the content. Register determines how the content itself is treated within that chrome. Yogananda taught both meditation (contemplative) and fellowship (communal); the design language serves both teachings.",
+
+    "contemplative": {
+      "$description": "The library. Reading surfaces, teaching portals, meditation interfaces. The seeker is alone with the text. Quietude is the dominant sensation — the design recedes to let the teachings speak. This is the default voice for the yogananda-teachings portal and any surface where sustained reading or inner practice is the primary activity.",
+      "accent": "gold (#DCBD23)",
+      "accent-opacity-set": "gold-opacity",
+      "text": "navy (#1A2744)",
+      "background": "cream (#FAF8F5)",
+      "display-font": "display (Lora, 700)",
+      "ui-font": "ui (Open Sans, 400)",
+      "mood": "quiet, deep, scholarly, intimate",
+      "metaphor": "entering a library — the smell of old books, a lamp illuminating a single page",
+      "surfaces": ["yogananda-teachings portal", "Online Meditation Center", "reading views", "quiet corner", "meditation timer", "teaching archives"],
+      "themes": ["light", "sepia", "dark", "meditate"],
+      "when-to-use": "The seeker is reading, studying, meditating, or searching the teachings. The experience is private, unhurried, and contemplative. Content depth over community breadth."
+    },
+
+    "communal": {
+      "$description": "The gathering. Event pages, convocation surfaces, community outreach, welcome experiences. The seeker is among fellow seekers. Warmth and invitation are the dominant sensations — the design says 'you belong here.' Used for any surface where the primary activity is gathering, registering, scheduling, sharing, or arriving together.",
+      "accent": "marigold (#DC6A10)",
+      "accent-opacity-set": "marigold-opacity",
+      "text": "charcoal (#4C4C4C)",
+      "background": "white (#FFFFFF)",
+      "display-font": "display-event (ArcherPro, 500)",
+      "ui-font": "ui-event (Helvetica Neue, 375)",
+      "mood": "warm, welcoming, joyful, open",
+      "metaphor": "the temple courtyard at convocation — hundreds of seekers gathered under open sky, marigold garlands everywhere, the joy of shared devotion",
+      "surfaces": ["convocation site", "event registration", "community pages", "outreach and marketing", "volunteer coordination", "pilgrimage information"],
+      "themes": ["gathering"],
+      "when-to-use": "The seeker is joining, participating, registering, or connecting with others. The experience is communal, active, and welcoming. Community breadth over content depth."
+    },
+
+    "interaction-rules": {
+      "$description": "How registers and voices interact. These rules resolve potential conflicts.",
+      "rules": [
+        {
+          "rule": "Sacred and reverential registers always use reading typography regardless of voice.",
+          "rationale": "Yogananda's words receive the same typographic reverence whether displayed on a reading surface or an event page. The voice colors the chrome; the register protects the text."
+        },
+        {
+          "rule": "The communal voice never uses the meditate or sepia themes.",
+          "rationale": "These themes serve deep contemplative reading. The communal voice has its own theme (gathering) and should not borrow the contemplative voice's variations."
+        },
+        {
+          "rule": "When sacred content appears on a communal surface, add extra whitespace around it.",
+          "rationale": "The Yogananda quote on an event page needs a clear boundary — breathing room that signals 'this is the teacher's voice, not the event's voice.' The surrounding marigold chrome should step back."
+        },
+        {
+          "rule": "Category colors (teal, indigo, amber) belong exclusively to the communal voice.",
+          "rationale": "The contemplative voice uses gold-opacity levels for all differentiation. It does not need a multi-hue category palette — that would be too visually active for a reading surface."
+        },
+        {
+          "rule": "ArcherPro and Helvetica Neue belong exclusively to the communal voice. Merriweather and Open Sans belong to the contemplative voice. Lora bridges both as a shared display serif.",
+          "rationale": "Mixing the font stacks would blur the voices. Each voice's typography is part of its identity."
+        }
+      ]
+    }
+  },
+
+  "voice-selection-guide": {
+    "$description": "Decision tree for choosing the right voice. Apply this BEFORE register selection. Voice determines your palette and chrome; register determines your content treatment.",
+    "questions": [
+      {
+        "ask": "Is this surface primarily for communal activities — events, gatherings, registration, community engagement, outreach?",
+        "if-yes": "communal",
+        "if-no": "contemplative (default)"
+      }
+    ],
+    "important": "When in doubt, default to contemplative. The contemplative voice is the baseline SRF digital identity. The communal voice is activated only for surfaces where gathering and participation are the primary purpose — not merely because a page mentions an event."
   }
 }

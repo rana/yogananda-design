@@ -19,12 +19,9 @@ import transitionsPattern from "@/patterns/transitions.pattern.json";
 
 export type Organization = "srf" | "yss";
 
-export type ThemeName =
-  | "light"
-  | "sepia"
-  | "earth"
-  | "dark"
-  | "meditate";
+export type SrfThemeName = "light" | "sepia" | "earth" | "dark" | "meditate" | "gathering";
+export type YssThemeName = "ashram" | "sandstone" | "earth" | "night" | "devotion";
+export type ThemeName = SrfThemeName | YssThemeName;
 
 export interface ThemeColors {
   bg: string;
@@ -36,8 +33,10 @@ export interface ThemeColors {
   surface: string;
 }
 
-export function getTheme(name: ThemeName): ThemeColors {
-  const theme = srfTokens.theme[name];
+export function getTheme(name: ThemeName, org: Organization = "srf"): ThemeColors {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const themes = (org === "yss" ? yssTokens : srfTokens).theme as any;
+  const theme = themes[name];
   return {
     bg: theme.bg.$value,
     "bg-secondary": theme["bg-secondary"].$value,
@@ -49,12 +48,24 @@ export function getTheme(name: ThemeName): ThemeColors {
   };
 }
 
-export function getThemeNames(): ThemeName[] {
-  return ["light", "sepia", "earth", "dark", "meditate"];
+export function getThemeNames(org: Organization = "srf"): ThemeName[] {
+  if (org === "yss") return ["ashram", "sandstone", "earth", "night", "devotion"];
+  return ["light", "sepia", "earth", "dark", "meditate", "gathering"];
 }
 
-export function getThemeDescription(name: ThemeName): string {
-  return srfTokens.theme[name].$description;
+export function getThemeDescription(name: ThemeName, org: Organization = "srf"): string {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const themes = (org === "yss" ? yssTokens : srfTokens).theme as any;
+  return themes[name].$description;
+}
+
+export function getOrgTokens(org: Organization) {
+  return org === "yss" ? yssTokens : srfTokens;
+}
+
+export function getAccentOpacityLevels(org: Organization = "srf") {
+  if (org === "yss") return yssTokens["terracotta-opacity"];
+  return srfTokens["gold-opacity"];
 }
 
 export function getGoldOpacityLevels() {

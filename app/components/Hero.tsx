@@ -1,4 +1,31 @@
+"use client";
+
+import { useDesign } from "./DesignProvider";
+
+const orgData = {
+  srf: {
+    color: "#1a2744",
+    textOnColor: "#e8e4dc",
+    hex: "#1a2744",
+    themeCount: 6,
+    voiceLabel: "Voices",
+    voiceCount: 2,
+  },
+  yss: {
+    color: "#bb4f27",
+    textOnColor: "#fff",
+    hex: "#bb4f27",
+    themeCount: 5,
+    voiceLabel: "Voices",
+    voiceCount: 2,
+  },
+};
+
 export default function Hero() {
+  const { org } = useDesign();
+  const data = orgData[org];
+  const totalThemes = orgData.srf.themeCount + orgData.yss.themeCount - 1; // earth is shared
+
   return (
     <header
       className="theme-transition"
@@ -37,24 +64,24 @@ export default function Hero() {
           <span
             className="token-value"
             style={{
-              backgroundColor: "#1a2744",
-              color: "#e8e4dc",
+              backgroundColor: orgData.srf.color,
+              color: orgData.srf.textOnColor,
               borderColor: "transparent",
             }}
           >
-            #1a2744
+            {orgData.srf.hex}
           </span>{" "}
           and{" "}
           <strong style={{ color: "var(--color-text)" }}>YSS</strong>{" "}
           <span
             className="token-value"
             style={{
-              backgroundColor: "#bb4f27",
-              color: "#fff",
+              backgroundColor: orgData.yss.color,
+              color: orgData.yss.textOnColor,
               borderColor: "transparent",
             }}
           >
-            #bb4f27
+            {orgData.yss.hex}
           </span> &mdash; sharing common
           foundations. Built for AI-first authorship. Every token is
           self-documenting. Every constraint is machine-readable.
@@ -85,7 +112,23 @@ export default function Hero() {
               className="display-text"
               style={{ fontSize: "24px", color: "var(--color-gold)" }}
             >
-              5
+              2
+            </div>
+            <div style={{ color: "var(--color-text-secondary)" }}>Orgs</div>
+          </div>
+          <div
+            style={{
+              width: "1px",
+              background: "var(--color-border)",
+              alignSelf: "stretch",
+            }}
+          />
+          <div>
+            <div
+              className="display-text"
+              style={{ fontSize: "24px", color: "var(--color-gold)" }}
+            >
+              {totalThemes}
             </div>
             <div style={{ color: "var(--color-text-secondary)" }}>Themes</div>
           </div>
@@ -105,24 +148,6 @@ export default function Hero() {
             </div>
             <div style={{ color: "var(--color-text-secondary)" }}>
               Registers
-            </div>
-          </div>
-          <div
-            style={{
-              width: "1px",
-              background: "var(--color-border)",
-              alignSelf: "stretch",
-            }}
-          />
-          <div>
-            <div
-              className="display-text"
-              style={{ fontSize: "24px", color: "var(--color-gold)" }}
-            >
-              7
-            </div>
-            <div style={{ color: "var(--color-text-secondary)" }}>
-              Attention Levels
             </div>
           </div>
         </div>
