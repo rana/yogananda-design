@@ -1,0 +1,93 @@
+# CI Pipeline — Design System
+#
+# Runs on every push and PR. Lint, type check, build.
+# On push to main: deploys to Vercel preview, aliases to dev, notifies platform.
+# Production promotion via platform: `promote design`
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build & Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type check
+        run: pnpm tsc --noEmit
+
+      - name: Build
+        run: pnpm build
+
+  deploy:
+    name: Deploy to Vercel
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Deploy to Vercel (preview)
+        id: deploy
+        run: |
+          URL=$(vercel deploy --token=$VERCEL_TOKEN)
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "Deployed to: $URL"
+
+      - name: Alias to dev environment
+        if: success()
+        run: |
+          vercel alias ${{ steps.deploy.outputs.url }} dev.design.yogananda.tech --token=$VERCEL_TOKEN --scope=$VERCEL_ORG_ID
+          echo "Aliased to: https://dev.design.yogananda.tech"
+
+      - name: Notify platform (deployment sync)
+        if: success()
+        run: |
+          curl -sf -X POST https://yogananda.tech/api/webhooks/deploy \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.WEBHOOK_SECRET }}" \
+            -d "{\"project\":\"design\",\"commit_sha\":\"${GITHUB_SHA::7}\",\"vercel_url\":\"${{ steps.deploy.outputs.url }}\",\"source\":\"ci\"}" \
+            || echo "Platform sync skipped (PRI-06 fallback)"
+
+      - name: Summary
+        run: |
+          echo "### Vercel Deployment" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Preview: ${{ steps.deploy.outputs.url }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Dev: https://dev.design.yogananda.tech" >> "$GITHUB_STEP_SUMMARY"
+          echo "Commit: \`${GITHUB_SHA::7}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Promote to production: \`promote design\`" >> "$GITHUB_STEP_SUMMARY"
