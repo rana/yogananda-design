@@ -253,6 +253,23 @@
       },
       "$description": "Attribution lines (PRI-02). Author, book, chapter, page. Small, light, always present. Preceded by em-dash + non-breaking space (U+2014 U+00A0)."
     },
+    "display-inspirational": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["Papyrus", "Asar", "Merienda", "cursive"],
+        "fontSize": { "value": 22, "unit": "px" },
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$description": "Devotional display font. Papyrus — the hand-lettered calligraphic face SRF uses for Daily Inspirations, spiritual quotes, and reverential display text. The ancient scroll. Falls through to Asar (ancient Indian stone inscription, OFL, self-hosted) on systems without Papyrus, then to Merienda. Three metaphors of the sacred in one stack: the scroll, the inscription, the handwritten letter.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "principle": "PRI-01",
+          "rationale": "Papyrus carries decades of SRF brand recognition (Daily Inspirations). Asar provides an OFL self-hosted fallback with cultural authenticity — its stone-inscription aesthetic is rooted in Indian tradition and covers both Latin and Devanagari. Merienda is the final fallback for calligraphic warmth. The three-font cascade degrades gracefully: ancient scroll → ancient inscription → handcrafted warmth.",
+          "evaluationTrigger": "If SRF moves away from Papyrus for inspirational content, Asar naturally promotes to primary."
+        }
+      }
+    },
     "display-event": {
       "$type": "typography",
       "$value": {

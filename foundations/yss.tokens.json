@@ -268,16 +268,32 @@
         }
       }
     },
+    "display-inspirational": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": ["Asar", "serif"],
+        "fontSize": { "value": 22, "unit": "px" },
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$description": "Devotional display font. Asar — ancient Indian stone-inscription aesthetic. Chisel on stone, temple walls, Ashoka's edicts. The font that says 'these words endure.' The only font in the ecosystem that renders both Latin and Devanagari in a single devotional voice. When a teaching appears in English and Hindi on the same page, Asar makes them one inscription. Self-hosted under OFL.",
+      "$extensions": {
+        "org.yogananda.design": {
+          "rationale": "Asar is culturally native to YSS's Indian context in a way Papyrus never could be. Its stone-carved aesthetic connects to the physical tradition — inscriptions on temple walls, carved gateways, the permanence of the guru's words in stone. Dual-script (Latin + Devanagari) means bilingual devotional content renders as unified visual voice.",
+          "evaluationTrigger": "If YSS develops a custom devotional typeface rooted in its visual tradition, re-evaluate."
+        }
+      }
+    },
     "hero-quote": {
       "$type": "typography",
       "$value": {
-        "fontFamily": ["serif"],
+        "fontFamily": ["Asar", "serif"],
         "fontSize": { "value": 24, "unit": "px" },
-        "fontWeight": 500,
-        "fontStyle": "italic",
-        "lineHeight": 1.25
+        "fontWeight": 400,
+        "fontStyle": "normal",
+        "lineHeight": 1.4
       },
-      "$description": "Hero banner quote. Italic serif overlaid on ashram photography with text-shadow. From yssofindia.org banner."
+      "$description": "Hero banner quote. Asar overlaid on ashram photography — the guru's words inscribed on the landscape. Self-hosted, dual-script. Replaces the generic serif previously used on yssofindia.org."
     }
   },
 

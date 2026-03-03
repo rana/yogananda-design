@@ -65,6 +65,33 @@ function SrfTypography() {
         </div>
       </div>
 
+      {/* Devotional Voice */}
+      <div className="flex items-center gap-2 mb-4">
+        <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "var(--color-gold)" }} />
+        <span className="text-xs font-semibold uppercase tracking-wider" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)" }}>
+          Devotional Voice
+        </span>
+      </div>
+      <div className="grid grid-cols-1 gap-6 mb-10">
+        {/* Papyrus */}
+        <div className="theme-transition rounded-md p-6" style={{ backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)" }}>
+          <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ fontFamily: "var(--font-ui)", color: "var(--color-gold)" }}>Display Inspirational</div>
+          <div style={{ fontFamily: "var(--font-display-inspirational)", fontSize: "36px", fontWeight: 400, lineHeight: 1.3, color: "var(--color-text)", marginBottom: "16px" }}>
+            Papyrus
+          </div>
+          <div style={{ fontFamily: "var(--font-display-inspirational)", fontSize: "22px", fontWeight: 400, lineHeight: 1.5, color: "var(--color-text)", marginBottom: "8px" }}>
+            &ldquo;Be as simple as you can be; you will be astonished to see how uncomplicated and happy your life can become.&rdquo;
+          </div>
+          <div className="citation-text mb-4">&mdash;&nbsp;Paramahansa Yogananda</div>
+          <div className="token-value text-xs">22px / 400 / 1.5 line-height &middot; System font (macOS/Windows)</div>
+          <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--color-border)" }}>
+            <div className="text-xs" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)", lineHeight: 1.5 }}>
+              SRF&rsquo;s signature Daily Inspirations font. Hand-lettered calligraphic strokes evoking ancient manuscripts. System font &mdash; not self-hosted. Falls back to Merienda for similar calligraphic warmth.
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Communal Voice */}
       <div className="flex items-center gap-2 mb-4">
         <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "var(--color-marigold)" }} />
@@ -175,6 +202,45 @@ function YssTypography() {
         </div>
       </div>
 
+      {/* Devotional Voice — Asar */}
+      <div className="flex items-center gap-2 mb-4">
+        <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "#A87D25" }} />
+        <span className="text-xs font-semibold uppercase tracking-wider" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)" }}>
+          Devotional Voice &mdash; The Inscription
+        </span>
+      </div>
+      <div className="grid grid-cols-1 gap-6 mb-10">
+        {/* Asar */}
+        <div className="theme-transition rounded-md p-6" style={{ backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)" }}>
+          <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ fontFamily: "var(--font-ui)", color: "var(--color-gold)" }}>Display Inspirational</div>
+          <div style={{ fontFamily: "var(--font-display-inspirational)", fontSize: "36px", fontWeight: 400, lineHeight: 1.3, color: "var(--color-text)", marginBottom: "16px" }}>
+            Asar
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* English */}
+            <div>
+              <div style={{ fontFamily: "var(--font-display-inspirational)", fontSize: "22px", fontWeight: 400, lineHeight: 1.5, color: "var(--color-text)", marginBottom: "8px" }}>
+                &ldquo;Be as simple as you can be; you will be astonished to see how uncomplicated and happy your life can become.&rdquo;
+              </div>
+              <div className="citation-text">&mdash;&nbsp;Paramahansa Yogananda</div>
+            </div>
+            {/* Hindi — same font, same voice */}
+            <div>
+              <div style={{ fontFamily: "var(--font-display-inspirational)", fontSize: "22px", fontWeight: 400, lineHeight: 1.7, color: "var(--color-text)", marginBottom: "8px" }}>
+                &ldquo;जितनी सादगी से हो सके जीवन बिताओ; तुम देखकर चकित रह जाओगे कि जीवन कितना सरल और सुखमय हो सकता है।&rdquo;
+              </div>
+              <div className="citation-text">&mdash;&nbsp;परमहंस योगानन्द</div>
+            </div>
+          </div>
+          <div className="token-value text-xs mt-4">22px / 400 / 1.5 line-height &middot; Self-hosted &middot; OFL &middot; Latin + Devanagari</div>
+          <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--color-border)" }}>
+            <div className="text-xs" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)", lineHeight: 1.5 }}>
+              Ancient Indian stone-inscription aesthetic. The only font in the system that renders both Latin and Devanagari in a single devotional voice. One guru, two scripts, one inscription.
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Indic Scripts */}
       <div className="flex items-center gap-2 mb-4">
         <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "#E8A830" }} />
@@ -183,51 +249,52 @@ function YssTypography() {
         </span>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-        {/* Noto Sans */}
+        {/* Noto Sans Devanagari */}
         <div className="theme-transition rounded-md p-6" style={{ backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)" }}>
-          <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ fontFamily: "var(--font-ui)", color: "var(--color-gold)" }}>UI &amp; Body (Indic)</div>
-          <div style={{ fontFamily: '"Noto Sans", system-ui, sans-serif', fontSize: "32px", fontWeight: 400, lineHeight: 1.3, color: "var(--color-text)", marginBottom: "12px" }}>
-            Noto Sans
+          <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ fontFamily: "var(--font-ui)", color: "var(--color-gold)" }}>UI (Devanagari)</div>
+          <div style={{ fontFamily: 'var(--font-ui-hi)', fontSize: "32px", fontWeight: 400, lineHeight: 1.3, color: "var(--color-text)", marginBottom: "12px" }}>
+            नोटो सान्स
           </div>
-          <div style={{ fontFamily: '"Noto Sans", system-ui, sans-serif', fontSize: "20px", fontWeight: 400, lineHeight: 1.9, color: "var(--color-text)", marginBottom: "4px" }}>
-            &#x092F;&#x094B;&#x0917;&#x093E;&#x0928;&#x0928;&#x094D;&#x0926; &#x0938;&#x0924;&#x094D;&#x0938;&#x0919;&#x094D;&#x0917; &#x0938;&#x094B;&#x0938;&#x093E;&#x0907;&#x091F;&#x0940;
+          <div style={{ fontFamily: 'var(--font-ui-hi)', fontSize: "20px", fontWeight: 400, lineHeight: 1.9, color: "var(--color-text)", marginBottom: "4px" }}>
+            योगानन्द सत्सङ्ग सोसाइटी
           </div>
-          <div style={{ fontFamily: '"Noto Sans", system-ui, sans-serif', fontSize: "15px", fontWeight: 400, lineHeight: 1.6, color: "var(--color-text-secondary)", marginBottom: "8px" }}>
-            Yogoda Satsanga Society of India
+          <div style={{ fontFamily: 'var(--font-ui-hi)', fontSize: "15px", fontWeight: 400, lineHeight: 1.6, color: "var(--color-text-secondary)", marginBottom: "8px" }}>
+            खोजें... | अध्याय 12 / 49 | सेटिंग्स
           </div>
-          <div className="token-value text-xs">15px / 400 / 1.6 line-height (Indic: 20px / 1.9)</div>
-          <div className="mt-3 space-y-1" style={{ fontFamily: '"Noto Sans", system-ui, sans-serif', color: "var(--color-text)" }}>
-            <div style={{ fontWeight: 400, fontSize: "15px" }}>Regular (400) &mdash; Body, navigation</div>
-            <div style={{ fontWeight: 500, fontSize: "15px" }}>Medium (500) &mdash; Headings</div>
-            <div style={{ fontWeight: 600, fontSize: "15px" }}>Semibold (600) &mdash; Buttons, CTAs</div>
+          <div className="token-value text-xs">15px / 400 / 1.6 line-height &middot; Self-hosted variable font</div>
+          <div className="mt-3 space-y-1" style={{ fontFamily: 'var(--font-ui-hi)', color: "var(--color-text)" }}>
+            <div style={{ fontWeight: 400, fontSize: "16px" }}>नियमित (400) — नेविगेशन, लेबल</div>
+            <div style={{ fontWeight: 600, fontSize: "16px" }}>सेमीबोल्ड (600) — बटन, सीटीए</div>
           </div>
           <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--color-border)" }}>
             <div className="text-xs" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)", lineHeight: 1.5 }}>
-              Variable font with unicode-range subsetting. Covers Devanagari (U+0900-097F), Bengali, Gujarati, Tamil, Telugu, Kannada, Malayalam + Latin, Cyrillic, Greek.
+              Self-hosted variable font with unicode-range subsetting. Devanagari subset (U+0900-097F). Zero external font requests &mdash; GDPR compliant.
             </div>
           </div>
         </div>
 
-        {/* Noto Serif Devanagari (aspirational) */}
-        <div className="theme-transition rounded-md p-6" style={{ backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)", opacity: 0.7 }}>
+        {/* Noto Serif Devanagari */}
+        <div className="theme-transition rounded-md p-6" style={{ backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)" }}>
           <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ fontFamily: "var(--font-ui)", color: "var(--color-gold)" }}>
-            Reading (Indic) &mdash; Future
+            Reading (Devanagari)
           </div>
-          <div style={{ fontFamily: '"Noto Serif Devanagari", "Noto Serif", Georgia, serif', fontSize: "32px", fontWeight: 400, lineHeight: 1.3, color: "var(--color-text)", marginBottom: "12px" }}>
-            Noto Serif
+          <div style={{ fontFamily: 'var(--font-reading-hi)', fontSize: "32px", fontWeight: 400, lineHeight: 1.3, color: "var(--color-text)", marginBottom: "12px" }}>
+            नोटो सेरिफ़
           </div>
-          <div style={{ fontFamily: '"Noto Serif Devanagari", "Noto Serif", Georgia, serif', fontSize: "20px", fontWeight: 400, lineHeight: 1.9, color: "var(--color-text)", marginBottom: "8px" }}>
-            &#x092F;&#x094B;&#x0917;&#x0926;&#x093E; &#x0938;&#x0924;&#x094D;&#x0938;&#x0919;&#x094D;&#x0917; &#x0938;&#x094B;&#x0938;&#x093E;&#x0907;&#x091F;&#x0940;
+          <div style={{ fontFamily: 'var(--font-reading-hi)', fontSize: "20px", fontWeight: 400, lineHeight: 1.9, color: "var(--color-text)", marginBottom: "4px" }}>
+            योगदा सत्सङ्ग सोसाइटी ऑफ़ इण्डिया
           </div>
-          <div className="token-value text-xs">20px / 400 / 1.9 line-height</div>
-          <div className="mt-3 space-y-1" style={{ fontFamily: '"Noto Serif", Georgia, serif', color: "var(--color-text)" }}>
-            <div style={{ fontWeight: 400, fontSize: "15px" }}>Regular (400) &mdash; Teaching text</div>
-            <div style={{ fontWeight: 400, fontStyle: "italic", fontSize: "15px" }}>Italic (400) &mdash; Emphasis</div>
-            <div style={{ fontWeight: 700, fontSize: "15px" }}>Bold (700) &mdash; Drop capitals</div>
+          <div style={{ fontFamily: 'var(--font-reading-hi)', fontSize: "18px", fontWeight: 400, lineHeight: 1.9, color: "var(--color-text-secondary)", marginBottom: "8px" }}>
+            जितनी सादगी से हो सके जीवन बिताओ; तुम देखकर चकित रह जाओगे कि जीवन कितना सरल और सुखमय हो सकता है।
+          </div>
+          <div className="token-value text-xs">20px / 400 / 1.9 line-height &middot; Self-hosted variable font</div>
+          <div className="mt-3 space-y-1" style={{ fontFamily: 'var(--font-reading-hi)', color: "var(--color-text)" }}>
+            <div style={{ fontWeight: 400, fontSize: "17px" }}>नियमित (400) — शिक्षा पाठ</div>
+            <div style={{ fontWeight: 700, fontSize: "17px" }}>बोल्ड (700) — शीर्षक</div>
           </div>
           <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--color-border)" }}>
             <div className="text-xs" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)", lineHeight: 1.5 }}>
-              Aspirational. Not yet deployed on yssofindia.org. The serif companion to Noto Sans for immersive Hindi reading surfaces. Mirrors the Merriweather reading experience.
+              Self-hosted. The serif companion to Noto Sans for immersive Hindi reading. Mirrors the Merriweather reading experience with 1.9 line-height for shirorekha clearance (ADR-080).
             </div>
           </div>
         </div>
@@ -311,7 +378,7 @@ export default function TypographySpecimen() {
         >
           {org === "srf"
             ? "Two voices, five type roles. The contemplative voice serves reading and meditation \u2014 warm serifs that recede. The communal voice serves events and gathering \u2014 structured serifs that welcome."
-            : "Four families, one spirit. Raleway for the modern voice \u2014 clean, geometric, welcoming. Merriweather for reading \u2014 shared lineage with SRF. Merienda for devotional display \u2014 handcrafted warmth. Noto Sans for Indic scripts \u2014 nine languages, one unified variable font."}
+            : "Five families, one spirit. Raleway for the modern voice \u2014 clean, geometric, welcoming. Merriweather for reading \u2014 shared lineage with SRF. Merienda for display warmth. Asar for the devotional inscription \u2014 one font, two scripts, the guru\u2019s words carved in stone. Noto Sans/Serif for Indic scripts \u2014 nine languages."}
         </p>
 
         {org === "srf" ? <SrfTypography /> : <YssTypography />}
