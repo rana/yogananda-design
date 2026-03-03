@@ -1,0 +1,261 @@
+/* ══════════════════════════════════════════════════════════════════
+   Reading Surface Patterns
+   ══════════════════════════════════════════════════════════════════
+   The primary experience of the portal — where Yogananda's words
+   meet the seeker's eyes. Composition recipes for reader modes,
+   dwell contemplation, golden thread cross-references, keyboard
+   navigation, and responsive reading layout.
+
+   These patterns emerged in yogananda-teachings and are
+   canonicalized here as the design language's reading surface
+   expression. Any surface presenting sacred or reverential
+   content should import this file.
+
+   Requires: foundations.css, calm.css
+   Source: patterns/reading-surface.pattern.json
+           yogananda-teachings app/globals.css (battle-tested)
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Scroll Position Indicator ───────────────────────────────── */
+/* 2px gold bar at top of viewport. Ambient attention level —
+   peripheral awareness, not focal. Register: ambient. */
+
+.scroll-indicator {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  block-size: 2px;
+  background-color: var(--color-gold);
+  opacity: var(--gold-ambient);
+  z-index: var(--z-top);
+  transition: inline-size 100ms ease-out;
+}
+
+/* ── Keyboard Paragraph Focus — DES-013 ──────────────────────── */
+/* j/k navigation highlights the current paragraph.
+   Gold subliminal background + highlight outline. */
+
+[data-paragraph].kb-focus {
+  background-color: color-mix(in srgb, var(--color-gold) 6%, transparent);
+  border-radius: var(--radius-default);
+  outline: 1px solid color-mix(in srgb, var(--color-gold) 20%, transparent);
+  outline-offset: 4px;
+  padding-inline: 0.5rem;
+  margin-inline: -0.5rem;
+}
+
+/* ── Dwell Contemplation Mode — DES-009 ──────────────────────── */
+/* After 1200ms settled on a paragraph, dim all others.
+   The portal waits, then responds. */
+
+/* Dim all paragraphs when dwell is active */
+[data-dwell-active] [data-paragraph] {
+  opacity: var(--opacity-subdued);
+  transition: opacity var(--motion-content) ease;
+}
+
+/* Settled paragraph stays vivid; tap/click exits dwell */
+[data-dwell-active] [data-paragraph][data-dwell-target] {
+  opacity: var(--opacity-full);
+  cursor: pointer;
+}
+
+/* Dim figures alongside paragraphs */
+[data-dwell-active] .book-figure {
+  opacity: var(--opacity-subdued);
+  transition: opacity var(--motion-content) ease;
+}
+
+/* Instant dwell transitions for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-dwell-active] [data-paragraph] {
+    transition: none !important;
+  }
+}
+
+/* ── Focus Reading Mode ──────────────────────────────────────── */
+/* Suppress all chrome except reading column + next chapter nav.
+   The seeker chose to focus — honor that choice completely. */
+
+[data-mode="focus"] header,
+[data-mode="focus"] footer,
+[data-mode="focus"] [data-no-focus] {
+  display: none !important;
+}
+
+/* ── Presentation Mode — DES-049 ─────────────────────────────── */
+/* For group reading. Chrome hidden. Font size scaled up
+   progressively across breakpoints. */
+
+[data-mode="present"] {
+  background: var(--color-bg) !important;
+}
+
+[data-mode="present"] header,
+[data-mode="present"] footer,
+[data-mode="present"] nav,
+[data-mode="present"] [data-no-present] {
+  display: none !important;
+}
+
+/* Progressive font scaling: mobile 24px → wide 36px */
+[data-mode="present"] article {
+  font-size: 1.5rem !important;
+  line-height: 1.9 !important;
+  max-inline-size: 48rem !important;
+  margin-inline: auto !important;
+}
+
+@media (min-width: 640px) {
+  [data-mode="present"] article {
+    font-size: 1.75rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  [data-mode="present"] article {
+    font-size: 2rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  [data-mode="present"] article {
+    font-size: 2.25rem !important;
+  }
+}
+
+/* ── Contextual Quiet Corner ─────────────────────────────────── */
+/* Chrome hidden. Article dimmed. A fixed overlay takes over —
+   space for reflection outside the reading flow. */
+
+[data-mode="quiet"] header,
+[data-mode="quiet"] footer,
+[data-mode="quiet"] nav,
+[data-mode="quiet"] [data-no-quiet] {
+  display: none !important;
+}
+
+[data-mode="quiet"] {
+  background: var(--color-bg) !important;
+}
+
+[data-mode="quiet"] article {
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* ── Golden Thread — Cross-Chapter Connections (ADR-050) ──────── */
+/* Paragraphs with cross-chapter relations get a subtle gold left
+   accent — a literal golden thread in the margin. box-shadow
+   avoids layout shift; all text stays perfectly aligned. */
+
+.golden-thread-passage {
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--color-gold) 22%, transparent);
+  padding-inline-start: 1rem;
+  transition: box-shadow var(--motion-content) var(--easing-standard);
+}
+
+/* Desktop: settled paragraph gets stronger accent,
+   visually connecting text to side panel */
+@media (min-width: 1024px) {
+  .golden-thread-passage[data-thread-active] {
+    box-shadow: inset 3px 0 0 color-mix(in srgb, var(--color-gold) 55%, transparent);
+  }
+}
+
+/* Touch: stronger accent + tap feedback on left margin */
+@media (hover: none) and (pointer: coarse) {
+  .golden-thread-passage {
+    box-shadow: inset 3px 0 0 color-mix(in srgb, var(--color-gold) 30%, transparent);
+  }
+  .golden-thread-passage:active {
+    box-shadow: inset 3px 0 0 color-mix(in srgb, var(--color-gold) 65%, transparent);
+  }
+}
+
+/* Hide golden thread in focus/present/quiet modes — calm technology */
+[data-mode="focus"] .golden-thread-passage,
+[data-mode="present"] .golden-thread-passage,
+[data-mode="quiet"] .golden-thread-passage {
+  box-shadow: none !important;
+}
+
+/* ── Thread Panel & Sheet Animations ─────────────────────────── */
+
+/* Side panel content: gentle fade when settled paragraph changes */
+@keyframes thread-panel-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.thread-panel-fade {
+  animation: thread-panel-in var(--motion-content) ease-out;
+}
+
+/* Bottom sheet: slide up from bottom */
+@keyframes thread-sheet-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.thread-sheet-enter {
+  /* Spring-like overshoot easing for bottom sheet entry — intentionally
+     distinct from named easings (sharper snap than contemplative). */
+  animation: thread-sheet-up var(--motion-content) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Backdrop fade */
+@keyframes thread-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.thread-backdrop-enter {
+  animation: thread-backdrop-in var(--motion-interaction) var(--easing-decelerate);
+}
+
+/* ── Chapter Transition — DES-012 "Breath Between Chapters" ─── */
+
+@keyframes chapterFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── Interaction Modality — DES-049 ──────────────────────────── */
+
+/* Touch-primary: extra padding for comfortable paragraph selection */
+@media (hover: none) and (pointer: coarse) {
+  .reader-content [data-paragraph] {
+    padding-inline: 0.25rem;
+  }
+}
+
+/* Desktop: subtle hover warmth on paragraphs */
+@media (hover: hover) and (pointer: fine) {
+  .reader-content [data-paragraph]:hover {
+    background-color: color-mix(in srgb, var(--color-gold) 3%, transparent);
+    border-radius: var(--radius-small);
+  }
+}
+
+/* ── Tablet Reader Margins — DES-049 ─────────────────────────── */
+/* Wider than mobile, narrower than desktop. Comfortable reading. */
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .reader-content {
+    padding-inline: 3rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .reader-content {
+    padding-inline: 4rem;
+  }
+}
+
+/* ── Phone Landscape — DES-049 ───────────────────────────────── */
+/* Cap line length to prevent excessively long lines */
+
+@media (max-width: 639px) and (orientation: landscape) {
+  .reader-content {
+    max-inline-size: 36rem;
+    margin-inline: auto;
+  }
+}

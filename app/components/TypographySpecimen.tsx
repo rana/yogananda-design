@@ -73,20 +73,20 @@ function SrfTypography() {
         </span>
       </div>
       <div className="grid grid-cols-1 gap-6 mb-10">
-        {/* Papyrus */}
+        {/* Asar — Devotional Display */}
         <div className="theme-transition rounded-md p-6" style={{ backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)" }}>
           <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ fontFamily: "var(--font-ui)", color: "var(--color-gold)" }}>Display Inspirational</div>
           <div style={{ fontFamily: "var(--font-display-inspirational)", fontSize: "36px", fontWeight: 400, lineHeight: 1.3, color: "var(--color-text)", marginBottom: "16px" }}>
-            Papyrus
+            Asar
           </div>
           <div style={{ fontFamily: "var(--font-display-inspirational)", fontSize: "22px", fontWeight: 400, lineHeight: 1.5, color: "var(--color-text)", marginBottom: "8px" }}>
             &ldquo;Be as simple as you can be; you will be astonished to see how uncomplicated and happy your life can become.&rdquo;
           </div>
           <div className="citation-text mb-4">&mdash;&nbsp;Paramahansa Yogananda</div>
-          <div className="token-value text-xs">22px / 400 / 1.5 line-height &middot; System font (macOS/Windows)</div>
+          <div className="token-value text-xs">22px / 400 / 1.5 line-height &middot; Self-hosted (OFL)</div>
           <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--color-border)" }}>
             <div className="text-xs" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)", lineHeight: 1.5 }}>
-              SRF&rsquo;s signature Daily Inspirations font. Hand-lettered calligraphic strokes evoking ancient manuscripts. System font &mdash; not self-hosted. Falls back to Merienda for similar calligraphic warmth.
+              Ancient Indian stone-inscription aesthetic. Covers both Latin and Devanagari in a single devotional voice. Self-hosted under OFL. Falls back to Merienda for calligraphic warmth.
             </div>
           </div>
         </div>

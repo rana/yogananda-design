@@ -1,0 +1,39 @@
+/* ══════════════════════════════════════════════════════════════════
+   High Contrast Overrides
+   ══════════════════════════════════════════════════════════════════
+   Accessibility overrides for prefers-contrast: more.
+   Maximizes text-background contrast without changing the theme
+   structure. Non-negotiable (PRI-07).
+
+   Requires: foundations.css
+   Source: semantics/accessibility.language.json
+           yogananda-teachings app/globals.css (battle-tested)
+   ══════════════════════════════════════════════════════════════════ */
+
+@media (prefers-contrast: more) {
+  /* Light themes: push text to pure black */
+  :root {
+    --color-text: #000000;
+    --color-text-secondary: #333333;
+    --color-border: #666666;
+  }
+
+  /* Dark themes: push text to pure white */
+  [data-theme="dark"],
+  [data-theme="meditate"],
+  [data-theme="night"],
+  [data-theme="devotion"] {
+    --color-text: #ffffff;
+    --color-text-secondary: #cccccc;
+    --color-border: #888888;
+  }
+
+  /* Auto dark */
+  @media (prefers-color-scheme: dark) {
+    [data-theme="auto"] {
+      --color-text: #ffffff;
+      --color-text-secondary: #cccccc;
+      --color-border: #888888;
+    }
+  }
+}

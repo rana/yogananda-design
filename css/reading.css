@@ -1,0 +1,20 @@
+/* ══════════════════════════════════════════════════════════════════
+   Yogananda Design Language — Reading Surface Bundle
+   ══════════════════════════════════════════════════════════════════
+   Everything needed for a reading surface: full design language
+   plus reader modes, print, and user preferences.
+
+   Usage:
+     @import '@yogananda/design/css/reading.css';
+
+   This is the single import for yogananda-teachings and any
+   future surface presenting sacred or reverential content.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Complete design language */
+@import './index.css';
+
+/* Reading surface patterns */
+@import './patterns/reading-surface.css';
+@import './patterns/print.css';
+@import './patterns/preferences.css';

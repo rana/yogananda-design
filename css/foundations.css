@@ -1,0 +1,174 @@
+/* ══════════════════════════════════════════════════════════════════
+   Yogananda Design Language — Foundation Tokens
+   ══════════════════════════════════════════════════════════════════
+   Source of truth: foundations/shared.tokens.json
+                    foundations/srf.tokens.json
+
+   All design tokens as CSS custom properties. Theme-aware colors
+   resolve to SRF Light by default; override via data-theme attribute.
+   Organization-aware typography resolves to SRF by default;
+   override via data-org attribute.
+
+   These properties are consumed by every other CSS file in this
+   system. Import this file first.
+   ══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Colors — SRF Light (default) ──────────────────────────────
+     Contemplative voice: gold + navy + cream.
+     The library. Deep reading, spiritual stillness, inner illumination.
+     Source: foundations/srf.tokens.json */
+
+  --color-bg: #FAF8F5;
+  --color-bg-secondary: #f0ece4;
+  --color-text: #1a2744;
+  --color-text-secondary: #1a2744b3;
+  --color-border: #1a27441f;
+  --color-gold: #dcbd23;       /* Semantic accent — shifts to marigold (gathering) or terracotta (YSS) */
+  --color-surface: #ffffff;
+
+  /* Brand constants (do not change with theme) */
+  --color-navy: #1a2744;
+  --color-cream: #FAF8F5;
+
+  /* ── Communal voice colors ─────────────────────────────────────
+     Marigold + charcoal + white.
+     The gathering. Convocations, events, joyful welcome.
+     Source: foundations/srf.tokens.json */
+
+  --color-marigold: #DC6A10;
+  --color-marigold-hover: #BE5706;
+  --color-marigold-light: #FCEFE9;
+  --color-charcoal: #4C4C4C;
+  --color-border-neutral: #EDEDED;
+  --color-gold-dark: #C39314;
+
+  /* ── Category colors ───────────────────────────────────────────
+     Semantic grouping for content categories.
+     Muted, warm, never competing with gold or marigold. */
+
+  --color-category-teal: #63A3A3;
+  --color-category-indigo: #5D7BE3;
+  --color-category-amber: #CC9900;
+
+  /* ── Gold opacity levels ───────────────────────────────────────
+     Named attention hierarchy from interactive to subliminal.
+     Source: foundations/srf.tokens.json → gold-opacity */
+
+  --gold-interactive: 1.0;   /* Focus rings, active links, CTA accents */
+  --gold-decorative: 0.4;    /* Epigraph marks, chapter ornaments */
+  --gold-ambient: 0.3;       /* Scroll progress, meditate-theme gold */
+  --gold-highlight: 0.2;     /* Keyboard-navigated paragraph outline */
+  --gold-subliminal: 0.06;   /* Paragraph hover background */
+  --gold-texture: 0.03;      /* Paper texture noise overlay */
+
+  /* ── Marigold opacity levels ───────────────────────────────────
+     Communal voice attention hierarchy.
+     Source: foundations/srf.tokens.json → marigold-opacity */
+
+  --marigold-interactive: 1.0;
+  --marigold-decorative: 0.4;
+  --marigold-ambient: 0.2;
+  --marigold-subliminal: 0.06;
+
+  /* ── Motion ────────────────────────────────────────────────────
+     All motion is functional, never decorative (PRI-08).
+     Maximum 0.3s for standard UI transitions.
+     prefers-reduced-motion: reduce → instant all transitions.
+     Source: foundations/shared.tokens.json → motion */
+
+  --motion-instant: 0ms;
+  --motion-interaction: 150ms;    /* Hover, focus, click response */
+  --motion-content: 300ms;        /* Theme switches, panel reveals */
+  --motion-contemplative: 800ms;  /* Chapter transitions, dwell activation */
+  --motion-arrival: 1200ms;       /* Portal entry, opening moment */
+
+  /* ── Easing ────────────────────────────────────────────────────
+     Source: foundations/shared.tokens.json → motion.easing */
+
+  --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-contemplative: cubic-bezier(0.25, 0, 0.1, 1);
+  --easing-decelerate: cubic-bezier(0.0, 0, 0.2, 1);
+  --easing-accelerate: cubic-bezier(0.4, 0, 1.0, 1);
+
+  /* ── Spacing ───────────────────────────────────────────────────
+     Base unit 8px. Generous by default — whitespace is digital
+     silence. The teachings deserve breathing room.
+     Source: foundations/shared.tokens.json → space */
+
+  --space-tight: 4px;
+  --space-compact: 8px;
+  --space-default: 16px;
+  --space-generous: 24px;
+  --space-spacious: 32px;
+  --space-expansive: 48px;
+  --space-vast: 64px;
+
+  /* ── Typography ────────────────────────────────────────────────
+     Font stacks for three roles: reading (serif), display (serif
+     accent), UI (sans). Each resolves to the active organization's
+     fonts via data-org override.
+     Source: foundations/srf.tokens.json → typography */
+
+  /* Contemplative voice (default) */
+  --font-reading: "Merriweather", "Lora", Georgia, "Times New Roman", serif;
+  --font-display: "Lora", "Merriweather", Georgia, serif;
+  --font-ui: "Open Sans", system-ui, -apple-system, sans-serif;
+
+  /* Devanagari (ADR-080) */
+  --font-reading-hi: "Noto Serif Devanagari", serif;
+  --font-ui-hi: "Noto Sans Devanagari", sans-serif;
+
+  /* Devotional display — the inscription voice */
+  --font-display-inspirational: "Asar", "Merienda", cursive;
+
+  /* Communal voice — system fonts, no @font-face needed.
+     ArcherPro degrades to Georgia; Helvetica Neue to system-ui. */
+  --font-display-event: "ArcherPro", "Archer", Georgia, serif;
+  --font-ui-event: "Helvetica Neue", Helvetica, system-ui, -apple-system, sans-serif;
+
+  /* ── Radius ────────────────────────────────────────────────────
+     Soft but not bubbly — a library, not a playground.
+     Source: foundations/shared.tokens.json → radius */
+
+  --radius-none: 0px;
+  --radius-small: 2px;
+  --radius-default: 4px;
+  --radius-pill: 9999px;
+
+  /* ── Opacity ───────────────────────────────────────────────────
+     Named opacity levels for consistent transparency.
+     Source: foundations/shared.tokens.json → opacity */
+
+  --opacity-ghost: 0.03;
+  --opacity-whisper: 0.06;
+  --opacity-muted: 0.12;
+  --opacity-subdued: 0.15;
+  --opacity-secondary: 0.30;
+  --opacity-primary: 0.70;
+  --opacity-full: 1.0;
+
+  /* ── Z-index ───────────────────────────────────────────────────
+     Flat hierarchy — avoid z-index wars.
+     Source: foundations/shared.tokens.json → z-index */
+
+  --z-base: 0;
+  --z-raised: 10;
+  --z-overlay: 30;
+  --z-top: 50;
+
+  /* ── Touch targets ─────────────────────────────────────────────
+     Non-negotiable accessibility minimums (PRI-07, WCAG 2.5.8).
+     Source: foundations/shared.tokens.json → touch */
+
+  --touch-target-min: 44px;
+  --touch-target-comfortable: 48px;
+
+  /* ── Reading parameters ────────────────────────────────────────
+     Source: foundations/shared.tokens.json → reading */
+
+  --reading-settled-debounce: 1200ms;
+  --reading-focus-zone: 35;
+  --reading-line-length-latin: 70;
+  --reading-line-length-devanagari: 45;
+}

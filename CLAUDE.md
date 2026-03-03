@@ -12,7 +12,7 @@ The canonical visual design language for the Yogananda digital ecosystem. Two or
 
 1. **Tokens are self-documenting.** Every token carries `$description` and `$extensions` with rationale, governing principle, and evaluation trigger. No external cross-reference needed.
 2. **Constraints are first-class.** What's forbidden matters as much as what's allowed. The calm technology rules, the forbidden patterns — these are structured data, not comments.
-3. **Intent over implementation.** Describe *what* and *why*, never *how*. No CSS, no React, no framework-specific code. Each consumer translates tokens to their medium.
+3. **Intent over implementation.** Describe *what* and *why*, never *how*. No framework-specific code (React, Vue, Tailwind config, Swift). CSS custom properties and utility classes are the web platform's native token expression — they live in `css/` alongside DTCG JSON as a canonical format, not below it.
 4. **Organization-aware.** SRF and YSS are distinct expressions of shared foundations. Neither is a "skin" of the other — each has its own aesthetic tradition, metaphor, and cultural context.
 5. **AI-first authorship.** Structured for machine consumption, readable by humans. Dense JSON with rich descriptions beats sprawling documentation.
 6. **Standard format.** W3C DTCG for quantifiable tokens. Custom structured JSON for semantic rules and composition patterns. Both self-describing.
@@ -28,7 +28,34 @@ Design language rules: emotional registers, attention gradients, calm technology
 **Layer 3: Patterns** (`patterns/*.pattern.json`) — Custom format
 Composition recipes: pre-composed molecules (passage card, search result, chapter transition). Named combinations of Layer 1 tokens governed by Layer 2 semantics. Implementation-agnostic.
 
+**Web Expression** (`css/`) — Pure CSS
+The design language expressed as CSS custom properties, utility classes, and composition patterns. Framework-agnostic — works with any web technology. Two entry points:
+- `css/index.css` — Complete design language (foundations + themes + typography + calm + attention)
+- `css/reading.css` — Everything above + reading surface patterns (dwell, focus, present, print, preferences)
+
+Structure mirrors the three-layer architecture:
+```
+css/
+  foundations.css           ← Layer 1: All custom properties
+  themes/srf.css           ← Themes: sepia, earth, dark, meditate, gathering, auto
+  themes/yss.css           ← Themes: ashram, sandstone, night, devotion + org overrides
+  themes/circadian.css     ← DES-011: time-of-day warmth bands
+  themes/high-contrast.css ← Accessibility: prefers-contrast overrides
+  typography/fonts.css     ← @font-face: Latin, Devanagari, devotional (7 families)
+  typography/classes.css   ← .reading-text, .display-text, .ui-text + Hindi + communal
+  typography/features.css  ← .drop-cap, .reader-epigraph, .reader-citation, .book-figure
+  calm.css                 ← Layer 2: Focus rings, reduced-motion, text-only, sr-only
+  attention.css            ← Layer 2: Gold/marigold at named attention levels
+  patterns/reading-surface.css  ← Layer 3: Dwell, focus, present, quiet, golden thread
+  patterns/print.css            ← Layer 3: Print stylesheet
+  patterns/preferences.css      ← Layer 3: Font size, line spacing user preferences
+  index.css                ← Bundle: all core files
+  reading.css              ← Bundle: core + reading patterns
+```
+
 ## When to Load What
+
+### For AI reading design intent (JSON):
 
 | Task | Load these files |
 |------|-----------------|
@@ -41,6 +68,16 @@ Composition recipes: pre-composed molecules (passage card, search result, chapte
 | **Validating a component** | `semantics/calm-technology.language.json` (check forbidden list) + `semantics/accessibility.language.json` |
 | **Choosing an icon or motif** | `motifs/srf/` or `motifs/yss/` + `brand/image-guidelines.json` |
 | **Understanding the brand** | `brand/image-guidelines.json` + organization token file `$description` fields |
+
+### For web surfaces consuming CSS:
+
+| Surface type | CSS import |
+|-------------|-----------|
+| **Any web surface** | `css/index.css` (or selectively import individual files) |
+| **Reading surface** (teachings, reader) | `css/reading.css` (includes all patterns) |
+| **Non-reading surface** (dashboard, admin) | `css/index.css` (no reading patterns) |
+| **SRF surface** | Default — no extra import needed |
+| **YSS surface** | Same imports + set `data-org="yss"` on `<html>` |
 
 ## File Format Reference
 
@@ -94,13 +131,13 @@ This design system serves the **Yogananda digital ecosystem**:
 
 ## Showcase Website
 
-This repo includes an interactive showcase site (`app/`) built with Next.js that demonstrates the design language live. The showcase is the source of truth for how tokens render.
+This repo includes an interactive showcase site (`app/`) built with Next.js that demonstrates the design language live. The showcase is the first consumer of the `css/` layer — it imports `css/index.css` and adds only its own application chrome.
 
-**When any token file changes, update the showcase site to reflect those changes.** This includes:
-- `foundations/*.tokens.json` changes → update `app/globals.css` (theme CSS custom properties), `lib/tokens.ts` (typed access), and any component that references the changed tokens
-- `semantics/*.language.json` changes → update the relevant showcase section (registers, gradient, calm tech)
-- New themes → add CSS custom property block in `globals.css`, add to `DesignProvider.tsx` theme lists, add theme card in `ThemeGallery.tsx`
-- New organization → add to `DesignProvider.tsx` Org type, add org-level CSS overrides, update all org-aware components
+**When any token file changes, update both the CSS layer and the showcase:**
+- `foundations/*.tokens.json` changes → update `css/foundations.css` (custom properties), `lib/tokens.ts` (typed access), and showcase components
+- `semantics/*.language.json` changes → update relevant `css/` files + showcase sections
+- New themes → add to the appropriate `css/themes/*.css` file, add to `DesignProvider.tsx` theme lists, add theme card in `ThemeGallery.tsx`
+- New organization → add to `css/themes/` with org overrides, add to `DesignProvider.tsx` Org type, update org-aware components
 
 The showcase uses a `DesignProvider` React context (`app/components/DesignProvider.tsx`) that manages organization (SRF/YSS) and theme state via `data-org` and `data-theme` attributes on `<html>`. All components consume this context via `useDesign()`.
 

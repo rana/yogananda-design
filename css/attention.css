@@ -1,0 +1,29 @@
+/* ══════════════════════════════════════════════════════════════════
+   Attention Level Classes
+   ══════════════════════════════════════════════════════════════════
+   Gold and marigold at calibrated attention levels. A deliberate
+   hierarchy from interactive (demands attention) to subliminal
+   (felt, not seen).
+
+   This gradient expresses how accent colors serve different roles
+   without changing their hue — only their presence.
+
+   Requires: foundations.css
+   Source: foundations/srf.tokens.json → gold-opacity
+           semantics/attention-gradient.language.json
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Gold (Contemplative Voice) ──────────────────────────────── */
+
+.gold-interactive { color: var(--color-gold); opacity: var(--gold-interactive); }
+.gold-decorative  { color: var(--color-gold); opacity: var(--gold-decorative); }
+.gold-ambient     { color: var(--color-gold); opacity: var(--gold-ambient); }
+.gold-highlight   { color: var(--color-gold); opacity: var(--gold-highlight); }
+.gold-subliminal  { color: var(--color-gold); opacity: var(--gold-subliminal); }
+
+/* ── Marigold (Communal Voice) ───────────────────────────────── */
+
+.marigold-interactive { color: var(--color-marigold); opacity: var(--marigold-interactive); }
+.marigold-decorative  { color: var(--color-marigold); opacity: var(--marigold-decorative); }
+.marigold-ambient     { color: var(--color-marigold); opacity: var(--marigold-ambient); }
+.marigold-subliminal  { color: var(--color-marigold); opacity: var(--marigold-subliminal); }

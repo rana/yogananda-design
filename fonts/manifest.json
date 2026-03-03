@@ -82,7 +82,7 @@
 
     "asar": {
       "role": "display-devotional",
-      "description": "Devotional display font. Ancient Indian stone-inscription aesthetic — chisel on stone, temple walls, Ashoka's edicts. The only font in the system that renders both Latin and Devanagari in a single devotional voice. YSS's primary inspirational display; SRF's OFL fallback when Papyrus is unavailable. When a guru's words appear in two scripts, Asar makes them one inscription.",
+      "description": "Devotional display font. Ancient Indian stone-inscription aesthetic — chisel on stone, temple walls, Ashoka's edicts. The only font in the system that renders both Latin and Devanagari in a single devotional voice. Primary inspirational display for both SRF and YSS. When a guru's words appear in two scripts, Asar makes them one inscription.",
       "license": "SIL Open Font License 1.1",
       "source": "Google Fonts (self-hosted)",
       "variants": [
@@ -98,31 +98,33 @@
       "role": "ui-yss",
       "description": "YSS UI font. Geometric sans-serif from yssofindia.org. More modern than Open Sans, reflecting YSS's contemporary digital presence.",
       "license": "SIL Open Font License 1.1",
-      "source": "Google Fonts (to be self-hosted)",
-      "status": "planned — fonts not yet included. Will be added when YSS surface activates (PRO-043).",
+      "source": "Google Fonts (self-hosted via fontsource)",
       "variants": [
-        { "weight": 400, "style": "normal", "use": "YSS navigation, labels" },
-        { "weight": 600, "style": "normal", "use": "YSS button labels, emphasis" }
+        { "weight": 300, "style": "normal", "files": ["raleway-latin-300-normal.woff2"], "use": "YSS light text, subtle labels" },
+        { "weight": 400, "style": "normal", "files": ["raleway-latin-400-normal.woff2"], "use": "YSS navigation, labels" },
+        { "weight": 400, "style": "italic", "files": ["raleway-latin-400-italic.woff2"], "use": "YSS italic emphasis" },
+        { "weight": 500, "style": "normal", "files": ["raleway-latin-500-normal.woff2"], "use": "YSS medium emphasis" },
+        { "weight": 600, "style": "normal", "files": ["raleway-latin-600-normal.woff2"], "use": "YSS button labels, emphasis" },
+        { "weight": 700, "style": "normal", "files": ["raleway-latin-700-normal.woff2"], "use": "YSS bold headings" }
       ]
-    }
-  },
+    },
 
-  "system-fonts": {
-    "$description": "Fonts referenced in design tokens but not self-hosted. These are system-bundled or licensed fonts — available on most platforms but not redistributable under OFL.",
-
-    "papyrus": {
-      "role": "display-inspirational",
-      "description": "SRF's signature devotional display font. Used for Daily Inspirations, spiritual quotes, reverential headers. Hand-lettered calligraphic strokes evoking ancient manuscripts. System font on macOS and Windows (Chris Costello, 1982). Not OFL — cannot be self-hosted.",
-      "license": "Proprietary (bundled with macOS/Windows)",
-      "source": "System font",
-      "fallback": ["Asar", "Merienda", "cursive"],
-      "use": "Inspirational quote cards, devotional display text, Daily Inspiration headers"
+    "merienda": {
+      "role": "display-yss",
+      "description": "YSS display font + SRF inspirational fallback. Calligraphic cursive — the handwritten letter, warm and personal. YSS display headings. Falls after Asar in the SRF inspirational font stack.",
+      "license": "SIL Open Font License 1.1",
+      "source": "Google Fonts (self-hosted via fontsource)",
+      "variants": [
+        { "weight": 400, "style": "normal", "files": ["merienda-latin-400-normal.woff2"], "use": "YSS display text, SRF inspirational fallback" },
+        { "weight": 500, "style": "normal", "files": ["merienda-latin-500-normal.woff2"], "use": "YSS medium display" },
+        { "weight": 700, "style": "normal", "files": ["merienda-latin-700-normal.woff2"], "use": "YSS bold display headings" }
+      ]
     }
   },
 
   "total-weight": {
     "critical-path": "~68KB (Merriweather 400 + Open Sans 400)",
-    "full-latin": "~454KB (all 14 woff2 files)",
+    "full-latin": "~590KB (all 23 woff2 files)",
     "full-devanagari": "~242KB (Noto Serif Devanagari ~124KB + Noto Sans Devanagari ~118KB)",
     "asar-devotional": "~179KB (Latin ~22KB + Devanagari ~157KB)",
     "note": "Font loading is progressive — only critical-path fonts are preloaded. Devanagari fonts and Asar load on demand via unicode-range subsetting. Hindi readers pay ~242KB extra; Latin-only readers pay nothing. Asar loads only on pages that use the devotional display voice."

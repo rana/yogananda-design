@@ -1,0 +1,252 @@
+/* ══════════════════════════════════════════════════════════════════
+   Font Declarations
+   ══════════════════════════════════════════════════════════════════
+   All @font-face declarations for the design language.
+   Self-hosted WOFF2 files — zero external requests (ADR-099, GDPR).
+   Seven families: Merriweather, Lora, Open Sans, Raleway, Merienda,
+   Noto Serif/Sans Devanagari, Asar. All OFL-licensed.
+   font-display: swap for perceived performance.
+
+   Consumers must host font files at /fonts/ from web root.
+   See fonts/ directory in yogananda-design for source files.
+
+   Source: foundations/srf.tokens.json → typography
+           foundations/yss.tokens.json → typography
+           foundations/locale/hi.tokens.json → typography
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Raleway — YSS UI font ────────────────────────────────────── */
+/* Geometric sans-serif. Modern Indian minimalism — the ashram's
+   clean lines. YSS display headings and interface elements.
+   Weights: 300 (light), 400, 500, 600, 700 + 400 italic.
+   License: SIL Open Font License 1.1 (fontsource). */
+
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/raleway-latin-300-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/raleway-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Raleway";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/raleway-latin-400-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/raleway-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/raleway-latin-600-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/raleway-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ── Merienda — YSS display font + SRF inspirational fallback ── */
+/* Calligraphic cursive. The handwritten letter, warm and personal.
+   YSS display headings; SRF inspirational fallback after Asar.
+   Weights: 400, 500, 700.
+   License: SIL Open Font License 1.1 (fontsource). */
+
+@font-face {
+  font-family: "Merienda";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/merienda-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Merienda";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/merienda-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FFFD;
+}
+@font-face {
+  font-family: "Merienda";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/merienda-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ── Merriweather — primary reading font ─────────────────────── */
+/* The reader's companion. Optimized for sustained screen reading.
+   Used for: body text, passages, sacred content. */
+
+@font-face {
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/merriweather-latin-300-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/merriweather-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Merriweather";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/merriweather-latin-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/merriweather-latin-700-normal.woff2") format("woff2");
+}
+
+/* ── Lora — display/heading accent font ──────────────────────── */
+/* Elegant serif for headings and display text.
+   Used for: chapter titles, section headings, pull quotes. */
+
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/lora-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Lora";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/lora-latin-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/lora-latin-700-normal.woff2") format("woff2");
+}
+
+/* ── Open Sans — UI font ─────────────────────────────────────── */
+/* Clean sans-serif for interface elements.
+   Used for: navigation, buttons, labels, settings. */
+
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/open-sans-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/open-sans-latin-600-normal.woff2") format("woff2");
+}
+
+/* ── Noto Serif Devanagari — Hindi reading font (ADR-080) ────── */
+/* Variable weight 400–700. Optimized for sustained Devanagari reading.
+   20px body / 1.9 line height (wider glyphs need more space). */
+
+@font-face {
+  font-family: "Noto Serif Devanagari";
+  font-style: normal;
+  font-weight: 400 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/fonts/devanagari/noto-serif-devanagari-devanagari-400-normal.woff2") format("woff2");
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0,
+                 U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+
+/* ── Noto Sans Devanagari — Hindi UI font ────────────────────── */
+/* Variable weight 400–600. For navigation, labels, buttons in Hindi. */
+
+@font-face {
+  font-family: "Noto Sans Devanagari";
+  font-style: normal;
+  font-weight: 400 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/fonts/devanagari/noto-sans-devanagari-devanagari-400-normal.woff2") format("woff2");
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0,
+                 U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+
+/* ── Asar — Devotional display font ──────────────────────────── */
+/* The inscription voice. Bridges Latin and Devanagari in a single
+   typeface. Used for: daily inspirations, devotional headings. */
+
+@font-face {
+  font-family: "Asar";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/asar-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Asar";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/devanagari/asar-devanagari-400-normal.woff2") format("woff2");
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0,
+                 U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+

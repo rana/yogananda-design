@@ -1,0 +1,145 @@
+/* ══════════════════════════════════════════════════════════════════
+   Print Stylesheet
+   ══════════════════════════════════════════════════════════════════
+   The teachings on paper. Removes all chrome, sets print-appropriate
+   typography, manages page breaks, shows citations.
+
+   Requires: foundations.css
+   Source: patterns/reading-surface.pattern.json → print
+           yogananda-teachings app/globals.css (battle-tested)
+   ══════════════════════════════════════════════════════════════════ */
+
+@media print {
+
+  /* ── Remove interactive chrome ───────────────────────────────── */
+
+  header, footer, nav,
+  [data-no-print],
+  .scroll-indicator,
+  .dwell-icon {
+    display: none !important;
+  }
+
+  /* ── Base print typography ───────────────────────────────────── */
+
+  body {
+    background: white !important;
+    color: black !important;
+    font-family: "Merriweather", Georgia, serif !important;
+    font-size: 12pt !important;
+    line-height: 1.6 !important;
+  }
+
+  /* ── Page layout (DES-049) ───────────────────────────────────── */
+
+  @page { margin: 2cm; }
+  @page :first { margin-top: 3cm; }
+
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  article {
+    max-width: 42em !important;
+    margin: 0 auto !important;
+  }
+
+  /* ── Links ───────────────────────────────────────────────────── */
+
+  a {
+    color: black !important;
+    text-decoration: none !important;
+  }
+
+  /* Show external URLs in print */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #666;
+  }
+
+  /* Internal links: no URL needed */
+  a[href^="/"]::after {
+    content: none;
+  }
+
+  /* ── Blockquotes ─────────────────────────────────────────────── */
+
+  blockquote {
+    border-inline-start: 2px solid #999;
+    padding-inline-start: 1em;
+    margin-inline-start: 0;
+  }
+
+  /* ── Page Breaks ─────────────────────────────────────────────── */
+
+  .passage-card { break-inside: avoid; }
+  h2 { break-before: page; }
+
+  /* ── Citations ───────────────────────────────────────────────── */
+  /* PRI-02: always visible, never truncated — especially in print */
+
+  .reader-citation {
+    font-size: 10pt !important;
+    font-style: italic;
+  }
+
+  .print-citation {
+    display: block !important;
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1px solid #ccc;
+    font-size: 9pt;
+    color: #666;
+  }
+
+  /* ── Footnotes ───────────────────────────────────────────────── */
+
+  .chapter-notes {
+    border-top: 1px solid #ccc;
+    margin-top: 1.5em;
+    padding-top: 1em;
+  }
+
+  .footnote-ref a {
+    color: black !important;
+  }
+
+  .footnote-backlink {
+    display: none; /* back-links meaningless on paper */
+  }
+
+  /* ── Figures ─────────────────────────────────────────────────── */
+
+  .book-figure {
+    break-inside: avoid;
+    margin-block: 1.5em;
+  }
+
+  .book-figure-img {
+    max-height: 40vh;
+  }
+
+  .book-caption {
+    color: #444 !important;
+    font-size: 10pt;
+  }
+
+  /* ── Remove decorative elements ──────────────────────────────── */
+
+  .reader-texture {
+    background-image: none !important;
+  }
+
+  .golden-thread-passage {
+    box-shadow: none !important;
+  }
+}
+
+/* ── Print-only elements: hide on screen ─────────────────────── */
+
+.print-citation {
+  display: none;
+}

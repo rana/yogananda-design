@@ -256,17 +256,17 @@
     "display-inspirational": {
       "$type": "typography",
       "$value": {
-        "fontFamily": ["Papyrus", "Asar", "Merienda", "cursive"],
+        "fontFamily": ["Asar", "Merienda", "cursive"],
         "fontSize": { "value": 22, "unit": "px" },
         "fontWeight": 400,
         "lineHeight": 1.5
       },
-      "$description": "Devotional display font. Papyrus — the hand-lettered calligraphic face SRF uses for Daily Inspirations, spiritual quotes, and reverential display text. The ancient scroll. Falls through to Asar (ancient Indian stone inscription, OFL, self-hosted) on systems without Papyrus, then to Merienda. Three metaphors of the sacred in one stack: the scroll, the inscription, the handwritten letter.",
+      "$description": "Devotional display font. Asar — ancient Indian stone-inscription aesthetic. Chisel on stone, temple walls, Ashoka's edicts. The font that says 'these words endure.' Covers both Latin and Devanagari in a single devotional voice. Self-hosted under OFL. Falls back to Merienda for calligraphic warmth. Two metaphors of the sacred: the inscription and the handwritten letter.",
       "$extensions": {
         "org.yogananda.design": {
           "principle": "PRI-01",
-          "rationale": "Papyrus carries decades of SRF brand recognition (Daily Inspirations). Asar provides an OFL self-hosted fallback with cultural authenticity — its stone-inscription aesthetic is rooted in Indian tradition and covers both Latin and Devanagari. Merienda is the final fallback for calligraphic warmth. The three-font cascade degrades gracefully: ancient scroll → ancient inscription → handcrafted warmth.",
-          "evaluationTrigger": "If SRF moves away from Papyrus for inspirational content, Asar naturally promotes to primary."
+          "rationale": "Asar provides cultural authenticity — its stone-inscription aesthetic is rooted in Indian tradition and covers both Latin and Devanagari. Merienda is the fallback for calligraphic warmth. The two-font cascade degrades gracefully: ancient inscription → handcrafted warmth.",
+          "evaluationTrigger": "If SRF develops a custom devotional typeface, re-evaluate."
         }
       }
     },

@@ -1,0 +1,30 @@
+/* ══════════════════════════════════════════════════════════════════
+   Yogananda Design Language — Complete CSS
+   ══════════════════════════════════════════════════════════════════
+   Imports the full design language for web surfaces. Everything
+   except reading-surface patterns (import those separately for
+   reading surfaces).
+
+   Usage:
+     @import '@yogananda/design/css/index.css';
+
+   Or selectively import only what you need from individual files.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Layer 1: Foundation tokens */
+@import './foundations.css';
+
+/* Themes */
+@import './themes/srf.css';
+@import './themes/yss.css';
+@import './themes/circadian.css';
+@import './themes/high-contrast.css';
+
+/* Typography */
+@import './typography/fonts.css';
+@import './typography/classes.css';
+@import './typography/features.css';
+
+/* Base rules */
+@import './calm.css';
+@import './attention.css';

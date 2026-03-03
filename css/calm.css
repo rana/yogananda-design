@@ -1,0 +1,96 @@
+/* ══════════════════════════════════════════════════════════════════
+   Calm Technology — Non-Negotiable Base Rules
+   ══════════════════════════════════════════════════════════════════
+   PRI-08: The portal waits; it does not interrupt. Technology
+   requires the smallest possible amount of attention.
+
+   These rules apply to EVERY surface. No exceptions.
+   Import this file in every project consuming the design language.
+
+   Requires: foundations.css
+   Source: semantics/calm-technology.language.json
+           semantics/accessibility.language.json
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Scroll Behavior ─────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Body Defaults ───────────────────────────────────────────── */
+
+body {
+  font-family: var(--font-ui);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  transition:
+    background-color var(--motion-content) var(--easing-standard),
+    color var(--motion-content) var(--easing-standard);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Theme Transition Utility ────────────────────────────────── */
+/* Apply to elements that should animate smoothly on theme switch. */
+
+.theme-transition {
+  transition:
+    background-color var(--motion-content) var(--easing-standard),
+    color var(--motion-content) var(--easing-standard),
+    border-color var(--motion-content) var(--easing-standard);
+}
+
+/* ── Focus Indicators — PRI-07, ADR-003 ──────────────────────── */
+/* Gold ring, always visible on keyboard navigation.
+   Non-negotiable accessibility. */
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* ── Reduced Motion — PRI-07, PRI-08 ─────────────────────────── */
+/* prefers-reduced-motion: reduce → instant ALL transitions.
+   Not optional. Not "reduced." Eliminated. */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Screen Reader Only ──────────────────────────────────────── */
+/* Visually hidden, accessible to screen readers. */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Text-Only Mode — ADR-006 ────────────────────────────────── */
+/* Strips all visual decoration. Pure text. For maximum
+   accessibility or bandwidth-constrained environments. */
+
+.text-only img,
+.text-only svg:not([role="img"]):not([data-ui]),
+.text-only [data-decorative] {
+  display: none !important;
+}
+
+.text-only * {
+  font-family: Georgia, "Times New Roman", serif !important;
+  background-image: none !important;
+}

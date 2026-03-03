@@ -1,0 +1,97 @@
+/* ══════════════════════════════════════════════════════════════════
+   YSS Theme Variants + Organization Overrides
+   ══════════════════════════════════════════════════════════════════
+   Yogoda Satsanga Society — the Indian expression. Not a skin of
+   SRF. Its own aesthetic tradition: terracotta, saffron, temple
+   architecture, devotional warmth.
+
+   Requires: foundations.css
+   Source: foundations/yss.tokens.json
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Ashram — the sunlit courtyard ───────────────────────────── */
+/* White and terracotta. The default YSS reading surface.
+   Clean, sun-washed, modern Indian minimalism. */
+
+[data-theme="ashram"] {
+  --color-bg: #FFFFFF;
+  --color-bg-secondary: #FAFBFC;
+  --color-text: #333333;
+  --color-text-secondary: #666666;
+  --color-border: #EDEDED;
+  --color-gold: #BB4F27;
+  --color-surface: #F5F5F5;
+}
+
+/* ── Sandstone — the prayer hall's lamplight ──────────────────── */
+/* Cream and devotional gold. Warm paper, not white.
+   The YSS analogue of SRF's sepia — but distinctly Indian. */
+
+[data-theme="sandstone"] {
+  --color-bg: #FCF4D2;
+  --color-bg-secondary: #F5ECC0;
+  --color-text: #3A2518;
+  --color-text-secondary: #6B5240;
+  --color-border: #D4C4A0;
+  --color-gold: #A87D25;
+  --color-surface: #FFF8E7;
+}
+
+/* ── Night — the evening aarti ───────────────────────────────── */
+/* Warm darkness, oil-lamp glow. Not cool blue-dark like SRF —
+   warm brown-dark, the color of a temple after sundown. */
+
+[data-theme="night"] {
+  --color-bg: #1A0F08;
+  --color-bg-secondary: #2A1F18;
+  --color-text: #E8DDD2;
+  --color-text-secondary: #A89888;
+  --color-border: #3D2E22;
+  --color-gold: #D4693D;
+  --color-surface: #2A1F18;
+}
+
+/* ── Devotion — the inner sanctum ────────────────────────────── */
+/* Saffron-brown, golden candlelight. The deepest YSS theme.
+   Like meditate for SRF, but warm where SRF is cool. */
+
+[data-theme="devotion"] {
+  --color-bg: #2E1810;
+  --color-bg-secondary: #3A2218;
+  --color-text: #F5D3AD;
+  --color-text-secondary: #C4A988;
+  --color-border: #4A3528;
+  --color-gold: #E8A830;
+  --color-surface: #3A2218;
+}
+
+/* ── YSS Organization Overrides ──────────────────────────────── */
+/* Apply via data-org="yss" on <html>. Overrides typography,
+   brand constants, and attention calibration. */
+
+[data-org="yss"] {
+  /* Typography — YSS's distinct voice */
+  --font-reading: "Merriweather", Georgia, "Times New Roman", serif;
+  --font-display: "Merienda", cursive;
+  --font-ui: "Raleway", system-ui, -apple-system, sans-serif;
+
+  /* Devotional display — the temple inscription, not the scroll */
+  --font-display-inspirational: "Asar", serif;
+
+  /* YSS brand colors (constant across themes) */
+  --color-terracotta: #BB4F27;
+  --color-devotional-gold: #A87D25;
+  --color-devotional-cream: #FCF4D2;
+  --color-saffron: #E8A830;
+  --color-navy: #052956;
+  --color-cream: #FFFFFF;
+
+  /* Terracotta attention calibration
+     (parallels gold-opacity but tuned for warmer accent) */
+  --gold-interactive: 1.0;
+  --gold-decorative: 0.4;
+  --gold-ambient: 0.2;
+  --gold-highlight: 0.12;
+  --gold-subliminal: 0.06;
+  --gold-texture: 0.03;
+}

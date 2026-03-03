@@ -1,0 +1,47 @@
+/* ══════════════════════════════════════════════════════════════════
+   Circadian Color Temperature — DES-011
+   ══════════════════════════════════════════════════════════════════
+   Subtle background warmth shifts based on time of day. The seeker's
+   screen warms with the daylight — cooler cream in morning, warmer
+   in evening. Applied via data-time-band attribute on <html>.
+
+   IMPORTANT: Circadian is a behavior modifier, not a theme. It is
+   orthogonal to theme choice. Consumers decide whether to activate it
+   (via a toggle, a preference, or automatic time detection). The CSS
+   only defines what happens when the attribute is present.
+
+   Guard: Only applies to light SRF themes (light, sepia) and YSS
+   light themes (ashram, sandstone). Dark themes and gathering are
+   excluded — circadian shifts on dark backgrounds would be jarring.
+   JS should remove data-time-band when switching to dark themes,
+   but the CSS guard prevents visual breakage if it doesn't.
+
+   Requires: foundations.css
+   Source: yogananda-teachings DES-011 implementation
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Morning: cooler cream (5:00–9:59) */
+/* Guard: :root matches SRF light (no data-theme or data-theme="light");
+   explicit selectors catch sepia and YSS light themes. */
+:root[data-time-band="morning"]:not([data-theme]),
+[data-theme="light"][data-time-band="morning"],
+[data-theme="sepia"][data-time-band="morning"],
+[data-theme="ashram"][data-time-band="morning"],
+[data-theme="sandstone"][data-time-band="morning"] {
+  --color-bg: #FDFBF8;
+  --color-bg-secondary: #f2eee6;
+}
+
+/* Midday (10:00–15:59): default palette — no override needed */
+
+/* Evening: warmer cream (16:00–20:59) */
+:root[data-time-band="evening"]:not([data-theme]),
+[data-theme="light"][data-time-band="evening"],
+[data-theme="sepia"][data-time-band="evening"],
+[data-theme="ashram"][data-time-band="evening"],
+[data-theme="sandstone"][data-time-band="evening"] {
+  --color-bg: #F7F2EC;
+  --color-bg-secondary: #ebe5db;
+}
+
+/* Night (21:00–4:59): attribute removed by JS, dark theme applies */

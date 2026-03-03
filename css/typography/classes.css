@@ -1,0 +1,100 @@
+/* ══════════════════════════════════════════════════════════════════
+   Typography Utility Classes
+   ══════════════════════════════════════════════════════════════════
+   Named typographic treatments for the three roles (reading,
+   display, UI) across scripts (Latin, Devanagari) and voices
+   (contemplative, communal, devotional).
+
+   All classes resolve through CSS custom properties — theme and
+   org overrides apply automatically.
+
+   Requires: foundations.css, typography/fonts.css
+   Source: semantics/typography.language.json
+           semantics/emotional-registers.language.json
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Contemplative Voice — Latin ─────────────────────────────── */
+
+/* Body text for sustained reading. Sacred and reverential registers. */
+.reading-text {
+  font-family: var(--font-reading);
+  font-size: 18px;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+/* Headings, chapter titles, pull quotes. */
+.display-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Attribution lines, source references. PRI-02: never truncated. */
+.citation-text {
+  font-family: var(--font-reading);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+/* Navigation, buttons, labels, settings. Functional register. */
+.ui-text {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* ── Contemplative Voice — Devanagari (ADR-080) ──────────────── */
+/* Hindi script needs larger size and looser leading.
+   Devanagari glyphs are wider; fewer aksharas per line. */
+
+.reading-text-hi {
+  font-family: var(--font-reading-hi);
+  font-size: 20px;
+  line-height: 1.9;
+  font-weight: 400;
+}
+
+.display-text-hi {
+  font-family: var(--font-reading-hi);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.ui-text-hi {
+  font-family: var(--font-ui-hi);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* ── Devotional Display Voice ────────────────────────────────── */
+/* The inscription voice — daily inspirations, devotional headings.
+   Bridges Latin and Devanagari through Asar typeface. */
+
+.display-inspirational-text {
+  font-family: var(--font-display-inspirational);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* ── Communal Voice ──────────────────────────────────────────── */
+/* Event surfaces, convocations, community-facing UX.
+   Where contemplative says "read," communal says "welcome." */
+
+.display-event-text {
+  font-family: var(--font-display-event);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.ui-event-text {
+  font-family: var(--font-ui-event);
+  font-size: 15px;
+  font-weight: 375;
+  line-height: 1.5;
+}

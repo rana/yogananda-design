@@ -1,0 +1,184 @@
+/* ══════════════════════════════════════════════════════════════════
+   Typographic Features
+   ══════════════════════════════════════════════════════════════════
+   The invisible details that make text feel professionally set.
+   Drop capitals, small caps, hanging punctuation, epigraphs,
+   citations, footnotes, figures.
+
+   These are the web expression of semantics/typography.language.json.
+
+   Requires: foundations.css, typography/fonts.css
+   Source: semantics/typography.language.json
+           yogananda-teachings app/globals.css (battle-tested)
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Drop Capital ────────────────────────────────────────────── */
+/* Large initial letter at chapter starts. Explicit <span>, not
+   ::first-letter — avoids grabbing superscript footnote markers.
+   Latin only; Devanagari shirorekha conflicts (ADR-080). */
+
+.drop-cap {
+  font-family: var(--font-reading);
+  font-weight: 700;
+  color: var(--color-text);
+  float: inline-start;
+  font-size: 3.5em;
+  line-height: 0.8;
+  padding-inline-end: 0.08em;
+  margin-block-start: 0.05em;
+}
+
+/* ── Small Caps ──────────────────────────────────────────────── */
+/* Chapter labels ("CHAPTER I"), proper noun emphasis.
+   Letter-spacing prevents the compressed feel of small-caps. */
+
+.small-caps {
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+/* ── Optical Margin Alignment ────────────────────────────────── */
+/* Progressive enhancement — quotes and punctuation extend into
+   the margin for optical alignment. Safari-first, degrades. */
+
+.reader-content {
+  hanging-punctuation: first allow-end;
+}
+
+/* ── Epigraph ────────────────────────────────────────────────── */
+/* Centered quotation at chapter opening. Light italic with
+   decorative gold quotation mark. Register: sacred. */
+
+.reader-epigraph {
+  position: relative;
+  text-align: center;
+  font-family: var(--font-reading);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-text);
+  opacity: 0.8;
+  padding-block: 1.5rem;
+  padding-inline: 2.5rem;
+  margin-block: 2rem;
+}
+
+.reader-epigraph::before {
+  content: "\201C";
+  font-family: var(--font-reading);
+  font-weight: 700;
+  font-size: 48px;
+  color: var(--color-gold);
+  opacity: var(--gold-decorative);
+  position: absolute;
+  inset-block-start: -0.2em;
+  inset-inline-start: 0.5rem;
+  line-height: 1;
+}
+
+/* ── Citation ────────────────────────────────────────────────── */
+/* Attribution line below passages. Em-dash + non-breaking space
+   + author name. PRI-02: always visible, never truncated. */
+
+.reader-citation {
+  font-family: var(--font-reading);
+  font-weight: 300;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-block-start: 0.5rem;
+}
+
+.reader-citation::before {
+  content: "\2014\00a0"; /* em-dash + non-breaking space */
+}
+
+/* ── Footnotes — DPUB-ARIA ───────────────────────────────────── */
+/* Inline superscript references and back-links. Gold accent
+   at interactive level — they're navigational elements. */
+
+.footnote-ref a {
+  text-decoration: none;
+  color: var(--color-gold);
+  font-size: 0.75em;
+  vertical-align: super;
+  line-height: 0;
+  padding: 0 0.1em;
+  transition: color var(--motion-interaction) ease;
+}
+
+.footnote-ref a:hover {
+  text-decoration: underline;
+  color: color-mix(in srgb, var(--color-gold) 80%, var(--color-text));
+}
+
+.footnote-ref a:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 1px;
+  border-radius: var(--radius-small);
+}
+
+/* Chapter notes section at end of chapter */
+.chapter-notes {
+  border-top: 1px solid var(--color-border);
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+}
+
+/* Back-link arrow — subtle, not calling */
+.footnote-backlink {
+  text-decoration: none;
+  color: var(--color-gold);
+  font-size: 0.875em;
+  padding-inline-start: 0.25em;
+  opacity: 0.6;
+  transition: opacity var(--motion-interaction) ease;
+}
+
+.footnote-backlink:hover {
+  opacity: 1;
+}
+
+/* ── Book Figures — PRI-01 photographs, PRI-07 accessibility ── */
+
+.book-figure {
+  margin-block: 2rem;
+  text-align: center;
+  break-inside: avoid;
+}
+
+.book-figure-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  max-height: 70vh;
+  margin-inline: auto;
+  border-radius: var(--radius-small);
+}
+
+.book-caption {
+  font-family: var(--font-reading);
+  font-style: italic;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-block-start: 0.75rem;
+  max-width: 30rem;
+  margin-inline: auto;
+}
+
+/* ── Lotus Divider ───────────────────────────────────────────── */
+/* Gold lotus section divider. Decorative attention level. */
+
+.lotus-divider {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-spacious) 0;
+  opacity: var(--gold-decorative);
+}
+
+/* ── Paper Texture ───────────────────────────────────────────── */
+/* CSS-only SVG fractal noise — the ghost of physical pages.
+   Applied to reading surfaces. Opacity: texture (0.03). */
+
+.reader-texture {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}

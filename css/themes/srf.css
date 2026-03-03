@@ -1,0 +1,97 @@
+/* ══════════════════════════════════════════════════════════════════
+   SRF Theme Variants
+   ══════════════════════════════════════════════════════════════════
+   Six themes for Self-Realization Fellowship surfaces.
+   Light is defined in foundations.css (:root). These override.
+
+   Requires: foundations.css
+   Source: foundations/srf.tokens.json
+           yogananda-teachings app/globals.css (battle-tested values)
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Sepia — warm antique paper ──────────────────────────────── */
+/* The aged manuscript. Gentle on eyes for long reading sessions. */
+
+[data-theme="sepia"] {
+  --color-bg: #f5e6c8;
+  --color-bg-secondary: #ecdbb2;
+  --color-text: #3d2e1c;
+  --color-text-secondary: #5c4a35;
+  --color-border: #c8b591;
+  --color-gold: #b89a2a;
+  --color-surface: #f0dfc2;
+}
+
+/* ── Earth — warm clay, terracotta accent ────────────────────── */
+/* YSS-inspired warmth (PRO-043 proof-of-concept).
+   Terracotta replaces gold as the accent — the ashram's clay. */
+
+[data-theme="earth"] {
+  --color-bg: #f2e8de;
+  --color-bg-secondary: #e6dacf;
+  --color-text: #3a2518;
+  --color-text-secondary: #6b5240;
+  --color-border: #c4a988;
+  --color-gold: #bb4f27;
+  --color-surface: #ede3d8;
+}
+
+/* ── Dark — deep navy, respects the brand ────────────────────── */
+/* The meditation room at dusk. Navy background is the brand
+   inverted — the seeker reads light text on the night sky. */
+
+[data-theme="dark"] {
+  --color-bg: #0f1923;
+  --color-bg-secondary: #1a2744;
+  --color-text: #e8e4dc;
+  --color-text-secondary: #a9a49a;
+  --color-border: #2d3a4f;
+  --color-gold: #e8cf4a;
+  --color-surface: #162030;
+}
+
+/* ── Meditate — deeper dark for contemplation (DES-011) ──────── */
+/* Darker than dark. Gold softened to 60% — peripheral, not focal.
+   For extended meditation-adjacent reading. */
+
+[data-theme="meditate"] {
+  --color-bg: #0a1633;
+  --color-bg-secondary: #111e3a;
+  --color-text: #d4cfc7;
+  --color-text-secondary: #9a9590;
+  --color-border: #253050;
+  --color-gold: #e8cf4a99;
+  --color-surface: #0e1a30;
+}
+
+/* ── Gathering — communal voice white ────────────────────────── */
+/* Events, convocations, community pages. White background,
+   marigold accent. The warmth of welcome, not contemplation.
+   Note: --color-gold becomes marigold (#DC6A10) — the semantic
+   accent shifts from contemplative to communal. All gold-*
+   attention classes render in marigold automatically. */
+
+[data-theme="gathering"] {
+  --color-bg: #FFFFFF;
+  --color-bg-secondary: #FCEFE9;
+  --color-text: #4C4C4C;
+  --color-text-secondary: #4C4C4CA3;
+  --color-border: #EDEDED;
+  --color-gold: #DC6A10;
+  --color-surface: #FFFFFF;
+}
+
+/* ── Auto — system preference ────────────────────────────────── */
+/* Follows OS dark mode preference. Maps to SRF Dark. */
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] {
+    --color-bg: #0f1923;
+    --color-bg-secondary: #1a2744;
+    --color-text: #e8e4dc;
+    --color-text-secondary: #a9a49a;
+    --color-border: #2d3a4f;
+    --color-gold: #e8cf4a;
+    --color-surface: #162030;
+  }
+}
