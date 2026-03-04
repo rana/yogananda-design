@@ -51,6 +51,24 @@
   --color-category-indigo: #5D7BE3;
   --color-category-amber: #CC9900;
 
+  /* ── Publication crimson ───────────────────────────────────────
+     The structural voice of the printed book. Chapter titles,
+     section dividers, drop capitals. Active via data-publication.
+     Source: foundations/shared.tokens.json → crimson */
+
+  --color-crimson: #9B2335;   /* Publication accent — shifts per theme like gold */
+
+  /* ── Crimson opacity levels ──────────────────────────────────
+     Publication attention hierarchy. Parallels gold-opacity
+     (contemplative) and marigold-opacity (communal).
+     Source: foundations/shared.tokens.json → crimson-opacity */
+
+  --crimson-interactive: 1.0;  /* Chapter titles, section dividers */
+  --crimson-decorative: 0.4;   /* Drop capitals, ornamental marks */
+  --crimson-ambient: 0.25;     /* Book progress, chapter markers */
+  --crimson-highlight: 0.15;   /* Chapter navigation hover */
+  --crimson-subliminal: 0.06;  /* Publication surface background warmth */
+
   /* ── Gold opacity levels ───────────────────────────────────────
      Named attention hierarchy from interactive to subliminal.
      Source: foundations/srf.tokens.json → gold-opacity */
@@ -171,4 +189,19 @@
   --reading-focus-zone: 35;
   --reading-line-length-latin: 70;
   --reading-line-length-devanagari: 45;
+
+  /* ── Shadow ───────────────────────────────────────────────────
+     Minimal. The design language prefers borders and background
+     shifts over drop shadows. When shadows appear, they are
+     subtle and warm — navy-tinted, never pure black.
+     Source: foundations/shared.tokens.json → shadow */
+
+  --shadow-subtle: 0 1px 3px #1a274408;
+  --shadow-elevated: 0 4px 12px #1a274412;
+
+  /* ── Breakpoints ──────────────────────────────────────────────
+     Defined in foundations/shared.tokens.json → breakpoint.
+     CSS custom properties cannot be used in @media queries
+     (browser limitation). Values are hardcoded in media queries
+     throughout the pattern files: sm 640, md 768, lg 1024, xl 1280. */
 }

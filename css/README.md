@@ -84,18 +84,6 @@ Set `data-theme` and optionally `data-org` on `<html>`:
 - `night` — evening aarti, warm darkness
 - `devotion` — inner sanctum, saffron + candlelight
 
-### Circadian Color Bands
-
-Optional. Set `data-time-band` on `<html>` via JavaScript:
-
-```html
-<html data-theme="light" data-time-band="morning">
-<!-- morning: 5:00–9:59, evening: 16:00–20:59 -->
-<!-- midday: no attribute needed, night: remove attribute -->
-```
-
-Import `css/themes/circadian.css` to enable.
-
 ## Custom Properties Available
 
 After importing `css/foundations.css` (included in both bundles), these custom properties are available everywhere:
@@ -120,6 +108,7 @@ var(--color-marigold-hover)  /* #BE5706 */
 var(--color-marigold-light)  /* #FCEFE9 */
 var(--color-charcoal)        /* #4C4C4C — communal voice text */
 var(--color-gold-dark)       /* #C39314 */
+var(--color-crimson)         /* #9B2335 — publication voice accent (theme-adaptive) */
 var(--color-border-neutral)  /* #EDEDED */
 ```
 
@@ -131,6 +120,15 @@ var(--gold-ambient)       /* 0.3  — scroll indicator, progress */
 var(--gold-highlight)     /* 0.2  — keyboard paragraph outline */
 var(--gold-subliminal)    /* 0.06 — paragraph hover background */
 var(--gold-texture)       /* 0.03 — paper texture noise */
+```
+
+### Crimson Opacity Levels (publication voice — activated by `data-publication`)
+```css
+var(--crimson-interactive)  /* 1.0  — chapter titles, publication labels */
+var(--crimson-decorative)   /* 0.4  — drop caps, ornamental marks */
+var(--crimson-ambient)      /* 0.25 — book progress, TOC markers */
+var(--crimson-highlight)    /* 0.15 — chapter nav hover */
+var(--crimson-subliminal)   /* 0.06 — faint publication warmth */
 ```
 
 ### Motion
@@ -208,13 +206,15 @@ var(--touch-target-min)  var(--touch-target-comfortable)
 .book-figure           /* Image container with break-inside: avoid */
 .book-figure-img       /* Responsive image within figure */
 .book-caption          /* Italic caption below figure */
-.lotus-divider         /* Centered gold section divider */
+.reader-scene-break    /* Swelled-rule section divider (gold gradient taper) */
+.reader-verse          /* Verse block — preserved line breaks, centered, italic */
 .reader-texture        /* SVG fractal noise paper texture */
 ```
 
 ### Attention (from `css/attention.css`)
 ```css
 .gold-interactive   .gold-decorative   .gold-ambient   .gold-highlight   .gold-subliminal
+.crimson-interactive  .crimson-decorative  .crimson-ambient  .crimson-highlight  .crimson-subliminal
 .marigold-interactive   .marigold-decorative   .marigold-ambient   .marigold-subliminal
 ```
 

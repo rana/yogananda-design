@@ -17,7 +17,6 @@
 /* Themes */
 @import './themes/srf.css';
 @import './themes/yss.css';
-@import './themes/circadian.css';
 @import './themes/high-contrast.css';
 
 /* Typography */
@@ -28,3 +27,6 @@
 /* Base rules */
 @import './calm.css';
 @import './attention.css';
+
+/* Motifs */
+@import './motifs.css';

@@ -33,7 +33,6 @@ Or import selectively:
 ```
 css/foundations.css          ← always required (all tokens)
 css/themes/srf.css           ← SRF themes (or yss.css for YSS)
-css/themes/circadian.css     ← time-of-day color shifts (optional)
 css/themes/high-contrast.css ← prefers-contrast: more (recommended)
 css/typography/fonts.css     ← @font-face declarations
 css/typography/classes.css   ← .reading-text, .display-text, etc.
@@ -51,7 +50,6 @@ css/patterns/preferences.css ← font size / line spacing user controls
 <html
   data-org="srf"              <!-- "srf" (default) or "yss" -->
   data-theme="light"          <!-- theme name: light, sepia, earth, dark, meditate, gathering -->
-  data-time-band="midday"     <!-- circadian: morning, midday, evening (optional) -->
   lang="en"                   <!-- language: en, hi, etc. -->
 >
 ```
@@ -80,7 +78,7 @@ These are commitments, not preferences. Never generate:
 - Social sharing buttons
 - Tooltips on sacred text (Yogananda's words stand alone)
 - AI-generated or AI-synthesized imagery of the gurus
-- Pure white backgrounds in light mode (always warm: #FAF8F5 minimum)
+- Pure white backgrounds on *contemplative reading surfaces* (always warm: #FAF8F5 minimum). Communal voice (gathering) and YSS modern (ashram) use white deliberately.
 
 ### Required Patterns
 
@@ -111,7 +109,7 @@ Every design decision lives at the intersection of two orthogonal axes:
 - **Reverential** — SRF/YSS monastic and presidential authors. Deep respect, slightly less ceremonial spacing.
 - **Instructional** — Portal-authored guides and editorial. Clear, warm, the librarian speaking.
 - **Functional** — Navigation, search, settings. Invisible infrastructure.
-- **Ambient** — Scroll indicators, texture overlays, circadian shifts. Felt, not seen.
+- **Ambient** — Scroll indicators, texture overlays, paper warmth. Felt, not seen.
 
 **Critical rule**: Sacred and reverential registers always use reading typography regardless of voice. A Yogananda quote on an event page still gets Merriweather — the voice colors the chrome; the register protects the text.
 
@@ -146,7 +144,7 @@ When using marigold (communal voice), the same hierarchy applies via `--marigold
 |-------|------|------|
 | `light` | Warm library in daylight | Default reading |
 | `sepia` | Antique paper, physical book | Readers wanting warmth |
-| `earth` | Red clay, Indian warmth | YSS-inspired proof-of-concept |
+| `earth` | Red clay, Indian warmth | Warm reading, shared with YSS |
 | `dark` | Deep navy, SRF-respectful darkness | Evening reading |
 | `meditate` | Pre-dawn stillness, gold at 60% | Contemplation |
 | `gathering` | Open courtyard, marigold on white | Events and community |
@@ -229,6 +227,8 @@ You are writing HTML and CSS. Here are the exact classes, properties, and data a
 .reader-content    /* hanging-punctuation: first allow-end */
 .reader-epigraph   /* Italic, centered, gold quotation mark */
 .reader-citation   /* Em-dash prefix citation format */
+.reader-scene-break /* Swelled-rule section divider (gold gradient taper) */
+.reader-verse      /* Verse block — preserved line breaks, centered, italic */
 ```
 
 ### Attention Utility Classes
@@ -240,6 +240,13 @@ You are writing HTML and CSS. Here are the exact classes, properties, and data a
 .gold-ambient      /* opacity: 0.3 */
 .gold-highlight    /* opacity: 0.2 */
 .gold-subliminal   /* opacity: 0.06 */
+
+/* Crimson hierarchy (publication overlay — data-publication) */
+.crimson-interactive  /* opacity: 1.0 — chapter titles, labels */
+.crimson-decorative   /* opacity: 0.4 — drop caps, ornamental marks */
+.crimson-ambient      /* opacity: 0.25 — book progress, TOC markers */
+.crimson-highlight    /* opacity: 0.15 — chapter nav hover */
+.crimson-subliminal   /* opacity: 0.06 — faint publication warmth */
 
 /* Marigold hierarchy */
 .marigold-interactive  /* opacity: 1.0 */
@@ -334,14 +341,6 @@ document.documentElement.dataset.theme = 'dark';
 
 For auto dark mode: the CSS includes `@media (prefers-color-scheme: dark)` that activates dark theme automatically. Override with an explicit `data-theme` value.
 
-### Circadian Color Temperature
-
-Set `data-time-band` on `<html>` based on local time. Only affects light theme:
-- `morning` (5:00–9:59): Cooler cream (#FDFBF8) — the clarity of early light
-- `midday` (10:00–15:59): Default — remove the attribute
-- `evening` (16:00–20:59): Warmer cream (#F7F2EC) — golden hour warmth
-- Night (21:00–4:59): Switch to dark theme instead
-
 ### Organization Switching
 
 Set `data-org` on `<html>`:
@@ -396,8 +395,9 @@ You must still ensure:
 ```
 VOICE:      contemplative (default) | communal
 REGISTER:   sacred → reverential → instructional → functional → ambient
-ACCENT:     gold (contemplative) | marigold (communal)
+ACCENT:     gold (contemplative) | marigold (communal) | crimson (publication overlay)
 HIERARCHY:  interactive 1.0 → decorative 0.4 → ambient 0.3 → highlight 0.2 → subliminal 0.06 → texture 0.03
+PRINCIPLES: dhvani (suggest > state) | aucitya (propriety) | rasa (experiential flavor) | bindu (still center) | sahṛdaya (prepared reader) | prāṇa (breath rhythm) | alaṅkāra (ornament = structure)
 
 IMPORT:     css/index.css (core) | css/reading.css (reading surfaces)
 HTML:       data-org="srf" data-theme="light" lang="en"

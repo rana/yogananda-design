@@ -162,7 +162,7 @@
     "reading-en": {
       "$type": "typography",
       "$value": {
-        "fontFamily": ["Merriweather", "Georgia", "serif"],
+        "fontFamily": ["Merriweather", "Georgia", "Times New Roman", "serif"],
         "fontSize": { "value": 18, "unit": "px" },
         "fontWeight": 400,
         "lineHeight": 1.8
@@ -308,6 +308,7 @@
       "text-secondary": { "$type": "color", "$value": "#666666" },
       "border":         { "$type": "color", "$value": "#EDEDED" },
       "gold":           { "$type": "color", "$value": "#BB4F27" },
+      "crimson":        { "$type": "color", "$value": "#9B2335", "$description": "Base crimson on white. The published book's structural voice in the sunlit courtyard." },
       "surface":        { "$type": "color", "$value": "#F5F5F5" }
     },
     "sandstone": {
@@ -318,6 +319,7 @@
       "text-secondary": { "$type": "color", "$value": "#6B5240" },
       "border":         { "$type": "color", "$value": "#D4C4A0" },
       "gold":           { "$type": "color", "$value": "#A87D25" },
+      "crimson":        { "$type": "color", "$value": "#8A1F2E", "$description": "Crimson muted for prayer hall warmth. The old book under lamplight — deeper, more intimate." },
       "surface":        { "$type": "color", "$value": "#FFF8E7" }
     },
     "earth": {
@@ -328,6 +330,7 @@
       "text-secondary": { "$type": "color", "$value": "#6B5240" },
       "border":         { "$type": "color", "$value": "#C4A988" },
       "gold":           { "$type": "color", "$value": "#BB4F27" },
+      "crimson":        { "$type": "color", "$value": "#9B2335", "$description": "Base crimson on warm clay. The garden path — earth and devotional red in harmony." },
       "surface":        { "$type": "color", "$value": "#EDE3D8" }
     },
     "night": {
@@ -338,6 +341,7 @@
       "text-secondary": { "$type": "color", "$value": "#A89888" },
       "border":         { "$type": "color", "$value": "#3D2E22" },
       "gold":           { "$type": "color", "$value": "#D4693D" },
+      "crimson":        { "$type": "color", "$value": "#E85D6F", "$description": "Crimson brightened and warmed for oil-lamp darkness. The evening aarti — red glimpsed by flickering light." },
       "surface":        { "$type": "color", "$value": "#2A1F18" }
     },
     "devotion": {
@@ -348,6 +352,7 @@
       "text-secondary": { "$type": "color", "$value": "#C4A988" },
       "border":         { "$type": "color", "$value": "#4A3528" },
       "gold":           { "$type": "color", "$value": "#E8A830" },
+      "crimson":        { "$type": "color", "$value": "#E8706C", "$description": "Crimson warmed toward saffron for the inner sanctum. Devotional red by candlelight — approaching the warmth of sindoor." },
       "surface":        { "$type": "color", "$value": "#3A2218" }
     }
   },

@@ -16,7 +16,7 @@ const registers = [
     contentTypes: "Guru quotes, scriptural passages, prayer text",
     whitespace: "Maximum \u2014 the content breathes in vast silence",
     typography: "Display font, generous size, light weight",
-    accentLevel: "Subliminal \u2014 accent at 0.06 opacity, felt not seen",
+    accentLevel: "Decorative \u2014 accent at 0.4, present but not calling",
     motion: "Contemplative (800ms) or arrival (1200ms)",
     distractions: "Zero \u2014 all chrome hidden, no links, no actions",
     style: {
@@ -36,7 +36,7 @@ const registers = [
     contentTypes: "Chapter text, featured passages, biography",
     whitespace: "Generous \u2014 room to contemplate each paragraph",
     typography: "Reading font at standard size, warm serifs",
-    accentLevel: "Decorative \u2014 accent at 0.4 for epigraphs and ornaments",
+    accentLevel: "Ambient \u2014 accent at 0.3, peripheral warmth",
     motion: "Content (300ms) \u2014 smooth but not slow",
     distractions: "Minimal \u2014 navigation available but recedes",
     style: {
@@ -55,7 +55,7 @@ const registers = [
     contentTypes: "Table of contents, glossary entries, practice bridge",
     whitespace: "Moderate \u2014 organized, not sparse",
     typography: "UI font for clarity, reading font for content",
-    accentLevel: "Ambient \u2014 accent at 0.3 for orientation",
+    accentLevel: "Interactive \u2014 accent at full opacity for links and actions",
     motion: "Interaction (150ms) \u2014 responsive",
     distractions: "Contextual links and navigation are welcome",
     style: {
@@ -93,7 +93,7 @@ const registers = [
     contentTypes: "Quiet corner, portal threshold, loading states",
     whitespace: "Maximum \u2014 space IS the content",
     typography: "Sparse, centered, secondary opacity",
-    accentLevel: "Texture \u2014 accent at 0.03, the ghost of presence",
+    accentLevel: "Ambient to subliminal \u2014 accent at 0.3 to 0.06",
     motion: "Arrival (1200ms) \u2014 slow, contemplative",
     distractions: "None \u2014 all chrome hidden",
     style: {

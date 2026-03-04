@@ -1,5 +1,5 @@
 {
-  "$description": "The attention gradient maps emphasis levels to visual treatment across the design system. It answers: 'How prominent should this element be?' Every element exists somewhere on this gradient, from interactive (demands attention) to subliminal (felt, not seen). The gradient uses gold opacity as its primary expression, but also governs size, weight, spacing, and motion.",
+  "$description": "The attention gradient maps emphasis levels to visual treatment across the design system. It answers: 'How prominent should this element be?' Every element exists somewhere on this gradient, from interactive (demands attention) to texture (the ghost of physicality). The gradient is a dhvani gradient — it mirrors the three meaning levels from Indian aesthetic theory: vācya (stated, interactive), lakṣyārtha (indicated, decorative), vyañjanā (suggested, ambient through texture). See aesthetic-theory.language.json for the theoretical framework. Three accent voices — gold (contemplative), marigold (communal), crimson (publication) — each express this gradient with voice-shaped opacity sets. Gold has 6 levels (contemplation needs the finest gradations from decorative to texture). Crimson has 5 (structure, not atmosphere — no texture level). Marigold has 4 (energetic, not contemplative — no highlight or texture). The asymmetry IS the design: each voice uses exactly the opacity levels its purpose demands. An orthogonal color axis — the motif system's five botanical voices (sacred, growth, devotion, warmth, crimson) — intersects with the gradient through opacity. Motif opacity follows the gradient's attention levels; motif hue follows the lotus's own devotional palette. The two dimensions are independent.",
 
   "levels": {
     "interactive": {
@@ -15,8 +15,8 @@
       "elements": ["focus rings", "active links", "call-to-action buttons", "search input", "selected navigation item"]
     },
     "prominent": {
-      "gold-opacity": 0.7,
       "purpose": "Important but not interactive. Draws the eye without requiring action.",
+      "note": "Prominent is expressed through typography (bold weight, display size) and text color at full opacity — not through gold/crimson/marigold accent opacity. No accent-opacity CSS variable or utility class exists for this level. See three-voice-architecture.note-on-prominent.",
       "treatment": {
         "color": "theme-text at full opacity",
         "weight": "bold",
@@ -77,6 +77,58 @@
       },
       "elements": ["paper texture overlay on reading surfaces"]
     }
+  },
+
+  "publication-accent": {
+    "$description": "The crimson attention gradient for publication surfaces. When content originates from a printed book (data-publication attribute), structural elements use crimson instead of gold. This creates two visual layers: the portal (gold) and the book (crimson). The reader unconsciously perceives both: 'I am using a portal to read a book.' Crimson never replaces gold for portal infrastructure (navigation, search, dwell, focus rings) — only for the book's own structural hierarchy.",
+    "etymology": "The word 'crimson' comes from Sanskrit kṛmi-ja (कृमिज, 'produced by a worm') — the kermes insect dye. The word traveled from Sanskrit through Arabic (qirmiz) to Old Spanish to English. A word of Indian origin that became the standard for Western fine bookmaking. It is, literally, the bridge between the two traditions this design system serves.",
+    "cultural-lineage": "This is the tradition of rubrication — from Latin rubrica (red earth) — chapter headings in red, practiced in Western manuscripts since the 4th century. SRF's choice of crimson for their most sacred text connects to this millennium-old bookmaking practice while simultaneously echoing Indian devotional red (kumkum, sindoor, the color of Shakti).",
+    "accent-color": "crimson (#9B2335 base, theme-adaptive)",
+    "levels": {
+      "interactive":  { "crimson-opacity": 1.0,  "elements": ["chapter titles", "chapter labels (CHAPTER 1)", "section dividers between scenes"] },
+      "decorative":   { "crimson-opacity": 0.4,  "elements": ["drop capitals", "ornamental chapter marks", "book-level decorative rules"] },
+      "ambient":      { "crimson-opacity": 0.25, "elements": ["book progress indicator (crimson thread)", "chapter markers in table of contents sidebar"] },
+      "highlight":    { "crimson-opacity": 0.15, "elements": ["hover on chapter navigation items", "active chapter in sidebar TOC"] },
+      "subliminal":   { "crimson-opacity": 0.06, "elements": ["faint background warmth on publication reading surfaces — the binding glimpsed in peripheral vision"] }
+    },
+    "coexistence-with-gold": "Gold remains for all portal-level elements even within a publication context. Focus rings: gold. Scroll progress: gold. Dwell mode highlight: gold. Links: gold. Chapter title: crimson. Section divider: crimson. Drop cap: crimson. The two colors partition the visual space by function, not by proximity."
+  },
+
+  "communal-accent": {
+    "$description": "The marigold attention gradient for communal surfaces. When the gathering theme is active, the accent shifts from gold to marigold (#DC6A10). Marigold is energetic, warm, and welcoming — the joy of shared devotion. It does not need the contemplative gradient's fine distinctions.",
+    "accent-color": "marigold (#DC6A10, theme-adaptive via --color-gold remapping in gathering theme)",
+    "levels": {
+      "interactive":  { "marigold-opacity": 1.0,  "elements": ["event registration buttons", "community action links", "active navigation on communal surfaces"] },
+      "decorative":   { "marigold-opacity": 0.4,  "elements": ["decorative borders", "section ornaments on event pages", "marigold motif dividers"] },
+      "ambient":      { "marigold-opacity": 0.2,  "elements": ["background warmth indicators", "communal section separators"] },
+      "subliminal":   { "marigold-opacity": 0.06, "elements": ["hover backgrounds on communal cards", "selected state on event listings"] }
+    },
+    "absent-levels": "Marigold has no 'highlight' level (guiding through sustained reading is contemplative, not communal) and no 'texture' level (paper materiality belongs to the reading surface). Four levels is the correct count for a voice that says 'welcome and act,' not 'linger and contemplate.'"
+  },
+
+  "three-voice-architecture": {
+    "$description": "The attention gradient expresses through three accent voices. This is the final form — structurally complete.",
+    "voices": {
+      "gold":     { "levels": 6, "purpose": "Contemplation. The reading lamp.", "css-prefix": "gold-", "gradient": "interactive → decorative → ambient → highlight → subliminal → texture" },
+      "crimson":  { "levels": 5, "purpose": "Publication. The book's skeleton.", "css-prefix": "crimson-", "gradient": "interactive → decorative → ambient → highlight → subliminal" },
+      "marigold": { "levels": 4, "purpose": "Communion. The gathering warmth.", "css-prefix": "marigold-", "gradient": "interactive → decorative → ambient → subliminal" }
+    },
+    "note-on-prominent": "The levels section above lists seven attention levels including 'prominent.' Prominent is expressed through typography (bold weight, display size), not through accent color opacity. It therefore does not appear in any voice's opacity gradient. Similarly, 'texture' is expressed through SVG fractalNoise at 3% opacity, not through a utility class — only gold has the texture token, because only the contemplative voice simulates physicality.",
+    "hue-dependent-calibration": "Warmer, more saturated hues (crimson #9B2335, terracotta #bb4f27) are perceptually heavier than lighter hues (gold #dcbd23). To achieve equivalent visual weight at the same attention level, they require lower opacity. Crimson ambient (0.25) is lower than gold ambient (0.3); crimson highlight (0.15) is lower than gold highlight (0.2). This principle applies wherever accent colors differ — it is not decorative tuning, it is perceptual calibration.",
+    "voice-selection": "Voice is determined by surface purpose, not content type. A Yogananda quote on a communal surface still renders in gold's sacred register — but the surrounding chrome uses marigold. See emotional-registers.language.json for the register × voice matrix."
+  },
+
+  "motif-integration": {
+    "$description": "The motif system's botanical glyphs participate in the attention gradient through opacity, while maintaining their own five-voice devotional palette for hue. Motif opacity follows attention levels (decorative at 0.4, ambient at 0.3, etc.). Motif color follows the lotus's own palette. The two axes are independent: a growth-colored lotus at decorative opacity is olive-green at 40%, not gold at 40%.",
+    "motif-color-voices": {
+      "sacred":   { "css": "--motif-sacred (gold)", "symbolism": "tejas — spiritual radiance", "bridge": "Direct bridge to the contemplative voice. Default motif color." },
+      "growth":   { "css": "--motif-growth (#6a6d2f)", "symbolism": "prakṛti — living nature", "bridge": "No direct voice mapping. The lotus's own vitality — the stem from which the bloom rises." },
+      "devotion": { "css": "--motif-devotion (#192c55)", "symbolism": "nīla — meditative depth", "bridge": "Nearly identical to contemplative text color (#1A2744). The lotus rendered in the ink of the page." },
+      "warmth":   { "css": "--motif-warmth (#dd6c26)", "symbolism": "tapas — renunciant warmth", "bridge": "Close cousin of marigold (#DC6A10). The lotus's own burnt orange; marigold is the communal accent. They rhyme, not duplicate." },
+      "crimson":  { "css": "--motif-crimson (crimson)", "symbolism": "kumkum — auspicious power", "bridge": "The published book's structural color. Activates only under data-publication — structural motifs (divider, close) shift to crimson at decorative opacity. Breath motifs stay gold (reading rhythm is a portal feature, not a book structure)." }
+    },
+    "palette-unity": "These five voices are one devotional palette, not four-plus-one. Four were discovered archaeologically in the original yogananda.org lotus SVGs. The fifth was discovered in the AoY Kindle edition. The activation context differs (four always available, crimson only under data-publication) but the palette is continuous. Together they trace the Indian devotional spectrum: from the green of living nature through the gold of illumination to the crimson of sacred power.",
+    "css-reference": "css/motifs.css"
   },
 
   "secondary-text-hierarchy": {

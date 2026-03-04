@@ -1,15 +1,20 @@
 /* ══════════════════════════════════════════════════════════════════
    Attention Level Classes
    ══════════════════════════════════════════════════════════════════
-   Gold and marigold at calibrated attention levels. A deliberate
-   hierarchy from interactive (demands attention) to subliminal
-   (felt, not seen).
+   Three accent voices at calibrated opacity levels. Gold
+   (contemplative), marigold (communal), and crimson (publication) —
+   a deliberate hierarchy from interactive to subliminal.
 
-   This gradient expresses how accent colors serve different roles
-   without changing their hue — only their presence.
+   Each voice uses exactly the opacity levels its purpose demands:
+   gold 5 classes, crimson 5, marigold 4. The asymmetry is the
+   design. (Gold has 6 token levels but texture is expressed via
+   SVG fractalNoise, not via an opacity class. Prominent is a
+   seventh attention level expressed through typography weight/size,
+   not through accent opacity — it appears in no voice's class set.)
 
    Requires: foundations.css
-   Source: foundations/srf.tokens.json → gold-opacity
+   Source: foundations/srf.tokens.json → gold-opacity, marigold-opacity
+           foundations/shared.tokens.json → crimson-opacity
            semantics/attention-gradient.language.json
    ══════════════════════════════════════════════════════════════════ */
 
@@ -27,3 +32,14 @@
 .marigold-decorative  { color: var(--color-marigold); opacity: var(--marigold-decorative); }
 .marigold-ambient     { color: var(--color-marigold); opacity: var(--marigold-ambient); }
 .marigold-subliminal  { color: var(--color-marigold); opacity: var(--marigold-subliminal); }
+
+/* ── Crimson (Publication Voice) ────────────────────────────── */
+/* The printed book's structural voice. Chapter titles, section
+   dividers, drop capitals. Active on publication reading surfaces.
+   Source: foundations/shared.tokens.json → crimson-opacity */
+
+.crimson-interactive { color: var(--color-crimson); opacity: var(--crimson-interactive); }
+.crimson-decorative  { color: var(--color-crimson); opacity: var(--crimson-decorative); }
+.crimson-ambient     { color: var(--color-crimson); opacity: var(--crimson-ambient); }
+.crimson-highlight   { color: var(--color-crimson); opacity: var(--crimson-highlight); }
+.crimson-subliminal  { color: var(--color-crimson); opacity: var(--crimson-subliminal); }

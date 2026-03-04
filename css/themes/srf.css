@@ -19,12 +19,13 @@
   --color-text-secondary: #5c4a35;
   --color-border: #c8b591;
   --color-gold: #b89a2a;
+  --color-crimson: #8A1F2E;
   --color-surface: #f0dfc2;
 }
 
 /* ── Earth — warm clay, terracotta accent ────────────────────── */
-/* YSS-inspired warmth (PRO-043 proof-of-concept).
-   Terracotta replaces gold as the accent — the ashram's clay. */
+/* Warm clay and terracotta accent — the ashram's earth.
+   Shared with YSS earth theme (identical values). */
 
 [data-theme="earth"] {
   --color-bg: #f2e8de;
@@ -33,6 +34,7 @@
   --color-text-secondary: #6b5240;
   --color-border: #c4a988;
   --color-gold: #bb4f27;
+  --color-crimson: #9B2335;
   --color-surface: #ede3d8;
 }
 
@@ -47,10 +49,11 @@
   --color-text-secondary: #a9a49a;
   --color-border: #2d3a4f;
   --color-gold: #e8cf4a;
+  --color-crimson: #E04A5E;
   --color-surface: #162030;
 }
 
-/* ── Meditate — deeper dark for contemplation (DES-011) ──────── */
+/* ── Meditate — deeper dark for contemplation ────────────────── */
 /* Darker than dark. Gold softened to 60% — peripheral, not focal.
    For extended meditation-adjacent reading. */
 
@@ -61,6 +64,7 @@
   --color-text-secondary: #9a9590;
   --color-border: #253050;
   --color-gold: #e8cf4a99;
+  --color-crimson: #E04A5E99;
   --color-surface: #0e1a30;
 }
 
@@ -81,8 +85,15 @@
   --color-surface: #FFFFFF;
 }
 
-/* ── Auto — system preference ────────────────────────────────── */
-/* Follows OS dark mode preference. Maps to SRF Dark. */
+/* ── Auto — CSS Infrastructure Only ──────────────────────────── */
+/* Follows OS dark mode preference. Maps to SRF Dark.
+   Auto is NOT a user-selectable theme — it's the absence of a
+   deliberate choice. The theme names (light, sepia, earth, dark,
+   meditate, gathering) are metaphorical: each evokes a place, a
+   mood, a way of being with the text. "Auto" evokes nothing. It
+   exists so the portal respects OS preference before the seeker
+   makes an intentional theme choice. Not listed in DesignProvider
+   or the showcase — infrastructure, not identity. */
 
 @media (prefers-color-scheme: dark) {
   [data-theme="auto"] {
@@ -92,6 +103,7 @@
     --color-text-secondary: #a9a49a;
     --color-border: #2d3a4f;
     --color-gold: #e8cf4a;
+    --color-crimson: #E04A5E;
     --color-surface: #162030;
   }
 }

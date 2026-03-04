@@ -101,6 +101,42 @@ function RadiusScale() {
   );
 }
 
+function ShadowScale() {
+  const shadows = [
+    { name: "Subtle", variable: "var(--shadow-subtle)", desc: "Cards at rest, quiet elevation" },
+    { name: "Elevated", variable: "var(--shadow-elevated)", desc: "Hover state, focused elements, dropdowns" },
+  ];
+
+  return (
+    <div
+      className="theme-transition rounded-md p-5"
+      style={{ backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)" }}
+    >
+      <h3 className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ fontFamily: "var(--font-ui)", color: "var(--color-gold)" }}>
+        Shadow Tokens
+      </h3>
+      <div className="flex gap-6 flex-wrap">
+        {shadows.map((s) => (
+          <div key={s.name} className="text-center flex-1" style={{ minWidth: "140px" }}>
+            <div
+              className="rounded-md mb-3 mx-auto theme-transition"
+              style={{
+                width: "100%",
+                height: "72px",
+                backgroundColor: "var(--color-bg)",
+                boxShadow: s.variable,
+              }}
+            />
+            <div className="text-xs font-medium" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text)" }}>{s.name}</div>
+            <div className="token-value text-xs mt-0.5">--shadow-{s.name.toLowerCase()}</div>
+            <div className="text-xs mt-1" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)" }}>{s.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function ReadingSurface() {
   return (
     <div className="theme-transition rounded-md overflow-hidden" style={{ border: "1px solid var(--color-border)" }}>
@@ -117,10 +153,7 @@ function ReadingSurface() {
           universal seeking for a Goal beyond the material-Loss-of-Self-in-
           Cosmic-Consciousness.
         </div>
-        <div className="lotus-divider">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/lotus.svg" alt="" className="h-5" />
-        </div>
+        <div className="motif motif-lotus motif-divider" aria-hidden="true"></div>
         <div className="reading-text" style={{ color: "var(--color-text)" }}>
           Be as simple as you can be; you will be astonished to see how
           uncomplicated and happy your life can become. Live quietly in the
@@ -323,6 +356,10 @@ export default function PatternPlayground() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           <RadiusScale />
+          <ShadowScale />
+        </div>
+
+        <div className="mb-6">
           {org === "srf" ? <SrfColorPalette /> : <YssColorPalette />}
         </div>
 

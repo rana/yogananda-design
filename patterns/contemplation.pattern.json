@@ -35,7 +35,7 @@
     "content": {
       "passage": "A short contemplative passage (max 500 chars, REFLECTION_MAX_LENGTH)",
       "attribution": "full citation below the passage",
-      "ornament": "small lotus divider",
+      "ornament": "lotus motif at decorative scale — use .motif-lotus.motif-decorative (see css/motifs.css)",
       "guidance": "optional one-line text: 'Sit quietly with this thought...'"
     },
     "behavior": {
@@ -74,10 +74,11 @@
       "duration": "contemplative (800ms)",
       "background": "theme.bg (clean, empty space during the pause)"
     },
+    "temporal-rhythm": "This pattern is a prāṇāyāma cycle — see reading-surface.pattern.json temporal-rhythm. Fade out = recaka (release, 300ms accelerate). Pause = kumbhaka (held stillness, 200-400ms). Fade in = pūraka (approach, 800ms decelerate). The sequence is a breath.",
     "sequence": [
-      "Chapter content fades out (300ms)",
-      "Brief pause (pure background, 200-400ms)",
-      "New chapter content fades in (800ms)",
+      "Chapter content fades out (300ms) — recaka: accelerate easing, release",
+      "Brief pause (pure background, 200-400ms) — kumbhaka: held stillness",
+      "New chapter content fades in (800ms) — pūraka: decelerate easing, approach",
       "Drop capital and first paragraph appear last (slight delay for dramatic entrance)"
     ],
     "accessibility": {

@@ -1,5 +1,5 @@
 {
-  "$description": "Typographic conventions, special characters, and script-specific rules. This file captures what font files alone cannot express: how text is formatted, what symbols are used, and how different scripts interact in the same interface.",
+  "$description": "Typographic conventions, special characters, and script-specific rules. This file captures what font files alone cannot express: how text is formatted, what symbols are used, and how different scripts interact in the same interface. The typographic features here are alaṅkāra — ornament that is simultaneously structure. A drop capital is beautiful and marks a chapter opening. A swelled rule is elegant and marks a scene boundary. Every ornamental element must be load-bearing. See aesthetic-theory.language.json for the theoretical framework.",
 
   "characters": {
     "$description": "Named Unicode characters used in the design language. Every character here has a specific semantic role — they are not decorative.",
@@ -29,10 +29,17 @@
     },
 
     "ornamental": {
-      "$description": "Characters used as visual ornaments or section dividers. Sparingly applied.",
-      "asterism":       { "unicode": "U+2042", "character": "\u2042", "role": "Section break within a chapter. Three dots in triangle. Alternative to lotus divider when SVG unavailable." },
-      "fleuron":        { "unicode": "U+2767", "character": "\u2767", "role": "Decorative section mark. Rotated floral heart. Available but lotus SVG preferred." },
-      "lotus-divider":  { "source": "motifs/srf/lotus-divider.svg", "role": "Primary section divider. Gold lotus simplified to horizontal ornament. Preferred over Unicode ornaments." }
+      "$description": "Breathing marks between movements of thought. The visual kumbhaka. Ordered by richness; motif system preferred, Unicode characters are text-only fallbacks (text-only mode, no-CSS, email).",
+      "lotus":  {
+        "role": "Primary section divider. Preferred.",
+        "implementation": "Motif system: <div class=\"motif motif-lotus motif-divider\" aria-hidden=\"true\"></div>",
+        "css": "css/motifs.css (.motif-lotus + .motif-divider)",
+        "svg": "motifs/srf/lotus.svg",
+        "color-voice": "sacred (gold) by default; crimson under data-publication",
+        "note": "The canonical lotus is a 33x23 two-path SVG — the simplest botanical glyph. For richer dividers, use the lotus-07/08/10 banner glyphs via the motif system."
+      },
+      "fleuron":        { "unicode": "U+2767", "character": "\u2767", "role": "Text-only fallback. Rotated floral heart. Used when motif system is unavailable (plain text, email)." },
+      "asterism":       { "unicode": "U+2042", "character": "\u2042", "role": "Minimal text-only fallback. Three dots in triangle. Last resort when neither motif nor fleuron is appropriate." }
     },
 
     "special": {
@@ -74,6 +81,15 @@
     "font-smoothing": {
       "$description": "Antialiased rendering on macOS/iOS for sharper serif text. Standard subpixel rendering on other platforms.",
       "css": "-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;"
+    },
+
+    "scene-break": {
+      "$description": "The pause between scenes within a chapter. The typographic fermata — hold here. More present than whitespace, less ornamental than a motif divider. Implemented as a swelled rule: a horizontal mark that thickens at center and tapers to nothing at the edges. The swelled rule appears in European printing from the 16th century forward; in Indian bookmaking the same function is served by small lotus ornaments or centered dots. The AoY uses a similar device between scenes.",
+      "css-class": ".reader-scene-break",
+      "implementation": "Linear gradient: gold fading to transparent at both edges. Pure CSS, no SVG dependency. Degrades to nothing in text-only mode (whitespace handles the pause).",
+      "publication-context": "Shifts to crimson — the book's voice claiming its scene boundaries.",
+      "alternative": "The motif system's .motif-breath offers a botanical scene break (small lotus at ambient opacity). Choose swelled rule for typographic restraint; choose motif-breath for ornamental warmth.",
+      "hierarchy": "Chapter break > Section divider (motif-divider) > Scene break (reader-scene-break) > Breath (motif-breath) > Whitespace"
     }
   },
 
@@ -102,11 +118,12 @@
     },
 
     "verse": {
-      "$description": "Poetry and verse quotations from the teachings. Preserve line breaks. Center-aligned with generous surrounding whitespace.",
+      "$description": "Poetry and verse quotations from the teachings. Preserve line breaks. Center-aligned with generous surrounding whitespace. Sacred register content (the words are the guru's).",
+      "css-class": ".reader-verse",
       "alignment": "center",
-      "typography": "reading-light, italic",
-      "whitespace": "generous vertical margins",
-      "line-breaks": "preserved as authored — never reflowed"
+      "typography": "reading-light, italic, weight 300, line-height 1.9",
+      "whitespace": "generous vertical margins, generous horizontal padding",
+      "line-breaks": "preserved as authored via white-space: pre-line — never reflowed"
     }
   },
 

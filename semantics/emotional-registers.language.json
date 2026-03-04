@@ -1,5 +1,5 @@
 {
-  "$description": "Emotional registers map content types to design treatment intensity. Different content deserves different reverence. This is how PRI-03 ('Is this worthy of presenting Yogananda's words?') becomes implementable. Two orthogonal axes govern design treatment: Register (vertical — sacred to ambient, how much reverence) and Voice (horizontal — contemplative to communal, what kind of surface). Choose register by content type; choose voice by surface purpose. Both apply simultaneously. A Yogananda quote on an event page still receives sacred register treatment — but the surrounding chrome uses the communal voice's palette.",
+  "$description": "Emotional registers map content types to design treatment intensity. Different content deserves different reverence. This is how PRI-03 ('Is this worthy of presenting Yogananda's words?') becomes implementable. Two orthogonal axes govern design treatment: Register (vertical — sacred to ambient, how much reverence) and Voice (horizontal — contemplative to communal, what kind of surface). A third axis — the publication overlay — activates when content originates from a printed book, layering crimson structural elements over the reading voice. Choose register by content type; choose voice by surface purpose; activate publication by content source. All three apply simultaneously. A Yogananda quote on an event page still receives sacred register treatment — the surrounding chrome uses the communal voice's palette — and if it's from the Autobiography, the chapter title renders in crimson.",
 
   "registers": {
     "sacred": {
@@ -8,6 +8,7 @@
       "whitespace": "expansive — generous margins, no crowding, content breathes",
       "typography": "reading (serif, warm, large enough for sustained immersion)",
       "accent-level": "decorative (gold at 0.4 — present but not calling)",
+      "publication-accent": "When content originates from a published book (data-publication), structural elements — chapter titles, section dividers, drop capitals — use crimson at interactive-to-decorative (1.0–0.4) instead of gold. Crimson marks the book's skeleton; gold marks the portal's infrastructure. The two accent systems coexist: gold for portal chrome (navigation, scroll progress, dwell mode), crimson for book structure (chapter titles, section breaks). This dual-layer approach creates visual continuity between the physical book and the digital reading surface.",
       "motion": "contemplative (800ms transitions — unhurried)",
       "distractions": "none — no hover effects on the text itself, no tooltips, no inline annotations",
       "background": "primary surface — the cleanest, most neutral ground",
@@ -50,13 +51,13 @@
     },
     "ambient": {
       "$description": "Background presence. Elements that orient without demanding attention — the peripheral awareness of the reading environment.",
-      "content-types": ["scroll progress indicator", "circadian color shifts", "chapter markers", "section dividers"],
+      "content-types": ["scroll progress indicator", "chapter markers", "section dividers", "motif breath ornaments"],
       "whitespace": "n/a (these are typically overlays or decorative elements)",
       "typography": "n/a or smallest UI size",
       "accent-level": "ambient to subliminal (gold at 0.3 to 0.06)",
       "motion": "slow and continuous (no abrupt changes)",
       "distractions": "zero — if a seeker notices these, they're too prominent",
-      "examples": ["Scroll indicator bar (2px, gold at 0.3)", "Paper texture overlay (noise at 0.03)", "Circadian background warmth shifts"]
+      "examples": ["Scroll indicator bar (2px, gold at 0.3)", "Paper texture overlay (noise at 0.03)", "Motif breath ornaments (gold at ambient opacity)"]
     }
   },
 
@@ -119,6 +120,46 @@
       "when-to-use": "The seeker is joining, participating, registering, or connecting with others. The experience is communal, active, and welcoming. Community breadth over content depth."
     },
 
+    "publication": {
+      "$description": "The book. Not a separate surface voice but an overlay that activates when content originates from a published work. The publication overlay layers crimson structural elements (chapter titles, section dividers, drop capitals) over the contemplative voice's reading surface. Gold remains for portal infrastructure (navigation, scroll progress, dwell mode, links). The two colors partition visual space by function: crimson for the book's skeleton, gold for the portal's skeleton. Activated by data-publication attribute on the reader container.",
+      "accent": "crimson (#9B2335, theme-adaptive)",
+      "accent-opacity-set": "crimson-opacity",
+      "structural-elements": ["chapter titles", "chapter labels (CHAPTER I)", "section dividers", "drop capitals"],
+      "portal-elements-unchanged": ["navigation links (gold)", "scroll progress (gold)", "focus rings (gold)", "dwell highlights (gold)", "footnote markers (gold)"],
+      "motif-behavior": "Structural motifs (divider, close) shift to crimson at decorative opacity. Breath motifs remain gold — they mark reading rhythm, a portal feature. See css/motifs.css.",
+      "themes": "Inherits the contemplative voice's themes (light, sepia, earth, dark, meditate). Crimson adapts to each theme via --color-crimson overrides in the theme files.",
+      "when-to-activate": "The content comes from a specific published book (Autobiography of a Yogi, The Second Coming of Christ, etc.). Not all teachings content is publication — individual quotes in search results, Today's Wisdom, or reading threads are contemplative voice without the publication overlay."
+    },
+
+    "yss-voice-axis": {
+      "$description": "YSS surfaces express two intra-voice modulations within the contemplative voice: modern and devotional. These are NOT separate voices parallel to contemplative/communal — they are tonal variations within a single voice. The contemplative voice sounds slightly different at an urban YSS center than at an SRF retreat, the way the same raga sounds different on sitar and sarod. Both are reading, both are contemplation — but the warmth and formality differ.",
+      "modern": {
+        "mood": "Clean, contemporary, accessible. The urban ashram — yoga in the city.",
+        "theme": "ashram (white background, clean lines)",
+        "treatment": "Slightly less ornamental than SRF contemplative. More whitespace, fewer decorative elements. The lotus divider is still gold but at slightly lower opacity. Open Sans leans heavier in the type hierarchy.",
+        "when": "Default YSS expression. New seekers, public-facing content, introductory materials."
+      },
+      "devotional": {
+        "mood": "Warm, traditional, intimate. The meditation room — flickering lamp, worn prayer book.",
+        "theme": "devotion (deep saffron warmth, ochre tones)",
+        "treatment": "Warmer color temperature, more ornamental use of motifs, devotional display typography (Asar for bilingual headings, Noto Serif Devanagari for Hindi reading). Closer to SRF's sepia/earth warmth but with distinctly Indian rather than Western antiquarian character.",
+        "when": "Established devotees, meditation-adjacent content, devotional texts, Hindi-primary surfaces."
+      },
+      "note": "The EmotionalRegisters showcase component displays these as 'Modern' and 'Devotional' under YSS voices. They are documented here as voice modulations, not as separate voice entries, to maintain the two-voice (contemplative/communal) architecture as the primary axis."
+    },
+
+    "motif-color-voices": {
+      "$description": "The motif system's five color voices form one devotional palette, orthogonal to the three design accent voices (gold, marigold, crimson). They are the lotus's own colors — four discovered archaeologically from original yogananda.org SVGs, the fifth from the AoY Kindle edition. Together they trace an Indian devotional spectrum from the green of living nature to the crimson of sacred power. Each motif voice has a CSS custom property (--motif-*) and a utility class (.motif-*). See css/motifs.css.",
+      "voices": {
+        "sacred":   { "css": "--motif-sacred", "symbolism": "tejas — spiritual radiance", "bridge": "Direct bridge to the contemplative accent (gold). The default motif color. A gold lotus divider on a cream reading surface." },
+        "growth":   { "css": "--motif-growth", "symbolism": "prakṛti — living nature", "bridge": "No direct design voice mapping. Purely botanical — the stem from which the bloom rises. Used editorially when the design calls for natural vitality." },
+        "devotion": { "css": "--motif-devotion", "symbolism": "nīla — meditative depth", "bridge": "Nearly identical to contemplative text (#1A2744). A navy lotus rendered in the ink of the page. Particularly resonant on sepia and earth themes." },
+        "warmth":   { "css": "--motif-warmth", "symbolism": "tapas — renunciant warmth", "bridge": "Rhymes with marigold (#DC6A10) but is the lotus's own burnt orange. On communal surfaces, the lotus retains its botanical palette — warmth, not marigold." },
+        "crimson":  { "css": "--motif-crimson", "symbolism": "kumkum — auspicious power", "bridge": "The published book's structural color. Activates under data-publication for structural motifs (divider, close). Breath motifs stay gold — reading rhythm is portal, not book." }
+      },
+      "palette-unity": "These are not four-plus-one but five voices of a single palette with context-dependent activation. The Indian devotional color associations (tejas, prakṛti, nīla, tapas, kumkum) were latent in the original design choices, not imposed — they emerge from the intersection of SRF's Western bookmaking tradition and the lotus's Indian devotional heritage."
+    },
+
     "interaction-rules": {
       "$description": "How registers and voices interact. These rules resolve potential conflicts.",
       "rules": [
@@ -156,5 +197,103 @@
       }
     ],
     "important": "When in doubt, default to contemplative. The contemplative voice is the baseline SRF digital identity. The communal voice is activated only for surfaces where gathering and participation are the primary purpose — not merely because a page mentions an event."
+  },
+
+  "rasa-dimension": {
+    "$description": "The experiential axis of content treatment. Registers classify by institutional authority (who wrote it). Voices classify by surface purpose (what kind of space). Rasa classifies by experiential quality (what arises in the reader). These three axes are orthogonal — all apply simultaneously. A meditation instruction by Yogananda on a reading surface is: sacred register + contemplative voice + śānta rasa. A cosmic consciousness passage by Yogananda on the same surface is: sacred register + contemplative voice + adbhuta rasa. Same register, same voice, different felt quality. Rasa is editorial metadata: it guides how an AI designer tunes whitespace, timing, and typographic weight when the content's experiential character is known. When rasa is unknown, register and voice provide sufficient guidance. Opacity values in treatment-tendencies correspond to named attention levels in attention-gradient.language.json. See aesthetic-theory.language.json for the theoretical framework.",
+    "western-bridge": "Rasa is closest to 'mood' or 'atmosphere' in Western design — the felt quality of a space. But rasa theory adds a crucial insight: the mood doesn't live in the design; it arises in the prepared reader. The design creates conditions; the reader completes the experience. Think of how a cathedral's proportions create the conditions for awe — the awe isn't in the stone.",
+
+    "rasas": {
+      "shanta": {
+        "$description": "Peace, tranquility, inner stillness. The rasa of meditation instruction, contemplative passages, and teachings about the nature of the Self. Śānta was added to Bharata's original eight rasas by Abhinavagupta, who argued it was the foundation from which all other rasas arise and to which they resolve. In this design system, śānta is the default rasa — when experiential quality is unknown, design for peace.",
+        "content-examples": ["meditation instructions", "passages about inner stillness", "descriptions of samādhi", "the quiet wisdom of the guru's gaze"],
+        "treatment-tendencies": {
+          "whitespace": "maximum — vast margins, expansive breathing room. The digital equivalent of the silence between words in a meditation hall.",
+          "transitions": "contemplative (800ms) to arrival (1200ms). Slowest available. The reading space should feel like it has stopped hurrying.",
+          "typography": "reading weight at slightly larger size. Unhurried line-height (1.8–2.0). The text itself should feel spacious.",
+          "accent": "ambient to subliminal gold. The quietest end of the attention gradient. Light present but not calling.",
+          "motif": "breath role preferred over divider. Ambient opacity. The ornament is barely there."
+        }
+      },
+      "adbhuta": {
+        "$description": "Wonder, awe, marvel. The rasa of cosmic consciousness descriptions, miracles, divine visions, and the numinous. When Yogananda describes the light of a thousand suns or the structure of the astral world, the reader's experience is adbhuta. The design should expand to hold the vastness of the content.",
+        "content-examples": ["cosmic consciousness passages in Autobiography", "descriptions of astral realms", "accounts of miraculous events", "the vastness passages — infinity, eternity, cosmic light"],
+        "treatment-tendencies": {
+          "whitespace": "expansive vertical space — more generous than standard sacred. Content should feel like it has room to resonate upward.",
+          "transitions": "contemplative to arrival speed. Slow, with decelerate easing — the reader approaches wonder gradually.",
+          "typography": "reading weight, possibly display size for key passages. Line-height generous (1.8). The typography opens up.",
+          "accent": "decorative gold (0.4) — more present than śānta. Wonder permits a warmer glow.",
+          "motif": "divider role. The full lotus. Wonder deserves ornament."
+        }
+      },
+      "karuna": {
+        "$description": "Compassion, tender sorrow, empathic feeling. The rasa of devotional poetry about human suffering, the guru's tenderness toward disciples, passages about the pain of separation from the Divine. Karuṇā is not sadness — it is the ache of compassion that opens the heart.",
+        "content-examples": ["devotional poetry about divine longing", "letters expressing tender concern", "passages about human suffering and its transcendence", "the guru's compassion for struggling disciples"],
+        "treatment-tendencies": {
+          "whitespace": "generous but intimate — not vast like śānta. The space should feel held, not open. Slightly narrower measure.",
+          "transitions": "content speed (300ms) — karuṇā is immediate, not gradual. The heart opens quickly.",
+          "typography": "reading weight, standard size. Italic for verse. The typography is warm, not monumental.",
+          "accent": "ambient gold (0.3) — present as warmth, not as luminance. The gold is a candle, not a lamp.",
+          "motif": "breath role or close role. Intimate ornament. The lotus at its gentlest."
+        }
+      },
+      "vira": {
+        "$description": "Heroic courage, spiritual resolve, the energy of renunciation. The rasa of passages about spiritual discipline, overcoming obstacles, the warrior-monk tradition, the razor's edge of self-mastery. Vīra in the Yogananda context is not martial — it is the courage of the inner battle.",
+        "content-examples": ["passages about spiritual discipline and tapasya", "accounts of renunciation and determination", "teachings about willpower and self-control", "the warrior passages — fighting delusion, conquering habit"],
+        "treatment-tendencies": {
+          "whitespace": "generous but structured — clear sections, definite boundaries. Space that has backbone.",
+          "transitions": "content speed (300ms). Crisper than śānta. Purpose-driven movement.",
+          "typography": "reading weight with strong heading hierarchy. Bold for emphasis. Display typography earns its weight.",
+          "accent": "interactive to decorative gold. More present than śānta. Vīra permits visual strength.",
+          "motif": "divider role at decorative opacity. Structural, not atmospheric."
+        }
+      },
+      "bhakti": {
+        "$description": "Devotional love — the overwhelming sweetness of love directed toward the Divine. Not a classical rasa in Bharata's nine but the dominant aesthetic mode of Yogananda's poetry, grounded in the Bhāgavata Purāṇa tradition and elaborated by Rūpa Gosvāmī (Bhaktirasāmṛtasindhu, 16th century) as the transcendent rasa. In Indian aesthetics, bhakti draws from śṛṅgāra (erotic love) redirected toward the Divine — the vocabulary of human love illuminating divine love. Yogananda's 'Cosmic Chants' and prayers to the Divine Mother are pure bhakti.",
+        "content-examples": ["Cosmic Chants lyrics", "prayers to the Divine Mother", "devotional poems", "ecstatic passages about divine love", "the sweetness passages — honey, nectar, intoxication of bliss"],
+        "treatment-tendencies": {
+          "whitespace": "generous with rhythmic variation — breathing room that pulses. The space between stanzas should feel musical.",
+          "transitions": "contemplative (800ms) with gentle easing. The devotional experience unfolds, it does not snap.",
+          "typography": "reading weight, centered alignment for verse. Italic for heightened passages. Line-height at 1.9 — the text should sing.",
+          "accent": "decorative gold (0.4) — devotion is warm, golden, present. Warmer end of the contemplative palette.",
+          "motif": "sacred color voice. The gold lotus in its fullest expression. Bhakti earns ornament through sincerity."
+        }
+      }
+    },
+
+    "absent-rasas": {
+      "$description": "The classical nine include hāsya (comic), raudra (furious), bhayānaka (terrifying), and bībhatsa (disgusting). These are not primary modes for this content domain. However, some passages in Autobiography move through raudra and bhayānaka as part of a transformation arc — the terrifying encounter that resolves in wonder (adbhuta) or peace (śānta). When content includes a rasa transformation, design for the resolution rasa, not the transient one."
+    },
+
+    "rasa-selection-guide": {
+      "$description": "How to determine rasa for a content piece. This is editorial judgment, not algorithmic classification.",
+      "questions": [
+        {
+          "ask": "Does this content primarily invite inner stillness or settled contemplation?",
+          "if-yes": "śānta",
+          "if-no": "continue"
+        },
+        {
+          "ask": "Does this content evoke awe, wonder, or the sense of vastness?",
+          "if-yes": "adbhuta",
+          "if-no": "continue"
+        },
+        {
+          "ask": "Does this content express tender compassion or the ache of divine longing?",
+          "if-yes": "karuṇā",
+          "if-no": "continue"
+        },
+        {
+          "ask": "Does this content call for courage, discipline, or spiritual resolve?",
+          "if-yes": "vīra",
+          "if-no": "continue"
+        },
+        {
+          "ask": "Does this content overflow with devotional love, sweetness, or ecstatic praise?",
+          "if-yes": "bhakti",
+          "if-no": "śānta (default — when uncertain, design for peace)"
+        }
+      ]
+    }
   }
 }

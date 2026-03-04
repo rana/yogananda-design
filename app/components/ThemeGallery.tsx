@@ -45,7 +45,7 @@ function buildYssThemes(): ThemeCard[] {
   ];
 }
 
-const swatchKeys = ["bg", "bg-secondary", "text", "border", "gold", "surface"] as const;
+const swatchKeys = ["bg", "bg-secondary", "text", "border", "gold", "crimson", "surface"] as const;
 
 function ThemeCardPreview({
   t,
@@ -62,10 +62,11 @@ function ThemeCardPreview({
   hovered: boolean;
   onEnter: () => void;
   onLeave: () => void;
-  variant?: "communal" | "yss-devotional";
+  variant?: "communal" | "yss-devotional" | "publication";
 }) {
   const isDevotional = variant === "yss-devotional";
   const isCommunal = variant === "communal";
+  const isPublication = variant === "publication";
 
   return (
     <div
@@ -79,7 +80,56 @@ function ThemeCardPreview({
       onMouseLeave={onLeave}
     >
       <div className="p-5" style={{ backgroundColor: t.colors.bg.$value }}>
-        {isCommunal ? (
+        {isPublication ? (
+          <>
+            <div
+              style={{
+                fontVariant: "small-caps",
+                letterSpacing: "0.05em",
+                fontSize: "11px",
+                lineHeight: 1.3,
+                color: t.colors.crimson?.$value ?? "#9B2335",
+                marginBottom: 4,
+              }}
+            >
+              Chapter 12
+            </div>
+            <div
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                fontSize: "18px",
+                lineHeight: 1.3,
+                color: t.colors.crimson?.$value ?? "#9B2335",
+                marginBottom: 8,
+              }}
+            >
+              Years in My Master&rsquo;s Hermitage
+            </div>
+            <hr
+              style={{
+                border: "none",
+                borderTop: `1px solid ${t.colors.crimson?.$value ?? "#9B2335"}`,
+                opacity: 0.4,
+                maxWidth: "5em",
+                margin: "0 auto 12px 0",
+              }}
+            />
+            <div
+              className="reading-text"
+              style={{
+                fontSize: "14px",
+                lineHeight: 1.7,
+                color: t.colors.text.$value,
+              }}
+            >
+              &ldquo;Master, I will be your disciple and will serve you faithfully.&rdquo;
+            </div>
+            <div className="citation-text" style={{ color: t.colors["text-secondary"].$value }}>
+              {attribution}
+            </div>
+          </>
+        ) : isCommunal ? (
           <>
             <div
               style={{
@@ -147,17 +197,21 @@ function ThemeCardPreview({
           </span>
         </div>
         <div className="flex gap-1">
-          {swatchKeys.map((key) => (
-            <div
-              key={key}
-              className="flex-1 h-4 rounded-sm"
-              style={{
-                backgroundColor: t.colors[key].$value,
-                border: `1px solid ${t.colors.border.$value}`,
-              }}
-              title={`${key}: ${t.colors[key].$value}`}
-            />
-          ))}
+          {swatchKeys.map((key) => {
+            const color = t.colors[key];
+            if (!color) return null;
+            return (
+              <div
+                key={key}
+                className="flex-1 h-4 rounded-sm"
+                style={{
+                  backgroundColor: color.$value,
+                  border: `1px solid ${t.colors.border.$value}`,
+                }}
+                title={`${key}: ${color.$value}`}
+              />
+            );
+          })}
         </div>
       </div>
     </div>
@@ -232,6 +286,57 @@ function SrfGallery({ hoveredTheme, setHoveredTheme }: { hoveredTheme: string | 
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Publication Voice — crimson */}
+      <div className="flex items-center gap-2 mb-3 mt-8">
+        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "#9B2335" }} />
+        <span className="text-xs font-semibold uppercase tracking-wider" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)" }}>
+          Publication Overlay
+        </span>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        {contemplative.slice(0, 3).map((t) => (
+          <ThemeCardPreview
+            key={`pub-${t.id}`}
+            t={t}
+            passage={srfPassage}
+            attribution={srfAttribution}
+            hovered={hoveredTheme === `pub-${t.id}`}
+            onEnter={() => setHoveredTheme(`pub-${t.id}`)}
+            onLeave={() => setHoveredTheme(null)}
+            variant="publication"
+          />
+        ))}
+
+        {/* Publication crimson palette */}
+        <div className="rounded-md overflow-hidden lg:col-span-2" style={{ border: "1px solid var(--color-border)" }}>
+          <div className="p-5" style={{ backgroundColor: "var(--color-bg)" }}>
+            <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ fontFamily: "var(--font-ui)", color: "#9B2335" }}>
+              Crimson across themes
+            </div>
+            <div className="flex gap-3">
+              {[
+                { name: "Light", color: "#9B2335" },
+                { name: "Sepia", color: "#8A1F2E" },
+                { name: "Earth", color: "#9B2335" },
+                { name: "Dark", color: "#E04A5E" },
+                { name: "Meditate", color: "#E04A5E99" },
+              ].map((c) => (
+                <div key={c.name} className="text-center flex-1">
+                  <div className="h-10 rounded-md mb-2" style={{ backgroundColor: c.color }} />
+                  <div className="text-xs font-medium" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text)" }}>{c.name}</div>
+                  <div className="token-value text-xs mt-0.5">{c.color}</div>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs mt-3" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)", lineHeight: 1.5 }}>
+              From Sanskrit k&#x1E5B;mi-ja (&#x0915;&#x0943;&#x092E;&#x093F;&#x091C;) &mdash; the rubrication tradition.
+              Chapter titles, section dividers, drop capitals.
+            </p>
           </div>
         </div>
       </div>

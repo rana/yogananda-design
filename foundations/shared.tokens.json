@@ -166,6 +166,30 @@
     "full":      { "$value": 1.0, "$description": "Full opacity. Primary text, interactive elements." }
   },
 
+  "crimson": {
+    "$type": "color",
+    "$value": "#9B2335",
+    "$description": "Publication crimson. The structural voice of the printed book — chapter titles, section dividers, drop capitals. Extracted from the SRF Autobiography of a Yogi Kindle edition (2025). Used when rendering content from published SRF/YSS books to create visual continuity between physical and digital reading. Etymology: Sanskrit kṛmi-ja (कृमिज) → Arabic qirmiz → English crimson. A word of Indian origin that became the Western bookmaking standard for rubricated chapter headings — the bridge between the two traditions this design system serves.",
+    "$extensions": {
+      "org.yogananda.design": {
+        "principle": "PRI-03",
+        "rationale": "SRF chose this crimson for their most sacred text. In the printed AoY, crimson serves exactly three structural roles: chapter numbers, chapter titles, and section dividers. It never colors body text. This constraint carries forward into digital: crimson marks the book's skeleton, not its flesh. Shared across organizations because AoY is published by both SRF and YSS.",
+        "etymology": "The word 'crimson' comes from Sanskrit kṛmi-ja (कृमिज, 'produced by a worm') — the kermes insect dye. The word traveled from Sanskrit through Arabic (qirmiz) to Old Spanish to English. A word of Indian origin that became the standard for Western fine bookmaking. It is, literally, the bridge between the two traditions this design system serves.",
+        "cultural-lineage": "This is the tradition of rubrication — from Latin rubrica (red earth) — chapter headings in red, practiced in Western manuscripts since the 4th century. SRF's choice of crimson for their most sacred text connects to this millennium-old bookmaking practice while simultaneously echoing Indian devotional red (kumkum, sindoor, the color of Shakti).",
+        "evaluationTrigger": "If SRF publishes a new AoY edition with different accent colors, or if SRF provides an official Pantone/hex specification that differs from this extraction."
+      }
+    }
+  },
+
+  "crimson-opacity": {
+    "$description": "Crimson at calibrated attention levels for publication surfaces. Five levels — intentionally fewer than gold's six. Crimson marks structural hierarchy (chapter titles, dividers, drop caps) but has no 'texture' level because it serves structure, not materiality: there is no crimson paper texture, only crimson structure atop gold atmosphere. The ambient (0.25) and highlight (0.15) values are lower than gold's (0.3, 0.2) because crimson (#9B2335) is perceptually heavier — darker and more saturated than gold (#dcbd23). The same opacity level would feel MORE prominent in crimson. Lower values maintain equivalent felt-weight across hues. This principle — hue-dependent opacity calibration — applies wherever accent colors differ: YSS terracotta similarly reduces gold-highlight from 0.2 to 0.12.",
+    "interactive":  { "$type": "number", "$value": 1.0,  "$description": "Chapter titles, section dividers, publication navigation. Full presence — the book's structure declares itself." },
+    "decorative":   { "$type": "number", "$value": 0.4,  "$description": "Drop capitals, ornamental chapter marks. The illuminated manuscript tradition — beautiful, not calling." },
+    "ambient":      { "$type": "number", "$value": 0.25, "$description": "Book progress indicator, chapter markers in table of contents. Peripheral structural awareness." },
+    "highlight":    { "$type": "number", "$value": 0.15, "$description": "Hover on chapter navigation, active chapter in sidebar. Guiding through the book's structure." },
+    "subliminal":   { "$type": "number", "$value": 0.06, "$description": "Background warmth on publication-specific surfaces. The faintest breath of red — like the binding glimpsed in peripheral vision." }
+  },
+
   "z-index": {
     "$type": "number",
     "$description": "Stacking context. Flat hierarchy — avoid z-index wars.",

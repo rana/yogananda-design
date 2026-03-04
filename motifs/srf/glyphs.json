@@ -1,0 +1,242 @@
+{
+  "$description": "SRF Botanical Glyph Catalog. 11 distinct lotus illustrations extracted from yogananda.org, optimized with SVGO 4.0, converted to fill=\"currentColor\" for theme-responsive rendering. Each glyph is a unique botanical form — together they compose a visual alphabet for ornamental typography.",
+
+  "collection": {
+    "count": 11,
+    "source": "yogananda.org CMS (Craft) public storage — /craft-public-storage/ directory",
+    "format": "SVG with fill=\"currentColor\" — no hardcoded colors",
+    "optimization": "SVGO 4.0.0 default preset + post-processed to remove inline style attributes",
+    "original-naming": "lotus-{number}_{color}_dark.svg (numbers 1–15 with gaps at 2, 4, 11, 13)",
+    "original-colors": {
+      "green_dark": "#6a6d2f",
+      "orange_dark": "#dd6c26",
+      "blue_dark": "#192c55",
+      "yellow_dark": "#dcbd23"
+    },
+    "css-delivery": "CSS mask-image (primary) or inline SVG with currentColor (component)",
+    "css-file": "css/motifs.css"
+  },
+
+  "glyphs": {
+    "lotus-01": {
+      "file": "glyphs/lotus-01.svg",
+      "viewBox": "0 0 763.24 632.56",
+      "aspectRatio": 1.21,
+      "bytes": 34619,
+      "shape": "square",
+      "suggestedRoles": ["ornament", "chapter-close"],
+      "$description": "Compact lotus bloom. Nearly square proportion — versatile for ornamental use at any size."
+    },
+    "lotus-03": {
+      "file": "glyphs/lotus-03.svg",
+      "viewBox": "0 0 1065.14 792.94",
+      "aspectRatio": 1.34,
+      "bytes": 56654,
+      "shape": "landscape",
+      "suggestedRoles": ["divider", "section-break"],
+      "$description": "Broad landscape lotus. The most richly detailed glyph — largest file size in the collection."
+    },
+    "lotus-05": {
+      "file": "glyphs/lotus-05.svg",
+      "viewBox": "0 0 964.72 816.78",
+      "aspectRatio": 1.18,
+      "bytes": 53984,
+      "shape": "square",
+      "suggestedRoles": ["ornament", "hero-accent"],
+      "$description": "Full square bloom with high detail. Second-largest glyph."
+    },
+    "lotus-06": {
+      "file": "glyphs/lotus-06.svg",
+      "viewBox": "0 0 842.44 583.78",
+      "aspectRatio": 1.44,
+      "bytes": 52326,
+      "shape": "landscape",
+      "suggestedRoles": ["divider", "section-break"],
+      "$description": "Wide landscape lotus. Strong horizontal emphasis for section dividers."
+    },
+    "lotus-07": {
+      "file": "glyphs/lotus-07.svg",
+      "viewBox": "0 0 1373.79 474.59",
+      "aspectRatio": 2.89,
+      "bytes": 10236,
+      "shape": "banner",
+      "suggestedRoles": ["divider", "banner-ornament"],
+      "$description": "Ultra-wide banner lotus — the most horizontal glyph at nearly 3:1 ratio. Lightest by file size. Ideal for section dividers and horizontal rules."
+    },
+    "lotus-08": {
+      "file": "glyphs/lotus-08.svg",
+      "viewBox": "0 0 1034.94 438.6",
+      "aspectRatio": 2.36,
+      "bytes": 14852,
+      "shape": "banner",
+      "suggestedRoles": ["divider", "banner-ornament"],
+      "$description": "Wide banner lotus at 2.4:1 ratio. Clean lines, moderate detail."
+    },
+    "lotus-09": {
+      "file": "glyphs/lotus-09.svg",
+      "viewBox": "0 0 813.84 519.47",
+      "aspectRatio": 1.57,
+      "bytes": 28178,
+      "shape": "landscape",
+      "suggestedRoles": ["divider", "ornament"],
+      "$description": "Moderate landscape lotus. Balanced between ornamental and horizontal use."
+    },
+    "lotus-10": {
+      "file": "glyphs/lotus-10.svg",
+      "viewBox": "0 0 989.23 473.84",
+      "aspectRatio": 2.09,
+      "bytes": 16858,
+      "shape": "banner",
+      "suggestedRoles": ["divider", "banner-ornament"],
+      "$description": "Wide banner lotus at 2:1 ratio. Clean and moderately detailed."
+    },
+    "lotus-12": {
+      "file": "glyphs/lotus-12.svg",
+      "viewBox": "0 0 733.02 614.08",
+      "aspectRatio": 1.19,
+      "bytes": 22297,
+      "shape": "square",
+      "suggestedRoles": ["ornament", "chapter-close"],
+      "$description": "Compact square lotus. Smallest footprint in the square group."
+    },
+    "lotus-14": {
+      "file": "glyphs/lotus-14.svg",
+      "viewBox": "0 0 1037.46 1135.43",
+      "aspectRatio": 0.91,
+      "bytes": 29878,
+      "shape": "portrait",
+      "suggestedRoles": ["hero-accent", "empty-state", "meditation-ornament"],
+      "$description": "The only portrait-oriented glyph — taller than wide (0.91:1). Unique vertical presence. Suited for focal points and contemplative compositions."
+    },
+    "lotus-15": {
+      "file": "glyphs/lotus-15.svg",
+      "viewBox": "0 0 784.73 767.08",
+      "aspectRatio": 1.02,
+      "bytes": 23768,
+      "shape": "square",
+      "suggestedRoles": ["ornament", "favicon-candidate", "chapter-close"],
+      "$description": "Nearly perfect square (1.02:1). The most balanced glyph — works at any size."
+    }
+  },
+
+  "icons": {
+    "donate-flower": {
+      "file": "icons/donate-flower.svg",
+      "viewBox": "0 0 33 23",
+      "bytes": 8066,
+      "$description": "Lotus icon used alongside donation CTA. Same viewBox as canonical lotus.svg."
+    },
+    "audio-icon": {
+      "file": "icons/audio-icon.svg",
+      "viewBox": "0 0 11 11",
+      "bytes": 648,
+      "$description": "Small audio indicator icon. 11x11 viewBox, minimal detail."
+    },
+    "audio-video-icon": {
+      "file": "icons/audio-video-icon.svg",
+      "viewBox": "0 0 46 21",
+      "bytes": 1236,
+      "$description": "Combined audio/video indicator icon."
+    },
+    "gold-lotus-transparent": {
+      "file": "icons/gold-lotus-transparent.svg",
+      "viewBox": "0 0 33 23",
+      "bytes": 8078,
+      "$description": "Brand lotus variant. Same viewBox as canonical lotus.svg, different path detail."
+    },
+    "flower-registration": {
+      "file": "icons/flower-registration.svg",
+      "viewBox": "0 0 87 72",
+      "bytes": 39199,
+      "$description": "Elaborate floral registration mark. Most detailed icon. Highly ornamental."
+    }
+  },
+
+  "shape-groups": {
+    "banner": {
+      "glyphs": ["lotus-07", "lotus-08", "lotus-10"],
+      "aspectRatioRange": "2.0–2.9",
+      "$description": "Ultra-wide horizontal forms. Natural section dividers. Use at 48–120px wide."
+    },
+    "landscape": {
+      "glyphs": ["lotus-03", "lotus-06", "lotus-09"],
+      "aspectRatioRange": "1.3–1.6",
+      "$description": "Moderate horizontal forms. Work as dividers or standalone ornaments."
+    },
+    "square": {
+      "glyphs": ["lotus-01", "lotus-05", "lotus-12", "lotus-15"],
+      "aspectRatioRange": "1.0–1.2",
+      "$description": "Balanced forms. Most versatile — ornaments, chapter endings, empty states."
+    },
+    "portrait": {
+      "glyphs": ["lotus-14"],
+      "aspectRatioRange": "0.9",
+      "$description": "Taller than wide. Unique vertical presence. Hero accents, meditation focal points."
+    }
+  },
+
+  "color-voices": {
+    "$description": "Five color voices of one devotional palette. Four discovered archaeologically from the original yogananda.org lotus SVGs; the fifth (crimson) from the AoY Kindle edition. Together they trace an Indian devotional spectrum: gold (tejas — spiritual radiance), olive-green (prakṛti — living nature), navy (nīla — meditative depth), burnt orange (tapas — renunciant warmth), crimson (kumkum — auspicious power). Default voice is sacred (gold). Colors respond to theme — dark themes (including YSS night and devotion) get lighter values for visibility. Crimson activates only under data-publication for structural motifs (divider, close); breath motifs stay gold. CSS: css/motifs.css. Semantics: attention-gradient.language.json motif-integration.",
+    "sacred": {
+      "role": "Contemplative, spiritual illumination",
+      "symbolism": "tejas — spiritual radiance",
+      "css": "--motif-sacred: var(--color-gold)",
+      "source": "SRF Gold — the primary design accent"
+    },
+    "growth": {
+      "role": "Nature, unfolding, practical application",
+      "symbolism": "prakṛti — living nature",
+      "css": "--motif-growth",
+      "light": "#6a6d2f",
+      "dark": "#9fa258",
+      "source": "Original green_dark from yogananda.org lotus SVGs"
+    },
+    "devotion": {
+      "role": "Depth, meditation, advanced teachings",
+      "symbolism": "nīla — meditative depth",
+      "css": "--motif-devotion",
+      "light": "#192c55",
+      "dark": "#5d7be3",
+      "source": "Original blue_dark from yogananda.org lotus SVGs"
+    },
+    "warmth": {
+      "role": "Energy, teaching, dynamic expression",
+      "symbolism": "tapas — renunciant warmth",
+      "css": "--motif-warmth",
+      "light": "#dd6c26",
+      "dark": "#e8914a",
+      "source": "Original orange_dark from yogananda.org lotus SVGs"
+    },
+    "crimson": {
+      "role": "Publication structure, book skeleton",
+      "symbolism": "kumkum — auspicious power",
+      "css": "--motif-crimson: var(--color-crimson)",
+      "source": "AoY Kindle edition chapter titles and section dividers (2025)",
+      "activation": "data-publication attribute on reader container"
+    }
+  },
+
+  "semantic-roles": {
+    "divider": {
+      "$description": "Section break between content blocks. Centered, generous vertical margin. Banner or landscape glyphs preferred.",
+      "cssClass": "motif-divider",
+      "height": "24px",
+      "opacity": "var(--gold-decorative)",
+      "spacing": "var(--space-spacious)"
+    },
+    "breath": {
+      "$description": "Lighter pause between paragraphs or thoughts. More subtle than a divider.",
+      "cssClass": "motif-breath",
+      "height": "16px",
+      "opacity": "var(--gold-ambient)",
+      "spacing": "var(--space-generous)"
+    },
+    "close": {
+      "$description": "Chapter ending ornament. Small, centered, final. Square glyphs preferred.",
+      "cssClass": "motif-close",
+      "height": "16px",
+      "opacity": "var(--gold-decorative)",
+      "spacing": "var(--space-spacious) / var(--space-default)"
+    }
+  }
+}

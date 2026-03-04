@@ -6,11 +6,19 @@ import ThemeSwitcher from "./ThemeSwitcher";
 
 const sections = [
   { id: "themes", label: "Themes" },
-  { id: "registers", label: "Registers" },
-  { id: "gradient", label: "Gradient" },
+  { id: "motifs", label: "Motifs" },
   { id: "typography", label: "Type" },
-  { id: "calm", label: "Calm" },
+  { id: "registers", label: "Registers" },
+  { id: "voices", label: "Voices" },
+  { id: "gradient", label: "Gradient" },
+  { id: "reading", label: "Reading" },
+  { id: "rasa", label: "Rasa" },
+  { id: "commentary", label: "Commentary" },
+  { id: "theory", label: "Theory" },
   { id: "transitions", label: "Transitions" },
+  { id: "calm", label: "Calm" },
+  { id: "accessibility", label: "A11y" },
+  { id: "print", label: "Print" },
   { id: "patterns", label: "Patterns" },
 ];
 

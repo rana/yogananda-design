@@ -74,8 +74,7 @@
     "$description": "When the seeker switches color themes. The entire page transforms. This is a content revelation — smooth but not slow.",
     "duration": "content (300ms)",
     "properties": "background-color, color, border-color. All CSS custom properties transition simultaneously.",
-    "reduced-motion": "instant — no transition when prefers-reduced-motion: reduce",
-    "circadian": "background color shifts are NOT transitioned — they're too subtle to notice, and transitioning would draw attention to something that should be unconscious."
+    "reduced-motion": "instant — no transition when prefers-reduced-motion: reduce"
   },
 
   "loading-states": {

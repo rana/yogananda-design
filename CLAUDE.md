@@ -23,7 +23,7 @@ The canonical visual design language for the Yogananda digital ecosystem. Two or
 Quantifiable design tokens: colors, typography, spacing, duration, shadows. Organization-specific files (SRF, YSS) plus shared foundations. Locale overrides for script-specific typography.
 
 **Layer 2: Semantics** (`semantics/*.language.json`) — Custom format
-Design language rules: emotional registers, attention gradients, calm technology constraints, accessibility requirements, typographic conventions. References Layer 1 tokens by name.
+Design language rules: emotional registers (with rasa experiential dimension), attention gradients, calm technology constraints, aesthetic theory (governing principles from the Indian literary tradition), accessibility requirements, typographic conventions. References Layer 1 tokens by name.
 
 **Layer 3: Patterns** (`patterns/*.pattern.json`) — Custom format
 Composition recipes: pre-composed molecules (passage card, search result, chapter transition). Named combinations of Layer 1 tokens governed by Layer 2 semantics. Implementation-agnostic.
@@ -39,13 +39,13 @@ css/
   foundations.css           ← Layer 1: All custom properties
   themes/srf.css           ← Themes: sepia, earth, dark, meditate, gathering, auto
   themes/yss.css           ← Themes: ashram, sandstone, night, devotion + org overrides
-  themes/circadian.css     ← DES-011: time-of-day warmth bands
   themes/high-contrast.css ← Accessibility: prefers-contrast overrides
   typography/fonts.css     ← @font-face: Latin, Devanagari, devotional (7 families)
   typography/classes.css   ← .reading-text, .display-text, .ui-text + Hindi + communal
-  typography/features.css  ← .drop-cap, .reader-epigraph, .reader-citation, .book-figure
+  typography/features.css  ← .drop-cap, .reader-epigraph, .reader-citation, .book-figure, .reader-scene-break, .reader-verse
   calm.css                 ← Layer 2: Focus rings, reduced-motion, text-only, sr-only
-  attention.css            ← Layer 2: Gold/marigold at named attention levels
+  attention.css            ← Layer 2: Gold/marigold/crimson at named attention levels
+  motifs.css               ← Motif system: botanical glyphs × 5 color voices, mask-image
   patterns/reading-surface.css  ← Layer 3: Dwell, focus, present, quiet, golden thread
   patterns/print.css            ← Layer 3: Print stylesheet
   patterns/preferences.css      ← Layer 3: Font size, line spacing user preferences
@@ -59,14 +59,15 @@ css/
 
 | Task | Load these files |
 |------|-----------------|
-| **Any UX work** | `foundations/shared.tokens.json` + organization file (SRF or YSS) + `semantics/calm-technology.language.json` |
+| **Any UX work** | `foundations/shared.tokens.json` + organization file (SRF or YSS) + `semantics/calm-technology.language.json` + `semantics/aesthetic-theory.language.json` |
 | **Building a reading surface** | + `semantics/emotional-registers.language.json` + `semantics/typography.language.json` + `patterns/reading-surface.pattern.json` |
 | **Building search UI** | + `patterns/search.pattern.json` + `semantics/attention-gradient.language.json` |
 | **Building navigation** | + `patterns/navigation.pattern.json` + `patterns/transitions.pattern.json` |
 | **Building for Hindi/Devanagari** | + `foundations/locale/hi.tokens.json` + `semantics/typography.language.json` |
 | **Building for YSS** | Use `foundations/yss.tokens.json` instead of SRF. Same shared + semantics + patterns. |
 | **Validating a component** | `semantics/calm-technology.language.json` (check forbidden list) + `semantics/accessibility.language.json` |
-| **Choosing an icon or motif** | `motifs/srf/` or `motifs/yss/` + `brand/image-guidelines.json` |
+| **Building contemplative UI** | + `patterns/contemplation.pattern.json` |
+| **Choosing an icon or motif** | `motifs/srf/glyphs.json` + `css/motifs.css` + `motifs/srf/` or `motifs/yss/` + `brand/image-guidelines.json` |
 | **Understanding the brand** | `brand/image-guidelines.json` + organization token file `$description` fields |
 
 ### For web surfaces consuming CSS:
@@ -119,7 +120,7 @@ This design system serves the **Yogananda digital ecosystem**:
 
 - **yogananda-teachings** (portal) — SRF design language. The reading room. First and primary consumer.
 - **yogananda-platform** — Infrastructure dashboard. Lighter brand touch.
-- **Future YSS surface** (PRO-043) — YSS design language. The ashram. Second consumer when activated.
+- **YSS surface** — YSS design language. The ashram. Second consumer.
 - **PDF generation** (ADR-050) — Shared tokens for consistent output across media.
 - **Any future Yogananda digital property** — the design language, not any single site.
 

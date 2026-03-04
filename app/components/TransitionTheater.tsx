@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 const transitions = [
   {
@@ -190,6 +190,232 @@ function StaggerDemo() {
   );
 }
 
+/* ── Prāṇa Breath Demo ──────────────────────────────────────────── */
+/* Three-phase breath: pūraka (approach, 300ms, decelerate) →
+   kumbhaka (hold, indefinite) → recaka (release, 800ms, accelerate).
+   The ratio 1:4:2 from Patañjali — retention is the purpose. */
+
+type BreathPhase = "puraka" | "kumbhaka" | "recaka" | "rest";
+
+const PURAKA_MS = 300;
+const KUMBHAKA_MS = 1200; /* One breath cycle hold */
+const RECAKA_MS = 800;
+const REST_MS = 600;
+
+function BreathDemo() {
+  const [phase, setPhase] = useState<BreathPhase>("rest");
+  const [breathing, setBreathing] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cycleRef = useRef(0);
+
+  const clearTimer = useCallback(() => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+  }, []);
+
+  const runCycle = useCallback(() => {
+    /* Pūraka — inhalation */
+    setPhase("puraka");
+    timerRef.current = setTimeout(() => {
+      /* Kumbhaka — retention (the purpose) */
+      setPhase("kumbhaka");
+      timerRef.current = setTimeout(() => {
+        /* Recaka — exhalation */
+        setPhase("recaka");
+        timerRef.current = setTimeout(() => {
+          cycleRef.current += 1;
+          if (cycleRef.current < 3) {
+            /* Brief rest between cycles */
+            setPhase("rest");
+            timerRef.current = setTimeout(() => runCycle(), REST_MS);
+          } else {
+            setPhase("rest");
+            setBreathing(false);
+          }
+        }, RECAKA_MS);
+      }, KUMBHAKA_MS);
+    }, PURAKA_MS);
+  }, []);
+
+  useEffect(() => () => clearTimer(), [clearTimer]);
+
+  const start = () => {
+    clearTimer();
+    cycleRef.current = 0;
+    setBreathing(true);
+    runCycle();
+  };
+
+  const phaseLabel = {
+    rest: "Rest",
+    puraka: "Pūraka (inhale)",
+    kumbhaka: "Kumbhaka (hold)",
+    recaka: "Recaka (exhale)",
+  }[phase];
+
+  const phaseDesc = {
+    rest: "The space between breaths",
+    puraka: "300ms \u00b7 decelerate \u00b7 content arrives",
+    kumbhaka: "1200ms \u00b7 the reader is with the teaching",
+    recaka: "800ms \u00b7 accelerate \u00b7 gentle release",
+  }[phase];
+
+  /* Circle scale: rest=0.3, puraka=1.0, kumbhaka=1.0, recaka=0.3 */
+  const scale = phase === "puraka" || phase === "kumbhaka" ? 1 : 0.3;
+  /* Transition properties per phase */
+  const transition = {
+    rest: "none",
+    puraka: `transform ${PURAKA_MS}ms var(--easing-decelerate), opacity ${PURAKA_MS}ms var(--easing-decelerate)`,
+    kumbhaka: "none",
+    recaka: `transform ${RECAKA_MS}ms var(--easing-accelerate), opacity ${RECAKA_MS}ms var(--easing-accelerate)`,
+  }[phase];
+
+  return (
+    <div
+      className="theme-transition rounded-md p-5 mt-6"
+      style={{
+        backgroundColor: "var(--color-bg-secondary)",
+        border: "1px solid var(--color-border)",
+      }}
+    >
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <h3
+            style={{
+              fontFamily: "var(--font-ui)",
+              fontSize: "14px",
+              fontWeight: 600,
+              color: "var(--color-text)",
+            }}
+          >
+            Prāṇa &mdash; Breath Rhythm
+          </h3>
+          <div
+            style={{
+              fontFamily: "var(--font-ui)",
+              fontSize: "12px",
+              color: "var(--color-text-secondary)",
+              marginTop: "2px",
+            }}
+          >
+            The interface breathes. Approach is quick, the held state is
+            sacrosanct, release is gentle.
+          </div>
+        </div>
+        <button
+          onClick={start}
+          disabled={breathing}
+          className="cursor-pointer shrink-0 px-3 py-1 rounded-full text-xs"
+          style={{
+            fontFamily: "var(--font-ui)",
+            fontWeight: 600,
+            backgroundColor: breathing
+              ? "var(--color-bg)"
+              : "var(--color-gold)",
+            color: breathing
+              ? "var(--color-text-secondary)"
+              : "var(--color-navy)",
+            border: breathing
+              ? "1px solid var(--color-border)"
+              : "none",
+            opacity: breathing ? 0.5 : 1,
+          }}
+        >
+          {breathing ? "Breathing\u2026" : "Breathe"}
+        </button>
+      </div>
+
+      {/* Visualization */}
+      <div className="flex items-center gap-6">
+        {/* Breath circle */}
+        <div
+          className="shrink-0 flex items-center justify-center"
+          style={{ width: "100px", height: "100px" }}
+        >
+          <div
+            style={{
+              width: "80px",
+              height: "80px",
+              borderRadius: "50%",
+              backgroundColor: "var(--color-gold)",
+              opacity: scale === 1 ? 0.6 : 0.15,
+              transform: `scale(${scale})`,
+              transition,
+            }}
+          />
+        </div>
+
+        {/* Phase info */}
+        <div className="flex-1">
+          <div
+            style={{
+              fontFamily: "var(--font-ui)",
+              fontSize: "13px",
+              fontWeight: 600,
+              color: phase === "kumbhaka" ? "var(--color-gold)" : "var(--color-text)",
+              marginBottom: "4px",
+              transition: "color var(--motion-interaction) var(--easing-standard)",
+            }}
+          >
+            {phaseLabel}
+          </div>
+          <div
+            style={{
+              fontFamily: "var(--font-ui)",
+              fontSize: "12px",
+              color: "var(--color-text-secondary)",
+              lineHeight: 1.5,
+            }}
+          >
+            {phaseDesc}
+          </div>
+
+          {/* Phase timeline — three segments */}
+          <div
+            className="flex gap-1 mt-3"
+            style={{ height: "4px" }}
+          >
+            <div
+              className="rounded-full"
+              style={{
+                flex: PURAKA_MS,
+                backgroundColor: "var(--color-gold)",
+                opacity: phase === "puraka" ? 0.8 : 0.2,
+                transition: "opacity var(--motion-interaction) var(--easing-standard)",
+              }}
+            />
+            <div
+              className="rounded-full"
+              style={{
+                flex: KUMBHAKA_MS,
+                backgroundColor: "var(--color-gold)",
+                opacity: phase === "kumbhaka" ? 0.8 : 0.2,
+                transition: "opacity var(--motion-interaction) var(--easing-standard)",
+              }}
+            />
+            <div
+              className="rounded-full"
+              style={{
+                flex: RECAKA_MS,
+                backgroundColor: "var(--color-gold)",
+                opacity: phase === "recaka" ? 0.8 : 0.2,
+                transition: "opacity var(--motion-interaction) var(--easing-standard)",
+              }}
+            />
+          </div>
+          <div
+            className="flex mt-1"
+            style={{ fontSize: "10px", fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)" }}
+          >
+            <span style={{ flex: PURAKA_MS }}>300ms</span>
+            <span style={{ flex: KUMBHAKA_MS, textAlign: "center" }}>1200ms</span>
+            <span style={{ flex: RECAKA_MS, textAlign: "right" }}>800ms</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function TransitionTheater() {
   return (
     <section id="transitions" className="showcase-section">
@@ -329,6 +555,7 @@ export default function TransitionTheater() {
         </div>
 
         <StaggerDemo />
+        <BreathDemo />
       </div>
     </section>
   );

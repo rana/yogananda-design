@@ -77,6 +77,32 @@
     ]
   },
 
+  "botanical-glyphs": {
+    "$description": "Extended lotus motif system. 11 distinct botanical illustrations extracted from yogananda.org, optimized to currentColor SVGs. Themed via CSS mask-image — color set by the design system, not the SVG. Four color voices: sacred (gold), growth (green), devotion (blue), warmth (orange).",
+    "catalog": "motifs/srf/glyphs.json",
+    "css": "css/motifs.css",
+    "directory": "motifs/srf/glyphs/",
+    "count": 11,
+    "shape-groups": {
+      "banner": "lotus-07, lotus-08, lotus-10 — wide, ideal for dividers",
+      "landscape": "lotus-03, lotus-06, lotus-09 — moderate width, dividers or ornaments",
+      "square": "lotus-01, lotus-05, lotus-12, lotus-15 — balanced, versatile",
+      "portrait": "lotus-14 — taller than wide, unique focal point"
+    },
+    "color-voices": {
+      "sacred": "var(--motif-sacred) — gold, contemplative (default)",
+      "growth": "var(--motif-growth) — green, nature/practical",
+      "devotion": "var(--motif-devotion) — blue, depth/meditation",
+      "warmth": "var(--motif-warmth) — orange, energy/teaching"
+    },
+    "usage-example": "<div class=\"motif motif-lotus-07 motif-divider\"></div>",
+    "never": [
+      "Same constraints as canonical lotus — never rotate, never tile, never scale below 16px, never apply effects",
+      "Never mix color voices within a single section — pick one voice per editorial context",
+      "Never use all 11 glyphs on a single page — select 2–3 for visual consistency"
+    ]
+  },
+
   "illustrations": {
     "$description": "The portal currently uses no custom illustrations. If illustrations are added in the future, they should follow these guidelines.",
     "style": "Line art in SRF Gold or Navy. Simple, elegant, non-photorealistic. The illustration style should echo woodcut or engraving traditions — scholarly, not whimsical.",

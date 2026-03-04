@@ -1,29 +1,19 @@
-"use client";
-
-import { useDesign } from "./DesignProvider";
-
 const orgData = {
   srf: {
     color: "#1a2744",
     textOnColor: "#e8e4dc",
     hex: "#1a2744",
     themeCount: 6,
-    voiceLabel: "Voices",
-    voiceCount: 2,
   },
   yss: {
     color: "#bb4f27",
     textOnColor: "#fff",
     hex: "#bb4f27",
     themeCount: 5,
-    voiceLabel: "Voices",
-    voiceCount: 2,
   },
 };
 
 export default function Hero() {
-  const { org } = useDesign();
-  const data = orgData[org];
   const totalThemes = orgData.srf.themeCount + orgData.yss.themeCount - 1; // earth is shared
 
   return (
@@ -88,68 +78,41 @@ export default function Hero() {
         </p>
 
         <div
-          className="flex justify-center gap-6 mt-8 text-center"
+          className="flex justify-center gap-6 mt-8 text-center flex-wrap"
           style={{ fontFamily: "var(--font-ui)", fontSize: "13px" }}
         >
-          <div>
-            <div
-              className="display-text"
-              style={{ fontSize: "24px", color: "var(--color-gold)" }}
-            >
-              3
+          {[
+            { value: "3", label: "Layers" },
+            { value: "2", label: "Orgs" },
+            { value: String(totalThemes), label: "Themes" },
+            { value: "5", label: "Registers" },
+            { value: "11", label: "Glyphs" },
+            { value: "3", label: "Voices" },
+            { value: "7", label: "Principles" },
+          ].map((stat, i, arr) => (
+            <div key={stat.label} className="flex items-center gap-6">
+              <div>
+                <div
+                  className="display-text"
+                  style={{ fontSize: "24px", color: "var(--color-gold)" }}
+                >
+                  {stat.value}
+                </div>
+                <div style={{ color: "var(--color-text-secondary)" }}>
+                  {stat.label}
+                </div>
+              </div>
+              {i < arr.length - 1 && (
+                <div
+                  style={{
+                    width: "1px",
+                    background: "var(--color-border)",
+                    alignSelf: "stretch",
+                  }}
+                />
+              )}
             </div>
-            <div style={{ color: "var(--color-text-secondary)" }}>Layers</div>
-          </div>
-          <div
-            style={{
-              width: "1px",
-              background: "var(--color-border)",
-              alignSelf: "stretch",
-            }}
-          />
-          <div>
-            <div
-              className="display-text"
-              style={{ fontSize: "24px", color: "var(--color-gold)" }}
-            >
-              2
-            </div>
-            <div style={{ color: "var(--color-text-secondary)" }}>Orgs</div>
-          </div>
-          <div
-            style={{
-              width: "1px",
-              background: "var(--color-border)",
-              alignSelf: "stretch",
-            }}
-          />
-          <div>
-            <div
-              className="display-text"
-              style={{ fontSize: "24px", color: "var(--color-gold)" }}
-            >
-              {totalThemes}
-            </div>
-            <div style={{ color: "var(--color-text-secondary)" }}>Themes</div>
-          </div>
-          <div
-            style={{
-              width: "1px",
-              background: "var(--color-border)",
-              alignSelf: "stretch",
-            }}
-          />
-          <div>
-            <div
-              className="display-text"
-              style={{ fontSize: "24px", color: "var(--color-gold)" }}
-            >
-              5
-            </div>
-            <div style={{ color: "var(--color-text-secondary)" }}>
-              Registers
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </header>

@@ -12,12 +12,13 @@ yogananda-design/
 ├── foundations/                            → Layer 1: W3C DTCG design tokens
 │   ├── shared.tokens.json                 → Shared across SRF + YSS
 │   ├── srf.tokens.json                    → SRF visual language
-│   ├── yss.tokens.json                    → YSS visual language (scaffold)
+│   ├── yss.tokens.json                    → YSS visual language
 │   └── locale/
 │       └── hi.tokens.json                 → Hindi/Devanagari overrides
 ├── semantics/                             → Layer 2: Design language rules
 │   ├── calm-technology.language.json      → PRI-08 constraints
-│   ├── emotional-registers.language.json  → Content → treatment mapping
+│   ├── aesthetic-theory.language.json     → Governing principles (dhvani, rasa, bindu, prāṇa…)
+│   ├── emotional-registers.language.json  → Content → treatment mapping + rasa dimension
 │   ├── attention-gradient.language.json   → Opacity/emphasis hierarchy
 │   ├── accessibility.language.json        → WCAG AA requirements
 │   └── typography.language.json           → Typographic conventions per script
@@ -29,11 +30,11 @@ yogananda-design/
 │   └── transitions.pattern.json           → Arrivals, departures, chapter breath
 ├── fonts/                                 → Self-hosted web fonts (GDPR-compliant)
 │   ├── latin/                             → Merriweather, Lora, Open Sans
-│   ├── devanagari/                        → Noto Serif/Sans Devanagari (future)
+│   ├── devanagari/                        → Noto Serif/Sans Devanagari, Asar
 │   └── manifest.json                      → Font metadata + loading strategy
 ├── motifs/                                → SVG visual elements
 │   ├── srf/                               → Gold lotus, ornaments
-│   └── yss/                               → (scaffold)
+│   └── yss/                               → (empty — awaiting YSS motif assets)
 └── brand/
     └── image-guidelines.json              → Photography usage, copyright, sources
 ```
@@ -51,20 +52,20 @@ Uses the [W3C Design Tokens Community Group](https://www.designtokens.org/) form
 |---|-----|-----|-----|
 | **Metaphor** | Entering a library | The temple courtyard | Entering an ashram |
 | **Primary color** | Navy #1a2744 | Charcoal #4C4C4C | Terracotta #bb4f27 |
-| **Accent** | Gold #dcbd23 | Marigold #DC6A10 | (TBD — awaiting YSS input) |
+| **Accent** | Gold #dcbd23 | Marigold #DC6A10 | Terracotta #BB4F27 |
 | **Background** | Warm Cream #FAF8F5 | White #FFFFFF | Warm Clay #f2e8de |
-| **Display font** | Lora | ArcherPro | Noto Serif Devanagari |
+| **Display font** | Lora | ArcherPro | Merienda |
 | **UI font** | Open Sans | Helvetica Neue | Raleway |
-| **Surfaces** | Reading portal, meditation | Events, convocation, outreach | (scaffold) |
-| **Status** | Complete | Complete | Scaffold |
+| **Surfaces** | Reading portal, meditation | Events, convocation, outreach | Ashram reading, devotional |
+| **Status** | Complete | Complete | Themes complete |
 
 ## How to Use
 
 ### For AI Designers (Primary Use Case)
 
 1. **Start here:** Read `CLAUDE.md` — it tells you which files to load for any task.
-2. **Always load:** `foundations/shared.tokens.json` + your organization's token file (`srf.tokens.json` or `yss.tokens.json`) + `semantics/calm-technology.language.json`.
-3. **For reading surfaces:** Add `semantics/emotional-registers.language.json` + `patterns/reading-surface.pattern.json`.
+2. **Always load:** `foundations/shared.tokens.json` + your organization's token file (`srf.tokens.json` or `yss.tokens.json`) + `semantics/calm-technology.language.json` + `semantics/aesthetic-theory.language.json`.
+3. **For reading surfaces:** Add `semantics/emotional-registers.language.json` (includes rasa experiential dimension) + `patterns/reading-surface.pattern.json` (includes commentary hierarchy and temporal rhythm).
 4. **For search UI:** Add `patterns/search.pattern.json` + `semantics/attention-gradient.language.json`.
 5. **For Hindi content:** Add `foundations/locale/hi.tokens.json` + `semantics/typography.language.json`.
 6. **To validate:** Check your output against `semantics/calm-technology.language.json` (forbidden list) and `semantics/accessibility.language.json` (minimums).
@@ -106,7 +107,7 @@ Layer 3: Patterns (*.pattern.json)      — HOW they compose together
 ```
 
 **Foundations** are W3C DTCG standard — interoperable with design tooling.
-**Semantics** are custom — they capture what no token spec can: emotional registers, forbidden patterns, attention hierarchies.
+**Semantics** are custom — they capture what no token spec can: emotional registers (with rasa experiential axis), forbidden patterns, attention hierarchies, governing aesthetic principles from the Indian literary tradition.
 **Patterns** are composition recipes — named molecules built from foundation atoms, governed by semantic rules.
 
 ## Related

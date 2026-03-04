@@ -20,6 +20,7 @@
   --color-text-secondary: #666666;
   --color-border: #EDEDED;
   --color-gold: #BB4F27;
+  --color-crimson: #9B2335;
   --color-surface: #F5F5F5;
 }
 
@@ -34,6 +35,7 @@
   --color-text-secondary: #6B5240;
   --color-border: #D4C4A0;
   --color-gold: #A87D25;
+  --color-crimson: #8A1F2E;
   --color-surface: #FFF8E7;
 }
 
@@ -48,6 +50,7 @@
   --color-text-secondary: #A89888;
   --color-border: #3D2E22;
   --color-gold: #D4693D;
+  --color-crimson: #E85D6F;
   --color-surface: #2A1F18;
 }
 
@@ -62,6 +65,7 @@
   --color-text-secondary: #C4A988;
   --color-border: #4A3528;
   --color-gold: #E8A830;
+  --color-crimson: #E8706C;
   --color-surface: #3A2218;
 }
 
@@ -94,4 +98,11 @@
   --gold-highlight: 0.12;
   --gold-subliminal: 0.06;
   --gold-texture: 0.03;
+
+  /* Publication crimson: NOT set here. Each YSS theme already defines
+     its own --color-crimson (ashram #9B2335, sandstone #8A1F2E,
+     night #E85D6F, devotion #E8706C). Setting it at the org level
+     would clobber those theme-adapted values due to cascade order
+     (same specificity, org block later in file). The :root fallback
+     (#9B2335) handles any unthemed edge case. */
 }

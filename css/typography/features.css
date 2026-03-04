@@ -3,7 +3,11 @@
    ══════════════════════════════════════════════════════════════════
    The invisible details that make text feel professionally set.
    Drop capitals, small caps, hanging punctuation, epigraphs,
-   citations, footnotes, figures.
+   citations, footnotes, figures, scene breaks, verse formatting.
+
+   Interior chapter rhythm: the hierarchy of pauses —
+     Chapter break > Section divider (motif) > Scene break
+     (swelled rule) > Breath (motif) > Whitespace
 
    These are the web expression of semantics/typography.language.json.
 
@@ -165,14 +169,96 @@
   margin-inline: auto;
 }
 
-/* ── Lotus Divider ───────────────────────────────────────────── */
-/* Gold lotus section divider. Decorative attention level. */
+/* ── Scene Break — Interior Chapter Rhythm ──────────────────── */
+/* The pause between scenes within a chapter. More present than
+   whitespace, less ornamental than a motif divider. Implemented
+   as a swelled rule — the Western bookmaking form where the line
+   thickens at center and tapers to nothing at the edges. A linear
+   gradient achieves this in pure CSS: no SVG, no font dependency.
 
-.lotus-divider {
-  display: flex;
-  justify-content: center;
-  padding: var(--space-spacious) 0;
+   History: Swelled rules appear in European printing from the
+   16th century forward. They are the typographic equivalent of
+   the musical fermata — hold this pause. In Indian bookmaking,
+   the same rhythmic function is served by small lotus ornaments
+   or centered dots. The AoY Kindle edition uses a similar
+   device between scenes within chapters.
+
+   In publication context, shifts to crimson (the book's voice).
+   In text-only mode, degrades gracefully to nothing (whitespace
+   handles the pause). The motif system offers an alternative:
+   .motif .motif-lotus .motif-breath for a botanical pause. */
+
+.reader-scene-break {
+  height: 1px;
+  border: none;
+  max-width: 5em;
+  margin-inline: auto;
+  margin-block: var(--space-spacious);
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-gold) 20%,
+    var(--color-gold) 80%,
+    transparent
+  );
   opacity: var(--gold-decorative);
+}
+
+[data-publication] .reader-scene-break {
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-crimson) 20%,
+    var(--color-crimson) 80%,
+    transparent
+  );
+  opacity: var(--crimson-decorative);
+}
+
+/* ── Verse / Poetry ────────────────────────────────────────── */
+/* Poetry and verse quotations from the teachings. Line breaks
+   preserved as authored — never reflowed. Centered, italic,
+   generous surrounding whitespace. Sacred register content
+   (the words are the guru's). */
+
+.reader-verse {
+  text-align: center;
+  font-family: var(--font-reading);
+  font-style: italic;
+  font-weight: 300;
+  white-space: pre-line;
+  margin-block: var(--space-generous);
+  padding-inline: 2rem;
+  line-height: 1.9;
+}
+
+/* ── Publication Features ───────────────────────────────────── */
+/* When data-publication is active, structural book elements
+   shift from theme text color to crimson — mirroring the
+   printed book's typography. The portal chrome (gold) remains
+   unchanged. Two visual layers: the book (crimson) inside
+   the portal (gold).
+   Source: AoY Kindle edition typography */
+
+/* Chapter titles in publication context */
+[data-publication] .chapter-title,
+[data-publication] .display-text {
+  color: var(--color-crimson);
+}
+
+/* Chapter label (e.g. "CHAPTER 1") in publication context */
+[data-publication] .chapter-label {
+  color: var(--color-crimson);
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+/* Drop capital in publication context — the illuminated
+   manuscript tradition. Crimson initial letter at chapter
+   openings. Latin only (ADR-080). */
+[data-publication] .drop-cap {
+  color: var(--color-crimson);
+  opacity: var(--crimson-decorative);
 }
 
 /* ── Paper Texture ───────────────────────────────────────────── */

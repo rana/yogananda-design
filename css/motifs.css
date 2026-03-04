@@ -1,0 +1,340 @@
+/* ══════════════════════════════════════════════════════════════════
+   Motif System — Botanical Glyphs & Icons
+   ══════════════════════════════════════════════════════════════════
+   The lotus alphabet. 11 distinct botanical forms × 5 color voices
+   = a rich ornamental type system for section dividers, chapter
+   ornaments, breathing pauses, and decorative accents.
+
+   Five color voices form one devotional palette — a spectrum that
+   mirrors Indian sacred color symbolism. Four are native to the
+   botanical glyph (discovered in the original yogananda.org SVGs).
+   The fifth (crimson) is native to the published book (discovered
+   in the AoY Kindle edition). Together they trace: gold (tejas —
+   spiritual radiance), olive-green (prakṛti — living nature), navy
+   (nīla — meditative depth), burnt orange (tapas — renunciant
+   warmth), and crimson (kumkum — auspicious power). The palette is
+   one palette; the activation context differs.
+
+   Technique: CSS mask-image. The SVG provides shape; background-color
+   provides fill. Theme-responsive color without inline SVG or
+   JavaScript — pure CSS theming.
+
+   Accessibility: Motifs are decorative (aria-hidden="true"). They
+   carry no semantic content. Never animated (PRI-08). Density should
+   not exceed one motif per content section.
+
+   Usage:
+     <div class="motif motif-lotus-07 motif-divider" aria-hidden="true"></div>
+     <span class="motif motif-lotus-15 motif-growth" aria-hidden="true"></span>
+
+   Requires: foundations.css (for color, motion, spacing tokens)
+   Source: motifs/srf/glyphs.json (catalog metadata)
+           motifs/srf/glyphs/*.svg (currentColor SVGs)
+           motifs/srf/icons/*.svg (currentColor SVGs)
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Motif Color Tokens ──────────────────────────────────────── */
+/* Five color voices of one devotional palette.
+
+   Sacred (gold)    — tejas, spiritual radiance. The contemplative
+                      voice's accent. Bridges motifs to the
+                      attention gradient. Default voice.
+   Growth (olive)   — prakṛti, living nature. The lotus stem from
+                      which the bloom rises. Purely botanical — no
+                      direct design voice mapping.
+   Devotion (navy)  — nīla, meditative depth. Nearly identical to
+                      contemplative text color (#1A2744). The lotus
+                      rendered in the ink of the page.
+   Warmth (orange)  — tapas, renunciant warmth. Close cousin of
+                      marigold (#DC6A10) but distinct. The lotus's
+                      own burnt orange; marigold is the communal
+                      voice's accent. They rhyme, not duplicate.
+   Crimson (red)    — kumkum, auspicious power. The published
+                      book's structural color. Activates only under
+                      data-publication — the book claiming its
+                      ornaments.
+
+   Four voices discovered in original yogananda.org lotus SVGs.
+   Fifth discovered in the AoY Kindle edition. Together they trace
+   the Indian devotional spectrum from nature to illumination. */
+
+:root {
+  --motif-sacred: var(--color-gold);
+  --motif-growth: #6a6d2f;
+  --motif-devotion: #192c55;
+  --motif-warmth: #dd6c26;
+  --motif-crimson: var(--color-crimson);
+}
+
+/* Dark themes — lighten for visibility on dark backgrounds.
+   Includes SRF (dark, meditate) and YSS (night, devotion). */
+[data-theme="dark"],
+[data-theme="meditate"],
+[data-theme="night"],
+[data-theme="devotion"] {
+  --motif-growth: #9fa258;
+  --motif-devotion: #5d7be3;
+  --motif-warmth: #e8914a;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] {
+    --motif-growth: #9fa258;
+    --motif-devotion: #5d7be3;
+    --motif-warmth: #e8914a;
+  }
+}
+
+/* Sepia — warm shift */
+[data-theme="sepia"] {
+  --motif-growth: #7a7d3f;
+  --motif-warmth: #c85e20;
+}
+
+/* Earth — terracotta influence */
+[data-theme="earth"] {
+  --motif-warmth: #bb4f27;
+}
+
+/* ── Base Motif ──────────────────────────────────────────────── */
+/* The element IS the shape. No child elements needed.
+   Set height (width auto-computes from aspect-ratio).
+   Combine with a glyph class and optional color/role class. */
+
+.motif {
+  display: inline-block;
+  background-color: var(--motif-color, var(--motif-sacred));
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+/* ── Glyph Classes — Banner ──────────────────────────────────── */
+/* Wide horizontal forms (2:1 to 3:1). Natural section dividers. */
+
+.motif-lotus-07 {
+  -webkit-mask-image: url('../motifs/srf/glyphs/lotus-07.svg');
+  mask-image: url('../motifs/srf/glyphs/lotus-07.svg');
+  aspect-ratio: 1373.79 / 474.59;
+}
+
+.motif-lotus-08 {
+  -webkit-mask-image: url('../motifs/srf/glyphs/lotus-08.svg');
+  mask-image: url('../motifs/srf/glyphs/lotus-08.svg');
+  aspect-ratio: 1034.94 / 438.6;
+}
+
+.motif-lotus-10 {
+  -webkit-mask-image: url('../motifs/srf/glyphs/lotus-10.svg');
+  mask-image: url('../motifs/srf/glyphs/lotus-10.svg');
+  aspect-ratio: 989.23 / 473.84;
+}
+
+/* ── Glyph Classes — Landscape ───────────────────────────────── */
+/* Moderate horizontal forms (1.3:1 to 1.6:1). Dividers or ornaments. */
+
+.motif-lotus-03 {
+  -webkit-mask-image: url('../motifs/srf/glyphs/lotus-03.svg');
+  mask-image: url('../motifs/srf/glyphs/lotus-03.svg');
+  aspect-ratio: 1065.14 / 792.94;
+}
+
+.motif-lotus-06 {
+  -webkit-mask-image: url('../motifs/srf/glyphs/lotus-06.svg');
+  mask-image: url('../motifs/srf/glyphs/lotus-06.svg');
+  aspect-ratio: 842.44 / 583.78;
+}
+
+.motif-lotus-09 {
+  -webkit-mask-image: url('../motifs/srf/glyphs/lotus-09.svg');
+  mask-image: url('../motifs/srf/glyphs/lotus-09.svg');
+  aspect-ratio: 813.84 / 519.47;
+}
+
+/* ── Glyph Classes — Square ──────────────────────────────────── */
+/* Balanced forms (1:1 to 1.2:1). Ornaments, endings, focal points. */
+
+.motif-lotus-01 {
+  -webkit-mask-image: url('../motifs/srf/glyphs/lotus-01.svg');
+  mask-image: url('../motifs/srf/glyphs/lotus-01.svg');
+  aspect-ratio: 763.24 / 632.56;
+}
+
+.motif-lotus-05 {
+  -webkit-mask-image: url('../motifs/srf/glyphs/lotus-05.svg');
+  mask-image: url('../motifs/srf/glyphs/lotus-05.svg');
+  aspect-ratio: 964.72 / 816.78;
+}
+
+.motif-lotus-12 {
+  -webkit-mask-image: url('../motifs/srf/glyphs/lotus-12.svg');
+  mask-image: url('../motifs/srf/glyphs/lotus-12.svg');
+  aspect-ratio: 733.02 / 614.08;
+}
+
+.motif-lotus-15 {
+  -webkit-mask-image: url('../motifs/srf/glyphs/lotus-15.svg');
+  mask-image: url('../motifs/srf/glyphs/lotus-15.svg');
+  aspect-ratio: 784.73 / 767.08;
+}
+
+/* ── Glyph Classes — Portrait ────────────────────────────────── */
+/* Taller than wide. Unique vertical presence. */
+
+.motif-lotus-14 {
+  -webkit-mask-image: url('../motifs/srf/glyphs/lotus-14.svg');
+  mask-image: url('../motifs/srf/glyphs/lotus-14.svg');
+  aspect-ratio: 1037.46 / 1135.43;
+}
+
+/* ── Canonical Lotus ─────────────────────────────────────────── */
+/* The existing favicon/divider lotus (motifs/srf/lotus.svg).
+   Two-path SVG at 33x23. Now available as a mask-image class
+   alongside the botanical collection. */
+
+.motif-lotus {
+  -webkit-mask-image: url('../motifs/srf/lotus.svg');
+  mask-image: url('../motifs/srf/lotus.svg');
+  aspect-ratio: 33 / 23;
+}
+
+/* ── Icon Classes ────────────────────────────────────────────── */
+
+.motif-icon-donate {
+  -webkit-mask-image: url('../motifs/srf/icons/donate-flower.svg');
+  mask-image: url('../motifs/srf/icons/donate-flower.svg');
+  aspect-ratio: 33 / 23;
+}
+
+.motif-icon-audio {
+  -webkit-mask-image: url('../motifs/srf/icons/audio-icon.svg');
+  mask-image: url('../motifs/srf/icons/audio-icon.svg');
+  aspect-ratio: 1;
+}
+
+.motif-icon-audio-video {
+  -webkit-mask-image: url('../motifs/srf/icons/audio-video-icon.svg');
+  mask-image: url('../motifs/srf/icons/audio-video-icon.svg');
+  aspect-ratio: 46 / 21;
+}
+
+.motif-icon-lotus-brand {
+  -webkit-mask-image: url('../motifs/srf/icons/gold-lotus-transparent.svg');
+  mask-image: url('../motifs/srf/icons/gold-lotus-transparent.svg');
+  aspect-ratio: 33 / 23;
+}
+
+.motif-icon-registration {
+  -webkit-mask-image: url('../motifs/srf/icons/flower-registration.svg');
+  mask-image: url('../motifs/srf/icons/flower-registration.svg');
+  aspect-ratio: 87 / 72;
+}
+
+/* ── Color Voice Classes ─────────────────────────────────────── */
+/* Override --motif-color on .motif elements.
+   Default is sacred (gold). These activate alternative voices. */
+
+.motif-sacred   { --motif-color: var(--motif-sacred); }
+.motif-growth   { --motif-color: var(--motif-growth); }
+.motif-devotion { --motif-color: var(--motif-devotion); }
+.motif-warmth   { --motif-color: var(--motif-warmth); }
+.motif-crimson  { --motif-color: var(--motif-crimson); }
+
+/* ── Semantic Role Classes ───────────────────────────────────── */
+/* Pre-composed roles with sizing, centering, and opacity.
+   Usage: <div class="motif motif-lotus-07 motif-divider"></div>
+   Height sets the motif size; width auto-computes from aspect-ratio.
+   The element centers itself via width: fit-content + margin auto. */
+
+.motif-divider {
+  display: block;
+  width: fit-content;
+  height: 24px;
+  margin-inline: auto;
+  opacity: var(--gold-decorative);
+  padding-block: var(--space-spacious);
+  box-sizing: content-box;
+}
+
+.motif-breath {
+  display: block;
+  width: fit-content;
+  height: 16px;
+  margin-inline: auto;
+  opacity: var(--gold-ambient);
+  padding-block: var(--space-generous);
+  box-sizing: content-box;
+}
+
+.motif-close {
+  display: block;
+  width: fit-content;
+  height: 16px;
+  margin-inline: auto;
+  opacity: var(--gold-decorative);
+  padding-block-start: var(--space-spacious);
+  padding-block-end: var(--space-default);
+  box-sizing: content-box;
+}
+
+/* ── Attention Level Overrides ───────────────────────────────── */
+/* Integrate with the existing attention hierarchy (attention.css).
+   These override opacity on motif elements specifically, avoiding
+   the color: override that attention classes normally apply. */
+
+.motif.gold-interactive { opacity: var(--gold-interactive); }
+.motif.gold-decorative  { opacity: var(--gold-decorative); }
+.motif.gold-ambient     { opacity: var(--gold-ambient); }
+.motif.gold-highlight   { opacity: var(--gold-highlight); }
+.motif.gold-subliminal  { opacity: var(--gold-subliminal); }
+
+/* ── Publication Context ────────────────────────────────────── */
+/* When data-publication is active, the book's structural motifs
+   shift to crimson — the rubrication tradition. Dividers mark
+   scene breaks; closers mark chapter endings. These are the
+   book's own skeleton, so they speak the book's color.
+
+   Breath motifs stay gold. They mark reading rhythm — a portal
+   feature (dwell mode, focus tracking), not a book feature.
+   The reader pauses; the portal breathes. That's gold.
+
+   This mirrors the attention gradient's voice partition:
+   crimson for book structure, gold for portal infrastructure. */
+
+[data-publication] .motif-divider,
+[data-publication] .motif-close {
+  background-color: var(--motif-crimson);
+  opacity: var(--crimson-decorative);
+}
+
+/* Publication context does NOT override .motif-breath.
+   Breath is reading rhythm (gold, portal-level).
+   Explicitly preserved — not a forgotten edge case. */
+
+/* ── Reduced Motion ──────────────────────────────────────────── */
+/* Motifs are static by default (PRI-08: motion is functional,
+   never decorative). If animation is added in future (loading
+   pulse, gentle reveal), it must respect this preference. */
+
+@media (prefers-reduced-motion: reduce) {
+  .motif {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ── Print ────────────────────────────────────────────────────── */
+/* Motifs render in text color at reduced opacity for print.
+   CSS mask-image has good print support in modern browsers. */
+
+@media print {
+  .motif {
+    background-color: var(--color-text, #1a2744);
+    opacity: 0.3;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

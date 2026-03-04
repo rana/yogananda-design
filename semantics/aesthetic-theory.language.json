@@ -1,0 +1,123 @@
+{
+  "$description": "Governing aesthetic principles drawn from the Indian literary tradition — the same tradition that produced the teachings this design system serves. These are not metaphors or cultural decoration: they are precision instruments for design reasoning. Each principle maps to specific design system mechanisms and provides AI designers with a framework for novel decisions beyond what enumerated rules cover. Load this file alongside calm-technology.language.json for any UX work. The principles are: dhvani (suggestion over statement), aucitya (propriety as meta-principle), rasa (experiential dimension), bindu (the still center), sahṛdaya (the prepared reader), prāṇa (breath rhythm), and alaṅkāra (intrinsic ornament).",
+
+  "principles": {
+    "dhvani": {
+      "$description": "Suggestion over statement. The highest expression implies; it does not declare.",
+      "tradition": "Ānandavardhana, Dhvanyāloka (9th century, Kashmir). Dhvani ('resonance') names the meaning that vibrates beyond what words literally state. The foundational text of Indian aesthetic theory.",
+      "western-correlates": "Hemingway's iceberg theory (dignity of movement — 7/8ths below the surface). Negative space in graphic design. Debussy's 'music is the space between the notes.' In design: 'show, don't tell' — but more precisely, 'suggest, don't show.' The attention gradient's move from 1.0 to 0.03 is the visual equivalent of a literary register moving from exposition to implication.",
+      "three-levels": {
+        "vacya": "The stated — literal, explicit, measurable. In this design system: foundation tokens (a color hex, a spacing value, a duration in milliseconds).",
+        "lakshyartha": "The indicated — what the literal points toward. In this design system: semantic rules ('gold means contemplation,' 'generous spacing means reverence,' '800ms means sacred pacing').",
+        "vyanjana": "The suggested — what resonates beyond statement. In this design system: composition patterns where the whole exceeds its parts. The gold lotus at texture opacity doesn't state 'sacred' — it hums it."
+      },
+      "design-mapping": "The attention gradient IS a dhvani gradient. Interactive (1.0) is vācya — full statement. Decorative (0.4) is lakṣyārtha — indication. Ambient (0.3) through texture (0.03) is vyañjanā — progressively deeper suggestion. The design system's three-layer architecture (foundations → semantics → patterns) mirrors the three-level meaning structure.",
+      "ai-guidance": "When composing any element, ask: 'Can this say less?' Default toward the suggested end of the attention gradient. Prefer ambient over decorative, subliminal over ambient. The element that suggests is almost always more powerful than the element that declares. Reserve full statement (interactive opacity) for elements that earn it through function.",
+      "existing-expression": ["attention-gradient.language.json (the full gradient)", "gold texture at 0.03 (pure vyañjanā)", "motif breath role at ambient opacity", "paper texture overlay"],
+      "evaluation-question": "Is this element stating what it could suggest?"
+    },
+
+    "aucitya": {
+      "$description": "Propriety — everything in its right place, at its right scale, in its right moment. The meta-principle that governs all others.",
+      "tradition": "Kṣemendra, Aucityavicāracarcā (11th century, Kashmir). 'Aucityam rasa-siddhasya sthiram kāvyasya jīvitam' — propriety is the enduring life of poetry whose rasa is accomplished. Kṣemendra catalogs 27 types of aucitya and their violations.",
+      "western-correlates": "Decorum in classical rhetoric (Cicero, Quintilian) — the principle that style must match subject and audience. In architecture: 'form follows function' (Louis Sullivan). In design: contextual appropriateness. But aucitya is sharper than any of these — it says propriety is not a preference but the *life force* of aesthetic experience. Without it, nothing else works. Closest modern parallel: Dieter Rams's 'good design is as little design as possible' — not minimalism as style, but propriety as discipline.",
+      "design-mapping": "Calm technology IS aucitya expressed as code. The forbidden patterns list is a doṣa (fault) catalog — 14 patterns that violate propriety. The required patterns are aucitya's positive commitments. The qualitative guidelines ('Is this worthy of presenting Yogananda's words?') are aucitya questions. But aucitya extends beyond the enumerated list: it is the meta-principle for novel situations the forbidden list has not anticipated.",
+      "ai-guidance": "When a design decision falls outside the enumerated rules in calm-technology.language.json, apply aucitya directly: 'Is this proper to its context?' A component that would be proper on a communal event page may be improper on a sacred reading surface. A transition speed that serves functional UI may be improper for a chapter boundary. Context determines propriety — not category, not convention, not what other websites do.",
+      "existing-expression": ["calm-technology.language.json (the full file)", "register-selection-guide in emotional-registers.language.json", "voice interaction rules", "motif-restraint guideline"],
+      "evaluation-question": "Is this element proper to the register, voice, and surface where it appears?"
+    },
+
+    "rasa": {
+      "$description": "Aesthetic flavor — what arises in the prepared reader, not what the artwork contains. The experiential dimension of content treatment, orthogonal to the institutional dimension (registers) and the aesthetic dimension (voices).",
+      "tradition": "Bharata, Nāṭyaśāstra (~2nd century BCE). Nine rasas codified as fundamental aesthetic experiences. Extended by Abhinavagupta (10th century, Kashmir) who demonstrated that rasa arises not in the artwork but in the sahṛdaya — the prepared reader — through the artwork's arrangement of vibhāva (determinants), anubhāva (consequents), and vyabhicāribhāva (transitory states).",
+      "western-correlates": "Mood/atmosphere in fiction and film. Don Norman's 'emotional design' (visceral → behavioral → reflective). The German Stimmung — the felt quality of a place that is more than the sum of its physical properties. In music: the difference between a piece 'in a minor key' (stated mood) and a piece that 'evokes melancholy' (rasa). Rasa is closer to what happens in the listener than what's written in the score. The key difference from Western 'mood': rasa theory says the artwork doesn't *contain* the feeling — it creates *conditions* for feeling to arise in the prepared reader.",
+      "design-mapping": "Emotional registers classify by institutional authority (who wrote it: Yogananda = sacred, SRF presidents = reverential). Rasa classifies by experiential quality (what it evokes: peace, wonder, compassion, courage, devotion). These are orthogonal: Yogananda's words are always sacred register, but they may evoke śānta (meditation instructions), adbhuta (cosmic consciousness), karuṇā (devotional poetry), vīra (spiritual discipline), or bhakti (divine love). See emotional-registers.language.json rasa-dimension for specific treatment mappings.",
+      "ai-guidance": "When composing a reading surface for content whose experiential quality is known, let rasa inform whitespace, transition timing, and typographic weight. Śānta content wants maximum stillness. Adbhuta wants expansive vertical space. Karuṇā wants intimate measure. This is a tendency, not a prescription. When rasa is unknown or mixed, the register and voice provide sufficient guidance.",
+      "existing-expression": ["emotional registers (institutional axis of what rasa describes experientially)", "reader modes (focus = śānta-tending, present = communal rasa, quiet = śānta deepening)", "dwell mode (rewards settled attention — a śānta feature)"],
+      "evaluation-question": "What experience should this surface evoke in the reader who is present with it?"
+    },
+
+    "bindu": {
+      "$description": "The still center. Every composition has a point of maximum stillness from which all other elements radiate and to which attention returns.",
+      "tradition": "Yantra and maṇḍala design (Tantra, across Indian traditions). The bindu is the dimensionless center of every yantra — the origin of the geometry and its resolution. The Śrī Yantra's nine interlocking triangles converge on a single bindu. In the Nāda-Bindu Upaniṣad, the bindu is where sound (nāda) resolves into silence.",
+      "western-correlates": "Focal point in visual design and photography (rule of thirds, but deeper). Visual hierarchy's ultimate expression: not just 'what's most important' but 'what is the still center around which everything else moves.' In architecture: the altar in a cathedral — the point of maximum stillness that organizes all other spatial relationships. In Gestalt psychology: figure-ground, but inverted — the ground (whitespace, quiet chrome) serves the figure (the teaching). T.S. Eliot's 'the still point of the turning world' (Four Quartets) captures it precisely.",
+      "design-mapping": "On a reading surface, the bindu is the teaching itself — Yogananda's words. Every other element exists in orbital relationship: elements closer to the teaching are stiller, elements farther are more dynamic. The reading surface IS a maṇḍala: the teaching at center, attribution and ornament at near distance, dwell indicators and scroll progress at middle distance, navigation and settings at the periphery.",
+      "orbital-distances": {
+        "center": "The teaching text. Maximum stillness — no hover effects, no tooltips, no inline UI. Sacred register treatment.",
+        "near": "Attribution, epigraph, drop capital. Very still — typography that serves the text without drawing attention to itself.",
+        "middle": "Dwell indicator, scroll progress, chapter navigation, motif ornaments. Ambient presence — orienting without demanding.",
+        "far": "Navigation bar, search, settings, theme switcher. Functional dynamism — responsive and interactive, but never competing with center."
+      },
+      "ai-guidance": "When composing any surface, identify the bindu first. What is the reader here for? That is the still center. Every other element orbits it. If a component competes with the bindu for attention, it is too prominent — reduce it along the dhvani gradient. In focus mode, the chrome disappears entirely and the bindu stands alone: this is the maṇḍala resolved to its center.",
+      "existing-expression": ["sacred register treatment (maximum stillness at center)", "focus mode (chrome removed — bindu alone)", "present mode (text enlarged — bindu expanded to fill space)", "whitespace hierarchy (vast → generous → default → compact maps to center → periphery)"],
+      "evaluation-question": "What is this surface's still center, and does every element respect its orbital distance from it?"
+    },
+
+    "sahrdaya": {
+      "$description": "The prepared reader — one whose cultivated sensitivity activates the aesthetic experience. Design for the reader who is becoming present, not the user who is browsing.",
+      "tradition": "Abhinavagupta, Abhinavabhāratī and Locana (10th–11th century, Kashmir). The sahṛdaya ('one with heart,' from sa- + hṛdaya) is the aesthetically prepared recipient. Rasa arises only in the prepared reader; it requires saṃskāra (accumulated impressions) that create readiness. The artwork's purpose is not to contain beauty but to create the conditions in which beauty arises in the prepared heart.",
+      "western-correlates": "Wolfgang Iser's 'implied reader' in reader-response theory — the text constructs the reader it needs. In UX: progressive disclosure and 'power user' features. In music: the experienced listener who hears structure where a casual listener hears only melody. In game design: 'easy to learn, hard to master' — but here the mastery is contemplative depth, not skill. The sahṛdaya concept is more radical than any Western parallel: it says the *purpose* of design is to cultivate the reader's capacity for experience, not just to deliver content to a static user.",
+      "design-mapping": "The design system creates sahṛdaya-space — conditions for contemplative reading to arise. Dwell mode (1200ms settled → related teachings) rewards patient attention. Focus mode serves the settled reader who wants to go deeper. Present mode serves the reader who has moved beyond private reading to shared contemplation. Keyboard navigation (j/k/h/l/d/f) is a sahṛdaya feature: the reader who learns these shortcuts has committed to the surface.",
+      "accumulative-principle": "The interface should become more transparent as the reader becomes more present. This is a design direction, not an immediate feature: depth of engagement deserves deepening stillness. The reader who has been with a chapter for 20 minutes needs less invitation and more space than the reader who just arrived.",
+      "ai-guidance": "Design for the reader who stays, not the reader who bounces. Optimize for depth over breadth, for settled attention over first-visit engagement. When choosing between two approaches, prefer the one that rewards presence. Never punish slowness. Never interrupt engagement. Never suggest 'you've been here a while.'",
+      "existing-expression": ["dwell mode (1200ms settled paragraph → related teachings)", "focus mode (chrome removal for deep reading)", "present mode (group contemplation)", "keyboard navigation (commitment-rewarding)", "chapter transition at 800ms (unhurried — the reader's pace)"],
+      "evaluation-question": "Does this feature reward the reader who is becoming present, or does it optimize for the reader who is leaving?"
+    },
+
+    "prana": {
+      "$description": "Breath rhythm — the interface breathes. Transitions have the asymmetry of natural breath: approach is slightly quicker than departure, and the held state is never interrupted.",
+      "tradition": "Prāṇāyāma (breath regulation), codified in Patañjali's Yoga Sūtras (II.49–53) and elaborated in Haṭha Yoga Pradīpikā. The classical breath has three phases: pūraka (inhalation), kumbhaka (retention), recaka (exhalation). The ratio 1:4:2 means: the retention is the purpose, approached by inhalation and released by exhalation. Yogananda taught prāṇāyāma as a core technique; the interface's temporal design echoes the practice.",
+      "western-correlates": "Disney's animation principle 'slow in, slow out' — but with the crucial addition of the held state. In music: the fermata (hold this note). In film: the lingering shot (Tarkovsky, Malick). In UX: easing curves already encode approach/release asymmetry, but prāṇa adds the insight that the *held state is the purpose* — the transition exists to serve the stillness between transitions, not the reverse. Material Design's 'choreography' concept is the closest Western design parallel, but prāṇa grounds it in physiology: the interface should feel like it's breathing.",
+      "three-phases": {
+        "puraka": {
+          "meaning": "Inhalation — the approach. Content arriving, page transitioning, the reader moving toward the teaching.",
+          "character": "Gathering energy. The decelerate easing: arrives quickly, settles slowly.",
+          "design-expression": "Content transition (300ms) with decelerate easing, or contemplative transition (800ms) for sacred content. The reader draws toward the teaching."
+        },
+        "kumbhaka": {
+          "meaning": "Retention — the held state. The reader is with the teaching. This is the purpose of the entire interface.",
+          "character": "Unlimited duration. Never interrupted. Never auto-advanced.",
+          "design-expression": "The reading state itself. No timer, no nudge, no auto-progression. The portal waits (PRI-08). The held breath is sacrosanct."
+        },
+        "recaka": {
+          "meaning": "Exhalation — the release. Chapter ending, content departing, the reader moving on.",
+          "character": "Slower than approach, gentle release. The accelerate easing curve itself exits quickly — but at contemplative duration (800ms), the total experience feels gentle. The duration carries the gentleness; the curve carries the trailing quality.",
+          "design-expression": "Chapter transition 'Breath Between Chapters' (DES-012) at contemplative 800ms with accelerate easing. Departure takes longer than approach."
+        }
+      },
+      "asymmetry-principle": "Approach and departure are not symmetric. The existing easing tokens embody this: decelerate ([0.0, 0, 0.2, 1]) for arrivals, accelerate ([0.4, 0, 1.0, 1]) for departures, contemplative ([0.25, 0, 0.1, 1]) for sacred transitions. The 1200ms settled-debounce is approximately one full breath cycle — this is not coincidental.",
+      "ai-guidance": "When designing a transition pair (appear + disappear), make departure gentler than approach. The held state between them is sacrosanct. The breath metaphor resolves common timing questions: 'How long should this transition be?' → 'Is this an approach (pūraka) or a release (recaka)?' Approaches can be brisk; releases should be gentle.",
+      "existing-expression": ["motion.content 300ms (pūraka — approach)", "motion.contemplative 800ms (recaka — release)", "motion.arrival 1200ms (one full breath — portal threshold)", "easing.decelerate (arrival)", "easing.accelerate (departure)", "settled-debounce 1200ms (one breath cycle)"],
+      "evaluation-question": "Does this transition sequence feel like breathing — approach, hold, release — or does it feel mechanical?"
+    },
+
+    "alankara": {
+      "$description": "Intrinsic ornament — decoration that is simultaneously structure. Every ornamental element must be load-bearing.",
+      "tradition": "Alaṅkāra-śāstra: Bhāmaha (6th century), Daṇḍin (7th century), Vāmana (8th century). The Sanskrit alaṅkāra means both 'ornament' and 'making adequate' — from alaṃ (sufficient) + kāra (making). True ornament is what makes expression adequate to its subject. The lotus on a page is not there because it is pretty; it is there because without it the page is incomplete.",
+      "western-correlates": "William Morris: 'Have nothing in your houses that you do not know to be useful, or believe to be beautiful.' But alaṅkāra is more demanding: the useful and the beautiful must be the same element. In typography: a drop capital is alaṅkāra — simultaneously beautiful and structural (it marks the chapter opening). In architecture: a flying buttress is alaṅkāra — simultaneously ornamental and load-bearing. Adolf Loos's 'Ornament and Crime' (1910) argued against applied decoration; alaṅkāra agrees — but says the solution is not to eliminate ornament but to make every ornament integral. The Arts and Crafts movement's ideal of 'honest materials' captures a similar spirit: nothing pretends to be what it isn't, and nothing is there merely to look good.",
+      "design-mapping": "The motif system IS alaṅkāra. The gold lotus divider is simultaneously: a visual ornament (beauty), a section boundary (structure), a brand marker (identity), and a breath moment (rhythm). Four functions in one element. The motif-restraint guideline ('maximum one motif per content section') enforces alaṅkāra discipline: each ornament must earn its place by being load-bearing, not merely decorative.",
+      "ai-guidance": "Before adding any decorative element, ask: 'What structural role does this serve beyond beauty?' The gold quotation mark on an epigraph is alaṅkāra — it marks the quotation boundary AND provides visual warmth AND signals genre. A decorative border that only looks nice is not alaṅkāra — it is mere decoration (and therefore a doṣa). Every visual element in this design system should serve at minimum two purposes: aesthetic and structural.",
+      "existing-expression": ["motif system (glyph × role × color voice = multi-function ornament)", "drop capitals (aesthetic + structural: chapter opening marker)", "gold quotation mark on epigraphs (aesthetic + semantic: quotation boundary)", "swelled rule scene break (aesthetic + structural: scene boundary)", "scroll indicator (functional + atmospheric: gold thread at ambient opacity)"],
+      "evaluation-question": "Does this ornament serve at least two purposes (aesthetic + structural), or is it mere decoration?"
+    }
+  },
+
+  "structural-isomorphisms": {
+    "$description": "The design system's architecture mirrors structures from the Indian literary tradition. These isomorphisms are not imposed — they emerged from independent design decisions and became visible in retrospect. Naming them helps AI designers understand why the architecture works and how to extend it coherently.",
+
+    "three-layer-dhvani": {
+      "mapping": "The three-layer architecture (foundations → semantics → patterns) mirrors dhvani's three meaning levels (vācya → lakṣyārtha → vyañjanā). Foundations state values. Semantics indicate meaning. Patterns suggest experience.",
+      "practical-implication": "When building a new component, move through all three layers: choose tokens (vācya), apply semantic rules (lakṣyārtha), compose according to patterns (vyañjanā). If the result feels like assembled parts rather than an integrated surface, the vyañjanā layer is missing — ask: 'What experience should arise from this composition that no individual element states?'"
+    },
+
+    "three-voice-guna": {
+      "mapping": "The design voices correspond to the literary guṇas (style qualities) from Vāmana's Kāvyālaṅkārasūtra. Contemplative = mādhurya (sweetness, flowing grace). Communal = ojas (energy, vital force). Publication — not a standalone voice but an activation overlay (see emotional-registers.language.json) — nevertheless has its own guṇa character: prasāda (clarity, luminous precision).",
+      "practical-implication": "Mādhurya flows — the contemplative voice draws in, never pushes. Ojas radiates — the communal voice opens outward with warmth. Prasāda clarifies — the publication overlay makes the book's structure visible. When extending a voice, maintain its guṇa character: a new contemplative theme should flow; a new communal component should radiate; a new publication element should clarify."
+    },
+
+    "register-commentary": {
+      "mapping": "The emotional register hierarchy (sacred → reverential → instructional → functional → ambient) mirrors the Indian commentary tradition's textual hierarchy: mūla (root text, the guru's words) → bhāṣya (commentary, interpretive authority) → ṭīkā (sub-commentary, annotation) → vārttika (critical supplement, what the text assumes you know).",
+      "practical-implication": "When nesting content levels on a reading surface (teaching + editorial commentary + glossary notes), use the register hierarchy to determine visual treatment. The mūla (sacred) is the bindu. The bhāṣya (reverential/instructional) orbits it. The ṭīkā (instructional/functional) is available on demand but doesn't compete. See reading-surface.pattern.json commentary-hierarchy for composition guidance."
+    }
+  }
+}

@@ -35,6 +35,44 @@
     }
   },
 
+  "publication-overlay": {
+    "$description": "Publication reading overlay. When the chapter reader displays content from a published SRF/YSS book (AoY, Science of Religion, God Talks with Arjuna, etc.), structural elements shift from theme text color to crimson. Activated via data-publication attribute on the reader container. The portal chrome (gold) remains unchanged — creating two visual layers: the book's structural voice (crimson) and the portal's interactive voice (gold). This mirrors the printed edition's typography where chapter titles and dividers are rubricated (printed in red) while body text is black.",
+    "activation": "data-publication attribute on reader container",
+    "structural-elements": {
+      "chapter-title": {
+        "color": "crimson at interactive (1.0)",
+        "typography": "display (Lora 700, 24px) — same font, different color",
+        "description": "Chapter titles render in crimson, matching the printed AoY. The strongest visual signal of 'you are reading the book.'"
+      },
+      "chapter-label": {
+        "color": "crimson at interactive (1.0)",
+        "typography": "small-caps with 0.05em letter-spacing",
+        "description": "The 'CHAPTER 1' label above the title. Crimson small-caps — exactly as printed."
+      },
+      "scene-break": {
+        "color": "crimson at decorative (0.4)",
+        "css-class": ".reader-scene-break",
+        "style": "Swelled rule — linear gradient tapering from crimson at center to transparent at edges, max-width 5em, centered",
+        "description": "The pause between scenes within a chapter. A swelled rule — the Western bookmaking form where the line thickens at center and tapers to nothing at edges. In publication context, automatically shifts from gold to crimson. Alternative: .motif .motif-lotus .motif-breath for a botanical pause. The AoY Kindle edition uses a similar device between scenes.",
+        "hierarchy-note": "This sits between the full motif-divider (section break) and motif-breath (paragraph pause). See typography.language.json scene-break for the complete pause hierarchy."
+      },
+      "drop-cap": {
+        "color": "crimson at decorative (0.4)",
+        "description": "Chapter-opening initial letter in crimson. The illuminated manuscript tradition — the reader's eye drawn to the beginning. Latin only (ADR-080)."
+      }
+    },
+    "unchanged-elements": {
+      "body-text": "Remains theme.text (navy/cream per theme). Crimson never colors prose.",
+      "epigraph": "Gold decorative quotation mark stays gold — the epigraph is portal ornamentation.",
+      "footnote-refs": "Gold interactive — these are portal navigation, not book structure.",
+      "scroll-indicator": "Gold ambient — portal infrastructure.",
+      "dwell-highlight": "Gold subliminal — portal feature.",
+      "focus-rings": "Gold interactive — accessibility infrastructure.",
+      "links": "Gold interactive — portal navigation."
+    },
+    "theme-behavior": "Crimson adapts per theme via --color-crimson custom property. Brightens in dark/meditate themes, mutes in sepia/sandstone, warms in night/devotion. Same adaptation pattern as gold."
+  },
+
   "passage-card": {
     "$description": "A single passage displayed outside the chapter reader — search results, Today's Wisdom, related teachings panel.",
     "register": "sacred (the words are still Yogananda's, even in a card)",
@@ -70,7 +108,7 @@
     "content": {
       "passage": "reading typography, slightly larger (display size for short quotes)",
       "attribution": "citation typography, centered below",
-      "ornament": "small gold lotus divider below attribution"
+      "ornament": "small gold lotus divider below attribution (motif system: .motif .motif-lotus .motif-close)"
     }
   },
 
@@ -90,5 +128,76 @@
       "Internal links: no URL display",
       "Citations: always visible, font-style italic, 10pt"
     ]
+  },
+
+  "commentary-hierarchy": {
+    "$description": "How supplementary content nests around the primary teaching. Named from the Indian commentary tradition — the most sophisticated textual hierarchy in literary history — where layers of interpretation wrap around a root text without obscuring it. The hierarchy governs visual authority when a reading surface presents multiple content levels simultaneously (e.g., Yogananda's words with SRF editorial notes and glossary definitions). Each level has a register, a spatial relationship to the primary text, and a disclosure strategy. The principle: the mūla (root text) is the bindu (still center); everything else orbits it at increasing distance. See aesthetic-theory.language.json for the theoretical framework.",
+    "western-bridge": "Comparable to academic critical editions (primary text with footnotes and marginalia), Talmudic page layout (Mishnah at center, Gemara surrounding), or annotated literary editions. The key distinction: commentary serves the text, never competes with it.",
+    "levels": {
+      "mula": {
+        "meaning": "Root text — the guru's verbatim words. The irreducible center.",
+        "register": "sacred",
+        "spatial-relationship": "Center. Maximum reading width (42em Latin, 35em Devanagari). Full sacred register treatment.",
+        "disclosure": "Always visible. Never collapsed, truncated, or summarized. The mūla is the reason the reader is here.",
+        "examples": ["Yogananda's teaching text", "scripture quotations within teachings", "meditation instruction signposts"]
+      },
+      "bhashya": {
+        "meaning": "Commentary — interpretive context by an authority close to the source. Illuminates the root text without replacing it.",
+        "register": "reverential to instructional",
+        "spatial-relationship": "Near orbit. Visually distinct from mūla through typography (slightly smaller, different weight or style) and reduced whitespace. Appears inline or in a clearly secondary position — below the passage it illuminates, or in a side panel on wider viewports.",
+        "disclosure": "Visible when contextually relevant. May be toggled or expandable, but never hidden behind multiple interactions. One tap or click maximum.",
+        "examples": ["SRF editorial introductions to chapters", "monastic commentary on a teaching passage", "editor's note providing historical context"]
+      },
+      "tika": {
+        "meaning": "Annotation — specific clarification of a term, reference, or concept. Serves the reader who wants to go deeper without interrupting the reader who doesn't.",
+        "register": "instructional to functional",
+        "spatial-relationship": "Middle orbit. Compact typography (UI font, smaller size). Appears on demand — tooltip, footnote popover, or expandable inline. Never competes with mūla or bhāṣya for vertical space when collapsed.",
+        "disclosure": "On demand. Triggered by reader action (tap footnote marker, expand glossary term). The annotation exists for the reader who seeks it; it is invisible to the reader who doesn't. Footnote markers use gold interactive for discoverability.",
+        "examples": ["glossary definitions", "Sanskrit/Hindi pronunciation guides", "cross-references to other teachings", "historical dates and places"]
+      },
+      "varttika": {
+        "meaning": "Critical supplement — what the text assumes the reader knows. Background knowledge that makes the teaching accessible without annotation-level specificity.",
+        "register": "instructional (content is teaching, not UI — but its spatial presence is ambient: available without competing)",
+        "spatial-relationship": "Far orbit. Separate from the reading surface entirely — a panel, a linked page, a section below the chapter. Never inline with the teaching.",
+        "disclosure": "Available but never promoted. The reader who needs background will find it; the reader who doesn't should never be made aware of it during reading. A discreet 'Background' or 'Context' link, not a banner.",
+        "examples": ["'About this book' introductions", "historical period overviews", "biographical context for people mentioned in the text"]
+      }
+    },
+    "nesting-rules": [
+      "The mūla always receives sacred register treatment regardless of what commentary surrounds it.",
+      "Commentary levels never use larger typography than the level above them in the hierarchy.",
+      "When bhāṣya and ṭīkā appear on the same surface, their visual distinction must be immediately clear — different font size, weight, or spatial position.",
+      "Vārttika never appears inline with the teaching text. It is always spatially separated.",
+      "On narrow viewports (< md breakpoint), bhāṣya collapses to expandable sections below the mūla. Ṭīkā becomes footnote-style. Vārttika links to a separate view.",
+      "The publication overlay (crimson) applies only to mūla-level structural elements. Commentary always uses gold or theme-text, never crimson."
+    ]
+  },
+
+  "temporal-rhythm": {
+    "$description": "How the reading surface breathes through time. Based on the prāṇāyāma principle (see aesthetic-theory.language.json): every temporal sequence has three phases — approach (pūraka), hold (kumbhaka), and release (recaka). The held state is the purpose; approach and release serve it. This section maps the principle to specific reading surface transitions.",
+    "western-bridge": "Film pacing: the establishing shot (approach), the scene (hold), the transition (release). Musical phrasing: anacrusis, tonic, cadence. The key insight the breath model adds: the held state (kumbhaka) is unlimited — the design never rushes the reader out of presence.",
+    "sequences": {
+      "chapter-entry": {
+        "puraka": "Content transition (300ms, decelerate easing). The chapter text arrives. The reader approaches the teaching.",
+        "kumbhaka": "The reading state. No temporal constraint. No auto-advance, no timer, no nudge. The reader is with the teaching for as long as they choose.",
+        "recaka": "Contemplative transition (800ms, accelerate easing). 'Breath Between Chapters' (DES-012). The chapter fades gently. Departure is slower than arrival."
+      },
+      "dwell-activation": {
+        "puraka": "Settled-debounce (1200ms — one full breath cycle). The reader approaches presence. The paragraph settles into the focus zone.",
+        "kumbhaka": "Related teachings panel is available. The reader may engage or continue reading. No timeout. The dwell state persists until the reader's focus moves.",
+        "recaka": "Content transition (300ms). The dwell indicator and related panel recede when focus shifts. Quick and unobtrusive — the reader shouldn't notice the departure."
+      },
+      "portal-entry": {
+        "puraka": "Arrival transition (1200ms with 200ms delay, decelerate easing). 'The Opening Moment' (DES-007). The portal pauses before greeting — the slight delay is the indrawn breath before the first word.",
+        "kumbhaka": "The portal is present. The reader has arrived.",
+        "recaka": "Browser-native departure. The portal does not animate its own exit."
+      },
+      "mode-transitions": {
+        "to-focus": "Content transition (300ms). Chrome retreats. The reading column holds still — the bindu remains while the periphery falls away.",
+        "to-present": "Contemplative transition (800ms). Typography scales up. The teaching expands to fill the space.",
+        "to-quiet": "Contemplative transition (800ms). Article dims, quiet corner appears. Gentle entry into reflective space."
+      }
+    },
+    "timing-principle": "When uncertain about a transition's duration, ask: 'Is this an approach (pūraka) or a release (recaka)?' Approaches can be brisk (150–300ms) — energy gathering. Releases should be gentle (300–800ms) — energy dissipating. The held state between is always the reader's to determine."
   }
 }
