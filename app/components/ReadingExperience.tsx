@@ -252,9 +252,9 @@ export default function ReadingExperience() {
               value={lineSpacing}
               onChange={setLineSpacing}
               options={[
-                { value: "default", label: "\u2014" },
+                { value: "default", label: "—" },
                 { value: "relaxed", label: "=" },
-                { value: "spacious", label: "\u2261" },
+                { value: "spacious", label: "≡" },
               ]}
             />
           </div>
@@ -510,12 +510,12 @@ export default function ReadingExperience() {
                 {
                   title: "Chapter 1: My Parents and Early Life",
                   excerpt:
-                    "\u201CThe characteristic features of Indian culture have long been a search for ultimate verities and the concomitant disciple-guru relationship.\u201D",
+                    "“The characteristic features of Indian culture have long been a search for ultimate verities and the concomitant disciple-guru relationship.”",
                 },
                 {
                   title: "Chapter 24: I Become a Monk",
                   excerpt:
-                    "\u201CMaster, I will serve you always!\u201D I vowed anew at his lotus feet.",
+                    "“Master, I will serve you always!” I vowed anew at his lotus feet.",
                 },
               ].map((item) => (
                 <div
@@ -650,7 +650,7 @@ export default function ReadingExperience() {
             },
             {
               label: "Verse",
-              desc: "Centered, italic, pre-line. The guru\u2019s poetry.",
+              desc: "Centered, italic, pre-line. The guru’s poetry.",
             },
             {
               label: "Focus Mode",
@@ -658,7 +658,7 @@ export default function ReadingExperience() {
             },
             {
               label: "Present Mode",
-              desc: "Group reading. Text scales 24px \u2192 36px across breakpoints.",
+              desc: "Group reading. Text scales 24px → 36px across breakpoints.",
             },
             {
               label: "Quiet Mode",

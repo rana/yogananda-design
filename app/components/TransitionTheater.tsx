@@ -254,9 +254,9 @@ function BreathDemo() {
 
   const phaseDesc = {
     rest: "The space between breaths",
-    puraka: "300ms \u00b7 decelerate \u00b7 content arrives",
-    kumbhaka: "1200ms \u00b7 the reader is with the teaching",
-    recaka: "800ms \u00b7 accelerate \u00b7 gentle release",
+    puraka: "300ms · decelerate · content arrives",
+    kumbhaka: "1200ms · the reader is with the teaching",
+    recaka: "800ms · accelerate · gentle release",
   }[phase];
 
   /* Circle scale: rest=0.3, puraka=1.0, kumbhaka=1.0, recaka=0.3 */
@@ -320,7 +320,7 @@ function BreathDemo() {
             opacity: breathing ? 0.5 : 1,
           }}
         >
-          {breathing ? "Breathing\u2026" : "Breathe"}
+          {breathing ? "Breathing…" : "Breathe"}
         </button>
       </div>
 

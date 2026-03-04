@@ -377,8 +377,8 @@ export default function TypographySpecimen() {
           }}
         >
           {org === "srf"
-            ? "Two voices, five type roles. The contemplative voice serves reading and meditation \u2014 warm serifs that recede. The communal voice serves events and gathering \u2014 structured serifs that welcome."
-            : "Five families, one spirit. Raleway for the modern voice \u2014 clean, geometric, welcoming. Merriweather for reading \u2014 shared lineage with SRF. Merienda for display warmth. Asar for the devotional inscription \u2014 one font, two scripts, the guru\u2019s words carved in stone. Noto Sans/Serif for Indic scripts \u2014 nine languages."}
+            ? "Two voices, five type roles. The contemplative voice serves reading and meditation — warm serifs that recede. The communal voice serves events and gathering — structured serifs that welcome."
+            : "Five families, one spirit. Raleway for the modern voice — clean, geometric, welcoming. Merriweather for reading — shared lineage with SRF. Merienda for display warmth. Asar for the devotional inscription — one font, two scripts, the guru’s words carved in stone. Noto Sans/Serif for Indic scripts — nine languages."}
         </p>
 
         {org === "srf" ? <SrfTypography /> : <YssTypography />}

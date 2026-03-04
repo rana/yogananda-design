@@ -330,7 +330,7 @@ function ScreenMock() {
       <div
         style={{
           height: "2px",
-          width: "40%",
+          width: "100%",
           backgroundColor: "var(--color-gold)",
           opacity: 0.3,
         }}

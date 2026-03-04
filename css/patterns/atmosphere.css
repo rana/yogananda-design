@@ -1,0 +1,290 @@
+/* ══════════════════════════════════════════════════════════════════
+   Photographic Atmosphere — Optional Visual Life
+   ══════════════════════════════════════════════════════════════════
+   Photographs as atmosphere: felt, not seen. An optional layer for
+   surfaces where photographic warmth enhances the experience.
+
+   Progressive enhancement stack:
+     Level 0 — Gold gradient (pure CSS, already in css/index.css)
+     Level 1 — Set --atmosphere-image → photograph behind gradient
+     Level 2 — Scroll-driven modulation (auto, where supported)
+
+   Activation:
+     @import '@yogananda/design/css/patterns/atmosphere.css';
+     Then set --atmosphere-image on any .atmosphere-* container.
+     When absent, the photograph layer is transparent — zero cost.
+
+   Requires: foundations.css (custom properties)
+   Source: semantics/atmosphere.language.json
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Arrival ───────────────────────────────────────────────────
+   Hero/landing surfaces. The closest photographs get to the
+   reader. The only role where the photograph is partially
+   visible. Scroll-driven: fades as user enters content.
+
+   Attention level: decorative (0.4) → ambient via scroll
+   Veil: 65% — photograph seen through theme color           */
+
+.atmosphere-arrival {
+  position: relative;
+  overflow: hidden;
+}
+
+.atmosphere-arrival::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--atmosphere-image, none);
+  background-size: cover;
+  background-position: var(--atmosphere-position, center);
+  background-repeat: no-repeat;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.atmosphere-arrival::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--color-bg) var(--atmosphere-veil, 65%), transparent);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Scroll-driven: photograph recedes as user moves into content.
+   The arrival yields to the teaching — pūraka into kumbhaka. */
+@supports (animation-timeline: scroll()) {
+  .atmosphere-arrival::before {
+    animation: atmosphere-arrival-fade linear both;
+    animation-timeline: scroll();
+    animation-range: 0% 35%;
+  }
+
+  @keyframes atmosphere-arrival-fade {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+}
+
+/* ── Ambient ──────────────────────────────────────────────────
+   Section backgrounds. Photograph NOT visible — only warmth.
+   The reader feels 'this section has presence' without seeing
+   any image detail.
+
+   Attention level: subliminal (0.06)
+   Veil: 93% — photograph is abstract warmth only             */
+
+.atmosphere-ambient {
+  position: relative;
+  overflow: hidden;
+}
+
+.atmosphere-ambient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--atmosphere-image, none);
+  background-size: cover;
+  background-position: var(--atmosphere-position, center);
+  background-repeat: no-repeat;
+  filter: blur(var(--atmosphere-blur, 4px));
+  z-index: -2;
+  pointer-events: none;
+}
+
+.atmosphere-ambient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--color-bg) var(--atmosphere-veil, 93%), transparent);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Scroll-driven: subtle reveal as section enters viewport */
+@supports (animation-timeline: view()) {
+  .atmosphere-ambient::before {
+    animation: atmosphere-ambient-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+
+  @keyframes atmosphere-ambient-reveal {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+}
+
+/* ── Breath ───────────────────────────────────────────────────
+   Movement breaks. Ghost of image at boundaries between
+   movements. The photographic equivalent of the lotus breathing.
+
+   Attention level: texture (0.03) → subliminal (0.06)
+   Veil: 95% — barely perceptible atmospheric shift            */
+
+.atmosphere-breath {
+  position: relative;
+  overflow: hidden;
+}
+
+.atmosphere-breath::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--atmosphere-image, none);
+  background-size: cover;
+  background-position: var(--atmosphere-position, center);
+  background-repeat: no-repeat;
+  filter: blur(var(--atmosphere-blur, 8px));
+  z-index: -2;
+  pointer-events: none;
+}
+
+.atmosphere-breath::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--color-bg) var(--atmosphere-veil, 95%), transparent);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Scroll-driven: brief atmospheric bloom as reader crosses */
+@supports (animation-timeline: view()) {
+  .atmosphere-breath::before {
+    animation: atmosphere-breath-pulse linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+
+  @keyframes atmosphere-breath-pulse {
+    0%   { opacity: 0; }
+    35%  { opacity: 1; }
+    65%  { opacity: 1; }
+    100% { opacity: 0; }
+  }
+}
+
+/* ── Ground ───────────────────────────────────────────────────
+   Page-level base atmosphere. Fixed position — stays as the
+   user scrolls. Heavily blurred. Pure warmth, zero detail.
+   Works alongside the gold radial gradient — photograph is
+   BEHIND the gradient, adding dimension of physical place.
+
+   Attention level: texture (0.03)
+   Veil: 96% — pure warmth, no identifiable content            */
+
+.atmosphere-ground {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.atmosphere-ground::before {
+  content: '';
+  position: absolute;
+  inset: -24px; /* Overshoot prevents blur edge artifacts */
+  background-image: var(--atmosphere-image, none);
+  background-size: cover;
+  background-position: var(--atmosphere-position, center);
+  background-repeat: no-repeat;
+  filter: blur(var(--atmosphere-blur, 16px));
+  z-index: -2;
+  pointer-events: none;
+}
+
+.atmosphere-ground::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--color-bg) var(--atmosphere-veil, 96%), transparent);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Scroll-driven: same arc as the gold atmospheric gradient —
+   bloom at the golden center, fade at edges. */
+@supports (animation-timeline: scroll()) {
+  .atmosphere-ground {
+    animation: atmosphere-ground-arc linear both;
+    animation-timeline: scroll();
+  }
+
+  @keyframes atmosphere-ground-arc {
+    0%   { opacity: 0; }
+    20%  { opacity: 0.4; }
+    40%  { opacity: 1; }
+    55%  { opacity: 1; }
+    75%  { opacity: 0.4; }
+    100% { opacity: 0; }
+  }
+}
+
+/* ── Voice Modulation ─────────────────────────────────────────
+   Communal voice: slightly more photographic presence.
+   Dark/meditative themes: more veiled, approaching invisible. */
+
+/* Communal warmth — photographs are more welcome */
+[data-theme="gathering"] .atmosphere-arrival { --atmosphere-veil: 60%; }
+[data-theme="gathering"] .atmosphere-ambient { --atmosphere-veil: 90%; }
+
+/* Deep themes — heavier veil, photographs recede */
+:is([data-theme="dark"], [data-theme="meditate"],
+    [data-theme="night"], [data-theme="devotion"]) :is(
+    .atmosphere-arrival) {
+  --atmosphere-veil: 78%;
+}
+:is([data-theme="dark"], [data-theme="meditate"],
+    [data-theme="night"], [data-theme="devotion"]) :is(
+    .atmosphere-ambient, .atmosphere-breath) {
+  --atmosphere-veil: 96%;
+}
+
+/* ── Accessibility ────────────────────────────────────────────
+   Reduced motion: static placement, no scroll animation.
+   High contrast: all atmosphere removed.
+   Print: no photographs.                                      */
+
+@media (prefers-reduced-motion: reduce) {
+  .atmosphere-arrival::before,
+  .atmosphere-ambient::before,
+  .atmosphere-breath::before {
+    animation: none !important;
+  }
+
+  .atmosphere-ground {
+    animation: none !important;
+    opacity: 0.5; /* Static midpoint of arc */
+  }
+}
+
+@media (prefers-contrast: more) {
+  .atmosphere-arrival::before,
+  .atmosphere-arrival::after,
+  .atmosphere-ambient::before,
+  .atmosphere-ambient::after,
+  .atmosphere-breath::before,
+  .atmosphere-breath::after,
+  .atmosphere-ground,
+  .atmosphere-ground::before,
+  .atmosphere-ground::after {
+    display: none !important;
+  }
+}
+
+@media print {
+  .atmosphere-arrival::before,
+  .atmosphere-arrival::after,
+  .atmosphere-ambient::before,
+  .atmosphere-ambient::after,
+  .atmosphere-breath::before,
+  .atmosphere-breath::after,
+  .atmosphere-ground,
+  .atmosphere-ground::before,
+  .atmosphere-ground::after {
+    display: none !important;
+  }
+}

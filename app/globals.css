@@ -9,6 +9,14 @@
 /* ── Design Language CSS ─────────────────────────────────────── */
 @import "../css/reading.css";
 
+/* ── Photographic Atmosphere (opt-in) ─────────────────────── */
+/* The showcase opts into the atmosphere pattern layer.
+   By default no --atmosphere-image is set, so only the
+   gold gradient (below) provides atmospheric warmth.
+   A site with photographs would set --atmosphere-image
+   on .atmosphere-* containers to activate photographic depth. */
+@import "../css/patterns/atmosphere.css";
+
 /* ── Framework ───────────────────────────────────────────────── */
 @import "tailwindcss";
 
@@ -200,5 +208,88 @@
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation-duration: 0s;
+  }
+}
+
+/* ── Scroll Progress — Ambient Positional Awareness ───────── */
+/* A 2px gold bar at the top of the viewport that tracks scroll
+   position. Pure CSS via animation-timeline: scroll(). No JS.
+   The design language defines .scroll-indicator in reading-surface.css;
+   this is the showcase's scroll-driven expression.
+
+   Progressive enhancement — browsers without scroll() support
+   show nothing. The bar is aria-hidden; scroll position is
+   already communicated by the native scrollbar. */
+
+@supports (animation-timeline: scroll()) {
+  .showcase-scroll-progress {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: 0%;
+    block-size: 2px;
+    background: var(--color-gold);
+    opacity: var(--gold-ambient);
+    z-index: 100;
+    animation: scroll-fill linear both;
+    animation-timeline: scroll();
+  }
+
+  @keyframes scroll-fill {
+    to { inline-size: 100%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .showcase-scroll-progress {
+      animation: none;
+      display: none;
+    }
+  }
+}
+
+/* ── Atmospheric Warmth — Scroll-Driven Background ──────── */
+/* A radial gold gradient that blooms as the user scrolls through
+   the showcase's golden center (Movement II / Reading Surface).
+   The viewport gains warmth approaching the gravitational center,
+   then cools as the session moves toward structure and exhale.
+
+   This is the design language's answer to yogananda.org's
+   photographic backgrounds — atmosphere expressed through the
+   system's own color vocabulary rather than external imagery.
+   The gold adapts per theme: gold → amber → terracotta → marigold.
+
+   Pure CSS. No JS. Progressive enhancement.
+   animation-timeline: scroll() ties the gradient to page scroll. */
+
+@supports (animation-timeline: scroll()) {
+  .showcase-atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at 50% 35%,
+      color-mix(in srgb, var(--color-gold) 6%, transparent),
+      transparent 70%
+    );
+    opacity: 0;
+    animation: atmosphere-arc linear both;
+    animation-timeline: scroll();
+  }
+
+  @keyframes atmosphere-arc {
+    0%   { opacity: 0; }
+    20%  { opacity: 0.4; }
+    40%  { opacity: 1; }     /* Approaching Reading Surface */
+    55%  { opacity: 1; }     /* Sustained: the golden center */
+    75%  { opacity: 0.4; }
+    100% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .showcase-atmosphere {
+      animation: none;
+      display: none;
+    }
   }
 }

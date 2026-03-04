@@ -49,6 +49,7 @@ css/
   patterns/reading-surface.css  ← Layer 3: Dwell, focus, present, quiet, golden thread
   patterns/print.css            ← Layer 3: Print stylesheet
   patterns/preferences.css      ← Layer 3: Font size, line spacing user preferences
+  patterns/atmosphere.css       ← Layer 3: Optional photographic atmosphere (opt-in)
   index.css                ← Bundle: all core files
   reading.css              ← Bundle: core + reading patterns
 ```
@@ -67,6 +68,7 @@ css/
 | **Building for YSS** | Use `foundations/yss.tokens.json` instead of SRF. Same shared + semantics + patterns. |
 | **Validating a component** | `semantics/calm-technology.language.json` (check forbidden list) + `semantics/accessibility.language.json` |
 | **Building contemplative UI** | + `patterns/contemplation.pattern.json` |
+| **Adding photographic atmosphere** | + `semantics/atmosphere.language.json` + `brand/image-guidelines.json` |
 | **Choosing an icon or motif** | `motifs/srf/glyphs.json` + `css/motifs.css` + `motifs/srf/` or `motifs/yss/` + `brand/image-guidelines.json` |
 | **Understanding the brand** | `brand/image-guidelines.json` + organization token file `$description` fields |
 
@@ -79,6 +81,7 @@ css/
 | **Non-reading surface** (dashboard, admin) | `css/index.css` (no reading patterns) |
 | **SRF surface** | Default — no extra import needed |
 | **YSS surface** | Same imports + set `data-org="yss"` on `<html>` |
+| **Surface with photographs** | + `css/patterns/atmosphere.css` (opt-in, not in bundles) |
 
 ## File Format Reference
 

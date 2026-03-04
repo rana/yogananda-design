@@ -14,6 +14,7 @@ import TransitionTheater from "./components/TransitionTheater";
 import CalmTechnologyAudit from "./components/CalmTechnologyAudit";
 import AccessibilityLab from "./components/AccessibilityLab";
 import PrintPreview from "./components/PrintPreview";
+import PhotographicAtmosphere from "./components/PhotographicAtmosphere";
 import PatternPlayground from "./components/PatternPlayground";
 import Footer from "./components/Footer";
 
@@ -37,6 +38,15 @@ function MovementBreak({ label }: { label: string }) {
 export default function Home() {
   return (
     <>
+      {/* ── Scroll Progress — Pure CSS scroll-driven gold bar ── */}
+      <div className="showcase-scroll-progress" aria-hidden="true" />
+
+      {/* ── Atmospheric Warmth — Scroll-driven background glow ── */}
+      {/* Gold radial gradient that blooms at the showcase's golden
+          center (Reading Surface) and fades at the edges. The
+          design language's answer to photographic backgrounds. */}
+      <div className="showcase-atmosphere" aria-hidden="true" />
+
       <Nav />
       <main>
         {/* ── Arrival ─────────────────────────────────────────── */}
@@ -74,6 +84,7 @@ export default function Home() {
         <CalmTechnologyAudit />
         <AccessibilityLab />
         <PrintPreview />
+        <PhotographicAtmosphere />
         <PatternPlayground />
       </main>
       <Footer />

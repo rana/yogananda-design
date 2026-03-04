@@ -5,12 +5,12 @@ import { srfTokens, yssTokens } from "@/lib/tokens";
 import { useDesign } from "./DesignProvider";
 
 const srfPassage =
-  "\u201CBe as simple as you can be; you will be astonished to see how uncomplicated and happy your life can become.\u201D";
-const srfAttribution = "\u2014\u00A0Paramahansa Yogananda, Autobiography of a Yogi";
+  "“Be as simple as you can be; you will be astonished to see how uncomplicated and happy your life can become.”";
+const srfAttribution = "— Paramahansa Yogananda, Autobiography of a Yogi";
 
 const yssPassage =
-  "\u201CLive quietly in the moment and see the beauty of all before you. The future will take care of itself.\u201D";
-const yssAttribution = "\u2014\u00A0\u092A\u0930\u092E\u0939\u0902\u0938 \u092F\u094B\u0917\u093E\u0928\u0928\u094D\u0926, Autobiography of a Yogi";
+  "“Live quietly in the moment and see the beauty of all before you. The future will take care of itself.”";
+const yssAttribution = "— परमहंस योगानन्द, Autobiography of a Yogi";
 
 type ThemeColors = Record<string, { $value: string }>;
 
@@ -429,7 +429,7 @@ export default function ThemeGallery() {
         >
           {isSrf
             ? "Six SRF themes across two voices. Five contemplative themes for reading surfaces plus one communal gathering theme for events. Every theme provides all seven token values."
-            : "Five YSS themes inspired by the ashram experience \u2014 from the sunlit courtyard to the inner sanctum. Warm earth tones, terracotta accents, and devotional gold."}
+            : "Five YSS themes inspired by the ashram experience — from the sunlit courtyard to the inner sanctum. Warm earth tones, terracotta accents, and devotional gold."}
         </p>
 
         {isSrf ? (

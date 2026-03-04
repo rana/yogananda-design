@@ -24,22 +24,22 @@ interface Level {
    (expressed via SVG fractalNoise, not opacity). */
 const levelsByAccent: Record<Accent, Level[]> = {
   gold: [
-    { name: "Interactive", opacity: 1.0, cssClass: "gold-interactive", cssVar: "--gold-interactive", purpose: "Demands attention \u2014 the seeker is engaging", elements: "Focus rings, active links, call-to-action accents" },
-    { name: "Decorative", opacity: 0.4, cssClass: "gold-decorative", cssVar: "--gold-decorative", purpose: "Present but not calling \u2014 background beauty", elements: "Epigraph marks, chapter ornaments, scene-break dividers" },
-    { name: "Ambient", opacity: 0.3, cssClass: "gold-ambient", cssVar: "--gold-ambient", purpose: "Peripheral awareness \u2014 orientation without distraction", elements: "Scroll indicator, meditate-theme gold, progress" },
+    { name: "Interactive", opacity: 1.0, cssClass: "gold-interactive", cssVar: "--gold-interactive", purpose: "Demands attention — the seeker is engaging", elements: "Focus rings, active links, call-to-action accents" },
+    { name: "Decorative", opacity: 0.4, cssClass: "gold-decorative", cssVar: "--gold-decorative", purpose: "Present but not calling — background beauty", elements: "Epigraph marks, chapter ornaments, scene-break dividers" },
+    { name: "Ambient", opacity: 0.3, cssClass: "gold-ambient", cssVar: "--gold-ambient", purpose: "Peripheral awareness — orientation without distraction", elements: "Scroll indicator, meditate-theme gold, progress" },
     { name: "Highlight", opacity: 0.2, cssClass: "gold-highlight", cssVar: "--gold-highlight", purpose: "Guiding the reader, not grabbing them", elements: "Keyboard-navigated paragraph outline, current section" },
     { name: "Subliminal", opacity: 0.06, cssClass: "gold-subliminal", cssVar: "--gold-subliminal", purpose: "Registers as warmth, not color", elements: "Paragraph hover background, dwell mode highlight" },
     { name: "Texture", opacity: 0.03, cssClass: null, cssVar: "--gold-texture", purpose: "The ghost of physical pages", elements: "Paper texture noise overlay, background warmth" },
   ],
   crimson: [
-    { name: "Interactive", opacity: 1.0, cssClass: "crimson-interactive", cssVar: "--crimson-interactive", purpose: "Structural authority \u2014 the book speaking", elements: "Chapter titles, publication labels, drop capitals" },
+    { name: "Interactive", opacity: 1.0, cssClass: "crimson-interactive", cssVar: "--crimson-interactive", purpose: "Structural authority — the book speaking", elements: "Chapter titles, publication labels, drop capitals" },
     { name: "Decorative", opacity: 0.4, cssClass: "crimson-decorative", cssVar: "--crimson-decorative", purpose: "Ornamental marks with structural purpose", elements: "Section dividers, rubricated ornaments" },
     { name: "Ambient", opacity: 0.25, cssClass: "crimson-ambient", cssVar: "--crimson-ambient", purpose: "Peripheral book awareness", elements: "Book progress indicators, TOC markers" },
     { name: "Highlight", opacity: 0.15, cssClass: "crimson-highlight", cssVar: "--crimson-highlight", purpose: "Guiding navigation through structure", elements: "Chapter navigation hover, current chapter marker" },
     { name: "Subliminal", opacity: 0.06, cssClass: "crimson-subliminal", cssVar: "--crimson-subliminal", purpose: "Faint publication warmth", elements: "Background tint in publication context" },
   ],
   marigold: [
-    { name: "Interactive", opacity: 1.0, cssClass: "marigold-interactive", cssVar: "--marigold-interactive", purpose: "Communal energy \u2014 invitation to participate", elements: "Event CTAs, registration buttons, active links" },
+    { name: "Interactive", opacity: 1.0, cssClass: "marigold-interactive", cssVar: "--marigold-interactive", purpose: "Communal energy — invitation to participate", elements: "Event CTAs, registration buttons, active links" },
     { name: "Decorative", opacity: 0.4, cssClass: "marigold-decorative", cssVar: "--marigold-decorative", purpose: "Warm presence without urgency", elements: "Category badges, event type indicators" },
     { name: "Ambient", opacity: 0.2, cssClass: "marigold-ambient", cssVar: "--marigold-ambient", purpose: "Background orientation for events", elements: "Section dividers, calendar markers" },
     { name: "Subliminal", opacity: 0.06, cssClass: "marigold-subliminal", cssVar: "--marigold-subliminal", purpose: "Communal warmth without distraction", elements: "Hover backgrounds, active section tint" },

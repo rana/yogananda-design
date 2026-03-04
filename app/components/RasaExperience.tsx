@@ -32,7 +32,7 @@ const rasas: Rasa[] = [
   {
     id: "shanta",
     sanskrit: "Shanta",
-    devanagari: "\u0936\u093E\u0928\u094D\u0924",
+    devanagari: "शान्त",
     english: "Peace / Stillness",
     padding: "64px",
     paddingTop: "64px",
@@ -45,16 +45,16 @@ const rasas: Rasa[] = [
     transitionDuration: "800ms",
     goldOpacity: 0.3,
     firstLineDisplay: false,
-    whitespace: "Maximum \u2014 64px all around. The room is completely still.",
+    whitespace: "Maximum — 64px all around. The room is completely still.",
     typography: "Reading font at 22px, line-height 2.2. Centered. Breath between every line.",
-    accent: "Gold at ambient opacity (0.3) \u2014 warmth, not color.",
+    accent: "Gold at ambient opacity (0.3) — warmth, not color.",
     motion: "800ms transitions. The slowest pace. Nothing hurries.",
     mood: "The room is completely still. Breath settles. Attention rests.",
   },
   {
     id: "adbhuta",
     sanskrit: "Adbhuta",
-    devanagari: "\u0905\u0926\u094D\u092D\u0941\u0924",
+    devanagari: "अद्भुत",
     english: "Wonder / Awe",
     padding: "56px",
     paddingTop: "56px",
@@ -67,16 +67,16 @@ const rasas: Rasa[] = [
     transitionDuration: "600ms",
     goldOpacity: 0.4,
     firstLineDisplay: true,
-    whitespace: "Expansive \u2014 56px top, 72px bottom. The space opens upward.",
+    whitespace: "Expansive — 56px top, 72px bottom. The space opens upward.",
     typography: "Display font on the first phrase, then reading font at 19px. Line-height 2.0.",
-    accent: "Gold at decorative opacity (0.4) \u2014 present and luminous.",
+    accent: "Gold at decorative opacity (0.4) — present and luminous.",
     motion: "600ms with decelerate easing. Arrival, not departure.",
     mood: "The space opens upward. Something larger than the self is present.",
   },
   {
     id: "karuna",
     sanskrit: "Karuna",
-    devanagari: "\u0915\u0930\u0941\u0923",
+    devanagari: "करुण",
     english: "Compassion / Tender Sorrow",
     padding: "48px",
     paddingTop: "48px",
@@ -89,16 +89,16 @@ const rasas: Rasa[] = [
     transitionDuration: "300ms",
     goldOpacity: 0.35,
     firstLineDisplay: false,
-    whitespace: "Intimate \u2014 32em measure, 48px padding. The room draws close.",
+    whitespace: "Intimate — 32em measure, 48px padding. The room draws close.",
     typography: "Reading font at 18px, line-height 1.9. Tighter measure for intimacy.",
-    accent: "Gold at warm candle intensity (0.35) \u2014 slightly warmer, closer.",
-    motion: "300ms transitions. Quick, responsive \u2014 like a hand reaching out.",
+    accent: "Gold at warm candle intensity (0.35) — slightly warmer, closer.",
+    motion: "300ms transitions. Quick, responsive — like a hand reaching out.",
     mood: "The room draws close. Walls soften. Distance dissolves.",
   },
   {
     id: "vira",
     sanskrit: "Vira",
-    devanagari: "\u0935\u0940\u0930",
+    devanagari: "वीर",
     english: "Heroic Courage",
     padding: "40px",
     paddingTop: "40px",
@@ -111,16 +111,16 @@ const rasas: Rasa[] = [
     transitionDuration: "200ms",
     goldOpacity: 0.6,
     firstLineDisplay: false,
-    whitespace: "Structured \u2014 40px padding, wider measure. Disciplined space.",
+    whitespace: "Structured — 40px padding, wider measure. Disciplined space.",
     typography: "Reading font at 18px, weight 500, line-height 1.7. Tighter, bolder.",
-    accent: "Gold at interactive strength (0.6) \u2014 defined, commanding.",
+    accent: "Gold at interactive strength (0.6) — defined, commanding.",
     motion: "200ms transitions. Crisp, decisive. No hesitation.",
     mood: "The room becomes precise. Every word lands with conviction.",
   },
   {
     id: "bhakti",
     sanskrit: "Bhakti",
-    devanagari: "\u092D\u0915\u094D\u0924\u093F",
+    devanagari: "भक्ति",
     english: "Devotional Love",
     padding: "52px",
     paddingTop: "52px",
@@ -133,17 +133,17 @@ const rasas: Rasa[] = [
     transitionDuration: "800ms",
     goldOpacity: 0.4,
     firstLineDisplay: false,
-    whitespace: "Rhythmic \u2014 52px top, 60px bottom. Breathing whitespace.",
+    whitespace: "Rhythmic — 52px top, 60px bottom. Breathing whitespace.",
     typography: "Reading font at 20px, line-height 2.0. Centered. Warm and generous.",
-    accent: "Gold at decorative (0.4) \u2014 with lotus motif breathing below.",
+    accent: "Gold at decorative (0.4) — with lotus motif breathing below.",
     motion: "800ms contemplative transitions. The rhythm of prayer.",
     mood: "The room warms with devotion. Each word is an offering.",
   },
 ];
 
 const passage =
-  "\u201CThe season of failure is the best time for sowing the seeds of success. The bud of a rose does not become beautiful through some outer force; its beauty blossoms from within.\u201D";
-const attribution = "\u2014\u00A0Paramahansa Yogananda";
+  "“The season of failure is the best time for sowing the seeds of success. The bud of a rose does not become beautiful through some outer force; its beauty blossoms from within.”";
+const attribution = "— Paramahansa Yogananda";
 
 /** Simple lotus SVG that breathes with a CSS animation */
 function LotusMark({ opacity }: { opacity: number }) {
@@ -407,7 +407,7 @@ export default function RasaExperience() {
         >
           Five rasas from Indian aesthetic theory transform the same passage.
           Each rasa reshapes whitespace, typography, accent intensity, and
-          motion \u2014 the content is identical, but the experience changes
+          motion — the content is identical, but the experience changes
           completely. Watch the passage breathe differently as you switch
           between aesthetic flavors.
         </p>

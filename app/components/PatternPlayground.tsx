@@ -82,7 +82,7 @@ function TokenSearch() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder={`Search ${tokenCount} tokens\u2026 try "gold", "contemplative", "spacing", "800ms"`}
+          placeholder={`Search ${tokenCount} tokens… try "gold", "contemplative", "spacing", "800ms"`}
           className="w-full theme-transition rounded-md px-4 py-3 text-sm"
           style={{
             fontFamily: "var(--font-ui)",
@@ -345,7 +345,7 @@ function OpacityScale() {
               {name}
             </span>
             <div className="flex-1 h-6 rounded-sm" style={{ backgroundColor: "var(--color-text)", opacity: token.$value }} />
-            <span className="token-value text-xs">{token.$value}</span>
+            <span className="token-value text-xs text-center" style={{ minWidth: "44px" }}>{token.$value}</span>
           </div>
         ))}
       </div>

@@ -12,13 +12,13 @@ const registers = [
   {
     id: "sacred",
     label: "Sacred",
-    description: "Full reverence \u2014 the passage receives highest design treatment",
+    description: "Full reverence — the passage receives highest design treatment",
     contentTypes: "Guru quotes, scriptural passages, prayer text",
-    whitespace: "Maximum \u2014 the content breathes in vast silence",
+    whitespace: "Maximum — the content breathes in vast silence",
     typography: "Display font, generous size, light weight",
-    accentLevel: "Decorative \u2014 accent at 0.4, present but not calling",
+    accentLevel: "Decorative — accent at 0.4, present but not calling",
     motion: "Contemplative (800ms) or arrival (1200ms)",
-    distractions: "Zero \u2014 all chrome hidden, no links, no actions",
+    distractions: "Zero — all chrome hidden, no links, no actions",
     style: {
       fontFamily: "var(--font-display)",
       fontSize: "28px",
@@ -32,13 +32,13 @@ const registers = [
   {
     id: "reverential",
     label: "Reverential",
-    description: "Deep respect \u2014 the content is honored but contextualized",
+    description: "Deep respect — the content is honored but contextualized",
     contentTypes: "Chapter text, featured passages, biography",
-    whitespace: "Generous \u2014 room to contemplate each paragraph",
+    whitespace: "Generous — room to contemplate each paragraph",
     typography: "Reading font at standard size, warm serifs",
-    accentLevel: "Ambient \u2014 accent at 0.3, peripheral warmth",
-    motion: "Content (300ms) \u2014 smooth but not slow",
-    distractions: "Minimal \u2014 navigation available but recedes",
+    accentLevel: "Ambient — accent at 0.3, peripheral warmth",
+    motion: "Content (300ms) — smooth but not slow",
+    distractions: "Minimal — navigation available but recedes",
     style: {
       fontFamily: "var(--font-reading)",
       fontSize: "18px",
@@ -51,12 +51,12 @@ const registers = [
   {
     id: "instructional",
     label: "Instructional",
-    description: "Helpful guidance \u2014 the design serves function",
+    description: "Helpful guidance — the design serves function",
     contentTypes: "Table of contents, glossary entries, practice bridge",
-    whitespace: "Moderate \u2014 organized, not sparse",
+    whitespace: "Moderate — organized, not sparse",
     typography: "UI font for clarity, reading font for content",
-    accentLevel: "Interactive \u2014 accent at full opacity for links and actions",
-    motion: "Interaction (150ms) \u2014 responsive",
+    accentLevel: "Interactive — accent at full opacity for links and actions",
+    motion: "Interaction (150ms) — responsive",
     distractions: "Contextual links and navigation are welcome",
     style: {
       fontFamily: "var(--font-ui)",
@@ -70,12 +70,12 @@ const registers = [
   {
     id: "functional",
     label: "Functional",
-    description: "Transparent utility \u2014 the interface disappears",
+    description: "Transparent utility — the interface disappears",
     contentTypes: "Search input, settings, filters, pagination",
-    whitespace: "Compact \u2014 efficient without being cramped",
+    whitespace: "Compact — efficient without being cramped",
     typography: "UI font, small sizes, semibold for actions",
-    accentLevel: "Interactive \u2014 accent at full opacity for focus states",
-    motion: "Interaction (150ms) \u2014 instant response",
+    accentLevel: "Interactive — accent at full opacity for focus states",
+    motion: "Interaction (150ms) — instant response",
     distractions: "Full chrome, all tools available",
     style: {
       fontFamily: "var(--font-ui)",
@@ -91,11 +91,11 @@ const registers = [
     label: "Ambient",
     description: "The experience IS the absence of content",
     contentTypes: "Quiet corner, portal threshold, loading states",
-    whitespace: "Maximum \u2014 space IS the content",
+    whitespace: "Maximum — space IS the content",
     typography: "Sparse, centered, secondary opacity",
-    accentLevel: "Ambient to subliminal \u2014 accent at 0.3 to 0.06",
-    motion: "Arrival (1200ms) \u2014 slow, contemplative",
-    distractions: "None \u2014 all chrome hidden",
+    accentLevel: "Ambient to subliminal — accent at 0.3 to 0.06",
+    motion: "Arrival (1200ms) — slow, contemplative",
+    distractions: "None — all chrome hidden",
     style: {
       fontFamily: "var(--font-reading)",
       fontSize: "16px",
@@ -175,7 +175,7 @@ export default function EmotionalRegisters() {
           Two orthogonal axes. <strong style={{ color: "var(--color-text)" }}>Registers</strong>{" "}
           (sacred&thinsp;&rarr;&thinsp;ambient) govern content reverence.{" "}
           <strong style={{ color: "var(--color-text)" }}>Voices</strong>{" "}
-          ({org === "srf" ? "contemplative\u2009\u2192\u2009communal" : "modern\u2009\u2192\u2009devotional"}) govern surface purpose.
+          ({org === "srf" ? "contemplative → communal" : "modern → devotional"}) govern surface purpose.
           Toggle both to see how the same passage transforms.
         </p>
 

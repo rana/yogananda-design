@@ -1,0 +1,166 @@
+{
+  "$description": "Photographic atmosphere — optional visual life for surfaces where photographs are available. Photographs function at the vyañjanā (suggested) level of the dhvani gradient: they are atmosphere, not content. The reader should feel warmth, place, or arrival without consciously perceiving a photograph. This layer is entirely opt-in. Without it, surfaces use the design language's native gold gradient atmosphere (pure CSS, zero assets). With it, photographs add a dimension of place — the mountains behind the teaching, the ocean beyond the window, the garden outside the meditation room. The gold gradient is not a fallback; it is the canonical expression. Photographs are an enrichment.",
+
+  "governing-principles": {
+    "dhvani-alignment": "Photographs sit at the suggested (vyañjanā) end of the attention gradient. They are not content to be looked at — they are conditions that create atmosphere. Permitted attention levels: ambient (0.3) through texture (0.03). Never interactive. Never prominent. Rarely decorative — only the arrival role reaches decorative opacity, and only at the moment of arrival before yielding.",
+    "bindu-protection": "The teaching text is the still center (bindu). Photographs must never compete. They orbit at the farthest distance — atmosphere at the edge of perception. On any surface where text is the bindu, photographs are at texture level or absent.",
+    "aucitya-constraint": "A photograph is proper only when it serves the surface's register and voice. Sacred reading surfaces: never. Arrival surfaces: often. Communal event pages: appropriate and welcome. The design language provides options; the site designer applies aucitya.",
+    "alankara-requirement": "Every photograph must serve both aesthetic AND structural roles. A hero photograph establishes place AND creates arrival gesture. A section atmosphere provides warmth AND signals movement transition. A photograph that only decorates is doṣa — a fault the language does not permit.",
+    "prana-timing": "Photograph reveals follow the breath model. Scroll-driven modulation is the primary mechanism. The reader's scroll is the inhalation (pūraka); the photograph's presence is the held state (kumbhaka); the photograph's recession as the reader enters content is the exhalation (recaka)."
+  },
+
+  "photo-roles": {
+    "$description": "Four roles for photographs in the design language, mapped to the orbital model (bindu → near → middle → far). Each role has a specific attention level, structural function, and calm-technology classification. Roles parallel the motif system's semantic roles (divider, breath, close, accent) — photographs and botanical glyphs serve analogous structural purposes at different scales.",
+
+    "arrival": {
+      "css-class": ".atmosphere-arrival",
+      "attention-level": "decorative (0.4) → ambient (0.3) via scroll",
+      "orbital-distance": "far — the closest photographs ever approach the reader",
+      "structural-role": "Establishes place. Creates arrival gesture (pūraka). The first visual impression of a surface. Alaṅkāra: simultaneously atmospheric and structural — it marks 'you have arrived' as a lotus marks 'this chapter begins.'",
+      "calm-classification": "scroll-driven (user-initiated, PRI-08 compliant)",
+      "veil-opacity": "60–70% — photograph partially visible through theme color",
+      "use-when": "Landing pages, hero sections, portal entry, about pages, institutional surfaces. The moment of greeting.",
+      "never-when": "Reading surfaces, search results, any surface where text is the bindu",
+      "scroll-behavior": "Photograph fades from decorative to texture as user scrolls into content. The arrival yields to the teaching — pūraka resolving into kumbhaka.",
+      "examples": ["Portal home hero: Encinitas ocean at dawn", "About page: Lake Shrine gardens", "YSS landing: Ranchi ashram courtyard", "Convocation page: gathering crowd (communal voice only)"]
+    },
+
+    "ambient": {
+      "css-class": ".atmosphere-ambient",
+      "attention-level": "subliminal (0.06) to texture (0.03)",
+      "orbital-distance": "farthest — at the edge of perception",
+      "structural-role": "Provides warmth of place. Signals section character without visual noise. Alaṅkāra: a mountain photograph at 95% veil creates the feeling of 'this teaching was given in the mountains' without the reader ever seeing a mountain.",
+      "calm-classification": "static or scroll-driven (view() timeline)",
+      "veil-opacity": "90–95% — photograph not identifiable, only warmth perceptible",
+      "use-when": "Section backgrounds where place-warmth enriches without competing. Non-reading sections of content pages.",
+      "never-when": "Behind sacred or reverential register text. Behind any text that demands sustained reading.",
+      "scroll-behavior": "Optional: subtle reveal as section enters viewport via animation-timeline: view(). Or static — equally appropriate.",
+      "examples": ["An 'About our teachings' section with Himalayan foothills at 93% veil", "An events overview with garden atmosphere"]
+    },
+
+    "breath": {
+      "css-class": ".atmosphere-breath",
+      "attention-level": "texture (0.03) → subliminal (0.06) → texture (0.03)",
+      "orbital-distance": "farthest",
+      "structural-role": "Marks movement boundaries. The photographic equivalent of the lotus breathing between movements. A brief atmospheric shift that signals transition without interrupting flow. Alaṅkāra: simultaneously decorative (atmospheric warmth) and structural (movement marker).",
+      "calm-classification": "scroll-driven (view() timeline)",
+      "veil-opacity": "92–97% — ghost of image",
+      "use-when": "Transitional spaces between content movements or sections. Where the existing lotus divider sits, but at environmental rather than ornamental scale.",
+      "never-when": "Within content flows. Never prominent enough to be consciously perceived — if a reader notices the photograph, it is too prominent."
+    },
+
+    "ground": {
+      "css-class": ".atmosphere-ground",
+      "attention-level": "texture (0.03)",
+      "orbital-distance": "farthest possible — the base layer of the entire page",
+      "structural-role": "Ambient environmental warmth. Supplements or replaces the gold radial gradient. Creates the sensation 'this is not a screen; this is a place.' Alaṅkāra: the photograph IS the atmosphere — it gives the gold gradient a dimension of physical place.",
+      "calm-classification": "scroll-driven (scroll() timeline, same as the gold atmospheric gradient)",
+      "veil-opacity": "95–97% — pure warmth, zero identifiable detail",
+      "blur": "8–16px gaussian — eliminates all recognizable detail, leaves only color temperature and luminance variation",
+      "use-when": "Page-level atmosphere. Works alongside the gold gradient — the photograph is BEHIND the gradient, adding physical warmth to the mathematical gradient.",
+      "scroll-behavior": "Follows the same arc as the gold atmosphere: bloom at the golden center, fade at edges."
+    }
+  },
+
+  "content-categories": {
+    "$description": "What photographs may serve as atmosphere, governed by the image guidelines in brand/image-guidelines.json. The taxonomy reflects both institutional respect and aesthetic propriety.",
+
+    "nature-landscape": {
+      "subjects": ["Mountains (Himalayas, Sierra Nevada)", "Ocean (Encinitas coast, Pacific)", "Sky (dawn, dusk, clear blue, clouds)", "Gardens (Lake Shrine gardens, temple gardens)", "Flowers (lotus, marigold garlands)", "Trees (redwoods, banyan, bodhi)"],
+      "permitted-roles": ["arrival", "ambient", "breath", "ground"],
+      "notes": "The safest and most versatile category. Nature photographs establish sense of place without institutional or devotional specificity. Ideal for ground and breath roles where the photograph must be entirely abstract."
+    },
+    "srf-properties": {
+      "subjects": ["Lake Shrine", "Encinitas Hermitage", "Mother Center (Hollywood)", "Hidden Valley Ashram", "Forest Lawn memorial"],
+      "permitted-roles": ["arrival", "ambient"],
+      "org-restriction": "SRF surfaces only (data-org='srf')",
+      "notes": "Establishes institutional place. The SRF surface says 'you are at the Fellowship's digital home' through architectural atmosphere."
+    },
+    "yss-properties": {
+      "subjects": ["Ranchi Ashram", "Dakshineswar", "Noida campus"],
+      "permitted-roles": ["arrival", "ambient"],
+      "org-restriction": "YSS surfaces only (data-org='yss')",
+      "notes": "Establishes institutional place for YSS surfaces. Architecture, gardens, sacred spaces — always at atmosphere level, never foregrounded."
+    },
+    "event-photography": {
+      "subjects": ["Convocation gatherings", "Group meditation", "Ceremonies", "Temple services"],
+      "permitted-roles": ["arrival"],
+      "voice-restriction": "communal only (gathering theme)",
+      "notes": "Communal surfaces welcome human presence as atmosphere. The arrival role on an event page may show a gathering of seekers — always at sufficient veil to prevent identification of individuals."
+    },
+    "guru-photographs": {
+      "permitted-roles": [],
+      "absolute-prohibition": "NEVER as atmosphere. Guru photographs are reverential content, not environmental decoration. They are displayed at respectful size, in reverential context, with full attribution. They are the bindu of any surface where they appear — never the periphery. See brand/image-guidelines.json for usage rules."
+    }
+  },
+
+  "theme-adaptation": {
+    "$description": "The theme veil — the primary mechanism for atmosphere-theme harmony. Every photograph is viewed through a veil of --color-bg at high opacity. This means photographs automatically adapt to every theme, including themes that do not yet exist. The veil IS the theme expression — no per-theme photograph configuration needed.",
+    "mechanism": "color-mix(in srgb, var(--color-bg) <veil-opacity>, transparent)",
+    "theme-qualities": {
+      "light": "Warm cream veil (#FAF8F5). Photographs gain a softly lit library quality — old paper over landscape.",
+      "sepia": "Deep cream veil (#f4edd4). Photographs appear as if seen through antique glass. The warmest contemplative veil.",
+      "earth": "Dark earth veil (#3c3023). Only warm highlights survive. A fire-lit or cave-mouth quality — depth without coldness.",
+      "dark": "Deep navy veil (#121c2e). Cool, nocturnal. Only bright elements barely register. The photograph becomes moonlit memory.",
+      "meditate": "Near-black veil (#0d0d14). Almost no photograph survives. The closest to pure absence — atmosphere as the ghost of place.",
+      "gathering": "Clean white veil (#FFFFFF). Fresh, open, airy. Photographs gain the quality of sunlit architecture — welcoming warmth.",
+      "ashram": "White veil (#FFFFFF). Similar to gathering — YSS modern clarity. Clean and contemporary.",
+      "sandstone": "Warm stone veil (#f5ece0). Photographs gain the quality of temple sandstone in afternoon light.",
+      "night": "Deep indigo veil (#1a1825). Moonlit suggestion. Photographs become nocturnal impressions — the aarti's glow.",
+      "devotion": "Deep saffron veil (#2a1a10). The warmest YSS veil. Photographs gain the quality of lamplight in a meditation room."
+    },
+    "automaticity": "Because the veil uses --color-bg, all theme adaptation is automatic. Site designers configure a photograph once; it harmonizes with every theme the user selects. This is the system's most important property."
+  },
+
+  "motion-levels": {
+    "$description": "Three levels of photographic motion. The design language defines all three. The CSS pattern file implements the first two. Site designers choose the level appropriate to their surface's register and voice.",
+
+    "static": {
+      "description": "Photograph placed once, never moves. Theme veil adapts via CSS transitions when the user switches themes.",
+      "calm-compliance": "Always compliant. Zero motion budget beyond theme-switch crossfade.",
+      "suitable-for": "All surfaces, all registers, all voices.",
+      "css": "Default behavior — no animation properties needed."
+    },
+    "scroll-driven": {
+      "description": "Opacity, position, or subtle scale modulated by scroll position via animation-timeline: scroll() or view(). The user's scroll drives the photograph's presence.",
+      "calm-compliance": "Compliant — user-initiated (PRI-08). The seeker initiates; the portal responds. Same mechanism as the gold atmospheric gradient.",
+      "suitable-for": "Arrival surfaces, section backgrounds, ground atmosphere. Never reading surfaces.",
+      "css": "animation-timeline: scroll() for ground and arrival roles. animation-timeline: view() for ambient and breath roles. Progressive enhancement — browsers without support show static placement."
+    },
+    "ambient-continuous": {
+      "description": "Very slow continuous motion — Ken Burns (5–8% scale over 20–30s), gentle position drift, or slow zoom. The photograph breathes at timescales the eye barely registers.",
+      "calm-compliance": "CONDITIONAL. Permitted only when ALL of the following are true: (1) the surface is not a reading surface, (2) the photograph is at decorative attention level or below, (3) the motion is at or below 8% total displacement over 20+ seconds, (4) the surface serves a communal or arrival purpose. Absolutely never on contemplative reading surfaces.",
+      "suitable-for": "Communal voice hero sections, event landing pages, marketing surfaces, institutional welcome pages.",
+      "never-suitable-for": "Contemplative reading surfaces. Any surface where sustained reading is the purpose. Any surface at sacred or reverential register.",
+      "reduced-motion": "Always disabled under prefers-reduced-motion: reduce.",
+      "css": "Not included in the pattern CSS — site designers who want this level implement it per-surface with the design language's motion tokens (--motion-arrival for duration, --easing-contemplative for curve).",
+      "note": "This level bridges to yogananda.org's animated background approach. The design language provides the conceptual framework and constraints; implementation is the site designer's judgment call. Aucitya (propriety) determines whether ambient motion is appropriate for a given surface."
+    }
+  },
+
+  "progressive-enhancement": {
+    "$description": "The atmosphere system is a progressive enhancement stack. Each level is complete without the next. No level is a 'better version' of the one below — each is a different depth of atmospheric expression.",
+    "levels": [
+      { "level": 0, "name": "Gold gradient", "description": "Pure CSS radial gradient, scroll-driven. No assets. Complete and beautiful. The canonical expression. Currently active in the showcase.", "requires": "css/index.css only" },
+      { "level": 1, "name": "Static photograph", "description": "A photograph behind the gold gradient at texture-to-subliminal opacity. Adds the warmth of place — the mountains behind the gradient, the ocean beyond the gold.", "requires": "css/patterns/atmosphere.css + a photograph URL" },
+      { "level": 2, "name": "Scroll-driven photograph", "description": "The photograph's presence modulates with the user's scroll. Photographs breathe with navigation. Same mechanism as the gold gradient.", "requires": "Level 1 + browser support for animation-timeline" },
+      { "level": 3, "name": "Ambient motion", "description": "Very slow continuous motion on non-reading surfaces. The photograph subtly shifts. Achieves the yogananda.org quality of 'living place.'", "requires": "Level 2 + site designer judgment that ambient motion is proper for the surface" }
+    ],
+    "fallback-chain": "When --atmosphere-image is absent or the image fails to load, the photograph layer is transparent and the gold gradient or plain background shows through. No visual break, no loading state, no layout shift."
+  },
+
+  "accessibility": {
+    "reduced-motion": "prefers-reduced-motion: reduce → all scroll-driven and ambient motion disabled. Photographs remain as static atmosphere at reduced opacity. The gold gradient also disables (already handled in showcase CSS).",
+    "high-contrast": "prefers-contrast: more → all atmosphere layers disabled. Content on solid theme backgrounds only. No gradients, no photographs.",
+    "print": "All atmosphere removed. No photographs in print output. Clean white background, black text.",
+    "screen-readers": "All atmosphere containers carry aria-hidden='true'. Photographs are environmental, not informational — they carry no content that a screen reader should announce.",
+    "cognitive": "At subliminal-to-texture attention levels (opacity 0.03–0.06), atmospheric photographs sit below the threshold of conscious attention. They do not compete with content for cognitive resources. This is not a claim — it is a design constraint: if a photograph is consciously noticed, its veil opacity is too low for that surface's register."
+  },
+
+  "css-reference": "css/patterns/atmosphere.css",
+  "activation": "Import css/patterns/atmosphere.css. Set --atmosphere-image custom property on any .atmosphere-* container. When --atmosphere-image is absent (default), the system is invisible — zero cost, zero side effects.",
+
+  "relationship-to-gold-gradient": {
+    "$description": "The gold radial gradient (showcase-atmosphere in globals.css, using color-mix(in srgb, var(--color-gold) 6%, transparent)) is the CANONICAL atmospheric expression. It requires no assets, adapts to all themes via --color-gold, and embodies the design language's preference for abstraction over representation. Photographs do not replace this gradient — they sit behind it, adding a dimension of physical place. The stack from back to front: photograph (texture) → gold gradient (ambient) → content. Site designers may use photographs alone, gold gradient alone, or both together."
+  }
+}

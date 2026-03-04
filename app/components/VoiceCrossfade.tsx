@@ -8,7 +8,7 @@ const voices = {
   contemplative: {
     label: "Contemplative",
     sanskrit: "Dhyana",
-    metaphor: "The library \u2014 a lamp illuminating a single page",
+    metaphor: "The library — a lamp illuminating a single page",
     accent: "var(--color-gold)",
     accentLabel: "Gold #DCBD23",
     text: "#1A2744",
@@ -27,7 +27,7 @@ const voices = {
     label: "Communal",
     sanskrit: "Sangha",
     metaphor:
-      "The courtyard at convocation \u2014 marigold garlands, shared devotion",
+      "The courtyard at convocation — marigold garlands, shared devotion",
     accent: "var(--color-marigold)",
     accentLabel: "Marigold #DC6A10",
     text: "#4C4C4C",

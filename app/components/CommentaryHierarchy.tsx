@@ -16,14 +16,14 @@ import { useState } from "react";
 
 const content = {
   mula: {
-    text: "\u201CYou do not have to struggle to reach God, but you do have to struggle to tear away the self-created veil that hides Him from you.\u201D",
+    text: "“You do not have to struggle to reach God, but you do have to struggle to tear away the self-created veil that hides Him from you.”",
     attribution: "Paramahansa Yogananda",
   },
   bhashya:
-    "Sri Daya Mata reflects on this teaching: \u2018The Master\u2019s words remind us that the divine presence is not distant. The veil is our own restlessness, our own preoccupation with the surface of life. The struggle he speaks of is not effort toward something far away, but the gentle, persistent turning inward.\u2019",
-  tika: "Veil (m\u0101y\u0101): In Vedantic philosophy, the cosmic delusion that obscures the perception of ultimate reality. Yogananda often used this term to describe both the cosmic illusion and the individual\u2019s mental restlessness that prevents direct perception of the Divine.",
+    "Sri Daya Mata reflects on this teaching: ‘The Master’s words remind us that the divine presence is not distant. The veil is our own restlessness, our own preoccupation with the surface of life. The struggle he speaks of is not effort toward something far away, but the gentle, persistent turning inward.’",
+  tika: "Veil (māyā): In Vedantic philosophy, the cosmic delusion that obscures the perception of ultimate reality. Yogananda often used this term to describe both the cosmic illusion and the individual’s mental restlessness that prevents direct perception of the Divine.",
   varttika:
-    "Source: Autobiography of a Yogi, Chapter 14. First published 1946, Philosophical Library. This passage appears in the context of Yogananda\u2019s description of his early experiences at Sri Yukteswar\u2019s ashram. Cross-reference: God Talks with Arjuna, commentary on Bhagavad Gita IV:38.",
+    "Source: Autobiography of a Yogi, Chapter 14. First published 1946, Philosophical Library. This passage appears in the context of Yogananda’s description of his early experiences at Sri Yukteswar’s ashram. Cross-reference: God Talks with Arjuna, commentary on Bhagavad Gita IV:38.",
 };
 
 /* Label style shared by all four levels */
@@ -82,7 +82,7 @@ export default function CommentaryHierarchy() {
           }}
         >
           <div style={labelStyle}>
-            <span style={{ fontWeight: 600 }}>M\u016Bla (\u092E\u0942\u0932)</span>
+            <span style={{ fontWeight: 600 }}>Mūla (मूल)</span>
             {" "}&middot; Sacred Register &middot; Center
           </div>
 
@@ -127,7 +127,7 @@ export default function CommentaryHierarchy() {
           }}
         >
           <div style={labelStyle}>
-            <span style={{ fontWeight: 600 }}>Bh\u0101shya (\u092D\u093E\u0937\u094D\u092F)</span>
+            <span style={{ fontWeight: 600 }}>Bhāshya (भाष्य)</span>
             {" "}&middot; Reverential Register &middot; Near Orbit
           </div>
 
@@ -164,7 +164,7 @@ export default function CommentaryHierarchy() {
             }}
           >
             <div style={labelStyle}>
-              <span style={{ fontWeight: 600 }}>T\u012Bk\u0101 (\u091F\u0940\u0915\u093E)</span>
+              <span style={{ fontWeight: 600 }}>Tīkā (टीका)</span>
               {" "}&middot; Instructional Register &middot; Middle Orbit
             </div>
 
@@ -221,7 +221,7 @@ export default function CommentaryHierarchy() {
           }}
         >
           <div style={labelStyle}>
-            <span style={{ fontWeight: 600 }}>V\u0101rttika (\u0935\u093E\u0930\u094D\u0924\u094D\u0924\u093F\u0915)</span>
+            <span style={{ fontWeight: 600 }}>Vārttika (वार्त्तिक)</span>
             {" "}&middot; Functional Register &middot; Far Orbit
           </div>
 
