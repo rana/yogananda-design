@@ -7,6 +7,8 @@
   "description": "Canonical visual design language for the Yogananda digital ecosystem",
   "files": [
     "css/",
+    "fonts/",
+    "public/fonts/",
     "foundations/",
     "semantics/",
     "patterns/",
