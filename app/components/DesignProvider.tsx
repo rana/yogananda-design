@@ -6,6 +6,7 @@ import {
   useState,
   useEffect,
   useCallback,
+  useRef,
 } from "react";
 
 export type Org = "srf" | "yss";
@@ -72,6 +73,7 @@ function mapTheme(currentTheme: ThemeName, toOrg: Org): ThemeName {
 export function DesignProvider({ children }: { children: React.ReactNode }) {
   const [org, setOrgState] = useState<Org>("srf");
   const [theme, setThemeState] = useState<ThemeName>("light");
+  const restoringUrl = useRef(false);
 
   const setTheme = useCallback((t: ThemeName) => {
     const apply = () => {
@@ -112,11 +114,60 @@ export function DesignProvider({ children }: { children: React.ReactNode }) {
     []
   );
 
-  // Set initial DOM attributes
+  // Restore state from URL on mount (?org=yss&theme=night)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlOrg = params.get("org");
+    const urlTheme = params.get("theme");
+    if (!urlOrg && !urlTheme) return;
+
+    let o: Org = "srf";
+    if (urlOrg === "srf" || urlOrg === "yss") o = urlOrg;
+
+    let t: ThemeName = defaultTheme[o];
+    if (urlTheme && orgThemes[o].includes(urlTheme as ThemeName)) {
+      t = urlTheme as ThemeName;
+    }
+
+    // Set DOM immediately to minimize flash before React re-renders
+    document.documentElement.dataset.org = o;
+    document.documentElement.dataset.theme = t;
+
+    // Mark restoring so the sync effect doesn't clobber the URL
+    restoringUrl.current = true;
+
+    setOrgState(o);
+    setThemeState(t);
+  }, []);
+
+  // Sync state → DOM attributes + URL on every change
   useEffect(() => {
     document.documentElement.dataset.org = org;
     document.documentElement.dataset.theme = theme;
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    // On mount, the sync effect fires with initial state before the
+    // mount effect's setState takes effect. Skip URL sync to avoid
+    // briefly clobbering URL params that are being restored.
+    if (restoringUrl.current) {
+      // Clear the flag once state matches URL params (restore complete)
+      const params = new URLSearchParams(window.location.search);
+      if (org === params.get("org") && theme === params.get("theme")) {
+        restoringUrl.current = false;
+      }
+      return;
+    }
+
+    const url = new URL(window.location.href);
+    if (org === "srf" && theme === "light") {
+      // Default state — keep URL clean
+      url.searchParams.delete("org");
+      url.searchParams.delete("theme");
+    } else {
+      url.searchParams.set("org", org);
+      url.searchParams.set("theme", theme);
+    }
+    history.replaceState(null, "", url);
+  }, [org, theme]);
 
   return (
     <DesignContext.Provider
