@@ -74,20 +74,40 @@ export function DesignProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<ThemeName>("light");
 
   const setTheme = useCallback((t: ThemeName) => {
-    setThemeState(t);
-    document.documentElement.dataset.theme = t;
+    const apply = () => {
+      setThemeState(t);
+      document.documentElement.dataset.theme = t;
+    };
+    const doc = document as Document & {
+      startViewTransition?: (cb: () => void) => ViewTransition;
+    };
+    if (doc.startViewTransition) {
+      doc.startViewTransition(apply);
+    } else {
+      apply();
+    }
   }, []);
 
   const setOrg = useCallback(
     (newOrg: Org) => {
-      setOrgState(newOrg);
-      document.documentElement.dataset.org = newOrg;
-      // Map current theme to the equivalent in the new org
-      setThemeState((prev) => {
-        const mapped = mapTheme(prev, newOrg);
-        document.documentElement.dataset.theme = mapped;
-        return mapped;
-      });
+      const apply = () => {
+        setOrgState(newOrg);
+        document.documentElement.dataset.org = newOrg;
+        // Map current theme to the equivalent in the new org
+        setThemeState((prev) => {
+          const mapped = mapTheme(prev, newOrg);
+          document.documentElement.dataset.theme = mapped;
+          return mapped;
+        });
+      };
+      const doc = document as Document & {
+        startViewTransition?: (cb: () => void) => ViewTransition;
+      };
+      if (doc.startViewTransition) {
+        doc.startViewTransition(apply);
+      } else {
+        apply();
+      }
     },
     []
   );

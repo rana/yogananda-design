@@ -23,10 +23,40 @@
 .showcase-section {
   padding: var(--space-vast) 0;
   border-bottom: 1px solid var(--color-border);
+  /* Performance: browser skips layout/paint for off-screen sections */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 .showcase-section:last-child {
   border-bottom: none;
+}
+
+/* ── Scroll-Driven Section Reveals ─────────────────────────── */
+/* Sections draw breath as they enter the viewport. Pure CSS,
+   progressive enhancement — browsers without support show
+   content at full opacity immediately. The `from`-only keyframe
+   lets each section reveal to its natural state. */
+
+@supports (animation-timeline: view()) {
+  .showcase-section {
+    animation: section-breathe linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+
+  @keyframes section-breathe {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .showcase-section {
+      animation: none;
+    }
+  }
 }
 
 /* Code/token display */
@@ -90,6 +120,26 @@
   border-bottom: none;
 }
 
+/* The lotus breathes — a slow, subliminal pulse at the
+   boundary between movements. One full breath cycle is 6s:
+   five inhalations to match the five emotional registers.
+   The effect is ambient — registers as life, not animation. */
+
+.showcase-movement-break img {
+  animation: lotus-breathe 6s ease-in-out infinite;
+}
+
+@keyframes lotus-breathe {
+  0%, 100% { opacity: 0.08; transform: scale(1); }
+  50% { opacity: 0.18; transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-movement-break img {
+    animation: none;
+  }
+}
+
 /* ── Section Weight — Gravitational Center ────────────────────── */
 /* The reading surface is the reason this design system exists.
    It gets more space and a barely perceptible warmth. */
@@ -121,6 +171,34 @@
 
 @media (prefers-reduced-motion: reduce) {
   .showcase-exhale {
+    animation-duration: 0s;
+  }
+}
+
+/* ── View Transitions — Theme Morphing ─────────────────────── */
+/* When themes switch, the old state crossfades into the new.
+   Uses the design language's own motion token so the transition
+   *feels* like part of the system, not browser chrome. */
+
+::view-transition-old(root) {
+  animation: var(--motion-content) var(--easing-decelerate) both fade-out;
+}
+
+::view-transition-new(root) {
+  animation: var(--motion-content) var(--easing-decelerate) both fade-in;
+}
+
+@keyframes fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
     animation-duration: 0s;
   }
 }

@@ -4,23 +4,35 @@ import { useState, useEffect } from "react";
 import { useDesign } from "./DesignProvider";
 import ThemeSwitcher from "./ThemeSwitcher";
 
-const sections = [
-  { id: "themes", label: "Themes" },
-  { id: "motifs", label: "Motifs" },
-  { id: "typography", label: "Type" },
-  { id: "registers", label: "Registers" },
-  { id: "voices", label: "Voices" },
-  { id: "gradient", label: "Gradient" },
-  { id: "reading", label: "Reading" },
-  { id: "rasa", label: "Rasa" },
-  { id: "commentary", label: "Commentary" },
-  { id: "theory", label: "Theory" },
-  { id: "transitions", label: "Transitions" },
-  { id: "calm", label: "Calm" },
-  { id: "accessibility", label: "A11y" },
-  { id: "print", label: "Print" },
-  { id: "patterns", label: "Patterns" },
+/* Three movements: Foundations (vocabulary) → Expression (practice) → Structure (reference) */
+type Movement = "foundations" | "expression" | "structure";
+
+const sections: { id: string; label: string; movement: Movement }[] = [
+  /* Movement I: Foundations — the vocabulary */
+  { id: "themes", label: "Themes", movement: "foundations" },
+  { id: "motifs", label: "Motifs", movement: "foundations" },
+  { id: "typography", label: "Type", movement: "foundations" },
+  /* Movement II: Expression — the practice */
+  { id: "registers", label: "Registers", movement: "expression" },
+  { id: "voices", label: "Voices", movement: "expression" },
+  { id: "gradient", label: "Gradient", movement: "expression" },
+  { id: "reading", label: "Reading", movement: "expression" },
+  { id: "rasa", label: "Rasa", movement: "expression" },
+  { id: "commentary", label: "Commentary", movement: "expression" },
+  /* Movement III: Structure — the reference */
+  { id: "theory", label: "Theory", movement: "structure" },
+  { id: "transitions", label: "Transitions", movement: "structure" },
+  { id: "calm", label: "Calm", movement: "structure" },
+  { id: "accessibility", label: "A11y", movement: "structure" },
+  { id: "print", label: "Print", movement: "structure" },
+  { id: "patterns", label: "Patterns", movement: "structure" },
 ];
+
+const movementLabels: Record<Movement, string> = {
+  foundations: "I",
+  expression: "II",
+  structure: "III",
+};
 
 export default function Nav() {
   const [activeSection, setActiveSection] = useState("");
@@ -93,25 +105,70 @@ export default function Nav() {
             </div>
           </div>
 
-          {/* Section links — hidden below xl */}
-          <div className="hidden xl:flex gap-1 shrink-0">
-            {sections.map((s) => (
-              <a
-                key={s.id}
-                href={`#${s.id}`}
-                className="theme-transition px-1.5 py-1 rounded text-xs whitespace-nowrap"
-                style={{
-                  fontFamily: "var(--font-ui)",
-                  fontWeight: activeSection === s.id ? 600 : 400,
-                  color:
-                    activeSection === s.id
-                      ? "var(--color-gold)"
-                      : "var(--color-text-secondary)",
-                }}
-              >
-                {s.label}
-              </a>
-            ))}
+          {/* Section links — hidden below xl, grouped by movement */}
+          <div className="hidden xl:flex items-center gap-0.5 shrink-0">
+            {sections.map((s, i) => {
+              const prevMovement = i > 0 ? sections[i - 1].movement : null;
+              const isNewMovement = s.movement !== prevMovement;
+              const isActive = activeSection === s.id;
+              /* Which movement is the user currently reading? */
+              const activeMovement = sections.find(
+                (sec) => sec.id === activeSection
+              )?.movement;
+
+              return (
+                <span key={s.id} className="flex items-center">
+                  {/* Movement separator + numeral */}
+                  {isNewMovement && (
+                    <span
+                      className="flex items-center"
+                      style={{ marginLeft: i === 0 ? 0 : "6px" }}
+                    >
+                      {i > 0 && (
+                        <span
+                          style={{
+                            width: "1px",
+                            height: "12px",
+                            backgroundColor: "var(--color-border)",
+                            marginRight: "6px",
+                          }}
+                        />
+                      )}
+                      <span
+                        className="theme-transition"
+                        style={{
+                          fontFamily: "var(--font-ui)",
+                          fontSize: "9px",
+                          fontWeight: 600,
+                          letterSpacing: "0.08em",
+                          color:
+                            activeMovement === s.movement
+                              ? "var(--color-gold)"
+                              : "var(--color-text-secondary)",
+                          opacity: activeMovement === s.movement ? 1 : 0.5,
+                          marginRight: "4px",
+                        }}
+                      >
+                        {movementLabels[s.movement]}
+                      </span>
+                    </span>
+                  )}
+                  <a
+                    href={`#${s.id}`}
+                    className="theme-transition px-1.5 py-1 rounded text-xs whitespace-nowrap"
+                    style={{
+                      fontFamily: "var(--font-ui)",
+                      fontWeight: isActive ? 600 : 400,
+                      color: isActive
+                        ? "var(--color-gold)"
+                        : "var(--color-text-secondary)",
+                    }}
+                  >
+                    {s.label}
+                  </a>
+                </span>
+              );
+            })}
           </div>
 
           {/* Spacer */}
