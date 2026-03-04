@@ -1,12 +1,12 @@
 {
-  "$description": "SRF Botanical Glyph Catalog. 11 distinct lotus illustrations extracted from yogananda.org, optimized with SVGO 4.0, converted to fill=\"currentColor\" for theme-responsive rendering. Each glyph is a unique botanical form — together they compose a visual alphabet for ornamental typography.",
+  "$description": "SRF Botanical Glyph Catalog. 12 distinct lotus illustrations — 11 extracted from yogananda.org, 1 from the SRF registration mark — optimized with SVGO 4.0, converted to fill=\"currentColor\" for theme-responsive rendering. Each glyph is a unique botanical form — together they compose a visual alphabet for ornamental typography.",
 
   "collection": {
-    "count": 11,
+    "count": 12,
     "source": "yogananda.org CMS (Craft) public storage — /craft-public-storage/ directory",
     "format": "SVG with fill=\"currentColor\" — no hardcoded colors",
     "optimization": "SVGO 4.0.0 default preset + post-processed to remove inline style attributes",
-    "original-naming": "lotus-{number}_{color}_dark.svg (numbers 1–15 with gaps at 2, 4, 11, 13)",
+    "original-naming": "Sequential lotus-{01–12}. Renumbered from sparse original set (lotus-{1–15} with gaps) plus promoted registration mark.",
     "original-colors": {
       "green_dark": "#6a6d2f",
       "orange_dark": "#dd6c26",
@@ -27,8 +27,8 @@
       "suggestedRoles": ["ornament", "chapter-close"],
       "$description": "Compact lotus bloom. Nearly square proportion — versatile for ornamental use at any size."
     },
-    "lotus-03": {
-      "file": "glyphs/lotus-03.svg",
+    "lotus-02": {
+      "file": "glyphs/lotus-02.svg",
       "viewBox": "0 0 1065.14 792.94",
       "aspectRatio": 1.34,
       "bytes": 56654,
@@ -36,8 +36,8 @@
       "suggestedRoles": ["divider", "section-break"],
       "$description": "Broad landscape lotus. The most richly detailed glyph — largest file size in the collection."
     },
-    "lotus-05": {
-      "file": "glyphs/lotus-05.svg",
+    "lotus-03": {
+      "file": "glyphs/lotus-03.svg",
       "viewBox": "0 0 964.72 816.78",
       "aspectRatio": 1.18,
       "bytes": 53984,
@@ -45,8 +45,8 @@
       "suggestedRoles": ["ornament", "hero-accent"],
       "$description": "Full square bloom with high detail. Second-largest glyph."
     },
-    "lotus-06": {
-      "file": "glyphs/lotus-06.svg",
+    "lotus-04": {
+      "file": "glyphs/lotus-04.svg",
       "viewBox": "0 0 842.44 583.78",
       "aspectRatio": 1.44,
       "bytes": 52326,
@@ -54,8 +54,8 @@
       "suggestedRoles": ["divider", "section-break"],
       "$description": "Wide landscape lotus. Strong horizontal emphasis for section dividers."
     },
-    "lotus-07": {
-      "file": "glyphs/lotus-07.svg",
+    "lotus-05": {
+      "file": "glyphs/lotus-05.svg",
       "viewBox": "0 0 1373.79 474.59",
       "aspectRatio": 2.89,
       "bytes": 10236,
@@ -63,8 +63,8 @@
       "suggestedRoles": ["divider", "banner-ornament"],
       "$description": "Ultra-wide banner lotus — the most horizontal glyph at nearly 3:1 ratio. Lightest by file size. Ideal for section dividers and horizontal rules."
     },
-    "lotus-08": {
-      "file": "glyphs/lotus-08.svg",
+    "lotus-06": {
+      "file": "glyphs/lotus-06.svg",
       "viewBox": "0 0 1034.94 438.6",
       "aspectRatio": 2.36,
       "bytes": 14852,
@@ -72,8 +72,8 @@
       "suggestedRoles": ["divider", "banner-ornament"],
       "$description": "Wide banner lotus at 2.4:1 ratio. Clean lines, moderate detail."
     },
-    "lotus-09": {
-      "file": "glyphs/lotus-09.svg",
+    "lotus-07": {
+      "file": "glyphs/lotus-07.svg",
       "viewBox": "0 0 813.84 519.47",
       "aspectRatio": 1.57,
       "bytes": 28178,
@@ -81,8 +81,8 @@
       "suggestedRoles": ["divider", "ornament"],
       "$description": "Moderate landscape lotus. Balanced between ornamental and horizontal use."
     },
-    "lotus-10": {
-      "file": "glyphs/lotus-10.svg",
+    "lotus-08": {
+      "file": "glyphs/lotus-08.svg",
       "viewBox": "0 0 989.23 473.84",
       "aspectRatio": 2.09,
       "bytes": 16858,
@@ -90,8 +90,8 @@
       "suggestedRoles": ["divider", "banner-ornament"],
       "$description": "Wide banner lotus at 2:1 ratio. Clean and moderately detailed."
     },
-    "lotus-12": {
-      "file": "glyphs/lotus-12.svg",
+    "lotus-09": {
+      "file": "glyphs/lotus-09.svg",
       "viewBox": "0 0 733.02 614.08",
       "aspectRatio": 1.19,
       "bytes": 22297,
@@ -99,8 +99,8 @@
       "suggestedRoles": ["ornament", "chapter-close"],
       "$description": "Compact square lotus. Smallest footprint in the square group."
     },
-    "lotus-14": {
-      "file": "glyphs/lotus-14.svg",
+    "lotus-10": {
+      "file": "glyphs/lotus-10.svg",
       "viewBox": "0 0 1037.46 1135.43",
       "aspectRatio": 0.91,
       "bytes": 29878,
@@ -108,68 +108,59 @@
       "suggestedRoles": ["hero-accent", "empty-state", "meditation-ornament"],
       "$description": "The only portrait-oriented glyph — taller than wide (0.91:1). Unique vertical presence. Suited for focal points and contemplative compositions."
     },
-    "lotus-15": {
-      "file": "glyphs/lotus-15.svg",
+    "lotus-11": {
+      "file": "glyphs/lotus-11.svg",
       "viewBox": "0 0 784.73 767.08",
       "aspectRatio": 1.02,
       "bytes": 23768,
       "shape": "square",
       "suggestedRoles": ["ornament", "favicon-candidate", "chapter-close"],
       "$description": "Nearly perfect square (1.02:1). The most balanced glyph — works at any size."
+    },
+    "lotus-12": {
+      "file": "glyphs/lotus-12.svg",
+      "viewBox": "0 0 87 72",
+      "aspectRatio": 1.21,
+      "bytes": 39186,
+      "shape": "square",
+      "suggestedRoles": ["ornament", "chapter-close", "registration-mark"],
+      "$description": "Elaborate floral registration mark promoted from icons. Highly ornamental, dense botanical detail. Nearly square (1.21:1)."
     }
   },
 
   "icons": {
-    "donate-flower": {
-      "file": "icons/donate-flower.svg",
-      "viewBox": "0 0 33 23",
-      "bytes": 8066,
-      "$description": "Lotus icon used alongside donation CTA. Same viewBox as canonical lotus.svg."
-    },
-    "audio-icon": {
-      "file": "icons/audio-icon.svg",
+    "audio": {
+      "file": "icons/audio.svg",
       "viewBox": "0 0 11 11",
       "bytes": 648,
       "$description": "Small audio indicator icon. 11x11 viewBox, minimal detail."
     },
-    "audio-video-icon": {
-      "file": "icons/audio-video-icon.svg",
+    "audio-video": {
+      "file": "icons/audio-video.svg",
       "viewBox": "0 0 46 21",
-      "bytes": 1236,
+      "bytes": 1241,
       "$description": "Combined audio/video indicator icon."
-    },
-    "gold-lotus-transparent": {
-      "file": "icons/gold-lotus-transparent.svg",
-      "viewBox": "0 0 33 23",
-      "bytes": 8078,
-      "$description": "Brand lotus variant. Same viewBox as canonical lotus.svg, different path detail."
-    },
-    "flower-registration": {
-      "file": "icons/flower-registration.svg",
-      "viewBox": "0 0 87 72",
-      "bytes": 39199,
-      "$description": "Elaborate floral registration mark. Most detailed icon. Highly ornamental."
     }
   },
 
   "shape-groups": {
     "banner": {
-      "glyphs": ["lotus-07", "lotus-08", "lotus-10"],
+      "glyphs": ["lotus-05", "lotus-06", "lotus-08"],
       "aspectRatioRange": "2.0–2.9",
       "$description": "Ultra-wide horizontal forms. Natural section dividers. Use at 48–120px wide."
     },
     "landscape": {
-      "glyphs": ["lotus-03", "lotus-06", "lotus-09"],
+      "glyphs": ["lotus-02", "lotus-04", "lotus-07"],
       "aspectRatioRange": "1.3–1.6",
       "$description": "Moderate horizontal forms. Work as dividers or standalone ornaments."
     },
     "square": {
-      "glyphs": ["lotus-01", "lotus-05", "lotus-12", "lotus-15"],
+      "glyphs": ["lotus-01", "lotus-03", "lotus-09", "lotus-11", "lotus-12"],
       "aspectRatioRange": "1.0–1.2",
       "$description": "Balanced forms. Most versatile — ornaments, chapter endings, empty states."
     },
     "portrait": {
-      "glyphs": ["lotus-14"],
+      "glyphs": ["lotus-10"],
       "aspectRatioRange": "0.9",
       "$description": "Taller than wide. Unique vertical presence. Hero accents, meditation focal points."
     }

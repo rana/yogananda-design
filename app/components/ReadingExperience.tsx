@@ -418,7 +418,7 @@ export default function ReadingExperience() {
 
               {/* Motif breathing mark */}
               <div
-                className="motif motif-lotus-05 motif-breath"
+                className="motif motif-lotus-03 motif-breath"
                 aria-hidden="true"
               />
 
@@ -442,7 +442,7 @@ export default function ReadingExperience() {
 
               {/* Close motif — shifts to crimson in publication */}
               <div
-                className="motif motif-lotus-05 motif-close"
+                className="motif motif-lotus-03 motif-close"
                 aria-hidden="true"
               />
 

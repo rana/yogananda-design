@@ -24,9 +24,9 @@ const glyphCategories = [
     description: "Wide horizontal forms (2:1 to 3:1). Natural section dividers.",
     height: "36px",
     glyphs: [
-      { id: "lotus-07", cssClass: "motif-lotus-07" },
+      { id: "lotus-05", cssClass: "motif-lotus-05" },
+      { id: "lotus-06", cssClass: "motif-lotus-06" },
       { id: "lotus-08", cssClass: "motif-lotus-08" },
-      { id: "lotus-10", cssClass: "motif-lotus-10" },
     ],
   },
   {
@@ -34,9 +34,9 @@ const glyphCategories = [
     description: "Moderate horizontal forms (1.3:1 to 1.6:1). Dividers or ornaments.",
     height: "48px",
     glyphs: [
-      { id: "lotus-03", cssClass: "motif-lotus-03" },
-      { id: "lotus-06", cssClass: "motif-lotus-06" },
-      { id: "lotus-09", cssClass: "motif-lotus-09" },
+      { id: "lotus-02", cssClass: "motif-lotus-02" },
+      { id: "lotus-04", cssClass: "motif-lotus-04" },
+      { id: "lotus-07", cssClass: "motif-lotus-07" },
     ],
   },
   {
@@ -45,9 +45,10 @@ const glyphCategories = [
     height: "56px",
     glyphs: [
       { id: "lotus-01", cssClass: "motif-lotus-01" },
-      { id: "lotus-05", cssClass: "motif-lotus-05" },
+      { id: "lotus-03", cssClass: "motif-lotus-03" },
+      { id: "lotus-09", cssClass: "motif-lotus-09" },
+      { id: "lotus-11", cssClass: "motif-lotus-11" },
       { id: "lotus-12", cssClass: "motif-lotus-12" },
-      { id: "lotus-15", cssClass: "motif-lotus-15" },
     ],
   },
   {
@@ -55,7 +56,7 @@ const glyphCategories = [
     description: "Taller than wide. Unique vertical presence.",
     height: "72px",
     glyphs: [
-      { id: "lotus-14", cssClass: "motif-lotus-14" },
+      { id: "lotus-10", cssClass: "motif-lotus-10" },
     ],
   },
 ];
@@ -120,7 +121,7 @@ function VoiceSelector({
             }}
           >
             <span
-              className={`motif motif-lotus-05 ${v.cssClass}`}
+              className={`motif motif-lotus-03 ${v.cssClass}`}
               style={{ width: "18px", height: "18px", opacity: selected ? 1 : 0.5 }}
             />
             {v.label}
@@ -158,7 +159,7 @@ export default function MotifGallery() {
             maxWidth: "600px",
           }}
         >
-          The lotus alphabet. Eleven botanical forms &times; five devotional color
+          The lotus alphabet. Twelve botanical forms &times; five devotional color
           voices &mdash; a rich ornamental type system for section dividers, chapter
           ornaments, and breathing pauses. CSS mask-image technique: the SVG
           provides shape; background-color provides fill. Theme-responsive
@@ -234,7 +235,7 @@ export default function MotifGallery() {
               {colorVoices.map((v) => (
                 <div key={v.id} className="text-center">
                   <div
-                    className={`motif motif-lotus-05 ${v.cssClass}`}
+                    className={`motif motif-lotus-03 ${v.cssClass}`}
                     aria-hidden="true"
                     style={{ height: "56px", margin: "0 auto" }}
                   />
@@ -311,7 +312,7 @@ export default function MotifGallery() {
                   {role.desc}
                 </div>
                 <div
-                  className={`motif motif-lotus-07 ${role.cssClass}`}
+                  className={`motif motif-lotus-05 ${role.cssClass}`}
                   aria-hidden="true"
                 />
               </div>
@@ -367,7 +368,7 @@ export default function MotifGallery() {
                 the book claiming its ornaments.
               </div>
               <div
-                className="motif motif-lotus-07 motif-divider"
+                className="motif motif-lotus-05 motif-divider"
                 aria-hidden="true"
               />
               <div
@@ -383,7 +384,7 @@ export default function MotifGallery() {
                 feature, not a book structure.
               </div>
               <div
-                className="motif motif-lotus-05 motif-breath"
+                className="motif motif-lotus-03 motif-breath"
                 aria-hidden="true"
               />
             </div>

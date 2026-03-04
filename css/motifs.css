@@ -1,7 +1,7 @@
 /* ══════════════════════════════════════════════════════════════════
    Motif System — Botanical Glyphs & Icons
    ══════════════════════════════════════════════════════════════════
-   The lotus alphabet. 11 distinct botanical forms × 5 color voices
+   The lotus alphabet. 12 distinct botanical forms × 5 color voices
    = a rich ornamental type system for section dividers, chapter
    ornaments, breathing pauses, and decorative accents.
 
@@ -24,8 +24,8 @@
    not exceed one motif per content section.
 
    Usage:
-     <div class="motif motif-lotus-07 motif-divider" aria-hidden="true"></div>
-     <span class="motif motif-lotus-15 motif-growth" aria-hidden="true"></span>
+     <div class="motif motif-lotus-05 motif-divider" aria-hidden="true"></div>
+     <span class="motif motif-lotus-11 motif-growth" aria-hidden="true"></span>
 
    Requires: foundations.css (for color, motion, spacing tokens)
    Consumers: must host motif SVGs at /motifs/ from web root
@@ -117,42 +117,42 @@
 /* ── Glyph Classes — Banner ──────────────────────────────────── */
 /* Wide horizontal forms (2:1 to 3:1). Natural section dividers. */
 
-.motif-lotus-07 {
-  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-07.svg');
-  mask-image: url('/motifs/srf/glyphs/lotus-07.svg');
+.motif-lotus-05 {
+  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-05.svg');
+  mask-image: url('/motifs/srf/glyphs/lotus-05.svg');
   aspect-ratio: 1373.79 / 474.59;
+}
+
+.motif-lotus-06 {
+  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-06.svg');
+  mask-image: url('/motifs/srf/glyphs/lotus-06.svg');
+  aspect-ratio: 1034.94 / 438.6;
 }
 
 .motif-lotus-08 {
   -webkit-mask-image: url('/motifs/srf/glyphs/lotus-08.svg');
   mask-image: url('/motifs/srf/glyphs/lotus-08.svg');
-  aspect-ratio: 1034.94 / 438.6;
-}
-
-.motif-lotus-10 {
-  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-10.svg');
-  mask-image: url('/motifs/srf/glyphs/lotus-10.svg');
   aspect-ratio: 989.23 / 473.84;
 }
 
 /* ── Glyph Classes — Landscape ───────────────────────────────── */
 /* Moderate horizontal forms (1.3:1 to 1.6:1). Dividers or ornaments. */
 
-.motif-lotus-03 {
-  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-03.svg');
-  mask-image: url('/motifs/srf/glyphs/lotus-03.svg');
+.motif-lotus-02 {
+  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-02.svg');
+  mask-image: url('/motifs/srf/glyphs/lotus-02.svg');
   aspect-ratio: 1065.14 / 792.94;
 }
 
-.motif-lotus-06 {
-  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-06.svg');
-  mask-image: url('/motifs/srf/glyphs/lotus-06.svg');
+.motif-lotus-04 {
+  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-04.svg');
+  mask-image: url('/motifs/srf/glyphs/lotus-04.svg');
   aspect-ratio: 842.44 / 583.78;
 }
 
-.motif-lotus-09 {
-  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-09.svg');
-  mask-image: url('/motifs/srf/glyphs/lotus-09.svg');
+.motif-lotus-07 {
+  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-07.svg');
+  mask-image: url('/motifs/srf/glyphs/lotus-07.svg');
   aspect-ratio: 813.84 / 519.47;
 }
 
@@ -165,63 +165,51 @@
   aspect-ratio: 763.24 / 632.56;
 }
 
-.motif-lotus-05 {
-  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-05.svg');
-  mask-image: url('/motifs/srf/glyphs/lotus-05.svg');
+.motif-lotus-03 {
+  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-03.svg');
+  mask-image: url('/motifs/srf/glyphs/lotus-03.svg');
   aspect-ratio: 964.72 / 816.78;
+}
+
+.motif-lotus-09 {
+  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-09.svg');
+  mask-image: url('/motifs/srf/glyphs/lotus-09.svg');
+  aspect-ratio: 733.02 / 614.08;
+}
+
+.motif-lotus-11 {
+  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-11.svg');
+  mask-image: url('/motifs/srf/glyphs/lotus-11.svg');
+  aspect-ratio: 784.73 / 767.08;
 }
 
 .motif-lotus-12 {
   -webkit-mask-image: url('/motifs/srf/glyphs/lotus-12.svg');
   mask-image: url('/motifs/srf/glyphs/lotus-12.svg');
-  aspect-ratio: 733.02 / 614.08;
-}
-
-.motif-lotus-15 {
-  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-15.svg');
-  mask-image: url('/motifs/srf/glyphs/lotus-15.svg');
-  aspect-ratio: 784.73 / 767.08;
+  aspect-ratio: 87 / 72;
 }
 
 /* ── Glyph Classes — Portrait ────────────────────────────────── */
 /* Taller than wide. Unique vertical presence. */
 
-.motif-lotus-14 {
-  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-14.svg');
-  mask-image: url('/motifs/srf/glyphs/lotus-14.svg');
+.motif-lotus-10 {
+  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-10.svg');
+  mask-image: url('/motifs/srf/glyphs/lotus-10.svg');
   aspect-ratio: 1037.46 / 1135.43;
 }
 
 /* ── Icon Classes ────────────────────────────────────────────── */
 
-.motif-icon-donate {
-  -webkit-mask-image: url('/motifs/srf/icons/donate-flower.svg');
-  mask-image: url('/motifs/srf/icons/donate-flower.svg');
-  aspect-ratio: 33 / 23;
-}
-
 .motif-icon-audio {
-  -webkit-mask-image: url('/motifs/srf/icons/audio-icon.svg');
-  mask-image: url('/motifs/srf/icons/audio-icon.svg');
+  -webkit-mask-image: url('/motifs/srf/icons/audio.svg');
+  mask-image: url('/motifs/srf/icons/audio.svg');
   aspect-ratio: 1;
 }
 
 .motif-icon-audio-video {
-  -webkit-mask-image: url('/motifs/srf/icons/audio-video-icon.svg');
-  mask-image: url('/motifs/srf/icons/audio-video-icon.svg');
+  -webkit-mask-image: url('/motifs/srf/icons/audio-video.svg');
+  mask-image: url('/motifs/srf/icons/audio-video.svg');
   aspect-ratio: 46 / 21;
-}
-
-.motif-icon-lotus-brand {
-  -webkit-mask-image: url('/motifs/srf/icons/gold-lotus-transparent.svg');
-  mask-image: url('/motifs/srf/icons/gold-lotus-transparent.svg');
-  aspect-ratio: 33 / 23;
-}
-
-.motif-icon-registration {
-  -webkit-mask-image: url('/motifs/srf/icons/flower-registration.svg');
-  mask-image: url('/motifs/srf/icons/flower-registration.svg');
-  aspect-ratio: 87 / 72;
 }
 
 /* ── Color Voice Classes ─────────────────────────────────────── */
@@ -236,7 +224,7 @@
 
 /* ── Semantic Role Classes ───────────────────────────────────── */
 /* Pre-composed roles with sizing, centering, and opacity.
-   Usage: <div class="motif motif-lotus-07 motif-divider"></div>
+   Usage: <div class="motif motif-lotus-05 motif-divider"></div>
    Height sets the motif size; width auto-computes from aspect-ratio.
    The element centers itself via width: fit-content + margin auto. */
 
