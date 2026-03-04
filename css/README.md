@@ -12,6 +12,10 @@ The design language expressed as pure CSS. Framework-agnostic. Import what you n
 
 /* Non-reading surface (dashboard, admin, platform) */
 @import './css/index.css';
+
+/* Operational surfaces (platform ops, deploy dashboards) */
+@import './css/index.css';
+@import './css/patterns/operations.css';
 ```
 
 Set `data-org` and `data-theme` on `<html>`. All CSS responds to these attributes.

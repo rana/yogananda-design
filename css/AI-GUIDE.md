@@ -42,6 +42,7 @@ css/attention.css            ← gold/marigold opacity utility classes
 css/patterns/reading-surface.css ← scroll indicator, dwell, focus mode
 css/patterns/print.css       ← @media print stylesheet
 css/patterns/preferences.css ← font size / line spacing user controls
+css/patterns/operations.css  ← @font-face IBM Plex Mono + ops patterns (chain, timeline, status, costs)
 ```
 
 ### HTML Structure
@@ -108,7 +109,7 @@ Every design decision lives at the intersection of two orthogonal axes:
 - **Sacred** — Yogananda's own words. Maximum reverence. Expansive whitespace, reading typography, no UI overlays on text.
 - **Reverential** — SRF/YSS monastic and presidential authors. Deep respect, slightly less ceremonial spacing.
 - **Instructional** — Portal-authored guides and editorial. Clear, warm, the librarian speaking.
-- **Functional** — Navigation, search, settings. Invisible infrastructure.
+- **Functional** — Navigation, search, settings. Invisible infrastructure. Add `data-density="compact"` for data-dense operational surfaces (switches to monospace, tighter line height).
 - **Ambient** — Scroll indicators, texture overlays, paper warmth. Felt, not seen.
 
 **Critical rule**: Sacred and reverential registers always use reading typography regardless of voice. A Yogananda quote on an event page still gets Merriweather — the voice colors the chrome; the register protects the text.
@@ -220,6 +221,9 @@ You are writing HTML and CSS. Here are the exact classes, properties, and data a
 /* Communal voice */
 .display-event-text  /* ArcherPro 500 — event headings (system font) */
 .ui-event-text       /* Helvetica Neue 375 — event chrome (system font) */
+
+/* Operational data */
+.data-text           /* IBM Plex Mono 400, 13px, tabular-nums — commit hashes, costs */
 ```
 
 ### Typographic Features
@@ -272,7 +276,7 @@ All properties live on `:root` via `foundations.css`. Reference them with `var(-
 
 **Easing**: `--easing-standard`, `--easing-contemplative`, `--easing-decelerate`, `--easing-accelerate`
 
-**Typography**: `--font-reading`, `--font-display`, `--font-ui`, `--font-reading-hi`, `--font-ui-hi`, `--font-display-inspirational`, `--font-display-event`, `--font-ui-event`
+**Typography**: `--font-reading`, `--font-display`, `--font-ui`, `--font-reading-hi`, `--font-ui-hi`, `--font-display-inspirational`, `--font-display-event`, `--font-ui-event`, `--font-data`
 
 **Radius**: `--radius-none` (0), `--radius-small` (2px), `--radius-default` (4px), `--radius-pill` (9999px)
 
@@ -460,6 +464,7 @@ You must still ensure:
 - Preload critical fonts: Merriweather 400 + Open Sans 400
 - Devanagari fonts load on demand (unicode-range subsetting)
 - The devotional display font (Asar) loads only on pages that use `.display-inspirational-text` or `--font-display-inspirational`
+- The operational data font (IBM Plex Mono) loads only when `patterns/operations.css` is imported (~30KB for both weights)
 - All CSS is static — no JavaScript required for any design token to work
 - Print stylesheet is built in — `@media print` handles everything
 

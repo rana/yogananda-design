@@ -147,6 +147,10 @@
   --font-display-event: "ArcherPro", "Archer", Georgia, serif;
   --font-ui-event: "Helvetica Neue", Helvetica, system-ui, -apple-system, sans-serif;
 
+  /* Operational data — monospace for commit hashes, deploy IDs, costs.
+     @font-face in patterns/operations.css (zero-cost for non-operational consumers). */
+  --font-data: "IBM Plex Mono", ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
+
   /* ── Radius ────────────────────────────────────────────────────
      Soft but not bubbly — a library, not a playground.
      Source: foundations/shared.tokens.json → radius */

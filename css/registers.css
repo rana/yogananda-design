@@ -109,6 +109,16 @@
   color: var(--color-text);
 }
 
+/* Data density modifier — compact tables, deploy timelines, cost
+   grids. Monospace font, tighter spacing. Pairs with functional
+   register on operational surfaces. */
+
+[data-register="functional"][data-density="compact"] {
+  --register-font: var(--font-data);
+  --register-size: 0.8125rem;
+  --register-line-height: 1.4;
+}
+
 
 /* Ambient — background presence. ──────────────────────────────
    Peripheral awareness. If a seeker notices these elements,
