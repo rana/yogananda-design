@@ -277,6 +277,29 @@
 }
 
 
+/* ── Spanish register overrides ───────────────────────────────
+   Spanish uses angular quotation marks (guillemets) per RAE.
+   Latin script — same measure and font stack as English.
+   The `quotes` property cascades into all descendant elements.
+   Source: RAE typographic norms, AoY Spanish edition */
+
+:lang(es) {
+  quotes: "«" "»" "\201C" "\201D";
+}
+
+/* ── Bengali register overrides ──────────────────────────────
+   Bengali script shares many characteristics with Devanagari:
+   wider glyphs, shirorekha. Same adaptations apply.
+   Future: font stack for Bengali when available. */
+
+:lang(bn) [data-register="sacred"],
+:lang(bn) [data-register="reverential"] {
+  --register-measure: 35em;
+  --register-line-height: 1.9;
+  --register-size: 1.25rem;
+}
+
+
 /* ── Reduced motion ───────────────────────────────────────────
    All register transitions respect prefers-reduced-motion.
    (Also handled globally in calm.css, but belt + suspenders.) */

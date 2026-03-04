@@ -232,6 +232,17 @@
   line-height: 1.9;
 }
 
+/* ── Dialogue ───────────────────────────────────────────────── */
+/* Conversational passages — Yogananda speaking with his guru,
+   saints exchanging words. Visually close to prose (it IS prose),
+   but marked for CSS targeting via [data-content-type="dialogue"].
+   Slightly tighter vertical rhythm mirrors the pace of speech.
+   Drop cap never applies to dialogue paragraphs. */
+
+.reader-dialogue {
+  margin-block: calc(var(--space-generous) * 0.85);
+}
+
 /* ── Publication Features ───────────────────────────────────── */
 /* When data-publication is active, structural book elements
    shift from theme text color to crimson — mirroring the
