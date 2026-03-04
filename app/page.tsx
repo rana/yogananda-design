@@ -3,7 +3,9 @@ import Hero from "./components/Hero";
 import ThemeGallery from "./components/ThemeGallery";
 import MotifGallery from "./components/MotifGallery";
 import TypographySpecimen from "./components/TypographySpecimen";
+import MultiScriptTypography from "./components/MultiScriptTypography";
 import EmotionalRegisters from "./components/EmotionalRegisters";
+import MediaRegisters from "./components/MediaRegisters";
 import VoiceCrossfade from "./components/VoiceCrossfade";
 import AttentionGradient from "./components/AttentionGradient";
 import ReadingExperience from "./components/ReadingExperience";
@@ -11,6 +13,7 @@ import RasaExperience from "./components/RasaExperience";
 import CommentaryHierarchy from "./components/CommentaryHierarchy";
 import AestheticTheory from "./components/AestheticTheory";
 import TransitionTheater from "./components/TransitionTheater";
+import ResponsiveStrategy from "./components/ResponsiveStrategy";
 import CalmTechnologyAudit from "./components/CalmTechnologyAudit";
 import AccessibilityLab from "./components/AccessibilityLab";
 import PrintPreview from "./components/PrintPreview";
@@ -56,6 +59,7 @@ export default function Home() {
         <ThemeGallery />
         <MotifGallery />
         <TypographySpecimen />
+        <MultiScriptTypography />
 
         <MovementBreak label="From vocabulary to expression" />
 
@@ -63,6 +67,7 @@ export default function Home() {
         {/* Sections build toward the gravitational center:
             Reading Surface. Then descend through its extensions. */}
         <EmotionalRegisters />
+        <MediaRegisters />
         <VoiceCrossfade />
         <AttentionGradient />
 
@@ -81,6 +86,7 @@ export default function Home() {
         {/* ── Movement III: Structure (the reference) ─────────── */}
         <AestheticTheory />
         <TransitionTheater />
+        <ResponsiveStrategy />
         <CalmTechnologyAudit />
         <AccessibilityLab />
         <PrintPreview />

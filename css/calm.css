@@ -80,6 +80,64 @@ body {
   border-width: 0;
 }
 
+/* ── Skip Navigation — DES-025, PRI-07 ──────────────────────── */
+/* "Skip to main content" link as first focusable element on
+   every page. Visually hidden until focused, then appears as
+   a fixed banner. DES-025 requirement: first focusable element.
+
+   Usage: <a href="#main" class="skip-nav">Skip to main content</a>
+   Place as first child of <body>, before any navigation.
+   Target: <main id="main">. */
+
+.skip-nav {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: var(--z-top, 9999);
+
+  /* Visually hidden by default */
+  transform: translateY(-100%);
+  opacity: 0;
+
+  /* Appearance when visible */
+  display: block;
+  inline-size: 100%;
+  padding-block: 0.75rem;
+  padding-inline: 1.5rem;
+  background-color: var(--color-navy, #1a2744);
+  color: #ffffff;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+}
+
+.skip-nav:focus {
+  transform: translateY(0);
+  opacity: 1;
+  outline: 2px solid var(--color-gold);
+  outline-offset: -2px;
+}
+
+/* In forced-colors mode, ensure skip-nav uses system colors */
+@media (forced-colors: active) {
+  .skip-nav:focus {
+    background-color: Highlight;
+    color: HighlightText;
+    outline: 2px solid ButtonText;
+  }
+}
+
+/* Reduced motion: instant appearance */
+@media (prefers-reduced-motion: reduce) {
+  .skip-nav {
+    transition: none;
+  }
+}
+
 /* ── Text-Only Mode — ADR-006 ────────────────────────────────── */
 /* Strips all visual decoration. Pure text. For maximum
    accessibility or bandwidth-constrained environments. */
@@ -93,4 +151,64 @@ body {
 .text-only * {
   font-family: Georgia, "Times New Roman", serif !important;
   background-image: none !important;
+}
+
+/* ── Reduced Data — PRI-05, ADR-006 ──────────────────────────── */
+/* prefers-reduced-data: reduce → system fonts, no decorative
+   images. This is NOT text-only mode — the design language's
+   color palette, spatial relationships, and gold accents remain.
+   What's removed: web font downloads (saves ~200KB per page)
+   and decorative background images.
+
+   This is a designed experience, not a degraded one. Georgia on
+   warm cream with navy text and gold accents is beautiful.
+
+   Currently no browser ships this media query, but it is a
+   CSS Working Group specification. When it arrives, seekers
+   paying per megabyte will automatically receive a lighter,
+   complete experience. Until then, consumers can use the
+   .data-constrained class for server-side activation via the
+   Save-Data HTTP Client Hint header. */
+
+@media (prefers-reduced-data: reduce) {
+  * {
+    font-family: Georgia, "Times New Roman", serif !important;
+    background-image: none !important;
+  }
+
+  /* Preserve UI sans-serif where intent is functional, not decorative */
+  .ui-text, .ui-text-hi, nav, button, [role="button"], input, select {
+    font-family: system-ui, -apple-system, sans-serif !important;
+  }
+
+  img:not([data-essential]),
+  svg:not([role="img"]):not([data-ui]),
+  [data-decorative] {
+    display: none !important;
+  }
+}
+
+/* Server-side activation: set .data-constrained on <html> when
+   the Save-Data: 1 HTTP header is present. Same rules as the
+   media query — one mechanism, two entry points. */
+
+.data-constrained * {
+  font-family: Georgia, "Times New Roman", serif !important;
+  background-image: none !important;
+}
+
+.data-constrained .ui-text,
+.data-constrained .ui-text-hi,
+.data-constrained nav,
+.data-constrained button,
+.data-constrained [role="button"],
+.data-constrained input,
+.data-constrained select {
+  font-family: system-ui, -apple-system, sans-serif !important;
+}
+
+.data-constrained img:not([data-essential]),
+.data-constrained svg:not([role="img"]):not([data-ui]),
+.data-constrained [data-decorative] {
+  display: none !important;
 }

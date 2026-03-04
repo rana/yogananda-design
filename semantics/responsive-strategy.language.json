@@ -1,0 +1,89 @@
+{
+  "$description": "Responsive design strategy: breakpoints, interaction modality, orientation, and tablet-first principles. The portal's layout adapts across four viewport tiers, three interaction modalities, and two orientations. Viewport width alone is an unreliable proxy — interaction capability, orientation, and connectivity all matter. Source: DES-049.",
+
+  "breakpoints": {
+    "$description": "Four named viewport tiers. These are the universal responsive vocabulary for all surfaces consuming the design language. Named tiers prevent magic numbers.",
+    "mobile": {
+      "range": "≤639px",
+      "character": "Single column, full-width, touch-first. Content fills the viewport.",
+      "reader-behavior": "Single column, full-width text. Landscape: line length capped."
+    },
+    "tablet": {
+      "range": "640–1023px",
+      "character": "First-class reading surface. NOT an interpolation between mobile and desktop.",
+      "reader-behavior": "Wider margins than mobile, narrower than desktop. Landscape: two-column opt-in.",
+      "design-stance": "Tablets are arguably the ideal form factor for sustained book reading — larger than a phone, more portable than a laptop, usable in bed, in a garden, or at a study group. The portal treats tablet as a distinct experience tier."
+    },
+    "desktop": {
+      "range": "≥1024px",
+      "character": "Full layout. Side panels visible. Hover affordances available.",
+      "reader-behavior": "Generous margins. Related Teachings side panel visible."
+    },
+    "wide": {
+      "range": "≥1280px",
+      "character": "Reader centered at max-content width. Extra space used for auxiliary content.",
+      "reader-behavior": "Reader centered, side panel always visible."
+    }
+  },
+
+  "interaction-modality": {
+    "$description": "Viewport width does not reveal interaction capability. A tablet with a keyboard case behaves like a desktop; a touchscreen laptop behaves like a tablet. CSS media features for interaction-dependent behavior.",
+    "desktop-class": {
+      "detection": "@media (hover: hover) and (pointer: fine)",
+      "affordances": "Hover tooltips, dwell icon reveal on hover, fine cursor interactions.",
+      "touch-target": "44px minimum"
+    },
+    "touch-primary": {
+      "detection": "@media (hover: none) and (pointer: coarse)",
+      "affordances": "Long-press dwell, native share sheet, enlarged tap targets.",
+      "touch-target": "48px minimum for key navigation and form inputs"
+    },
+    "hybrid": {
+      "detection": "@media (hover: hover) and (pointer: coarse)",
+      "affordances": "Both hover and touch affordances available. Favor touch for primary actions.",
+      "touch-target": "48px minimum"
+    },
+    "component-implications": {
+      "dwell-mode": "Hover-icon trigger for desktop-class. Long-press for touch-primary. Both on hybrid.",
+      "share-menu": "navigator.share (native sheet) for touch-primary. Custom share menu for desktop-class.",
+      "glossary-terms": "Hover tooltip for desktop-class. Tap-to-reveal for touch-primary."
+    }
+  },
+
+  "orientation": {
+    "$description": "The portal does not lock orientation. Layout adapts to portrait and landscape.",
+    "phone-landscape": {
+      "treatment": "Single column with wider margins. Line length capped to prevent excessively long lines.",
+      "css": "max-inline-size: 36rem; margin-inline: auto"
+    },
+    "tablet-landscape": {
+      "treatment": "Two-column option: chapter text left, Related Teachings/footnotes right. Opt-in via reader settings (localStorage). The orientation transition is the natural breakpoint, not viewport width.",
+      "default": "Single column (not two-column by default — some seekers prefer single regardless)"
+    },
+    "presentation-landscape": {
+      "treatment": "Landscape preferred for group reading. Text fills viewport width with proportionally larger font."
+    }
+  },
+
+  "tablet-as-first-class": {
+    "$description": "Specific tablet design decisions that prevent 'just interpolate' thinking.",
+    "reader-margins": "48px at 768px width, scaling to 64px at 1023px. Not cramped, not wasted.",
+    "related-teachings": "Bottom sheet on portrait (matches mobile). Side panel on landscape (matches desktop). Orientation drives this, not viewport width.",
+    "two-column-reader": "Opt-in setting (reader settings popover). Stored in localStorage. Never forced.",
+    "touch-targets": "44px minimum (not enlarged to 48px like feature-phone pages — tablet touch precision is closer to desktop)"
+  },
+
+  "low-bandwidth-suggestion": {
+    "$description": "When navigator.connection.effectiveType reports '2g' or 'slow-2g', display a one-time suggestion banner (not a modal). Never forced — always a suggestion. Source: DES-049, extending ADR-006 §1.",
+    "copy": "Your connection appears slow. Switch to text-only mode for a faster experience?",
+    "actions": ["Accept", "Dismiss"],
+    "persistence": "Dismissed preference in sessionStorage (resets per session). Allows re-suggestion if conditions change.",
+    "style": "Warm cream palette, not alert style. This is ambient information per PRI-08."
+  },
+
+  "future-considerations": {
+    "foldable-devices": "Monitor CSS env(fold-left) / env(fold-right) proposals. No action until market share warrants.",
+    "smart-displays": "API-first architecture enables smart display integration without new breakpoints.",
+    "tv-casting": "data-mode='cast' alongside data-mode='present' if demand emerges. 10-foot UI paradigm."
+  }
+}

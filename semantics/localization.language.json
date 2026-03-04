@@ -1,0 +1,53 @@
+{
+  "$description": "Multi-script visual language: how the design adapts across scripts and locales while maintaining contemplative quality. This file owns the visual rules — font stacks, line-height adjustments, loading strategy, and fallback marking. Portal-specific concerns (search behavior, URL routing, chunk relations, language priorities) belong in the portal's architecture. Source: DES-017, PRI-06.",
+
+  "per-script-typography": {
+    "$description": "Font stacks for non-Latin scripts. Each script has a reading and UI font from the Noto family. Loading strategy is locale-gated.",
+    "scripts": {
+      "latin": {
+        "reading": "Merriweather / Lora / system serif",
+        "ui": "Open Sans / system-ui / sans-serif",
+        "loading": "Default — always loaded"
+      },
+      "devanagari": {
+        "reading": "Noto Serif Devanagari",
+        "ui": "Noto Sans Devanagari",
+        "loading": "Hindi locale (/hi/) eagerly preloads both. English pages load conditionally when Devanagari characters present.",
+        "line-height-adjustment": "Devanagari requires 1.9–2.0 line-height (taller glyphs with hanging characters)"
+      },
+      "cjk-japanese": {
+        "reading": "Noto Serif JP",
+        "ui": "Noto Sans JP",
+        "loading": "Conditional on /ja/ locale"
+      },
+      "thai": {
+        "reading": "Noto Serif Thai",
+        "ui": "Noto Sans Thai",
+        "loading": "Conditional on /th/ locale",
+        "note": "Thai script has no whitespace between words — affects text measure calculations"
+      },
+      "bengali": {
+        "reading": "Noto Serif Bengali",
+        "ui": "Noto Sans Bengali",
+        "loading": "Conditional on /bn/ locale"
+      }
+    },
+    "font-loading-principle": "Non-Latin fonts load only when needed. unicode-range gating prevents unnecessary downloads. System font fallbacks with size-adjust provide instant rendering."
+  },
+
+  "fallback-marking": {
+    "$description": "When content appears in a language different from the seeker's locale, the design language marks it honestly. The visual treatment is the same regardless of which feature triggered the fallback.",
+    "visual-treatment": {
+      "tag": "[EN] — small, muted, inline. Uses text-secondary color at ambient opacity.",
+      "link": "'Read in English' — standard gold interactive link, not a button or CTA.",
+      "tone": "Honest, not apologetic. Absence of translated content is treated as an invitation, not a failure."
+    },
+    "design-stance": "The [EN] tag is warm and quiet. It says 'this is available in English' the way a librarian says 'we have that on the other shelf.' No red badges, no warning icons, no 'sorry' copy."
+  },
+
+  "cultural-visual-adaptation": {
+    "$description": "Some visual elements require cultural adaptation beyond mechanical translation. These are design-level decisions, not content decisions.",
+    "seeking-entry-points": "The 'Seeking...' entry points are deeply English-idiomatic ('The heart to forgive'). Each locale's reviewer may rephrase, reorder, or replace entirely. These are editorial content per locale, not translated strings.",
+    "practice-bridge": "The practice bridge annotation (see patterns/reading-surface.pattern.json) is localized and SRF-reviewed in all locales. The visual treatment stays identical; only the copy changes."
+  }
+}

@@ -31,8 +31,23 @@
       "dwell": "1200ms settled paragraph → related teachings panel. Gold subliminal background on active paragraph.",
       "keyboard": "j/k paragraph navigation, h/l chapter, d dwell toggle, f focus mode, ? help",
       "scroll-indicator": "2px gold bar at top, opacity ambient (0.3), z-index top",
-      "chapter-transition": "DES-012 'Breath Between Chapters' — contemplative fade (800ms)"
+      "chapter-transition": "DES-012 'Breath Between Chapters' — contemplative fade (800ms)",
+      "keyboard-design-stance": "Vim philosophy — discoverable via ?, invisible otherwise. Keyboard shortcuts never appear in the UI unprompted. The core gesture vocabulary (click, scroll, type) handles all essential tasks. Source: DES-006."
     }
+  },
+
+  "practice-bridge": {
+    "$description": "Visual treatment for editorial annotations where Yogananda explicitly invites the reader from reading to practice. Not every mention of meditation — only passages where the author's intent is clearly 'do this.' The design system defines how this looks; the portal owns the specific copy and URLs. Source: DES-006, ADR-104.",
+    "register": "functional (ambient presence, not instructional)",
+    "placement": "Below citation, after the passage that invites practice. Same vertical position as a 'Find this book' bookstore link.",
+    "visual-treatment": {
+      "color": "text-muted (text-secondary at ambient opacity)",
+      "typography": "reading-light weight, text-sm size. The quietest typographic voice on the reading surface.",
+      "spacing": "Standard paragraph spacing above. No extra visual separation — part of the passage's orbit, not a separate card.",
+      "border": "None. No card, no box, no background. Just text at a whisper."
+    },
+    "design-stance": "Not a modal, not a card, not a CTA. A signpost, not a funnel. Same visual weight as a bookstore link. The reader who is ready will see it; the reader who is reading will not be interrupted.",
+    "forbidden": ["Modal dialogs", "Highlighted cards", "Animated CTAs", "Countdown timers", "Social proof ('X people started')"]
   },
 
   "publication-overlay": {
@@ -199,5 +214,95 @@
       }
     },
     "timing-principle": "When uncertain about a transition's duration, ask: 'Is this an approach (pūraka) or a release (recaka)?' Approaches can be brisk (150–300ms) — energy gathering. Releases should be gentle (300–800ms) — energy dissipating. The held state between is always the reader's to determine."
+  },
+
+  "connectivity-states": {
+    "$description": "Visual language for connectivity awareness. CSS alone cannot detect offline state — this is consumer-side implementation guidance. But the design language defines what offline, intermittent, and reconnected states look and feel like. PRI-05 demands that connectivity loss is a normal condition, not an error. A seeker on 2G experiences intermittent connectivity constantly. The design treats this with the same calm as everything else.",
+    "principle": "PRI-05, PRI-08",
+    "design-stance": "Connectivity changes are ambient information, not alerts. The portal does not shout about network status. It quietly adapts — the way a reading lamp dims when the power fluctuates but doesn't flash.",
+    "states": {
+      "online": {
+        "$description": "Full connectivity. Default state. No indicator needed — absence of any connectivity UI is itself the signal.",
+        "visual": "No connectivity indicator. The design language's normal expression.",
+        "behavior": "All features available. Web fonts load. Search is live."
+      },
+      "offline-with-cache": {
+        "$description": "No connectivity, but the seeker has cached content from a previous visit. They can continue reading what they have. This is the most important offline state — the seeker in rural Bihar whose connection dropped mid-chapter should feel no interruption.",
+        "visual": "Subtle ambient indicator — a thin muted bar (text-secondary color at ambient opacity) replacing the gold scroll indicator. Not an error state. The reading experience continues unchanged.",
+        "behavior": "Cached chapters remain readable. Navigation limited to cached content. Search returns cached results with a quiet note. Uncached links show 'Available when connected' in text-secondary, not red error.",
+        "register": "ambient — the seeker should not be pulled out of their reading to notice network status",
+        "copy": {
+          "cached-content": "No indicator needed — the content is there, the seeker reads",
+          "uncached-link": "Available when connected",
+          "search-limited": "Showing saved results"
+        }
+      },
+      "offline-empty": {
+        "$description": "No connectivity and no cached content. The seeker arrives for the first time without a connection, or their cache is empty. This is the only connectivity state that requires prominent (not urgent) communication.",
+        "visual": "Centered message in reading typography at instructional register. Gold lotus motif above. No red, no warning icons. The tone is a gentle librarian who says 'the library is closed today, but here is what I can tell you.'",
+        "register": "instructional",
+        "copy": {
+          "heading": "The teachings await your return",
+          "body": "This portal serves Yogananda's published words. When your connection is available, the complete library will be here.",
+          "guidance": "If you have visited before, your recent reading may be available in your browser's saved pages."
+        }
+      },
+      "intermittent": {
+        "$description": "Connection flickering — available, then gone, then back. Common on 2G. The design language's response: do not flicker with it. Debounce visual state changes. Hold the last known state for at least 5 seconds before transitioning to offline. Never oscillate between online and offline indicators.",
+        "visual": "No change during brief dropouts (< 5s). After sustained loss (> 5s), transition to offline-with-cache state using content transition (300ms). When connection returns, gold scroll indicator resumes without announcement.",
+        "debounce": "5000ms — one full breath cycle before acknowledging connectivity loss",
+        "behavior": "In-flight requests (search, font loading) silently retry once on reconnection. No retry counters, no 'reconnecting...' spinners."
+      },
+      "reconnected": {
+        "$description": "Connection restored after an offline period. The design language does not celebrate reconnection — it simply resumes. The teaching was always there; the wire is not the point.",
+        "visual": "Gold scroll indicator returns at ambient opacity. Content transition (300ms). No toast, no banner, no 'You're back online!' — these are marketplace patterns that violate PRI-08.",
+        "behavior": "Background refresh of stale content. Web fonts resume loading if interrupted. Search index updates silently."
+      }
+    },
+    "consumer-guidance": {
+      "$description": "This section is implementation guidance for consumers (yogananda-teachings, future surfaces). The design system provides the visual language; the consumer implements the detection and state management.",
+      "service-worker": "Register a Service Worker to cache the CSS bundle, current chapter HTML, and critical fonts. The design language's progressive enhancement layers (HTML → CSS → JS) mean cached HTML + CSS produces a complete reading experience.",
+      "cache-strategy": "Cache-first for chapters the seeker has visited. Network-first for search. Stale-while-revalidate for theme CSS and fonts.",
+      "detection": "navigator.onLine for initial state. 'online'/'offline' events for changes. Debounce per the 5000ms rule above.",
+      "data-attribute": "data-connectivity='offline' on <html> when offline. CSS can style based on this. The design system does not define these styles — the consumer does, using the visual language described above."
+    }
+  },
+
+  "semantic-html": {
+    "$description": "Expected semantic HTML structure for a reading surface. The design system's CSS targets these elements and attributes. Consumers that use this structure get the full design language expression automatically. This is the contract between the pattern layer and the consumer.",
+    "principle": "PRI-07 (accessibility), PRI-10 (HTML as permanent tier)",
+    "chapter-reader": {
+      "$description": "The complete HTML structure for a chapter reading view. Every element has a semantic role. Every attribute has a purpose. The CSS layer targets these selectors.",
+      "structure": [
+        { "element": "<a class='skip-nav'>", "attributes": ["href='#main'"], "purpose": "Skip to main content. First focusable element. Visually hidden until focused. DES-025 requirement." },
+        { "element": "<html>", "attributes": ["lang", "dir", "data-theme", "data-org"], "purpose": "Root. Language, direction, theme, and organization." },
+        { "element": "<main id='main'>", "attributes": ["role='main'", "id='main'"], "purpose": "ARIA landmark. Contains the chapter content. Target of skip-nav." },
+        { "element": "<article>", "attributes": [], "purpose": "Self-contained chapter. Screen readers announce article boundaries." },
+        { "element": "<header> (within article)", "attributes": [], "purpose": "Chapter header: label, title, epigraph." },
+        { "element": "<h1> or <h2>", "attributes": ["class='chapter-title display-text'"], "purpose": "Chapter title. Single h1 per page, or h2 if page has a site-level h1." },
+        { "element": "<p data-paragraph>", "attributes": ["data-paragraph", "data-paragraph-id"], "purpose": "Each paragraph. data-paragraph enables dwell, keyboard navigation, and golden thread targeting." },
+        { "element": "<span class='drop-cap'>", "attributes": [], "purpose": "First letter of first paragraph. Explicit span, not ::first-letter (avoids superscript footnote collision)." },
+        { "element": "<blockquote>", "attributes": ["class='reader-epigraph'"], "purpose": "Chapter opening quotation." },
+        { "element": "<hr>", "attributes": ["class='reader-scene-break'", "aria-hidden='true'"], "purpose": "Scene break within chapter. Decorative — hidden from screen readers." },
+        { "element": "<figure>", "attributes": ["class='book-figure'"], "purpose": "Book photograph or illustration." },
+        { "element": "<figcaption>", "attributes": ["class='book-caption'"], "purpose": "Figure caption. Always present for accessibility." },
+        { "element": "<sup class='footnote-ref'>", "attributes": ["role='doc-noteref'"], "purpose": "Inline footnote reference. DPUB-ARIA." },
+        { "element": "<section class='chapter-notes'>", "attributes": ["role='doc-endnotes'"], "purpose": "Chapter endnotes section. DPUB-ARIA." },
+        { "element": "<a class='footnote-backlink'>", "attributes": ["role='doc-backlink'"], "purpose": "Return link from endnote to reference point. DPUB-ARIA." },
+        { "element": "<div class='reader-content'>", "attributes": [], "purpose": "Reading content container. Receives hanging-punctuation, touch padding, hover effects." },
+        { "element": "<div data-publication>", "attributes": ["data-publication"], "purpose": "Publication overlay activation. When present, structural elements shift to crimson." },
+        { "element": "<div data-mode='focus|present|quiet'>", "attributes": ["data-mode"], "purpose": "Reader mode. Controls chrome visibility and typography scaling." },
+        { "element": "<div data-dwell-active>", "attributes": ["data-dwell-active"], "purpose": "Dwell mode active. Dims non-target paragraphs." }
+      ]
+    },
+    "passage-card": {
+      "$description": "Semantic structure for a standalone passage display (search results, Today's Wisdom).",
+      "structure": [
+        { "element": "<article>", "attributes": ["class='passage-card'"], "purpose": "Self-contained passage." },
+        { "element": "<blockquote>", "attributes": ["class='reading-text'"], "purpose": "The passage text. Sacred register." },
+        { "element": "<cite>", "attributes": ["class='reader-citation'"], "purpose": "Full attribution. PRI-02." },
+        { "element": "<a>", "attributes": ["href (deep link to chapter position)"], "purpose": "'Read in context' link. PRI-02 — every passage links to its full chapter." }
+      ]
+    }
   }
 }

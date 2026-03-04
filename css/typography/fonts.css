@@ -250,3 +250,58 @@
                  U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
 }
 
+/* ══════════════════════════════════════════════════════════════════
+   Font Fallback Metrics — CLS Prevention (PRI-05)
+   ══════════════════════════════════════════════════════════════════
+   Metric-adjusted system font declarations that match the web fonts'
+   character widths and line heights. These prevent Cumulative Layout
+   Shift when web fonts load on slow connections.
+
+   A seeker on 2G sees text rendered in adjusted Georgia immediately.
+   When Merriweather arrives, the swap is nearly invisible — no
+   paragraph reflow, no lost reading position, no disruption.
+
+   Metrics calculated from actual font files using fontTools OS/2
+   table: avgCharWidth, sTypoAscender, sTypoDescender, sTypoLineGap.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Merriweather → Georgia: 13.5% wider, taller ascenders */
+@font-face {
+  font-family: "Merriweather Fallback";
+  src: local("Georgia");
+  size-adjust: 113.5%;
+  ascent-override: 86.7%;
+  descent-override: 24.1%;
+  line-gap-override: 0%;
+}
+
+/* Lora → Georgia: 9.7% wider */
+@font-face {
+  font-family: "Lora Fallback";
+  src: local("Georgia");
+  size-adjust: 109.7%;
+  ascent-override: 91.7%;
+  descent-override: 25.0%;
+  line-gap-override: 0%;
+}
+
+/* Open Sans → Arial/system-ui: 16% wider */
+@font-face {
+  font-family: "Open Sans Fallback";
+  src: local("Arial");
+  size-adjust: 116.0%;
+  ascent-override: 92.1%;
+  descent-override: 25.2%;
+  line-gap-override: 0%;
+}
+
+/* Raleway → Arial/system-ui: 16.9% wider */
+@font-face {
+  font-family: "Raleway Fallback";
+  src: local("Arial");
+  size-adjust: 116.9%;
+  ascent-override: 80.4%;
+  descent-override: 20.0%;
+  line-gap-override: 0%;
+}
+

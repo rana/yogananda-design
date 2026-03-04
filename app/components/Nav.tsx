@@ -12,8 +12,10 @@ const sections: { id: string; label: string; movement: Movement }[] = [
   { id: "themes", label: "Themes", movement: "foundations" },
   { id: "motifs", label: "Motifs", movement: "foundations" },
   { id: "typography", label: "Type", movement: "foundations" },
+  { id: "multi-script", label: "Scripts", movement: "foundations" },
   /* Movement II: Expression — the practice */
   { id: "registers", label: "Registers", movement: "expression" },
+  { id: "media-registers", label: "Media", movement: "expression" },
   { id: "voices", label: "Voices", movement: "expression" },
   { id: "gradient", label: "Gradient", movement: "expression" },
   { id: "reading", label: "Reading", movement: "expression" },
@@ -22,6 +24,7 @@ const sections: { id: string; label: string; movement: Movement }[] = [
   /* Movement III: Structure — the reference */
   { id: "theory", label: "Theory", movement: "structure" },
   { id: "transitions", label: "Transitions", movement: "structure" },
+  { id: "responsive", label: "Responsive", movement: "structure" },
   { id: "calm", label: "Calm", movement: "structure" },
   { id: "accessibility", label: "A11y", movement: "structure" },
   { id: "print", label: "Print", movement: "structure" },

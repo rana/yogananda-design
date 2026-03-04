@@ -1118,6 +1118,516 @@ function ScreenReaderDemo() {
   );
 }
 
+/* ── 7. RTL Readiness Demo ─────────────────────────────────────── */
+
+function RTLReadinessDemo() {
+  const [rtl, setRtl] = useState(false);
+
+  return (
+    <DemoCard>
+      <div className="flex items-center justify-between mb-3">
+        <SectionLabel>RTL Readiness</SectionLabel>
+        <Toggle
+          active={rtl}
+          onClick={() => setRtl((v) => !v)}
+          label={rtl ? "RTL: On" : "RTL: Off"}
+        />
+      </div>
+      <p
+        className="mb-3"
+        style={{
+          fontFamily: "var(--font-ui)",
+          fontSize: "12px",
+          color: "var(--color-text-secondary)",
+          lineHeight: 1.5,
+        }}
+      >
+        100% CSS logical properties. Zero physical directions. The entire
+        reading surface flips automatically with{" "}
+        <code style={{ fontSize: "11px" }}>dir=&quot;rtl&quot;</code>. PRI-06
+        compliance.
+      </p>
+      <div
+        dir={rtl ? "rtl" : "ltr"}
+        className="theme-transition rounded-md p-4"
+        style={{
+          backgroundColor: "var(--color-bg)",
+          border: "1px solid var(--color-border)",
+        }}
+      >
+        {/* Golden thread accent — inline-start margin */}
+        <div
+          style={{
+            boxShadow:
+              "inset 3px 0 0 color-mix(in srgb, var(--color-gold) 40%, transparent)",
+            paddingInlineStart: "1rem",
+            marginBlockEnd: "0.75rem",
+          }}
+        >
+          <p
+            className="reading-text"
+            style={{
+              fontSize: "15px",
+              lineHeight: 1.7,
+              color: "var(--color-text)",
+            }}
+          >
+            {rtl ? (
+              <>
+                &#x202B;&ldquo;كُن بسيطاً قدر استطاعتك؛ ستندهش لترى كم يمكن أن تصبح حياتك سهلة وسعيدة.&rdquo;&#x202C;
+              </>
+            ) : (
+              <>&ldquo;Be as simple as you can be; you will be astonished to
+              see how uncomplicated and happy your life can become.&rdquo;</>
+            )}
+          </p>
+          <p
+            style={{
+              fontFamily: "var(--font-ui)",
+              fontSize: "12px",
+              color: "var(--color-text-secondary)",
+              marginBlockStart: "0.25rem",
+            }}
+          >
+            {rtl
+              ? "\u2014\u00A0باراماهانسا يوغاناندا"
+              : "\u2014\u00A0Paramahansa Yogananda"}
+          </p>
+        </div>
+
+        {/* Drop cap demonstration */}
+        <div style={{ display: "flex", alignItems: "start", gap: "0.25rem" }}>
+          <span
+            style={{
+              fontFamily: "var(--font-reading)",
+              fontWeight: 700,
+              fontSize: "2.5em",
+              lineHeight: 0.8,
+              float: "inline-start" as React.CSSProperties["float"],
+              paddingInlineEnd: "0.08em",
+              color: "var(--color-text)",
+            }}
+          >
+            {rtl ? "إ" : "T"}
+          </span>
+          <p
+            className="reading-text"
+            style={{
+              fontSize: "14px",
+              lineHeight: 1.7,
+              color: "var(--color-text)",
+            }}
+          >
+            {rtl
+              ? "ن الحقيقة البسيطة هي أن السعادة تأتي من الداخل. لا يمكن لأي ظرف خارجي أن يمنحك سلاماً دائماً."
+              : "he simple truth is that happiness comes from within. No external circumstance can give you lasting peace."}
+          </p>
+        </div>
+
+        {/* Scene break — swelled rule */}
+        <hr
+          style={{
+            height: "1px",
+            border: "none",
+            maxWidth: "5em",
+            marginInline: "auto",
+            marginBlock: "1rem",
+            background:
+              "linear-gradient(to right, transparent, var(--color-gold) 20%, var(--color-gold) 80%, transparent)",
+            opacity: 0.4,
+          }}
+        />
+
+        {/* Footnote reference — inline-start padding */}
+        <p
+          style={{
+            fontFamily: "var(--font-ui)",
+            fontSize: "12px",
+            color: "var(--color-text-secondary)",
+            paddingInlineStart: "0.5rem",
+            borderInlineStart: "2px solid var(--color-gold)",
+          }}
+        >
+          {rtl
+            ? "الملاحظات تتموضع من البداية السطرية"
+            : "Footnotes align to inline-start"}
+          <sup
+            style={{
+              color: "var(--color-gold)",
+              fontSize: "0.75em",
+              paddingInlineStart: "0.1em",
+            }}
+          >
+            1
+          </sup>
+        </p>
+      </div>
+      <div
+        className="mt-2"
+        style={{
+          fontFamily: "ui-monospace, monospace",
+          fontSize: "11px",
+          color: "var(--color-text-secondary)",
+          opacity: 0.7,
+        }}
+      >
+        float: inline-start; padding-inline-start; margin-inline;
+        border-inline-start; inset-inline-start
+      </div>
+    </DemoCard>
+  );
+}
+
+/* ── 8. Forced Colors Demo ─────────────────────────────────────── */
+
+function ForcedColorsDemo() {
+  const [forcedColors, setForcedColors] = useState(false);
+
+  /* Simulated Windows High Contrast system color tokens */
+  const sys = {
+    Canvas: "#000000",
+    CanvasText: "#ffffff",
+    LinkText: "#ffff00",
+    VisitedText: "#ff00ff",
+    Highlight: "#1aebff",
+    HighlightText: "#000000",
+    ButtonText: "#ffffff",
+    GrayText: "#7f7f7f",
+  };
+
+  return (
+    <DemoCard>
+      <div className="flex items-center justify-between mb-3">
+        <SectionLabel>Forced Colors (WHCM)</SectionLabel>
+        <Toggle
+          active={forcedColors}
+          onClick={() => setForcedColors((v) => !v)}
+          label={forcedColors ? "WHCM: On" : "WHCM: Off"}
+        />
+      </div>
+      <p
+        className="mb-3"
+        style={{
+          fontFamily: "var(--font-ui)",
+          fontSize: "12px",
+          color: "var(--color-text-secondary)",
+          lineHeight: 1.5,
+        }}
+      >
+        Windows High Contrast Mode. The OS controls all colors. Gold, marigold,
+        and crimson yield to system tokens. Interactive elements stay visible.
+        Nothing is lost except decorative beauty.
+      </p>
+      <div
+        className="theme-transition rounded-md p-4"
+        style={{
+          backgroundColor: forcedColors ? sys.Canvas : "var(--color-bg)",
+          border: `1px solid ${forcedColors ? sys.ButtonText : "var(--color-border)"}`,
+        }}
+      >
+        {/* Focus ring comparison */}
+        <div className="flex flex-wrap items-center gap-3 mb-3">
+          <button
+            className="cursor-pointer px-4 py-2 rounded-md"
+            style={{
+              fontFamily: "var(--font-ui)",
+              fontSize: "13px",
+              fontWeight: 500,
+              backgroundColor: forcedColors ? sys.Canvas : "var(--color-bg-secondary)",
+              color: forcedColors ? sys.ButtonText : "var(--color-text)",
+              border: `1px solid ${forcedColors ? sys.ButtonText : "var(--color-border)"}`,
+              outline: `2px solid ${forcedColors ? sys.Highlight : "var(--color-gold)"}`,
+              outlineOffset: "2px",
+            }}
+          >
+            Focused Button
+          </button>
+          <a
+            href="#accessibility"
+            style={{
+              fontFamily: "var(--font-ui)",
+              fontSize: "13px",
+              color: forcedColors ? sys.LinkText : "var(--color-gold)",
+              textDecoration: "underline",
+              textUnderlineOffset: "3px",
+            }}
+          >
+            Link element
+          </a>
+          <span
+            style={{
+              fontFamily: "var(--font-ui)",
+              fontSize: "11px",
+              color: forcedColors ? sys.GrayText : "var(--color-text-secondary)",
+            }}
+          >
+            Muted text
+          </span>
+        </div>
+
+        {/* Golden thread comparison */}
+        <div
+          style={{
+            paddingInlineStart: "1rem",
+            marginBlockEnd: "0.5rem",
+            ...(forcedColors
+              ? { borderInlineStart: `3px solid ${sys.Highlight}` }
+              : { boxShadow: "inset 3px 0 0 color-mix(in srgb, var(--color-gold) 40%, transparent)" }),
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "var(--font-reading)",
+              fontSize: "14px",
+              lineHeight: 1.7,
+              color: forcedColors ? sys.CanvasText : "var(--color-text)",
+            }}
+          >
+            &ldquo;The soul is ever free; it is deathless, birthless...&rdquo;
+          </p>
+        </div>
+
+        {/* Scene break */}
+        <hr
+          style={{
+            height: "1px",
+            border: "none",
+            borderBlockEnd: `1px solid ${forcedColors ? sys.GrayText : "transparent"}`,
+            maxWidth: "5em",
+            marginInline: "auto",
+            marginBlock: "0.5rem",
+            ...(!forcedColors && {
+              background:
+                "linear-gradient(to right, transparent, var(--color-gold) 20%, var(--color-gold) 80%, transparent)",
+              opacity: 0.4,
+            }),
+          }}
+        />
+
+        {/* Decorative SVG hidden */}
+        <div className="flex items-center gap-3">
+          {!forcedColors && <LotusDecoration size={32} />}
+          <span
+            style={{
+              fontFamily: "var(--font-ui)",
+              fontSize: "11px",
+              color: forcedColors ? sys.GrayText : "var(--color-text-secondary)",
+            }}
+          >
+            {forcedColors
+              ? "Decorative SVGs hidden — they render as flat silhouettes"
+              : "Lotus decoration visible in normal mode"}
+          </span>
+        </div>
+      </div>
+
+      {/* System color legend */}
+      {forcedColors && (
+        <div
+          className="mt-2 flex flex-wrap gap-x-4 gap-y-1"
+          style={{
+            fontFamily: "ui-monospace, monospace",
+            fontSize: "10px",
+          }}
+        >
+          {[
+            ["Highlight", sys.Highlight],
+            ["LinkText", sys.LinkText],
+            ["ButtonText", sys.ButtonText],
+            ["GrayText", sys.GrayText],
+            ["Canvas", sys.Canvas],
+            ["CanvasText", sys.CanvasText],
+          ].map(([name, color]) => (
+            <span key={name} className="flex items-center gap-1">
+              <span
+                style={{
+                  display: "inline-block",
+                  width: "8px",
+                  height: "8px",
+                  borderRadius: "2px",
+                  backgroundColor: color,
+                  border: "1px solid #555",
+                }}
+              />
+              <span style={{ color: "var(--color-text-secondary)" }}>{name}</span>
+            </span>
+          ))}
+        </div>
+      )}
+
+      <div
+        className="mt-2"
+        style={{
+          fontFamily: "ui-monospace, monospace",
+          fontSize: "11px",
+          color: "var(--color-text-secondary)",
+          opacity: 0.7,
+        }}
+      >
+        @media (forced-colors: active) &#123; :focus-visible &#123; outline: 2px
+        solid Highlight &#125; &#125;
+      </div>
+    </DemoCard>
+  );
+}
+
+/* ── 9. Skip Navigation Demo ──────────────────────────────────── */
+
+function SkipNavDemo() {
+  const [showSkipNav, setShowSkipNav] = useState(false);
+
+  return (
+    <DemoCard>
+      <div className="flex items-center justify-between mb-3">
+        <SectionLabel>Skip Navigation</SectionLabel>
+        <Toggle
+          active={showSkipNav}
+          onClick={() => setShowSkipNav((v) => !v)}
+          label={showSkipNav ? "Skip Nav: Visible" : "Simulate Focus"}
+        />
+      </div>
+      <p
+        className="mb-3"
+        style={{
+          fontFamily: "var(--font-ui)",
+          fontSize: "12px",
+          color: "var(--color-text-secondary)",
+          lineHeight: 1.5,
+        }}
+      >
+        First focusable element on every page. Hidden until Tab-focused, then
+        slides down as a banner. Keyboard users skip directly to{" "}
+        <code style={{ fontSize: "11px" }}>&lt;main id=&quot;main&quot;&gt;</code>.
+        DES-025 requirement.
+      </p>
+      <div
+        className="theme-transition rounded-md overflow-hidden"
+        style={{
+          backgroundColor: "var(--color-bg)",
+          border: "1px solid var(--color-border)",
+          position: "relative",
+          minHeight: "120px",
+        }}
+      >
+        {/* Simulated skip-nav */}
+        <div
+          style={{
+            position: "absolute",
+            insetBlockStart: 0,
+            insetInlineStart: 0,
+            inlineSize: "100%",
+            paddingBlock: "0.6rem",
+            paddingInline: "1rem",
+            backgroundColor: "var(--color-navy, #1a2744)",
+            color: "#ffffff",
+            fontFamily: "var(--font-ui)",
+            fontSize: "13px",
+            fontWeight: 600,
+            textAlign: "center",
+            transform: showSkipNav ? "translateY(0)" : "translateY(-100%)",
+            opacity: showSkipNav ? 1 : 0,
+            transition: "transform 0.15s ease-out, opacity 0.15s ease-out",
+            zIndex: 10,
+            outline: showSkipNav ? "2px solid var(--color-gold)" : "none",
+            outlineOffset: "-2px",
+          }}
+        >
+          Skip to main content
+        </div>
+
+        {/* Simulated page structure */}
+        <div style={{ padding: "12px" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              paddingBlock: "8px",
+              borderBlockEnd: "1px solid var(--color-border)",
+              marginBlockEnd: "8px",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "var(--font-ui)",
+                fontSize: "11px",
+                fontWeight: 600,
+                color: "var(--color-text-secondary)",
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
+              }}
+            >
+              Site Header &amp; Nav
+            </span>
+            <div className="flex gap-2">
+              {["Home", "Books", "Search"].map((item) => (
+                <span
+                  key={item}
+                  style={{
+                    fontFamily: "var(--font-ui)",
+                    fontSize: "11px",
+                    color: "var(--color-text-secondary)",
+                    opacity: 0.6,
+                  }}
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div
+            style={{
+              padding: "8px",
+              borderRadius: "4px",
+              border: showSkipNav
+                ? "2px dashed var(--color-gold)"
+                : "1px dashed var(--color-border)",
+              opacity: showSkipNav ? 1 : 0.5,
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "var(--font-ui)",
+                fontSize: "11px",
+                fontWeight: 600,
+                color: showSkipNav
+                  ? "var(--color-gold)"
+                  : "var(--color-text-secondary)",
+              }}
+            >
+              &lt;main id=&quot;main&quot;&gt;
+            </span>
+            <p
+              className="reading-text mt-1"
+              style={{
+                fontSize: "13px",
+                lineHeight: 1.6,
+                color: "var(--color-text)",
+              }}
+            >
+              {showSkipNav
+                ? "Focus jumps directly here, skipping all navigation links."
+                : "Main content area. Keyboard users Tab through nav first."}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        className="mt-2"
+        style={{
+          fontFamily: "ui-monospace, monospace",
+          fontSize: "11px",
+          color: "var(--color-text-secondary)",
+          opacity: 0.7,
+        }}
+      >
+        &lt;a href=&quot;#main&quot; class=&quot;skip-nav&quot;&gt;Skip to main
+        content&lt;/a&gt;
+      </div>
+    </DemoCard>
+  );
+}
+
 /* ══════════════════════════════════════════════════════════════════
    AccessibilityLab — Main Component
    ══════════════════════════════════════════════════════════════════ */
@@ -1158,6 +1668,9 @@ export default function AccessibilityLab() {
           <FocusIndicatorsDemo />
           <TouchTargetsDemo />
           <ScreenReaderDemo />
+          <RTLReadinessDemo />
+          <ForcedColorsDemo />
+          <SkipNavDemo />
         </div>
       </div>
     </section>

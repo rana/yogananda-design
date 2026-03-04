@@ -19,6 +19,46 @@
     },
     "color-independence": {
       "$description": "Information must not be conveyed by color alone. Error states use icon + text + color. Success states use icon + text. Links use underline + color."
+    },
+    "gold-accent-visibility": {
+      "$description": "Gold (#DCBD23) at ambient and subliminal opacity levels (0.3, 0.06) has low contrast against cream backgrounds (~2.2:1). On low-quality TN panels in direct sunlight, gold accents may be invisible. This is an intentional design decision, not an accessibility failure. Gold is NEVER informational — it is always decorative or ambient (scroll indicator, dwell highlight, hover warmth, motif ornament). Information is always conveyed through text, icon, or structural position. The PRI-07 color-independence rule guarantees this. Users who need higher contrast receive it automatically via @media (prefers-contrast: more), which shifts gold to pure black/white in high-contrast.css.",
+      "rationale": "Gold serves the same function as the gilded edge of a book page — beautiful when visible, irrelevant when not. The teaching content is navy on cream (11.6:1 contrast) regardless of whether gold accents are perceptible.",
+      "enforcement": "prefers-contrast: more → high-contrast.css overrides. No action needed at the design system level — the existing mechanism handles this."
+    },
+    "forced-colors": {
+      "$description": "Windows High Contrast Mode support via @media (forced-colors: active). When the OS takes control of all colors, the design language yields gracefully. Gold, marigold, and crimson accents are replaced by system color tokens (Highlight, LinkText, ButtonText). Decorative SVGs are hidden (they render as flat monochrome silhouettes). Interactive elements maintain visible borders. Focus rings use system Highlight. DES-025 Display Resilience requirement.",
+      "principle": "PRI-07",
+      "specification": "DES-025",
+      "css-file": "css/themes/high-contrast.css",
+      "system-color-mapping": {
+        "focus-rings": "Highlight — visible in all high-contrast themes",
+        "interactive-borders": "ButtonText — ensures buttons, inputs, selects remain bounded",
+        "links": "LinkText / VisitedText — system link semantics preserved",
+        "scroll-indicator": "Highlight at full opacity — replaces gold ambient",
+        "golden-thread": "Highlight as border-inline-start — replaces gold box-shadow",
+        "attention-classes": "LinkText at full opacity — all three accent voices (gold, marigold, crimson) yield to system palette",
+        "scene-breaks": "GrayText — horizontal rules remain visible",
+        "decorative-elements": "Hidden (opacity: 0) — SVG decorations carry no information"
+      },
+      "design-stance": "The design language carries no information in color. When the OS removes our palette, nothing is lost except beauty — and the OS provides its own beauty through the user's chosen high-contrast theme."
+    },
+    "skip-navigation": {
+      "$description": "Skip to main content link as first focusable element on every page. Visually hidden until keyboard-focused, then appears as a fixed banner at the top of the viewport. DES-025 requirement. Essential for keyboard users who would otherwise Tab through the entire navigation before reaching content.",
+      "principle": "PRI-07",
+      "specification": "DES-025",
+      "css-class": ".skip-nav",
+      "css-file": "css/calm.css",
+      "usage": {
+        "html": "<a href=\"#main\" class=\"skip-nav\">Skip to main content</a>",
+        "placement": "First child of <body>, before any navigation",
+        "target": "<main id=\"main\"> — the main content landmark"
+      },
+      "behavior": {
+        "hidden": "Translated above viewport (translateY(-100%)), opacity 0",
+        "focused": "Slides down to viewport top, full opacity, navy background with white text",
+        "forced-colors": "Uses system Highlight/HighlightText colors",
+        "reduced-motion": "Instant appearance (no transition)"
+      }
     }
   },
 
@@ -64,9 +104,12 @@
   },
 
   "performance-as-accessibility": {
-    "$description": "Performance IS accessibility for PRI-05 (Global-First). A seeker on 2G cannot use a site that takes 10 seconds to load.",
+    "$description": "Performance IS accessibility for PRI-05 (Global-First). A seeker on 2G cannot use a site that takes 10 seconds to load. The design system's CSS layer embeds concrete mechanisms — not just aspirations — for low-resource environments.",
     "budgets": {
       "javascript": { "max": "100KB", "$description": "Total JS bundle. Below this, 2G connections load acceptably." },
+      "css": { "max": "100KB", "$description": "Total CSS bundle uncompressed. Currently ~92KB. Gzipped ~15KB." },
+      "fonts-latin": { "max": "750KB", "$description": "Total Latin font files. Currently ~667KB across 24 WOFF2 files." },
+      "fonts-devanagari": { "max": "500KB", "$description": "Total Devanagari font files. Currently ~399KB across 3 WOFF2 files. Gated by unicode-range — only downloaded when Devanagari characters appear." },
       "fcp": { "target": "1.5s", "$description": "First Contentful Paint. The seeker sees content, not a blank screen." },
       "lcp": { "target": "2.5s", "$description": "Largest Contentful Paint. The main content is readable." }
     },
@@ -77,6 +120,123 @@
         "CSS: layout, typography, themes (no JS required for basic reading)",
         "JavaScript: search suggestions, dwell mode, keyboard navigation, theme persistence"
       ]
+    },
+    "font-loading-strategy": {
+      "$description": "All web fonts use font-display: swap — text renders immediately in system fonts, then swaps when the web font arrives. Metric-adjusted fallback @font-face declarations (size-adjust, ascent-override, descent-override) ensure Georgia and Arial render at the same line height and character width as the web fonts they stand in for. This prevents Cumulative Layout Shift when fonts arrive on slow connections.",
+      "mechanism": "font-display: swap + size-adjust fallback @font-face",
+      "fallback-families": {
+        "Merriweather Fallback": { "src": "local(Georgia)", "size-adjust": "113.5%", "$description": "Reading serif. Calculated from actual font OS/2 table metrics." },
+        "Lora Fallback": { "src": "local(Georgia)", "size-adjust": "109.7%", "$description": "Display serif." },
+        "Open Sans Fallback": { "src": "local(Arial)", "size-adjust": "116.0%", "$description": "UI sans-serif." },
+        "Raleway Fallback": { "src": "local(Arial)", "size-adjust": "116.9%", "$description": "YSS UI sans-serif." }
+      },
+      "self-hosted": true,
+      "self-hosted-rationale": "Zero external font requests. No Google Fonts dependency. GDPR compliance (ADR-099).",
+      "devanagari-gating": "unicode-range ensures Devanagari fonts only download when Devanagari characters appear on the page."
+    },
+    "data-constrained-mode": {
+      "$description": "Two entry points for bandwidth-conscious users. Both produce the same designed experience: system fonts, no decorative images, but full color palette and spatial relationships preserved. This is NOT a degraded experience — Georgia on warm cream with navy text and gold accents is beautiful.",
+      "css-entry": "@media (prefers-reduced-data: reduce) — automatic when browsers ship the media query",
+      "server-entry": ".data-constrained class on <html> — set server-side when Save-Data: 1 HTTP Client Hint is present",
+      "savings": "Eliminates ~200KB of font downloads per page load. At $0.02/MB Indian data rates, saves ~$7/year for a daily reader."
+    },
+    "experience-tiers": {
+      "$description": "Three designed experience tiers — not degradation levels. Each is a complete, intentional design. A seeker on any tier receives beauty, readability, and the full teaching. The tiers differ in typographic richness, not in content or care.",
+      "tiers": {
+        "full-typography": {
+          "tier": 1,
+          "name": "Full Typography",
+          "$description": "All web fonts loaded. Merriweather for reading, Lora for display, Open Sans/Raleway for UI. Metric-adjusted fallbacks prevent CLS during font swap. The richest typographic expression.",
+          "activation": "Default. Automatic on any connection that completes font downloads.",
+          "experience": "Custom typefaces, full ornamental system, paper texture, all motifs.",
+          "font-cost": "~667KB Latin, ~399KB Devanagari (gated by unicode-range)"
+        },
+        "metric-matched": {
+          "tier": 2,
+          "name": "Metric-Matched System Fonts",
+          "$description": "Georgia and Arial rendered at web font proportions via size-adjust, ascent-override, descent-override. Zero layout shift. The design's spatial relationships — line length, paragraph rhythm, whitespace ratios — are preserved exactly. The seeker on a slow connection sees Georgia on warm cream with navy text and gold accents while fonts download. This is not a flash of unstyled text — it is a designed moment.",
+          "activation": "Automatic. font-display: swap renders this tier instantly; web fonts replace it when they arrive. On fast connections, this tier may never be visible. On slow connections, it may be the reading experience for seconds or minutes.",
+          "experience": "System serif (Georgia) and sans-serif (Arial) at matched metrics. Full color palette, spatial relationships, gold accents, motifs. Identical layout to Tier 1.",
+          "font-cost": "0KB — local() fonts only"
+        },
+        "data-constrained": {
+          "tier": 3,
+          "name": "Data-Constrained",
+          "$description": "System fonts (Georgia serif, system-ui sans), no decorative images, no web font downloads. The lightest expression of the design language. Georgia on warm cream with navy text and gold accents is beautiful. The full color palette, spatial relationships, and interactive patterns are preserved. What is removed: web font downloads (~200KB per page), decorative background images. What remains: everything that matters.",
+          "activation": "Two entry points: @media (prefers-reduced-data: reduce) for future browser support, .data-constrained class on <html> for server-side Save-Data: 1 header detection.",
+          "experience": "Georgia serif for reading, system-ui for UI. Full themes, full gold accents, full motif system (SVG, not font-dependent). No decorative images.",
+          "font-cost": "0KB",
+          "savings": "~200KB per page load. At Indian data rates ($0.02/MB), saves ~$7/year for a daily reader."
+        }
+      },
+      "design-principle": "Every tier is designed forward (what it includes) not backward (what it lacks). Tier 3 is not Tier 1 minus fonts — it is its own complete design using Georgia, the finest screen serif ever drawn, on the design language's full color system."
+    },
+    "scroll-driven-animation-gating": {
+      "$description": "All scroll-driven animations (animation-timeline: scroll()/view()) are gated by @supports. Browsers that don't support scroll-driven animations receive a complete static experience — no broken layouts, no empty spaces."
+    }
+  },
+
+  "cognitive": {
+    "$description": "Cognitive accessibility beyond WCAG minimums. The portal's mission — serving seekers worldwide, including those in crisis — demands going further than AA minimums. Source: DES-025 ADR-072.",
+
+    "progressive-disclosure": {
+      "$description": "First visit (sessionStorage) shows simplified above-the-fold: Today's Wisdom + search bar + 'Or explore a theme' link. Thematic doors, Seeking entries, and videos are below the fold. Return visits show full homepage.",
+      "principle": "Reduce decision fatigue on first encounter"
+    },
+    "single-invitation": {
+      "$description": "Non-search pages follow the single-invitation principle: each endpoint invites exactly one step deeper, never more. No decision trees, no multi-path choices on a single page.",
+      "source": "ADR-067"
+    },
+    "minimal-gesture-vocabulary": {
+      "$description": "The portal's essential experience (read, search, navigate) requires only: click, scroll, type. All other gestures (long-press, hover-wait, keyboard shortcuts) are enhancements. Explicitly tested in QA.",
+      "core-gestures": ["click", "scroll", "type"],
+      "enhancement-gestures": ["long-press (dwell)", "hover (tooltips)", "keyboard shortcuts (j/k/h/l/d/f/?)"]
+    },
+    "clear-language": {
+      "$description": "All UI copy at 8th-grade reading level or below. Error messages are specific and actionable.",
+      "example-good": "No passages found for this search. Try different words.",
+      "example-bad": "Error 404"
+    }
+  },
+
+  "screen-reader-emotional-quality": {
+    "$description": "The warm cream background and gold accents do nothing for blind seekers. The spoken language of ARIA labels is their entire aesthetic. Standard markup produces functional but emotionally flat output. The portal's screen reader voice carries the same warmth as its visual design. Source: DES-025 ADR-073.",
+    "principle": "PRI-07",
+    "examples": {
+      "search-region": { "standard": "Search", "portal": "Search the teachings" },
+      "todays-wisdom": { "standard": "Today's Wisdom", "portal": "Today's Wisdom — a passage from Yogananda's writings" },
+      "quiet-corner": { "standard": "Main content", "portal": "The Quiet Corner — a space for stillness" },
+      "dwell-enter": { "standard": "Passage focused", "portal": "Passage focused for contemplation" },
+      "dwell-exit": { "standard": "Passage unfocused", "portal": "Returned to reading" },
+      "search-results-count": { "standard": "5 results", "portal": "Five passages found" },
+      "theme-page": { "standard": "Theme: Courage", "portal": "Teachings on Courage — passages from across the library" },
+      "empty-bookmarks": { "standard": "No items", "portal": "You haven't marked any passages yet" },
+      "timer-start": { "standard": "Timer started: 5:00", "portal": "The timer has begun. Five minutes of stillness." },
+      "timer-end": { "standard": "Timer complete", "portal": "The time of stillness is complete." }
+    },
+    "passage-citations": "Screen reader output flows as speech: 'The soul is ever free; it is deathless, birthless...' — from Autobiography of a Yogi, Chapter 26, page 312. Uses aria-label on passage containers for natural reading.",
+    "testing-criterion": "Screen reader testing evaluates not only 'can the seeker navigate and read' but also 'does the experience carry warmth and contemplative quality.'"
+  },
+
+  "display-resilience": {
+    "$description": "The portal's visual beauty should honor the teachings in every medium: color screens, grayscale displays, e-ink readers, print, and Windows High Contrast mode. Source: DES-025.",
+    "mechanisms": {
+      "forced-colors": "css/themes/high-contrast.css — @media (forced-colors: active). See visual.forced-colors in this file.",
+      "prefers-contrast": "css/themes/high-contrast.css — @media (prefers-contrast: more). See visual section.",
+      "grayscale": {
+        "risk": "Gold (#DCBD23) renders as ~71% gray; cream (#FAF8F5) as ~97% gray. 26% difference means gold-on-cream decorative elements may vanish. Gold-on-navy (71% vs 15%) remains strong.",
+        "mitigation": "Gold is never informational (PRI-07). Decorative gold elements use sufficient stroke width or supplementary contrast (1px navy hairline alongside gold)."
+      },
+      "e-ink": {
+        "approximation": "filter: grayscale(1) contrast(1.2)",
+        "requirement": "Book reader and passage pages must render legibly on e-ink browsers (Kindle Experimental, BOOX). No content may depend solely on color distinction."
+      },
+      "print": "css/patterns/print.css — @media print. See patterns layer.",
+      "ci-testing": {
+        "grayscale-regression": "Playwright visual regression with filter: grayscale(1) screenshot comparison",
+        "forced-colors-audit": "Chrome DevTools forced-colors emulation on new components + milestone gates",
+        "e-ink-approximation": "Playwright with filter: grayscale(1) contrast(1.2)"
+      }
     }
   },
 

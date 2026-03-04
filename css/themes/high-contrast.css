@@ -1,14 +1,26 @@
 /* ══════════════════════════════════════════════════════════════════
-   High Contrast Overrides
+   High Contrast & Forced Colors Overrides
    ══════════════════════════════════════════════════════════════════
-   Accessibility overrides for prefers-contrast: more.
-   Maximizes text-background contrast without changing the theme
-   structure. Non-negotiable (PRI-07).
+   Two distinct accessibility mechanisms:
+
+   1. prefers-contrast: more — Maximizes text-background contrast
+      without changing theme structure. Gold accents remain but
+      text pushes to pure black/white.
+
+   2. forced-colors: active — Windows High Contrast Mode. The OS
+      takes control of all colors. We ensure interactive elements,
+      borders, and focus rings remain visible by mapping to system
+      color tokens. Gold/marigold/crimson accents yield to the
+      system palette — DES-025 requirement.
+
+   Non-negotiable (PRI-07).
 
    Requires: foundations.css
    Source: semantics/accessibility.language.json
-           yogananda-teachings app/globals.css (battle-tested)
+           DES-025 Display Resilience requirements
    ══════════════════════════════════════════════════════════════════ */
+
+/* ── prefers-contrast: more ──────────────────────────────────── */
 
 @media (prefers-contrast: more) {
   /* Light themes: push text to pure black */
@@ -35,5 +47,106 @@
       --color-text-secondary: #cccccc;
       --color-border: #888888;
     }
+  }
+}
+
+/* ── forced-colors: active (Windows High Contrast Mode) ──────── */
+/* When forced-colors is active, the browser replaces most colors
+   with system tokens. Our job is to ensure nothing disappears:
+   - Borders must use system colors (not custom properties)
+   - Focus rings must remain visible via Highlight/ButtonText
+   - Decorative gold/crimson/marigold accents gracefully vanish
+     (they carried no information — PRI-07 color-independence)
+   - Interactive elements retain visible boundaries
+   - SVG decorations hidden (they render as flat silhouettes) */
+
+@media (forced-colors: active) {
+  /* Focus indicators: use system Highlight color so they remain
+     visible regardless of the user's chosen high-contrast theme */
+  :focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+
+  /* Buttons and interactive elements: ensure visible borders */
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea {
+    border: 1px solid ButtonText;
+  }
+
+  /* Links: ensure underline visibility via system LinkText */
+  a {
+    color: LinkText;
+    text-decoration-color: LinkText;
+  }
+
+  /* Visited links */
+  a:visited {
+    color: VisitedText;
+  }
+
+  /* Borders on cards and surfaces: system color */
+  [data-theme],
+  .theme-transition {
+    border-color: ButtonText;
+  }
+
+  /* Decorative SVGs: hide — they render as flat monochrome
+     silhouettes in forced-colors, losing all meaning */
+  svg[data-decorative],
+  [data-decorative] {
+    forced-color-adjust: none;
+    opacity: 0;
+  }
+
+  /* Scroll indicator: use system Highlight instead of gold */
+  .scroll-indicator {
+    background-color: Highlight;
+    opacity: 1;
+  }
+
+  /* Golden thread passages: system border instead of gold shadow */
+  .golden-thread-passage {
+    box-shadow: none;
+    border-inline-start: 3px solid Highlight;
+  }
+
+  /* Attention classes: all three accent voices yield to system */
+  .gold-interactive,
+  .gold-decorative,
+  .gold-ambient,
+  .gold-highlight,
+  .gold-subliminal,
+  .marigold-interactive,
+  .marigold-decorative,
+  .marigold-ambient,
+  .marigold-subliminal,
+  .crimson-interactive,
+  .crimson-decorative,
+  .crimson-ambient,
+  .crimson-highlight,
+  .crimson-subliminal {
+    color: LinkText;
+    opacity: 1;
+  }
+
+  /* Keyboard paragraph focus: system border instead of gold outline */
+  [data-paragraph].kb-focus {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+    background-color: transparent;
+  }
+
+  /* Scene breaks and dividers: visible in system color */
+  hr {
+    border-color: GrayText;
+  }
+
+  /* Drop capital: inherits text color in forced-colors (no gold) */
+  .drop-cap::first-letter {
+    color: CanvasText;
   }
 }

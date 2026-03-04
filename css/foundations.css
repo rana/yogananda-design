@@ -128,10 +128,12 @@
      fonts via data-org override.
      Source: foundations/srf.tokens.json → typography */
 
-  /* Contemplative voice (default) */
-  --font-reading: "Merriweather", "Lora", Georgia, "Times New Roman", serif;
-  --font-display: "Lora", "Merriweather", Georgia, serif;
-  --font-ui: "Open Sans", system-ui, -apple-system, sans-serif;
+  /* Contemplative voice (default)
+     Fallback families use size-adjust to prevent CLS on slow
+     connections (PRI-05). See typography/fonts.css for metrics. */
+  --font-reading: "Merriweather", "Lora", "Merriweather Fallback", Georgia, "Times New Roman", serif;
+  --font-display: "Lora", "Merriweather", "Lora Fallback", Georgia, serif;
+  --font-ui: "Open Sans", "Open Sans Fallback", system-ui, -apple-system, sans-serif;
 
   /* Devanagari (ADR-080) */
   --font-reading-hi: "Noto Serif Devanagari", serif;

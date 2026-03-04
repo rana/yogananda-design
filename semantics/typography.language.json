@@ -143,5 +143,80 @@
     "$description": "ADR-006 §1. Text-only mode strips all images, SVGs, decorative elements, and custom fonts. Georgia + Times New Roman replace all fonts. Background images removed. Essential for low-bandwidth connections (PRI-05).",
     "activates": "CSS class .text-only on body",
     "effect": "All img, svg:not([role='img']), [data-decorative] hidden. All fonts → Georgia, Times New Roman, serif. All background-image → none."
+  },
+
+  "reader-modes": {
+    "$description": "Named reading modes that alter typography, chrome visibility, and interaction. Each mode is activated via data-mode attribute on the reader container. The modes form a spectrum from full-chrome (normal) to zero-chrome (quiet). Source: DES-006, DES-049.",
+    "modes": {
+      "normal": {
+        "chrome": "Full — header, footer, nav, Related Teachings panel visible",
+        "typography": "Standard reading typography (18px, 1.8 line-height)",
+        "interaction": "All features available — dwell, keyboard, golden thread, bookmarks"
+      },
+      "focus": {
+        "chrome": "Hidden except reading column + next chapter nav",
+        "typography": "Standard reading typography",
+        "interaction": "Keyboard shortcuts, dwell, bookmarks. No golden thread, no Related Teachings.",
+        "activation": "data-mode='focus'",
+        "css": "css/patterns/reading-surface.css",
+        "calm-technology": "The seeker chose to focus — honor that choice completely. Simplified reading mode suppresses all peripheral UI."
+      },
+      "present": {
+        "chrome": "Hidden — reading column only, no navigation",
+        "typography": "Progressive scaling: 24px (mobile) → 28px (tablet) → 32px (desktop) → 36px (wide)",
+        "interaction": "Arrow-key navigation between passages. Swipe on mobile. No dwell, no bookmarks.",
+        "activation": "data-mode='present'",
+        "css": "css/patterns/reading-surface.css",
+        "purpose": "Group reading / digital lectern. Large text fills the screen for shared reading. Landscape preferred."
+      },
+      "quiet": {
+        "chrome": "Hidden. Article dimmed (0.05 opacity). Fixed overlay takes over.",
+        "typography": "Affirmation typography — centered, generous line-height",
+        "interaction": "Timer controls only. No reading interaction.",
+        "activation": "data-mode='quiet'",
+        "css": "css/patterns/reading-surface.css",
+        "purpose": "Contextual Quiet Corner. A space for reflection outside the reading flow."
+      }
+    },
+    "design-principle": "Modes are a spectrum of attention: normal (peripheral awareness), focus (content-only), present (shared attention), quiet (inner attention). Each removes UI in service of a different kind of engagement."
+  },
+
+  "bidi-readiness": {
+    "$description": "The CSS layer uses CSS logical properties exclusively — zero physical directional properties (margin-left, padding-right, left, right, float: left, border-left, etc.). This means every reading surface, pattern, and typographic feature flips automatically when dir='rtl' is set on the document or a containing element. PRI-06 requires this from Milestone 2a. Yogananda's teachings exist in Arabic and Urdu translations; YSS has seekers in regions where these scripts are used.",
+    "principle": "PRI-06",
+    "status": "ready",
+    "css-mechanism": {
+      "$description": "CSS logical properties map physical directions to the writing mode. inline-start becomes 'left' in LTR and 'right' in RTL. The entire CSS layer — foundations, themes, typography, calm, attention, reading surface patterns — uses logical properties. No CSS changes are needed to support RTL layout.",
+      "property-mapping": {
+        "margin-inline-start": "margin-left (LTR) / margin-right (RTL)",
+        "padding-inline-end": "padding-right (LTR) / padding-left (RTL)",
+        "inset-inline-start": "left (LTR) / right (RTL)",
+        "border-inline-start": "border-left (LTR) / border-right (RTL)",
+        "float: inline-start": "float: left (LTR) / float: right (RTL)",
+        "text-align: start": "text-align: left (LTR) / text-align: right (RTL)"
+      },
+      "validation": "Zero instances of margin-left, margin-right, padding-left, padding-right, left:, right:, float: left, float: right, border-left, or border-right in the CSS layer. Enforced by regression test."
+    },
+    "what-flips": [
+      "Drop capital floats to inline-start (left in LTR, right in RTL)",
+      "Epigraph decorative quotation mark positions to inline-start",
+      "Golden thread accent bar appears on inline-start margin",
+      "Footnote backlink padding adjusts to inline-start",
+      "Reading surface margins, padding, and indentation",
+      "Scroll indicator anchors to inline-start",
+      "Keyboard paragraph focus outline offset"
+    ],
+    "what-does-not-flip": [
+      "Centered content (text-align: center) — symmetrical, no directional dependency",
+      "Block-direction spacing (margin-block, padding-block) — vertical, writing-mode independent",
+      "Scene break gradient (linear-gradient to right) — decorative, horizontal direction is intentional"
+    ],
+    "activation": "Set dir='rtl' on <html> or on a containing element. Combined with lang attribute for proper text shaping: <html lang='ar' dir='rtl'>.",
+    "remaining-work": {
+      "$description": "Layout is RTL-ready. What remains for full RTL language support is content-layer work, not design-system work.",
+      "typography-stack": "No Arabic/Urdu font stack defined yet. When an RTL surface is built, add a locale token file (like foundations/locale/hi.tokens.json) with appropriate font families, line-height adjustments, and reading measure for Arabic/Nastaliq script.",
+      "scene-break-direction": "The swelled rule uses 'linear-gradient(to right, ...)'. This is intentionally non-flipping — the gradient direction is decorative, not semantic. Revisit if RTL readers find it visually incongruent.",
+      "drop-cap-script": "Drop capitals are Latin-only (ADR-080). Arabic calligraphic tradition has different opening conventions that should be designed specifically, not adapted from the Latin drop cap."
+    }
   }
 }

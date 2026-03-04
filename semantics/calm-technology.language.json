@@ -77,6 +77,24 @@
         "name": "ai-generated-imagery",
         "why": "AI generation, synthesis, or cloning of any media representing Yogananda or the lineage gurus is prohibited. All photographs are copyrighted SRF property.",
         "principle": "PRI-01"
+      },
+      {
+        "name": "time-tracking",
+        "why": "No minutes spent, no reading time, no session duration. Time tracking implicitly values quantity of attention over quality of presence. A seeker who reads one paragraph with depth has done more than one who speed-reads ten chapters.",
+        "principle": "PRI-08",
+        "source": "DES-044"
+      },
+      {
+        "name": "reading-streaks",
+        "why": "No daily streaks, no consecutive-day counters, no 'you've read 7 days in a row' celebrations. Streaks create anxiety about breaking them — the opposite of contemplative technology. The teachings are available when the seeker is ready, without a scoreboard.",
+        "principle": "PRI-08",
+        "source": "DES-044"
+      },
+      {
+        "name": "progress-percentages",
+        "why": "No '73% complete' progress bars for books. Chapter count shown (not percentage — which implies a race to completion). Reading is not a task to finish; it is a practice to return to.",
+        "principle": "PRI-08",
+        "source": "DES-044"
       }
     ]
   },
@@ -125,6 +143,19 @@
         "how": "Minimum 44x44px for all interactive elements. 48px preferred for primary actions.",
         "principle": "PRI-07",
         "adr": "ADR-003"
+      },
+      {
+        "name": "auto-add-on-visit",
+        "how": "Books appear in a seeker's personal library automatically when they visit any chapter — no explicit 'add to library' action required. The act of reading IS the act of adding. Silent, frictionless. No confirmation toast, no 'Added to library' notification.",
+        "principle": "PRI-08",
+        "source": "DES-044",
+        "rationale": "Requiring an 'add' action creates a decision point where none is needed. If you're reading it, it belongs in your library."
+      },
+      {
+        "name": "relative-timestamps",
+        "how": "Personal library shows 'today', 'yesterday', '3 days ago' — calm, not precise. Never ISO dates, never exact times. Time is approximate and human.",
+        "principle": "PRI-08",
+        "source": "DES-044"
       }
     ]
   },

@@ -173,7 +173,14 @@
         },
         {
           "rule": "When sacred content appears on a communal surface, add extra whitespace around it.",
-          "rationale": "The Yogananda quote on an event page needs a clear boundary — breathing room that signals 'this is the teacher's voice, not the event's voice.' The surrounding marigold chrome should step back."
+          "rationale": "The Yogananda quote on an event page needs a clear boundary — breathing room that signals 'this is the teacher's voice, not the event's voice.' The surrounding marigold chrome should step back.",
+          "implementation": "Minimum 2rem additional block padding around sacred-register content on communal surfaces. The whitespace acts as a threshold — a visual silence separating the teacher's voice from the event's voice.",
+          "source": "DES-022 (events section design)"
+        },
+        {
+          "rule": "Commemorations (Mahasamadhi, Janmashtami) are sacred/contemplative register despite appearing on a communal surface.",
+          "rationale": "Commemorations honor a guru or divine figure. They use gold accent, not marigold, and receive sacred-register whitespace even on the /events page. The event is communal; the content it honors is sacred.",
+          "source": "DES-022"
         },
         {
           "rule": "Category colors (teal, indigo, amber) belong exclusively to the communal voice.",
@@ -184,6 +191,46 @@
           "rationale": "Mixing the font stacks would blur the voices. Each voice's typography is part of its identity."
         }
       ]
+    },
+
+    "media-register-guidance": {
+      "$description": "Register guidance for non-text media types. As the portal expands beyond books, each media type needs register classification. Source: DES-021.",
+      "video": {
+        "monastic-talks": {
+          "register": "reverential",
+          "rationale": "How-to-Live talks by SRF monastics carry the same authority as monastic writing. The video chrome (player controls, progress bar) is functional; the transcript display is reverential."
+        },
+        "guided-meditations": {
+          "register": "sacred",
+          "rationale": "Guided meditations are practice instruction. The transcript (when displayed) receives sacred register. The video itself is a portal to practice."
+        },
+        "convocation-sessions": {
+          "register": "reverential to communal",
+          "rationale": "Convocation blends teaching and gathering. The talk content is reverential; the event framing is communal. Use reverential for the transcript, communal for the event metadata."
+        },
+        "commemorative-events": {
+          "register": "sacred",
+          "rationale": "Commemorations of Yogananda and the lineage gurus are sacred regardless of the video format."
+        }
+      },
+      "audio": {
+        "yogananda-voice": {
+          "register": "sacred",
+          "treatment": "Sacred artifact styling — golden ring on player. Yogananda's own voice recordings are primary sources, not secondary media.",
+          "note": "is_yogananda_voice flag distinguishes from other audio"
+        },
+        "chanting": {
+          "register": "sacred to bhakti",
+          "rationale": "Cosmic Chants and devotional chanting are bhakti rasa. The audio player receives sacred register with bhakti warmth."
+        }
+      },
+      "photography": {
+        "yogananda-subject": {
+          "register": "sacred",
+          "treatment": "Sacred artifact styling — golden ring. Never cropped, never filtered, never AI-enhanced.",
+          "note": "is_yogananda_subject flag. SRF copyright applies."
+        }
+      }
     }
   },
 

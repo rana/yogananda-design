@@ -16,6 +16,7 @@ The canonical visual design language for the Yogananda digital ecosystem. Two or
 4. **Organization-aware.** SRF and YSS are distinct expressions of shared foundations. Neither is a "skin" of the other — each has its own aesthetic tradition, metaphor, and cultural context.
 5. **AI-first authorship.** Structured for machine consumption, readable by humans. Dense JSON with rich descriptions beats sprawling documentation.
 6. **Standard format.** W3C DTCG for quantifiable tokens. Custom structured JSON for semantic rules and composition patterns. Both self-describing.
+7. **Visual language only.** Every file must pass: *"Does this change how something looks, feels, or moves?"* Content selection algorithms, editorial taxonomy, search behavior, URL routing, and backend data models belong in the consuming portal — not the design system. The design system defines the visual treatment; consumers own the product logic that triggers it.
 
 ## Three-Layer Architecture
 

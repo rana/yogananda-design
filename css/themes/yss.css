@@ -74,10 +74,11 @@
    brand constants, and attention calibration. */
 
 [data-org="yss"] {
-  /* Typography — YSS's distinct voice */
-  --font-reading: "Merriweather", Georgia, "Times New Roman", serif;
+  /* Typography — YSS's distinct voice
+     Fallback families prevent CLS (PRI-05). */
+  --font-reading: "Merriweather", "Merriweather Fallback", Georgia, "Times New Roman", serif;
   --font-display: "Merienda", cursive;
-  --font-ui: "Raleway", system-ui, -apple-system, sans-serif;
+  --font-ui: "Raleway", "Raleway Fallback", system-ui, -apple-system, sans-serif;
 
   /* Devotional display — the temple inscription, not the scroll */
   --font-display-inspirational: "Asar", serif;
