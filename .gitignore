@@ -25,6 +25,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# motifs copied into public/ at build time (source of truth: motifs/)
+public/motifs/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

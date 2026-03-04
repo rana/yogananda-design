@@ -24,6 +24,8 @@
     "./docs/*": "./docs/*"
   },
   "scripts": {
+    "prebuild": "cp -r motifs public/motifs",
+    "predev": "cp -r motifs public/motifs",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
