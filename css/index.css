@@ -28,5 +28,8 @@
 @import './calm.css';
 @import './attention.css';
 
+/* Semantic registers */
+@import './registers.css';
+
 /* Motifs */
 @import './motifs.css';

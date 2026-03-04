@@ -1,0 +1,290 @@
+/* ══════════════════════════════════════════════════════════════════
+   Yogananda Design Language — Semantic Registers
+   ══════════════════════════════════════════════════════════════════
+   Translates emotional-registers.language.json into CSS rules.
+
+   Data attributes on HTML containers drive visual treatment:
+
+     data-register    sacred | reverential | instructional | functional | ambient
+     data-voice       contemplative (default) | communal
+     data-rasa        shanta (default) | adbhuta | karuna | vira | bhakti
+     data-publication <book-slug>  (activates crimson structural voice)
+
+   Components set attributes based on content metadata.
+   The CSS cascade determines visual expression. A component doesn't
+   need to know HOW a sacred register looks — it says WHAT the
+   content is; these rules say HOW.
+
+   The contemplative voice and śānta rasa are defaults — their
+   properties are defined in :root (foundations.css). Only communal
+   voice and non-default rasas need explicit selectors.
+
+   Source: semantics/emotional-registers.language.json
+   Governed by: PRI-03 (propriety), aesthetic-theory → aucitya
+   ══════════════════════════════════════════════════════════════════ */
+
+
+/* ── Register properties ──────────────────────────────────────── */
+
+/* Default register context — inherit foundation typography */
+[data-register] {
+  font-family: var(--register-font, inherit);
+  font-size: var(--register-size, inherit);
+  line-height: var(--register-line-height, inherit);
+  max-inline-size: var(--register-measure, none);
+  transition-duration: var(--register-motion, var(--motion-interaction));
+  transition-timing-function: var(--easing-standard);
+}
+
+
+/* Sacred — Yogananda's words. Maximum reverence. ──────────────
+   The text is the primary experience. Everything else retreats.
+   Content: guru text, scripture quotations, meditation instruction.
+   Attribution always visible, never truncated (PRI-02).
+   No hover effects on the text itself (calm technology). */
+
+[data-register="sacred"] {
+  --register-font: var(--font-reading);
+  --register-size: 1.125rem;
+  --register-line-height: 1.8;
+  --register-measure: 42em;
+  --register-motion: var(--motion-contemplative);
+  color: var(--color-text);
+}
+
+[data-register="sacred"] > * + * {
+  margin-block-start: var(--space-generous);
+}
+
+
+/* Reverential — SRF/YSS authored commentary. ──────────────────
+   Deep respect. Same typographic care as sacred, slightly less
+   ceremonial spacing. Related teachings panel is appropriate.
+   Content: presidential writings, monastic talks. */
+
+[data-register="reverential"] {
+  --register-font: var(--font-reading);
+  --register-size: 1.0625rem;
+  --register-line-height: 1.8;
+  --register-measure: 42em;
+  --register-motion: var(--motion-content);
+  color: var(--color-text);
+}
+
+[data-register="reverential"] > * + * {
+  margin-block-start: var(--space-default);
+}
+
+
+/* Instructional — portal-authored editorial. ──────────────────
+   The librarian speaking, not the teacher. Clear, helpful, warm.
+   Reading body with UI accents (links in sans-serif).
+   Content: reading threads, glossary, guides, about pages. */
+
+[data-register="instructional"] {
+  --register-font: var(--font-reading);
+  --register-size: 1rem;
+  --register-line-height: 1.7;
+  --register-measure: 65ch;
+  --register-motion: var(--motion-interaction);
+  color: var(--color-text);
+}
+
+[data-register="instructional"] > * + * {
+  margin-block-start: var(--space-default);
+}
+
+
+/* Functional — navigation, search, settings. ──────────────────
+   Invisible infrastructure. The seeker shouldn't notice the UI,
+   only the content it serves.
+   Content: nav, search, settings, breadcrumbs, pagination. */
+
+[data-register="functional"] {
+  --register-font: var(--font-ui);
+  --register-size: 0.875rem;
+  --register-line-height: 1.5;
+  --register-measure: none;
+  --register-motion: var(--motion-interaction);
+  color: var(--color-text);
+}
+
+
+/* Ambient — background presence. ──────────────────────────────
+   Peripheral awareness. If a seeker notices these elements,
+   they're too prominent.
+   Content: scroll progress, chapter markers, motif breaths. */
+
+[data-register="ambient"] {
+  --register-font: var(--font-ui);
+  --register-size: 0.75rem;
+  --register-line-height: 1.4;
+  --register-measure: none;
+  --register-motion: var(--motion-content);
+  color: var(--color-text-secondary);
+}
+
+
+/* ── Commentary hierarchy (bindu orbital distance) ────────────
+   mūla (root text) > bhāṣya (commentary) > ṭīkā (annotation)
+   > vārttika (background note)
+   Each level increases orbital distance from the bindu (teaching).
+   Implemented as nested [data-register] elements. */
+
+[data-register="sacred"] [data-register="reverential"] {
+  font-size: 0.9375em;
+  padding-inline-start: var(--space-default);
+  border-inline-start: 2px solid var(--color-border);
+}
+
+[data-register="reverential"] [data-register="instructional"],
+[data-register="sacred"] [data-register="instructional"] {
+  font-size: 0.875em;
+  padding-inline-start: var(--space-default);
+  color: var(--color-text-secondary);
+}
+
+
+/* ── Voice: Communal ──────────────────────────────────────────
+   The gathering. Events, community, welcome, outreach.
+   Marigold accent, charcoal text, white background.
+   Source: emotional-registers.language.json → voices.communal
+
+   Note: contemplative voice is the default — :root values in
+   foundations.css serve as the contemplative baseline. Only
+   communal needs explicit overrides. */
+
+[data-voice="communal"] {
+  --voice-accent: var(--color-marigold);
+  color: var(--color-charcoal);
+  background-color: var(--color-surface);
+}
+
+/* Communal functional/instructional use event font stacks */
+[data-voice="communal"] [data-register="functional"] {
+  --register-font: var(--font-ui-event);
+}
+
+[data-voice="communal"] [data-register="instructional"] {
+  --register-font: var(--font-ui-event);
+}
+
+/* Sacred/reverential ALWAYS use reading font regardless of voice.
+   Yogananda's words receive the same typographic reverence on an
+   event page as on a reading surface. */
+[data-voice="communal"] [data-register="sacred"],
+[data-voice="communal"] [data-register="reverential"] {
+  --register-font: var(--font-reading);
+}
+
+/* Sacred on communal: protective breathing room.
+   The whitespace acts as a threshold — visual silence separating
+   the teacher's voice from the event's voice. */
+[data-voice="communal"] [data-register="sacred"] {
+  padding-block: var(--space-expansive);
+  border-block: 1px solid var(--color-border);
+}
+
+/* Category colors belong exclusively to communal voice */
+[data-voice="communal"] {
+  --color-category-teal: #63A3A3;
+  --color-category-indigo: #5D7BE3;
+  --color-category-amber: #CC9900;
+}
+
+
+/* ── Rasa modulations ─────────────────────────────────────────
+   Experiential quality — the felt atmosphere. Orthogonal to
+   register (who wrote it) and voice (what kind of space).
+
+   These modulations are SUBTLE. The reader feels the difference
+   more than sees it. Whitespace, pace, and warmth shift gently.
+
+   śānta (peace) is the default — no modulation needed.
+   Source: emotional-registers.language.json → rasa-dimension */
+
+/* Custom properties for components to consume */
+[data-rasa] {
+  --rasa-whitespace-scale: 1;
+  --rasa-motion: var(--motion-contemplative);
+}
+
+/* adbhuta — wonder. Vastness, room to resonate upward. */
+[data-rasa="adbhuta"] {
+  --rasa-whitespace-scale: 1.25;
+  --rasa-motion: var(--motion-arrival);
+}
+
+/* karuṇā — compassion. Intimate, held, slightly narrower. */
+[data-rasa="karuna"] {
+  --rasa-whitespace-scale: 1.1;
+  --rasa-motion: var(--motion-content);
+}
+
+/* vīra — courage. Structured, definite, backbone. */
+[data-rasa="vira"] {
+  --rasa-whitespace-scale: 0.95;
+  --rasa-motion: var(--motion-content);
+}
+
+/* bhakti — devotion. Warm, generous, musical. */
+[data-rasa="bhakti"] {
+  --rasa-whitespace-scale: 1.15;
+  --rasa-motion: var(--motion-contemplative);
+}
+
+/* Apply whitespace scale to sacred/reverential paragraphs */
+[data-rasa]:not([data-rasa="shanta"]) [data-register="sacred"] > * + *,
+[data-rasa]:not([data-rasa="shanta"])[data-register="sacred"] > * + * {
+  margin-block-start: calc(var(--space-generous) * var(--rasa-whitespace-scale));
+}
+
+/* Bhakti: centered verse, slightly more generous line-height */
+[data-rasa="bhakti"] [data-register="sacred"] {
+  --register-line-height: 1.9;
+}
+
+
+/* ── Publication overlay ──────────────────────────────────────
+   Active when content originates from a published book.
+   Crimson structural elements over the contemplative reading
+   surface. Gold remains for portal infrastructure.
+
+   Crimson marks the book's skeleton. Gold marks the portal's.
+   The two accent systems coexist without competing.
+   Source: emotional-registers.language.json → voices.publication */
+
+[data-publication] {
+  --publication-accent: var(--color-crimson);
+}
+
+
+/* ── Devanagari register overrides ────────────────────────────
+   Hindi content uses narrower measure and taller line-height.
+   Source: foundations/locale/hi.tokens.json */
+
+:lang(hi) [data-register="sacred"],
+:lang(hi) [data-register="reverential"] {
+  --register-measure: 35em;
+  --register-font: var(--font-reading-hi);
+  --register-line-height: 1.9;
+  --register-size: 1.25rem;  /* Devanagari needs larger size for legibility */
+}
+
+:lang(hi) [data-register="instructional"],
+:lang(hi) [data-register="functional"] {
+  --register-font: var(--font-ui-hi);
+}
+
+
+/* ── Reduced motion ───────────────────────────────────────────
+   All register transitions respect prefers-reduced-motion.
+   (Also handled globally in calm.css, but belt + suspenders.) */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-register] {
+    --register-motion: 0ms;
+    --rasa-motion: 0ms;
+    transition-duration: 0ms;
+  }
+}

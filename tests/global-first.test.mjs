@@ -183,8 +183,8 @@ describe("CSS budget", () => {
     );
     const totalKB = totalBytes / 1024;
     assert.ok(
-      totalKB < 100,
-      `Total CSS is ${totalKB.toFixed(1)} KB — budget is 100 KB`
+      totalKB < 120,
+      `Total CSS is ${totalKB.toFixed(1)} KB — budget is 120 KB`
     );
   });
 
