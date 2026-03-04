@@ -136,6 +136,35 @@ This design system serves the **Yogananda digital ecosystem**:
 - `yogananda-platform` — Infrastructure and deployment platform.
 - `yogananda-skills` — Claude cognitive toolkit (analysis skills, commands).
 
+## Consumer Cross-References
+
+Identifiers in this repo that consuming portals depend on (the design system's downstream contracts):
+
+| Identifier | Topic | Consumed By |
+|-----------|-------|------------|
+| **PRI-05** | Global-first (2G connections work) | yogananda-teachings DES-039, DES-060 |
+| **PRI-07** | WCAG 2.1 AA minimums | yogananda-teachings DES-025 |
+| **PRI-08** | Calm technology | yogananda-teachings DES-044, reading surfaces |
+| **ADR-006** | Text-only mode for low-bandwidth | yogananda-teachings DES-005, DES-049 |
+| **ADR-080** | Devanagari typography (no drop-caps) | yogananda-teachings DES-017 |
+| **ADR-099** | Self-hosted fonts (GDPR) | yogananda-teachings font loading |
+
+**Identifier scope:** This repo owns visual design identifiers (PRI principles, ADR design decisions). Consuming portals own their own product identifiers (DES features, ADR implementation decisions). Namespaces are intentionally separate — the design system is a dependency, not a co-owner.
+
+## Content Type Contract
+
+The CSS layer responds to these `data-content-type` attribute values on reading surface elements. This is the closed vocabulary that consuming portals must use:
+
+| Content Type | CSS Class | Visual Treatment |
+|-------------|-----------|-----------------|
+| `prose` | (default `<p>`) | Standard reading text — no special class needed |
+| `verse` | `.reader-verse` | Centered, italic, pre-line whitespace, generous margin |
+| `epigraph` | `.reader-epigraph` | Centered italic with decorative gold quotation mark |
+| `caption` | `.book-caption` | Italic, secondary color, constrained width |
+| `dialogue` | `.reader-dialogue` | Tighter vertical rhythm, no drop-cap |
+
+Scene breaks are structural (`.reader-scene-break` on `<hr>`), not content-typed. The vocabulary loop: extraction → assembly → Contentful → Neon → `data-content-type` → CSS class → visual treatment.
+
 ## Showcase Website
 
 This repo includes an interactive showcase site (`app/`) built with Next.js that demonstrates the design language live. The showcase is the first consumer of the `css/` layer — it imports `css/index.css` and adds only its own application chrome.
