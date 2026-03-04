@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { useDesign } from "./DesignProvider";
 
 /* ── Toggle Button ──────────────────────────────────────────────── */
 
@@ -370,18 +371,12 @@ function ReducedMotionDemo() {
 
 function HighContrastDemo() {
   const [highContrast, setHighContrast] = useState(false);
+  const { theme } = useDesign();
+  const isDark = ["dark", "meditate", "night", "devotion"].includes(theme);
 
-  const highContrastLight = {
-    text: "#000000",
-    secondary: "#333333",
-    border: "#666666",
-  };
-
-  const highContrastDark = {
-    text: "#ffffff",
-    secondary: "#cccccc",
-    border: "#888888",
-  };
+  const hcOverrides = isDark
+    ? { text: "#ffffff", secondary: "#cccccc", border: "#888888" }
+    : { text: "#000000", secondary: "#333333", border: "#666666" };
 
   return (
     <DemoCard>
@@ -407,7 +402,7 @@ function HighContrastDemo() {
         black. Dark themes use pure white.
       </p>
       <div className="grid grid-cols-2 gap-3">
-        {/* Light theme comparison */}
+        {/* Normal */}
         <div>
           <div
             className="text-xs mb-1.5 font-semibold"
@@ -416,14 +411,15 @@ function HighContrastDemo() {
               color: "var(--color-text-secondary)",
             }}
           >
-            Light theme
+            Normal
           </div>
           <div
+            className="theme-transition"
             style={{
               padding: "12px",
               borderRadius: "6px",
-              backgroundColor: "#f8f6f0",
-              border: `1px solid ${highContrast ? highContrastLight.border : "#d4cfc6"}`,
+              backgroundColor: "var(--color-bg)",
+              border: "1px solid var(--color-border)",
             }}
           >
             <p
@@ -431,7 +427,7 @@ function HighContrastDemo() {
                 fontFamily: "var(--font-reading)",
                 fontSize: "14px",
                 lineHeight: 1.6,
-                color: highContrast ? highContrastLight.text : "#2c2c2c",
+                color: "var(--color-text)",
                 marginBottom: "4px",
               }}
             >
@@ -441,9 +437,7 @@ function HighContrastDemo() {
               style={{
                 fontFamily: "var(--font-ui)",
                 fontSize: "12px",
-                color: highContrast
-                  ? highContrastLight.secondary
-                  : "#6b6560",
+                color: "var(--color-text-secondary)",
               }}
             >
               Secondary text
@@ -452,9 +446,7 @@ function HighContrastDemo() {
               style={{
                 marginTop: "8px",
                 height: "1px",
-                backgroundColor: highContrast
-                  ? highContrastLight.border
-                  : "#d4cfc6",
+                backgroundColor: "var(--color-border)",
               }}
             />
             <p
@@ -462,18 +454,14 @@ function HighContrastDemo() {
               style={{
                 fontFamily: "ui-monospace, monospace",
                 fontSize: "10px",
-                color: highContrast
-                  ? highContrastLight.secondary
-                  : "#6b6560",
+                color: "var(--color-text-secondary)",
               }}
             >
-              {highContrast
-                ? "text: #000 / secondary: #333 / border: #666"
-                : "text: #2c2c2c / secondary: #6b6560"}
+              Current theme values
             </p>
           </div>
         </div>
-        {/* Dark theme comparison */}
+        {/* High contrast */}
         <div>
           <div
             className="text-xs mb-1.5 font-semibold"
@@ -482,14 +470,15 @@ function HighContrastDemo() {
               color: "var(--color-text-secondary)",
             }}
           >
-            Dark theme
+            High contrast
           </div>
           <div
+            className="theme-transition"
             style={{
               padding: "12px",
               borderRadius: "6px",
-              backgroundColor: "#1a1a2e",
-              border: `1px solid ${highContrast ? highContrastDark.border : "#333355"}`,
+              backgroundColor: "var(--color-bg)",
+              border: `1px solid ${highContrast ? hcOverrides.border : "var(--color-border)"}`,
             }}
           >
             <p
@@ -497,7 +486,7 @@ function HighContrastDemo() {
                 fontFamily: "var(--font-reading)",
                 fontSize: "14px",
                 lineHeight: 1.6,
-                color: highContrast ? highContrastDark.text : "#e0ddd7",
+                color: highContrast ? hcOverrides.text : "var(--color-text)",
                 marginBottom: "4px",
               }}
             >
@@ -508,8 +497,8 @@ function HighContrastDemo() {
                 fontFamily: "var(--font-ui)",
                 fontSize: "12px",
                 color: highContrast
-                  ? highContrastDark.secondary
-                  : "#9a9590",
+                  ? hcOverrides.secondary
+                  : "var(--color-text-secondary)",
               }}
             >
               Secondary text
@@ -519,8 +508,8 @@ function HighContrastDemo() {
                 marginTop: "8px",
                 height: "1px",
                 backgroundColor: highContrast
-                  ? highContrastDark.border
-                  : "#333355",
+                  ? hcOverrides.border
+                  : "var(--color-border)",
               }}
             />
             <p
@@ -529,13 +518,15 @@ function HighContrastDemo() {
                 fontFamily: "ui-monospace, monospace",
                 fontSize: "10px",
                 color: highContrast
-                  ? highContrastDark.secondary
-                  : "#9a9590",
+                  ? hcOverrides.secondary
+                  : "var(--color-text-secondary)",
               }}
             >
               {highContrast
-                ? "text: #fff / secondary: #ccc / border: #888"
-                : "text: #e0ddd7 / secondary: #9a9590"}
+                ? isDark
+                  ? "text: #fff / secondary: #ccc / border: #888"
+                  : "text: #000 / secondary: #333 / border: #666"
+                : "Same as normal"}
             </p>
           </div>
         </div>

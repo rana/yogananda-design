@@ -11,8 +11,8 @@ const voices = {
     metaphor: "The library — a lamp illuminating a single page",
     accent: "var(--color-gold)",
     accentLabel: "Gold #DCBD23",
-    text: "#1A2744",
-    bg: "#FAF8F5",
+    text: "var(--color-text)",
+    bg: "var(--color-bg)",
     displayFont: "var(--font-display)",
     uiFont: "var(--font-ui)",
     mood: "quiet, deep, scholarly, intimate",
@@ -30,8 +30,8 @@ const voices = {
       "The courtyard at convocation — marigold garlands, shared devotion",
     accent: "var(--color-marigold)",
     accentLabel: "Marigold #DC6A10",
-    text: "#4C4C4C",
-    bg: "#FFFFFF",
+    text: "var(--color-text)",
+    bg: "var(--color-surface, var(--color-bg))",
     displayFont: "var(--font-display-event)",
     uiFont: "var(--font-ui-event)",
     mood: "warm, welcoming, joyful, open",
@@ -121,10 +121,10 @@ export default function VoiceCrossfade() {
                 fontFamily: "var(--font-ui)",
                 fontWeight: 600,
                 backgroundColor: publication
-                  ? "#9B2335"
+                  ? "var(--color-crimson)"
                   : "var(--color-bg-secondary)",
                 color: publication ? "#fff" : "var(--color-text-secondary)",
-                border: `1px solid ${publication ? "#9B2335" : "var(--color-border)"}`,
+                border: `1px solid ${publication ? "var(--color-crimson)" : "var(--color-border)"}`,
               }}
             >
               {publication ? "Publication" : "+ Publication Overlay"}
@@ -147,10 +147,7 @@ export default function VoiceCrossfade() {
               alignItems: "center",
               justifyContent: "space-between",
               padding: "10px 20px",
-              backgroundColor:
-                voice === "contemplative"
-                  ? "color-mix(in srgb, #1A2744 95%, transparent)"
-                  : "color-mix(in srgb, #4C4C4C 95%, transparent)",
+              backgroundColor: "var(--color-bg-secondary)",
               transition: "all 600ms var(--easing-contemplative)",
             }}
           >
@@ -159,7 +156,7 @@ export default function VoiceCrossfade() {
                 fontFamily: v.uiFont,
                 fontSize: "11px",
                 fontWeight: 600,
-                color: voice === "contemplative" ? "#FAF8F5" : "#FFFFFF",
+                color: "var(--color-text)",
                 textTransform: "uppercase",
                 letterSpacing: "0.08em",
               }}
@@ -200,10 +197,8 @@ export default function VoiceCrossfade() {
                   marginBottom: "8px",
                   color:
                     publication && voice === "contemplative"
-                      ? "#9B2335"
-                      : voice === "contemplative"
-                        ? "color-mix(in srgb, #1A2744 50%, transparent)"
-                        : "color-mix(in srgb, #4C4C4C 50%, transparent)",
+                      ? "var(--color-crimson)"
+                      : "var(--color-text-secondary)",
                   transition: "all 600ms var(--easing-contemplative)",
                 }}
               >
@@ -221,7 +216,7 @@ export default function VoiceCrossfade() {
                   marginBottom: "28px",
                   color:
                     publication && voice === "contemplative"
-                      ? "#9B2335"
+                      ? "var(--color-crimson)"
                       : v.text,
                   transition: "all 600ms var(--easing-contemplative)",
                 }}
@@ -258,10 +253,7 @@ export default function VoiceCrossfade() {
                   fontWeight: 300,
                   fontSize: "14px",
                   textAlign: v.textAlign,
-                  color:
-                    voice === "contemplative"
-                      ? "color-mix(in srgb, #1A2744 60%, transparent)"
-                      : "color-mix(in srgb, #4C4C4C 60%, transparent)",
+                  color: "var(--color-text-secondary)",
                   transition: "all 600ms var(--easing-contemplative)",
                 }}
               >
@@ -276,7 +268,7 @@ export default function VoiceCrossfade() {
               height: "2px",
               background:
                 publication && voice === "contemplative"
-                  ? "linear-gradient(to right, var(--color-gold) 50%, #9B2335 50%)"
+                  ? "linear-gradient(to right, var(--color-gold) 50%, var(--color-crimson) 50%)"
                   : v.accent,
               opacity: 0.4,
               transition: "all 600ms var(--easing-contemplative)",
@@ -373,15 +365,15 @@ export default function VoiceCrossfade() {
                   marginTop: "12px",
                   padding: "8px 12px",
                   borderRadius: "var(--radius-default)",
-                  backgroundColor: "color-mix(in srgb, #9B2335 8%, transparent)",
-                  border: "1px solid color-mix(in srgb, #9B2335 20%, transparent)",
+                  backgroundColor: "color-mix(in srgb, var(--color-crimson) 8%, transparent)",
+                  border: "1px solid color-mix(in srgb, var(--color-crimson) 20%, transparent)",
                   fontFamily: "var(--font-ui)",
                   fontSize: "12px",
                   lineHeight: 1.5,
                   color: "var(--color-text)",
                 }}
               >
-                <strong style={{ color: "#9B2335" }}>Publication overlay active.</strong>{" "}
+                <strong style={{ color: "var(--color-crimson)" }}>Publication overlay active.</strong>{" "}
                 Crimson marks the book&rsquo;s skeleton (titles, dividers, drop caps).
                 Gold marks the portal&rsquo;s infrastructure (navigation, scroll, dwell).
                 Two accent systems coexist.
