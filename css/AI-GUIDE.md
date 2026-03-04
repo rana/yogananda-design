@@ -149,7 +149,10 @@ When using marigold (communal voice), the same hierarchy applies via `--marigold
 | `meditate` | Pre-dawn stillness, gold at 60% | Contemplation |
 | `gathering` | Open courtyard, marigold on white | Events and community |
 
-YSS themes: `ashram`, `sandstone`, `night`, `devotion`.
+| `ashram` | Sunlit courtyard, white + terracotta | Default YSS reading |
+| `sandstone` | Prayer hall lamplight, cream + devotional gold | Warm YSS reading |
+| `night` | Evening aarti, warm darkness | YSS dark mode |
+| `devotion` | Inner sanctum, saffron + candlelight | Contemplation |
 
 ### Color Decisions
 
@@ -307,7 +310,37 @@ The em-dash (U+2014) + non-breaking space (U+00A0) pattern is mandatory. Never u
 
 ### Fonts
 
-Self-hosted WOFF2 files are required (GDPR compliance, ADR-099). Copy from the `fonts/` directory. The CSS references fonts via absolute paths (`/fonts/...`) from your web root — host them at `public/fonts/` or equivalent. Critical path: Merriweather 400 + Open Sans 400 (~68KB). Full Latin set: ~454KB. Devanagari: ~242KB additional, loaded on demand via unicode-range. Communal voice fonts (ArcherPro, Helvetica Neue) are system fonts — no self-hosted files needed; they degrade to Georgia and system-ui on systems without them.
+Self-hosted WOFF2 files are required (GDPR compliance, ADR-099). Copy the `fonts/` directory to your `public/fonts/`. The CSS references fonts via absolute paths (`/fonts/...`) from your web root.
+
+Required font files:
+```
+public/fonts/
+  merriweather-latin-300-normal.woff2      ← citation weight
+  merriweather-latin-400-normal.woff2      ← reading body (critical path)
+  merriweather-latin-400-italic.woff2
+  merriweather-latin-700-normal.woff2      ← reading bold
+  lora-latin-400-normal.woff2              ← display
+  lora-latin-400-italic.woff2
+  lora-latin-700-normal.woff2              ← display headings
+  open-sans-latin-400-normal.woff2         ← UI body (critical path)
+  open-sans-latin-600-normal.woff2         ← UI semibold
+  raleway-latin-300-normal.woff2           ← YSS UI light
+  raleway-latin-400-normal.woff2           ← YSS UI body
+  raleway-latin-400-italic.woff2
+  raleway-latin-500-normal.woff2
+  raleway-latin-600-normal.woff2
+  raleway-latin-700-normal.woff2
+  merienda-latin-400-normal.woff2          ← YSS display
+  merienda-latin-500-normal.woff2
+  merienda-latin-700-normal.woff2
+  asar-latin-400-normal.woff2              ← devotional display
+  devanagari/
+    noto-serif-devanagari-devanagari-400-normal.woff2
+    noto-sans-devanagari-devanagari-400-normal.woff2
+    asar-devanagari-400-normal.woff2
+```
+
+Critical path: Merriweather 400 + Open Sans 400 (~68KB). Full Latin set: ~454KB. Devanagari: ~242KB additional, loaded on demand via unicode-range. Communal voice fonts (ArcherPro, Helvetica Neue) are system fonts — no self-hosted files needed; they degrade to Georgia and system-ui on systems without them.
 
 ### Tailwind Integration
 
@@ -324,6 +357,48 @@ If using Tailwind CSS v4, map tokens in your CSS:
 ```
 
 Then use: `class="bg-bg text-text p-default"`.
+
+### Migrating from Hardcoded Values
+
+If your project currently hardcodes design values, replace them with custom property references:
+
+```css
+/* Before */
+color: #dcbd23;
+background: #FAF8F5;
+font-family: "Merriweather", Georgia, serif;
+transition: color 150ms ease;
+padding: 24px;
+
+/* After */
+color: var(--color-gold);
+background: var(--color-bg);
+font-family: var(--font-reading);
+transition: color var(--motion-interaction) var(--easing-standard);
+padding: var(--space-generous);
+```
+
+Common hex-to-token mappings:
+
+| Hardcoded | Token |
+|---|---|
+| `#dcbd23` | `var(--color-gold)` |
+| `#1a2744` | `var(--color-text)` / `var(--color-navy)` |
+| `#FAF8F5` | `var(--color-bg)` / `var(--color-cream)` |
+| `#f0ece4` | `var(--color-bg-secondary)` |
+| `#9B2335` | `var(--color-crimson)` |
+| `#DC6A10` | `var(--color-marigold)` |
+| `150ms` | `var(--motion-interaction)` |
+| `300ms` | `var(--motion-content)` |
+| `800ms` | `var(--motion-contemplative)` |
+| `0.06` | `var(--gold-subliminal)` / `var(--opacity-whisper)` |
+| `0.3` | `var(--gold-ambient)` / `var(--opacity-secondary)` |
+| `44px` | `var(--touch-target-min)` |
+| `4px` radius | `var(--radius-default)` |
+
+### Bundle Size
+
+The complete `reading.css` bundle is ~1,200 lines of CSS before minification. After minification and gzip: ~3-4 KB. The custom properties alone (`foundations.css`): ~1 KB gzipped. All CSS is static — no JavaScript required for any design token to work.
 
 ---
 

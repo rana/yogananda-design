@@ -1,14 +1,38 @@
 # Yogananda Design Languages
 
-Visual design system for the Yogananda digital ecosystem. Two organizational expressions — **SRF** (Self-Realization Fellowship) and **YSS** (Yogoda Satsanga Society) — sharing common foundations.
+The canonical visual design language for the Yogananda digital ecosystem. Two organizational expressions — **SRF** (Self-Realization Fellowship) and **YSS** (Yogoda Satsanga Society) — sharing common foundations.
 
 Built for **AI-first authorship**. Every token is self-documenting. Every constraint is machine-readable.
+
+## Organizations
+
+| | SRF Contemplative | SRF Communal | YSS |
+|---|---|---|---|
+| **Metaphor** | Entering a library | The temple courtyard | Entering an ashram |
+| **Primary** | Navy #1a2744 | Charcoal #4C4C4C | Terracotta #bb4f27 |
+| **Accent** | Gold #dcbd23 | Marigold #DC6A10 | Terracotta #BB4F27 |
+| **Background** | Warm Cream #FAF8F5 | White #FFFFFF | Warm Clay #f2e8de |
+| **Display** | Lora | ArcherPro | Merienda |
+| **Reading** | Merriweather | Merriweather | Merriweather |
+| **UI** | Open Sans | Helvetica Neue | Raleway |
+
+## Three-Layer Architecture
+
+```
+Layer 1: Foundations (*.tokens.json)    — WHAT values exist
+Layer 2: Semantics  (*.language.json)   — WHY and WHEN to use them
+Layer 3: Patterns   (*.pattern.json)    — HOW they compose together
+```
+
+**Foundations** are W3C DTCG standard — interoperable with [Style Dictionary](https://amzn.github.io/style-dictionary/), [Tokens Studio](https://tokens.studio/), and Figma Variables.
+**Semantics** capture what no token spec can: emotional registers, rasa, forbidden patterns, attention hierarchies, aesthetic principles from the Indian literary tradition.
+**Patterns** are named compositions — molecules built from foundation atoms, governed by semantic rules.
+**CSS** (`css/`) is the web expression — pure CSS custom properties and utility classes, framework-agnostic.
 
 ## Structure
 
 ```
 yogananda-design/
-├── CLAUDE.md                              → AI loading instructions
 ├── foundations/                            → Layer 1: W3C DTCG design tokens
 │   ├── shared.tokens.json                 → Shared across SRF + YSS
 │   ├── srf.tokens.json                    → SRF visual language
@@ -16,102 +40,48 @@ yogananda-design/
 │   └── locale/
 │       └── hi.tokens.json                 → Hindi/Devanagari overrides
 ├── semantics/                             → Layer 2: Design language rules
-│   ├── calm-technology.language.json      → PRI-08 constraints
-│   ├── aesthetic-theory.language.json     → Governing principles (dhvani, rasa, bindu, prāṇa…)
-│   ├── emotional-registers.language.json  → Content → treatment mapping + rasa dimension
-│   ├── attention-gradient.language.json   → Opacity/emphasis hierarchy
+│   ├── aesthetic-theory.language.json     → Governing principles (dhvani, rasa, bindu, prana)
+│   ├── emotional-registers.language.json  → Content-to-treatment mapping + rasa dimension
+│   ├── attention-gradient.language.json   → Three accent voices: gold, marigold, crimson
+│   ├── calm-technology.language.json      → Constraints and forbidden patterns
 │   ├── accessibility.language.json        → WCAG AA requirements
-│   └── typography.language.json           → Typographic conventions per script
+│   ├── typography.language.json           → Typographic conventions per script
+│   ├── atmosphere.language.json           → Photographic atmosphere system
+│   ├── localization.language.json         → Multi-script visual adaptation
+│   └── responsive-strategy.language.json  → Viewport tiers and interaction modality
 ├── patterns/                              → Layer 3: Composition recipes
-│   ├── reading-surface.pattern.json       → Book reader, passages
+│   ├── reading-surface.pattern.json       → Book reader, passages, commentary hierarchy
 │   ├── search.pattern.json                → Search interface, results
 │   ├── navigation.pattern.json            → Wayfinding, menus
 │   ├── contemplation.pattern.json         → Dwell, quiet corner
 │   └── transitions.pattern.json           → Arrivals, departures, chapter breath
-├── fonts/                                 → Self-hosted web fonts (GDPR-compliant)
-│   ├── latin/                             → Merriweather, Lora, Open Sans
+├── css/                                   → Web expression (pure CSS)
+│   ├── index.css                          → Bundle: core design language
+│   ├── reading.css                        → Bundle: core + reading patterns
+│   └── AI-GUIDE.md                        → Consumer guide for AI and developers
+├── fonts/                                 → Self-hosted WOFF2 (GDPR-compliant, OFL)
+│   ├── latin/                             → Merriweather, Lora, Open Sans, Raleway, Merienda, Asar
 │   ├── devanagari/                        → Noto Serif/Sans Devanagari, Asar
 │   └── manifest.json                      → Font metadata + loading strategy
 ├── motifs/                                → SVG visual elements
-│   ├── srf/                               → Gold lotus, ornaments
-│   └── yss/                               → (empty — awaiting YSS motif assets)
-└── brand/
-    └── image-guidelines.json              → Photography usage, copyright, sources
+│   └── srf/                               → Botanical glyphs, icons, lotus
+├── brand/
+│   └── image-guidelines.json              → Photography usage, copyright, sources
+├── app/                                   → Interactive showcase (Next.js)
+├── CLAUDE.md                              → AI context (load this first)
+└── PROPOSALS.md                           → Deferred architectural proposals
 ```
 
-## Design Token Format
+## Get Started
 
-Uses the [W3C Design Tokens Community Group](https://www.designtokens.org/) format (DTCG). Compatible with:
-- [Style Dictionary](https://amzn.github.io/style-dictionary/) — generate CSS, SCSS, Android XML, Swift, Kotlin
-- [Tokens Studio](https://tokens.studio/) — Figma integration
-- Any tool supporting `.tokens.json`
+**AI designers** (Claude, Copilot, Cursor, v0): Read [CLAUDE.md](CLAUDE.md) — it tells you which files to load for any task.
 
-## Organizations
+**Web developers**: Read [css/AI-GUIDE.md](css/AI-GUIDE.md) — the complete consumer guide with import strategy, HTML setup, custom properties, classes, and design decision frameworks.
 
-| | SRF Contemplative | SRF Communal | YSS |
-|---|-----|-----|-----|
-| **Metaphor** | Entering a library | The temple courtyard | Entering an ashram |
-| **Primary color** | Navy #1a2744 | Charcoal #4C4C4C | Terracotta #bb4f27 |
-| **Accent** | Gold #dcbd23 | Marigold #DC6A10 | Terracotta #BB4F27 |
-| **Background** | Warm Cream #FAF8F5 | White #FFFFFF | Warm Clay #f2e8de |
-| **Display font** | Lora | ArcherPro | Merienda |
-| **UI font** | Open Sans | Helvetica Neue | Raleway |
-| **Surfaces** | Reading portal, meditation | Events, convocation, outreach | Ashram reading, devotional |
-| **Status** | Complete | Complete | Themes complete |
+**Human designers**: Import `.tokens.json` files into [Style Dictionary](https://amzn.github.io/style-dictionary/) or [Tokens Studio](https://tokens.studio/). Token `$description` fields document intent; `semantics/` and `patterns/` files are human-readable design specs.
 
-## How to Use
+## Ecosystem
 
-### For AI Designers (Primary Use Case)
-
-1. **Start here:** Read `CLAUDE.md` — it tells you which files to load for any task.
-2. **Always load:** `foundations/shared.tokens.json` + your organization's token file (`srf.tokens.json` or `yss.tokens.json`) + `semantics/calm-technology.language.json` + `semantics/aesthetic-theory.language.json`.
-3. **For reading surfaces:** Add `semantics/emotional-registers.language.json` (includes rasa experiential dimension) + `patterns/reading-surface.pattern.json` (includes commentary hierarchy and temporal rhythm).
-4. **For search UI:** Add `patterns/search.pattern.json` + `semantics/attention-gradient.language.json`.
-5. **For Hindi content:** Add `foundations/locale/hi.tokens.json` + `semantics/typography.language.json`.
-6. **To validate:** Check your output against `semantics/calm-technology.language.json` (forbidden list) and `semantics/accessibility.language.json` (minimums).
-
-### For Human Designers
-
-1. Import `.tokens.json` files into [Style Dictionary](https://amzn.github.io/style-dictionary/) or [Tokens Studio](https://tokens.studio/).
-2. Token `$description` fields document intent; `$extensions.org.yogananda.design` documents rationale.
-3. The `semantics/` and `patterns/` files are human-readable JSON — use them as design specs.
-
-### For CI/CD Integration
-
-The portal can validate its CSS against design tokens in CI:
-- Lint that portal CSS custom properties match foundation token values.
-- Check that no forbidden patterns (from `calm-technology.language.json`) appear in new components.
-- Verify accessibility minimums from `accessibility.language.json`.
-
-### Adding a New Organization
-
-1. Create `foundations/{org}.tokens.json` following the structure of `srf.tokens.json`.
-2. Define the organization's color palette, typography, and themes.
-3. Add locale overrides in `foundations/locale/` as needed.
-4. Add motifs in `motifs/{org}/`.
-5. Shared foundations, semantics, and patterns apply to all organizations automatically.
-
-### Adding a New Language/Script
-
-1. Create `foundations/locale/{lang}.tokens.json` with typography overrides.
-2. Add quotation mark conventions to `semantics/typography.language.json`.
-3. Add font variants to `fonts/manifest.json`.
-4. Self-host the font files in the appropriate `fonts/` subdirectory.
-
-## Three-Layer Architecture
-
-```
-Layer 1: Foundations (*.tokens.json)    — WHAT values exist
-Layer 2: Semantics (*.language.json)    — WHY and WHEN to use them
-Layer 3: Patterns (*.pattern.json)      — HOW they compose together
-```
-
-**Foundations** are W3C DTCG standard — interoperable with design tooling.
-**Semantics** are custom — they capture what no token spec can: emotional registers (with rasa experiential axis), forbidden patterns, attention hierarchies, governing aesthetic principles from the Indian literary tradition.
-**Patterns** are composition recipes — named molecules built from foundation atoms, governed by semantic rules.
-
-## Related
-
-- [yogananda-teachings](https://github.com/rana/yogananda-teachings) — SRF portal (primary consumer)
-- [yogananda-platform](https://github.com/rana/yogananda-platform) — Infrastructure platform
-- [yogananda-skills](https://github.com/rana/yogananda-skills) — Claude cognitive toolkit
+- [yogananda-teachings](https://github.com/rana/yogananda-teachings) — SRF portal. The reading room. Primary consumer.
+- [yogananda-platform](https://github.com/rana/yogananda-platform) — Infrastructure platform.
+- [yogananda-skills](https://github.com/rana/yogananda-skills) — Claude cognitive toolkit.

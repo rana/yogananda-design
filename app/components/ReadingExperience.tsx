@@ -106,9 +106,10 @@ export default function ReadingExperience() {
     paragraphs[kbFocus]?.scrollIntoView({ block: "nearest", behavior: "smooth" });
   }, [kbFocus]);
 
-  /* Reader preference classes from css/patterns/preferences.css */
-  const fontClass = fontSize === "larger" ? "font-larger" : fontSize === "large" ? "font-large" : "";
+  /* Reader preference: line spacing uses CSS classes (targets [data-paragraph] with !important).
+     Font size computed inline because .reading-text sets absolute 18px that percentage classes can't override. */
   const lineClass = lineSpacing === "spacious" ? "line-spacious" : lineSpacing === "relaxed" ? "line-relaxed" : "";
+  const articleFontSize = fontSize === "larger" ? "22px" : fontSize === "large" ? "20px" : "18px";
 
   return (
     <section id="reading" className="showcase-section">
@@ -263,7 +264,7 @@ export default function ReadingExperience() {
         {/* ── Reading surface ──────────────────────────────────── */}
         <div
           ref={surfaceRef}
-          className={`theme-transition rounded-md overflow-hidden ${fontClass} ${lineClass}`.trim()}
+          className={`theme-transition rounded-md overflow-hidden ${lineClass}`.trim()}
           style={{
             border: "1px solid var(--color-border)",
             position: "relative",
@@ -290,13 +291,13 @@ export default function ReadingExperience() {
             </div>
           )}
 
-          {/* Scroll position indicator (simulated at 35%) */}
+          {/* Scroll position indicator (full-width for showcase) */}
           <div
             className="scroll-indicator"
             style={{
               position: "relative",
               insetBlockStart: 0,
-              width: "35%",
+              width: "100%",
             }}
           />
 
@@ -307,7 +308,7 @@ export default function ReadingExperience() {
                 ? `color-mix(in srgb, var(--color-gold) ${Math.round(sahrdayaWarmth * 100)}%, var(--color-bg))`
                 : "var(--color-bg)",
               padding: "clamp(24px, 5vw, 48px)",
-              fontSize: "18px",
+              fontSize: articleFontSize,
               lineHeight: 1.8,
               transition: "background-color 1200ms var(--easing-contemplative)",
             }}
@@ -741,6 +742,7 @@ function Paragraph({
       className={`reading-text ${isKbFocused ? "kb-focus" : ""} ${className ?? ""}`.trim()}
       style={{
         color: "var(--color-text)",
+        fontSize: "inherit",
         marginBottom: "1.5em",
         cursor: isDwellActive ? "pointer" : "default",
         borderRadius: "var(--radius-default)",

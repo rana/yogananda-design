@@ -24,7 +24,7 @@ The canonical visual design language for the Yogananda digital ecosystem. Two or
 Quantifiable design tokens: colors, typography, spacing, duration, shadows. Organization-specific files (SRF, YSS) plus shared foundations. Locale overrides for script-specific typography.
 
 **Layer 2: Semantics** (`semantics/*.language.json`) — Custom format
-Design language rules: emotional registers (with rasa experiential dimension), attention gradients, calm technology constraints, aesthetic theory (governing principles from the Indian literary tradition), accessibility requirements, typographic conventions. References Layer 1 tokens by name.
+Design language rules: emotional registers (with rasa experiential dimension), attention gradients (three accent voices), calm technology constraints, aesthetic theory (governing principles from the Indian literary tradition), accessibility requirements, typographic conventions, photographic atmosphere, multi-script visual adaptation, responsive strategy. References Layer 1 tokens by name.
 
 **Layer 3: Patterns** (`patterns/*.pattern.json`) — Custom format
 Composition recipes: pre-composed molecules (passage card, search result, chapter transition). Named combinations of Layer 1 tokens governed by Layer 2 semantics. Implementation-agnostic.
@@ -65,8 +65,10 @@ css/
 | **Building a reading surface** | + `semantics/emotional-registers.language.json` + `semantics/typography.language.json` + `patterns/reading-surface.pattern.json` |
 | **Building search UI** | + `patterns/search.pattern.json` + `semantics/attention-gradient.language.json` |
 | **Building navigation** | + `patterns/navigation.pattern.json` + `patterns/transitions.pattern.json` |
+| **Building multi-script UI** | + `semantics/localization.language.json` + `semantics/typography.language.json` |
 | **Building for Hindi/Devanagari** | + `foundations/locale/hi.tokens.json` + `semantics/typography.language.json` |
 | **Building for YSS** | Use `foundations/yss.tokens.json` instead of SRF. Same shared + semantics + patterns. |
+| **Responsive design decisions** | + `semantics/responsive-strategy.language.json` |
 | **Validating a component** | `semantics/calm-technology.language.json` (check forbidden list) + `semantics/accessibility.language.json` |
 | **Building contemplative UI** | + `patterns/contemplation.pattern.json` |
 | **Adding photographic atmosphere** | + `semantics/atmosphere.language.json` + `brand/image-guidelines.json` |
