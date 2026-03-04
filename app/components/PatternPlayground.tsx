@@ -1,7 +1,292 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import { sharedTokens, srfTokens, yssTokens } from "@/lib/tokens";
 import { useDesign } from "./DesignProvider";
+
+/* ── Token flattening ────────────────────────────────────────── */
+/* Walk a JSON token tree and collect every node with $value. */
+
+interface FlatToken {
+  path: string;
+  layer: string;
+  value: string;
+  type: string;
+  description: string;
+}
+
+function flattenTokens(
+  obj: Record<string, unknown>,
+  layer: string,
+  prefix = ""
+): FlatToken[] {
+  const results: FlatToken[] = [];
+  for (const [key, val] of Object.entries(obj)) {
+    if (key.startsWith("$")) continue;
+    const path = prefix ? `${prefix}.${key}` : key;
+    const node = val as Record<string, unknown>;
+    if (node && typeof node === "object" && "$value" in node) {
+      const raw = node.$value;
+      const display =
+        typeof raw === "object" && raw !== null
+          ? JSON.stringify(raw)
+          : String(raw);
+      results.push({
+        path,
+        layer,
+        value: display,
+        type: (node.$type as string) ?? "",
+        description: (node.$description as string) ?? "",
+      });
+    } else if (node && typeof node === "object") {
+      results.push(...flattenTokens(node as Record<string, unknown>, layer, path));
+    }
+  }
+  return results;
+}
+
+/* ── Token Search ────────────────────────────────────────────── */
+
+function TokenSearch() {
+  const [query, setQuery] = useState("");
+  const { org } = useDesign();
+
+  const allTokens = useMemo(() => {
+    const orgTokens = org === "srf" ? srfTokens : yssTokens;
+    return [
+      ...flattenTokens(sharedTokens as unknown as Record<string, unknown>, "shared"),
+      ...flattenTokens(orgTokens as unknown as Record<string, unknown>, org),
+    ];
+  }, [org]);
+
+  const filtered = useMemo(() => {
+    if (!query.trim()) return [];
+    const q = query.toLowerCase();
+    return allTokens
+      .filter(
+        (t) =>
+          t.path.toLowerCase().includes(q) ||
+          t.value.toLowerCase().includes(q) ||
+          t.description.toLowerCase().includes(q) ||
+          t.type.toLowerCase().includes(q)
+      )
+      .slice(0, 24);
+  }, [query, allTokens]);
+
+  const tokenCount = allTokens.length;
+
+  return (
+    <div className="mb-8">
+      <div className="relative mb-4">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={`Search ${tokenCount} tokens\u2026 try "gold", "contemplative", "spacing", "800ms"`}
+          className="w-full theme-transition rounded-md px-4 py-3 text-sm"
+          style={{
+            fontFamily: "var(--font-ui)",
+            backgroundColor: "var(--color-bg-secondary)",
+            color: "var(--color-text)",
+            border: "1px solid var(--color-border)",
+            outline: "none",
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = "var(--color-gold)";
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = "var(--color-border)";
+          }}
+        />
+        {query && (
+          <span
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-xs"
+            style={{
+              fontFamily: "var(--font-ui)",
+              color: "var(--color-text-secondary)",
+            }}
+          >
+            {filtered.length} result{filtered.length !== 1 ? "s" : ""}
+          </span>
+        )}
+      </div>
+
+      {filtered.length > 0 && (
+        <div
+          className="theme-transition rounded-md overflow-hidden"
+          style={{ border: "1px solid var(--color-border)" }}
+        >
+          {filtered.map((t, i) => (
+            <div
+              key={`${t.layer}-${t.path}`}
+              className="theme-transition px-4 py-3"
+              style={{
+                backgroundColor:
+                  i % 2 === 0 ? "var(--color-bg)" : "var(--color-bg-secondary)",
+                borderBottom:
+                  i < filtered.length - 1
+                    ? "1px solid var(--color-border)"
+                    : "none",
+              }}
+            >
+              <div className="flex items-baseline gap-2 mb-1 flex-wrap">
+                <span className="token-value text-xs">{t.path}</span>
+                <span
+                  className="text-xs px-1.5 py-0.5 rounded-full"
+                  style={{
+                    fontFamily: "var(--font-ui)",
+                    fontSize: "10px",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                    backgroundColor:
+                      t.layer === "shared"
+                        ? "var(--color-bg-secondary)"
+                        : "var(--color-gold)",
+                    color:
+                      t.layer === "shared"
+                        ? "var(--color-text-secondary)"
+                        : "var(--color-navy)",
+                    border: "1px solid var(--color-border)",
+                  }}
+                >
+                  {t.layer}
+                </span>
+                {t.type && (
+                  <span
+                    className="text-xs"
+                    style={{
+                      fontFamily: "var(--font-ui)",
+                      color: "var(--color-text-secondary)",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    {t.type}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex items-center gap-3">
+                {/* Value preview — color swatch for colors */}
+                {t.type === "color" && t.value.startsWith("#") && (
+                  <div
+                    className="shrink-0 w-5 h-5 rounded"
+                    style={{
+                      backgroundColor: t.value,
+                      border: "1px solid var(--color-border)",
+                    }}
+                  />
+                )}
+                <span className="token-value text-xs">{t.value}</span>
+              </div>
+
+              {t.description && (
+                <div
+                  className="text-xs mt-1"
+                  style={{
+                    fontFamily: "var(--font-ui)",
+                    color: "var(--color-text-secondary)",
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {t.description}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {query && filtered.length === 0 && (
+        <div
+          className="text-center py-6 text-sm"
+          style={{
+            fontFamily: "var(--font-ui)",
+            color: "var(--color-text-secondary)",
+          }}
+        >
+          No tokens match &ldquo;{query}&rdquo;
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ── Layer Stats ─────────────────────────────────────────────── */
+
+function LayerStats() {
+  const { org } = useDesign();
+  const orgTokens = org === "srf" ? srfTokens : yssTokens;
+
+  const sharedCount = flattenTokens(
+    sharedTokens as unknown as Record<string, unknown>,
+    "shared"
+  ).length;
+  const orgCount = flattenTokens(
+    orgTokens as unknown as Record<string, unknown>,
+    org
+  ).length;
+
+  const layers = [
+    {
+      name: "Foundations",
+      file: "shared.tokens.json",
+      count: sharedCount,
+      desc: "Spacing, motion, opacity, reading parameters",
+    },
+    {
+      name: org.toUpperCase(),
+      file: `${org}.tokens.json`,
+      count: orgCount,
+      desc: "Colors, themes, typography, attention hierarchies",
+    },
+  ];
+
+  return (
+    <div className="grid grid-cols-2 gap-3 mb-6">
+      {layers.map((l) => (
+        <div
+          key={l.name}
+          className="theme-transition rounded-md p-4"
+          style={{
+            backgroundColor: "var(--color-bg-secondary)",
+            border: "1px solid var(--color-border)",
+          }}
+        >
+          <div className="flex items-baseline gap-2 mb-1">
+            <span
+              className="display-text"
+              style={{ fontSize: "24px", color: "var(--color-gold)" }}
+            >
+              {l.count}
+            </span>
+            <span
+              className="text-xs font-semibold uppercase tracking-wider"
+              style={{
+                fontFamily: "var(--font-ui)",
+                color: "var(--color-text)",
+              }}
+            >
+              {l.name}
+            </span>
+          </div>
+          <div className="token-value text-xs mb-1">{l.file}</div>
+          <div
+            className="text-xs"
+            style={{
+              fontFamily: "var(--font-ui)",
+              color: "var(--color-text-secondary)",
+            }}
+          >
+            {l.desc}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Existing visualizations (kept from Pattern Playground) ──── */
 
 function SpacingScale() {
   const spaces = Object.entries(sharedTokens.space).filter(
@@ -325,6 +610,8 @@ function YssColorPalette() {
   );
 }
 
+/* ── Main Export ──────────────────────────────────────────────── */
+
 export default function PatternPlayground() {
   const { org } = useDesign();
 
@@ -332,7 +619,7 @@ export default function PatternPlayground() {
     <section id="patterns" className="showcase-section">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <h2 className="display-text mb-2" style={{ fontSize: "clamp(22px, 3vw, 32px)", color: "var(--color-text)" }}>
-          Pattern Playground
+          Token Explorer
         </h2>
         <p
           className="mb-8"
@@ -344,10 +631,14 @@ export default function PatternPlayground() {
             maxWidth: "600px",
           }}
         >
-          Foundation tokens composed into live patterns. All values derive from
-          the design token files. Switch themes above to see how tokens adapt
-          across contexts.
+          Every token in the design language, searchable. Type a concept
+          &mdash; gold, contemplative, spacing, 800ms &mdash; and see how it
+          threads through foundations and {org.toUpperCase()} organization
+          tokens. Switch organizations above to see the parallel vocabulary.
         </p>
+
+        <TokenSearch />
+        <LayerStats />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           <SpacingScale />

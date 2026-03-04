@@ -28,6 +28,7 @@
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.3;
+  text-wrap: balance;
 }
 
 /* Attribution lines, source references. PRI-02: never truncated. */

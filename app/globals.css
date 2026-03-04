@@ -48,3 +48,79 @@
 .stagger-item {
   animation: fadeIn var(--motion-content) var(--easing-decelerate) backwards;
 }
+
+/* ── Session Arc — Arrival ───────────────────────────────────── */
+/* Hero elements stagger in with Arrival timing (1200ms).
+   Only `from` is defined so each element reveals to its own
+   natural opacity — the lotus stays at 0.4, everything else at 1. */
+
+@keyframes showcase-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.showcase-arrive {
+  animation: showcase-arrive var(--motion-arrival) var(--easing-decelerate) backwards;
+}
+
+.showcase-arrive-1 { animation-delay: 0ms; }
+.showcase-arrive-2 { animation-delay: 200ms; }
+.showcase-arrive-3 { animation-delay: 400ms; }
+.showcase-arrive-4 { animation-delay: 600ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-arrive {
+    animation-duration: 0s;
+    animation-delay: 0s;
+  }
+}
+
+/* ── Movement Breaks ─────────────────────────────────────────── */
+/* Breathing space between the three movements:
+   Foundations → Expression → Structure.
+   A subliminal lotus marks the transition. */
+
+.showcase-movement-break {
+  padding: calc(var(--space-vast) * 0.75) 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: none;
+}
+
+/* ── Section Weight — Gravitational Center ────────────────────── */
+/* The reading surface is the reason this design system exists.
+   It gets more space and a barely perceptible warmth. */
+
+.showcase-section-primary {
+  padding: calc(var(--space-vast) * 0.5) 0;
+  background: color-mix(in srgb, var(--color-gold) 2%, var(--color-bg));
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Inner section inherits the primary container's border */
+.showcase-section-primary > .showcase-section {
+  border-bottom: none;
+}
+
+/* ── Session Arc — Closing Gesture ───────────────────────────── */
+/* The exhale. Gentle fade-in when footer enters viewport. */
+
+@keyframes showcase-exhale {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.showcase-exhale {
+  animation: showcase-exhale var(--motion-contemplative) var(--easing-decelerate) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-exhale {
+    animation-duration: 0s;
+  }
+}

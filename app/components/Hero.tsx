@@ -25,13 +25,18 @@ export default function Hero() {
       }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-center mb-8" style={{ opacity: 0.4 }}>
+        {/* Phase 1: Lotus arrives first */}
+        <div
+          className="showcase-arrive showcase-arrive-1 flex justify-center mb-8"
+          style={{ opacity: 0.4 }}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/lotus.svg" alt="" className="h-8" />
         </div>
 
+        {/* Phase 2: Title */}
         <h1
-          className="display-text text-center"
+          className="showcase-arrive showcase-arrive-2 display-text text-center"
           style={{
             fontSize: "clamp(28px, 5vw, 48px)",
             color: "var(--color-text)",
@@ -41,8 +46,9 @@ export default function Hero() {
           Yogananda Design Languages
         </h1>
 
+        {/* Phase 3: Description */}
         <p
-          className="reading-text text-center max-w-2xl mx-auto"
+          className="showcase-arrive showcase-arrive-3 reading-text text-center max-w-2xl mx-auto"
           style={{
             color: "var(--color-text-secondary)",
             fontSize: "16px",
@@ -77,8 +83,9 @@ export default function Hero() {
           self-documenting. Every constraint is machine-readable.
         </p>
 
+        {/* Phase 4: Stats */}
         <div
-          className="flex justify-center gap-6 mt-8 text-center flex-wrap"
+          className="showcase-arrive showcase-arrive-4 flex justify-center gap-6 mt-8 text-center flex-wrap"
           style={{ fontFamily: "var(--font-ui)", fontSize: "13px" }}
         >
           {[
