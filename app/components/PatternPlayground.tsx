@@ -438,7 +438,7 @@ function ReadingSurface() {
           universal seeking for a Goal beyond the material-Loss-of-Self-in-
           Cosmic-Consciousness.
         </div>
-        <div className="motif motif-lotus motif-divider" aria-hidden="true"></div>
+        <div className="motif motif-lotus-07 motif-divider" aria-hidden="true"></div>
         <div className="reading-text" style={{ color: "var(--color-text)" }}>
           Be as simple as you can be; you will be astonished to see how
           uncomplicated and happy your life can become. Live quietly in the

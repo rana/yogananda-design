@@ -192,17 +192,6 @@
   aspect-ratio: 1037.46 / 1135.43;
 }
 
-/* ── Canonical Lotus ─────────────────────────────────────────── */
-/* The existing favicon/divider lotus (motifs/srf/lotus.svg).
-   Two-path SVG at 33x23. Now available as a mask-image class
-   alongside the botanical collection. */
-
-.motif-lotus {
-  -webkit-mask-image: url('/motifs/srf/lotus.svg');
-  mask-image: url('/motifs/srf/lotus.svg');
-  aspect-ratio: 33 / 23;
-}
-
 /* ── Icon Classes ────────────────────────────────────────────── */
 
 .motif-icon-donate {

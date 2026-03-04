@@ -120,8 +120,8 @@ function VoiceSelector({
             }}
           >
             <span
-              className={`motif motif-lotus ${v.cssClass}`}
-              style={{ width: "18px", height: "13px", opacity: selected ? 1 : 0.5 }}
+              className={`motif motif-lotus-05 ${v.cssClass}`}
+              style={{ width: "18px", height: "18px", opacity: selected ? 1 : 0.5 }}
             />
             {v.label}
             <span style={{ fontSize: "11px", opacity: 0.6, fontWeight: 400 }}>
@@ -383,7 +383,7 @@ export default function MotifGallery() {
                 feature, not a book structure.
               </div>
               <div
-                className="motif motif-lotus motif-breath"
+                className="motif motif-lotus-05 motif-breath"
                 aria-hidden="true"
               />
             </div>

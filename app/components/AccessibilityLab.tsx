@@ -62,69 +62,18 @@ function DemoCard({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ── Decorative Lotus SVG ───────────────────────────────────────── */
+/* ── Decorative Lotus — single source from public/lotus.svg ────── */
 
 function LotusDecoration({ size = 48 }: { size?: number }) {
   return (
-    <svg
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
       data-decorative
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+      src="/lotus.svg"
+      alt=""
       aria-hidden="true"
-    >
-      {/* Center petal */}
-      <ellipse
-        cx="24"
-        cy="20"
-        rx="6"
-        ry="14"
-        fill="var(--color-gold)"
-        opacity="0.3"
-      />
-      {/* Left petal */}
-      <ellipse
-        cx="24"
-        cy="20"
-        rx="6"
-        ry="14"
-        fill="var(--color-gold)"
-        opacity="0.2"
-        transform="rotate(-30 24 20)"
-      />
-      {/* Right petal */}
-      <ellipse
-        cx="24"
-        cy="20"
-        rx="6"
-        ry="14"
-        fill="var(--color-gold)"
-        opacity="0.2"
-        transform="rotate(30 24 20)"
-      />
-      {/* Outer left */}
-      <ellipse
-        cx="24"
-        cy="20"
-        rx="5"
-        ry="12"
-        fill="var(--color-gold)"
-        opacity="0.12"
-        transform="rotate(-55 24 20)"
-      />
-      {/* Outer right */}
-      <ellipse
-        cx="24"
-        cy="20"
-        rx="5"
-        ry="12"
-        fill="var(--color-gold)"
-        opacity="0.12"
-        transform="rotate(55 24 20)"
-      />
-    </svg>
+      style={{ height: `${size}px`, width: "auto" }}
+    />
   );
 }
 

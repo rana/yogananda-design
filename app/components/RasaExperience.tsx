@@ -145,61 +145,16 @@ const passage =
   "“The season of failure is the best time for sowing the seeds of success. The bud of a rose does not become beautiful through some outer force; its beauty blossoms from within.”";
 const attribution = "— Paramahansa Yogananda";
 
-/** Simple lotus SVG that breathes with a CSS animation */
+/** Canonical lotus mark — single source from public/lotus.svg */
 function LotusMark({ opacity }: { opacity: number }) {
   return (
-    <svg
-      width="32"
-      height="20"
-      viewBox="0 0 32 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ opacity, transition: "opacity 800ms var(--easing-contemplative, ease)" }}
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/lotus.svg"
+      alt=""
       aria-hidden="true"
-    >
-      {/* Center petal */}
-      <ellipse cx="16" cy="12" rx="4" ry="10" fill="var(--color-gold, #dcbd23)" opacity="0.5" />
-      {/* Left petal */}
-      <ellipse
-        cx="9"
-        cy="13"
-        rx="3.5"
-        ry="8"
-        fill="var(--color-gold, #dcbd23)"
-        opacity="0.35"
-        transform="rotate(-20 9 13)"
-      />
-      {/* Right petal */}
-      <ellipse
-        cx="23"
-        cy="13"
-        rx="3.5"
-        ry="8"
-        fill="var(--color-gold, #dcbd23)"
-        opacity="0.35"
-        transform="rotate(20 23 13)"
-      />
-      {/* Outer left */}
-      <ellipse
-        cx="5"
-        cy="14"
-        rx="3"
-        ry="6"
-        fill="var(--color-gold, #dcbd23)"
-        opacity="0.2"
-        transform="rotate(-35 5 14)"
-      />
-      {/* Outer right */}
-      <ellipse
-        cx="27"
-        cy="14"
-        rx="3"
-        ry="6"
-        fill="var(--color-gold, #dcbd23)"
-        opacity="0.2"
-        transform="rotate(35 27 14)"
-      />
-    </svg>
+      style={{ height: "20px", width: "auto", opacity, transition: "opacity 800ms var(--easing-contemplative, ease)" }}
+    />
   );
 }
 
