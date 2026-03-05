@@ -198,6 +198,33 @@
   aspect-ratio: 1037.46 / 1135.43;
 }
 
+.motif-lotus-13 {
+  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-13.svg');
+  mask-image: url('/motifs/srf/glyphs/lotus-13.svg');
+  aspect-ratio: 694.76 / 778.27;
+}
+
+/* ── Glyph Classes — Second Wave Landscape ───────────────────── */
+/* lotus-14 through lotus-16: deeper site archaeology. */
+
+.motif-lotus-14 {
+  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-14.svg');
+  mask-image: url('/motifs/srf/glyphs/lotus-14.svg');
+  aspect-ratio: 855.14 / 661.46;
+}
+
+.motif-lotus-15 {
+  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-15.svg');
+  mask-image: url('/motifs/srf/glyphs/lotus-15.svg');
+  aspect-ratio: 859.33 / 559.41;
+}
+
+.motif-lotus-16 {
+  -webkit-mask-image: url('/motifs/srf/glyphs/lotus-16.svg');
+  mask-image: url('/motifs/srf/glyphs/lotus-16.svg');
+  aspect-ratio: 790.93 / 586.75;
+}
+
 /* ── Icon Classes ────────────────────────────────────────────── */
 
 .motif-icon-audio {

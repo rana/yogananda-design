@@ -37,6 +37,9 @@ const glyphCategories = [
       { id: "lotus-02", cssClass: "motif-lotus-02" },
       { id: "lotus-04", cssClass: "motif-lotus-04" },
       { id: "lotus-07", cssClass: "motif-lotus-07" },
+      { id: "lotus-14", cssClass: "motif-lotus-14" },
+      { id: "lotus-15", cssClass: "motif-lotus-15" },
+      { id: "lotus-16", cssClass: "motif-lotus-16" },
     ],
   },
   {
@@ -57,6 +60,7 @@ const glyphCategories = [
     height: "72px",
     glyphs: [
       { id: "lotus-10", cssClass: "motif-lotus-10" },
+      { id: "lotus-13", cssClass: "motif-lotus-13" },
     ],
   },
 ];
@@ -159,7 +163,7 @@ export default function MotifGallery() {
             maxWidth: "600px",
           }}
         >
-          The lotus alphabet. Twelve botanical forms &times; five devotional color
+          The lotus alphabet. Sixteen botanical forms &times; five devotional color
           voices &mdash; a rich ornamental type system for section dividers, chapter
           ornaments, and breathing pauses. CSS mask-image technique: the SVG
           provides shape; background-color provides fill. Theme-responsive
