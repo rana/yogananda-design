@@ -2,20 +2,21 @@
 
 import { useState } from "react";
 
-/* A rich gradient simulating a mountain landscape photograph.
-   Sky → haze → foliage → earth. Through atmosphere veils,
-   this produces the right kind of warmth without external assets. */
-const LANDSCAPE =
+/* Two lotus photographs from yogananda.org — real images behind the veil.
+   The gradient fallback shows the system works without external assets. */
+const LOTUS_SHADOW = "url(/photos/lotus-bloom-shadow.jpg)";
+const LOTUS_SUN = "url(/photos/lotus-water-lily-sun.jpg)";
+
+/* Gradient fallback — the canonical expression without photographs. */
+const GRADIENT =
   "linear-gradient(175deg, #5B86C7 0%, #8FAEC7 20%, #B0C4A8 38%, #7BA06B 52%, #8B7D55 70%, #A0623D 88%, #7A4028 100%)";
 
-const OCEAN =
-  "linear-gradient(185deg, #E8C87A 0%, #D4A76A 15%, #7BA7C7 35%, #4A7FA5 55%, #2E5F85 75%, #1A3D5C 100%)";
-
-type Photo = "landscape" | "ocean";
+type Photo = "lotus-shadow" | "lotus-sun" | "gradient";
 
 const photos: Record<Photo, { gradient: string; label: string; position: string }> = {
-  landscape: { gradient: LANDSCAPE, label: "Mountain Landscape", position: "center" },
-  ocean: { gradient: OCEAN, label: "Ocean at Dawn", position: "center 40%" },
+  "lotus-shadow": { gradient: LOTUS_SHADOW, label: "Lotus in Shadow", position: "center" },
+  "lotus-sun": { gradient: LOTUS_SUN, label: "Water Lily in Sun", position: "center" },
+  gradient: { gradient: GRADIENT, label: "Gold Gradient (fallback)", position: "center" },
 };
 
 interface Role {
@@ -154,7 +155,7 @@ function GroundDemo({ image, position }: { image: string; position: string }) {
 }
 
 export default function PhotographicAtmosphere() {
-  const [photo, setPhoto] = useState<Photo>("landscape");
+  const [photo, setPhoto] = useState<Photo>("lotus-shadow");
   const { gradient, position } = photos[photo];
 
   return (
@@ -213,10 +214,14 @@ export default function PhotographicAtmosphere() {
             >
               <span
                 style={{
-                  width: 10,
-                  height: 10,
+                  width: 14,
+                  height: 14,
                   borderRadius: "50%",
-                  background: p.gradient,
+                  background: p.gradient.startsWith("url(") ? undefined : p.gradient,
+                  backgroundImage: p.gradient.startsWith("url(") ? p.gradient : undefined,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  flexShrink: 0,
                 }}
               />
               {p.label}
