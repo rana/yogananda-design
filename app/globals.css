@@ -9,6 +9,11 @@
 /* ── Design Language CSS ─────────────────────────────────────── */
 @import "../css/reading.css";
 
+/* ── Operational Patterns (opt-in) ──────────────────────────── */
+/* The showcase demonstrates operational patterns alongside
+   reading patterns. Non-operational consumers never import this. */
+@import "../css/patterns/operations.css";
+
 /* ── Photographic Atmosphere (opt-in) ─────────────────────── */
 /* The showcase opts into the atmosphere pattern layer.
    By default no --atmosphere-image is set, so only the

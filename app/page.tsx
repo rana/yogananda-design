@@ -18,6 +18,7 @@ import CalmTechnologyAudit from "./components/CalmTechnologyAudit";
 import AccessibilityLab from "./components/AccessibilityLab";
 import PrintPreview from "./components/PrintPreview";
 import PhotographicAtmosphere from "./components/PhotographicAtmosphere";
+import OperationalSurface from "./components/OperationalSurface";
 import PatternPlayground from "./components/PatternPlayground";
 import Footer from "./components/Footer";
 
@@ -91,6 +92,7 @@ export default function Home() {
         <AccessibilityLab />
         <PrintPreview />
         <PhotographicAtmosphere />
+        <OperationalSurface />
         <PatternPlayground />
       </main>
       <Footer />
