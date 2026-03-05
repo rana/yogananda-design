@@ -47,7 +47,7 @@ const mediaTypes: Record<
       {
         name: "Convocation",
         register: "Communal + reverential",
-        treatment: "Warmer chrome. Gathering context. Marigold accents.",
+        treatment: "Warmer chrome. Gathering context. Ochre accents.",
         detail: "The communal voice — events, kirtans, group practice. Warmth over solemnity.",
       },
       {
@@ -75,9 +75,9 @@ const mediaTypes: Record<
         name: "Chanting / kirtan",
         register: "Bhakti (devotional)",
         treatment:
-          "Marigold warmth. Communal voice. Lyrics visible if available. Repeat enabled.",
+          "Ochre warmth. Communal voice. Lyrics visible if available. Repeat enabled.",
         detail:
-          "Chanting is participatory. The design invites joining, not just listening. Marigold accents signal the communal register.",
+          "Chanting is participatory. The design invites joining, not just listening. Ochre accents signal the communal register.",
       },
     ],
   },
@@ -200,7 +200,7 @@ export default function MediaRegisters() {
                       ? "var(--color-gold)"
                       : variant.register.toLowerCase().includes("bhakti") ||
                           variant.register.toLowerCase().includes("communal")
-                        ? "var(--color-marigold, var(--color-gold))"
+                        ? "var(--color-ochre, var(--color-gold))"
                         : "var(--color-text-secondary)",
                   opacity: 0.4,
                 }}

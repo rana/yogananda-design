@@ -3,8 +3,8 @@
    ══════════════════════════════════════════════════════════════════
    The primary experience of the portal — where Yogananda's words
    meet the seeker's eyes. Composition recipes for reader modes,
-   dwell contemplation, golden thread cross-references, keyboard
-   navigation, and responsive reading layout.
+   zoom paragraph contemplation, golden thread cross-references,
+   keyboard navigation, and responsive reading layout.
 
    These patterns emerged in yogananda-teachings and are
    canonicalized here as the design language's reading surface
@@ -13,11 +13,11 @@
 
    Requires: foundations.css, calm.css
    Source: patterns/reading-surface.pattern.json
-           yogananda-teachings app/globals.css (battle-tested)
+           yogananda-teachings DES-063 (Book Reader)
    ══════════════════════════════════════════════════════════════════ */
 
 /* ── Scroll Position Indicator ───────────────────────────────── */
-/* 2px gold bar at top of viewport. Ambient attention level —
+/* 2px bar at top of viewport. Ambient attention level —
    peripheral awareness, not focal. Register: ambient. */
 
 .scroll-indicator {
@@ -31,7 +31,7 @@
   transition: inline-size 100ms ease-out;
 }
 
-/* ── Keyboard Paragraph Focus — DES-013 ──────────────────────── */
+/* ── Keyboard Paragraph Focus — DES-063 §13 ──────────────────── */
 /* j/k navigation highlights the current paragraph.
    Gold subliminal background + highlight outline. */
 
@@ -44,83 +44,130 @@
   margin-inline: -0.5rem;
 }
 
-/* ── Dwell Contemplation Mode — DES-009 ──────────────────────── */
-/* After 1200ms settled on a paragraph, dim all others.
-   The portal waits, then responds. */
+/* ── Paragraph Focus (light) — DES-063 §5.1 ──────────────────── */
+/* Click/tap a paragraph for subtle left accent bar + warm tint.
+   The first level of engagement — the reader's attention lands. */
 
-/* Dim all paragraphs when dwell is active */
-[data-dwell-active] [data-paragraph] {
+[data-paragraph].focused {
+  background: color-mix(in srgb, var(--color-gold) 4%, transparent);
+  border-radius: var(--radius-small);
+  position: relative;
+}
+
+[data-paragraph].focused::before {
+  content: '';
+  position: absolute;
+  inset-block: 0.25em;
+  inset-inline-start: -0.5rem;
+  width: 3px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--color-gold) 25%, transparent);
+  transition: background 300ms ease;
+}
+
+/* ── Zoom Paragraph (deep) — DES-063 §5.2 ────────────────────── */
+/* Double-click, long-press, or zoom icon to contemplate a single
+   paragraph. Everything else recedes. */
+
+/* Dim all paragraphs when zoom is active */
+[data-zoom-active] [data-paragraph] {
   opacity: var(--opacity-subdued);
   transition: opacity var(--motion-content) ease;
 }
 
-/* Settled paragraph stays vivid; tap/click exits dwell */
-[data-dwell-active] [data-paragraph][data-dwell-target] {
+/* Zoomed paragraph stays vivid */
+[data-zoom-active] [data-paragraph][data-zoom-target] {
   opacity: var(--opacity-full);
   cursor: pointer;
+  background: color-mix(in srgb, var(--color-gold) 8%, transparent);
+  border-radius: var(--radius-small);
+  transform: scale(1.02);
+  transform-origin: center left;
+}
+
+/* Left bar intensifies on zoom target */
+[data-zoom-active] [data-paragraph][data-zoom-target]::before {
+  background: color-mix(in srgb, var(--color-gold) 55%, transparent);
 }
 
 /* Dim figures alongside paragraphs */
-[data-dwell-active] .book-figure {
+[data-zoom-active] .book-figure {
   opacity: var(--opacity-subdued);
   transition: opacity var(--motion-content) ease;
 }
 
-/* Instant dwell transitions for reduced motion */
+/* Instant transitions for reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  [data-dwell-active] [data-paragraph] {
+  [data-zoom-active] [data-paragraph] {
     transition: none !important;
+  }
+  [data-zoom-active] [data-paragraph][data-zoom-target] {
+    transform: none;
   }
 }
 
-/* ── Focus Reading Mode ──────────────────────────────────────── */
-/* Suppress all chrome except reading column + next chapter nav.
-   The seeker chose to focus — honor that choice completely. */
+/* ── Zoom Icon — DES-063 §5.2 ────────────────────────────────── */
+/* Small expand icon in top-right of focused paragraph. */
 
-[data-mode="focus"] header,
-[data-mode="focus"] footer,
-[data-mode="focus"] [data-no-focus] {
-  display: none !important;
+.zoom-icon {
+  position: absolute;
+  inset-block-start: 0.25em;
+  inset-inline-end: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: color-mix(in srgb, var(--color-text) 40%, transparent);
+  cursor: pointer;
+  opacity: 0;
+  animation: zoom-icon-appear 200ms ease forwards;
+  transition: color 200ms ease;
 }
 
-/* ── Presentation Mode — DES-049 ─────────────────────────────── */
-/* For group reading. Chrome hidden. Font size scaled up
-   progressively across breakpoints. */
+.zoom-icon:hover {
+  color: var(--color-gold);
+}
 
-[data-mode="present"] {
+@keyframes zoom-icon-appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Hide zoom icon when paragraph is zoom target (already zoomed) */
+[data-zoom-target] .zoom-icon {
+  display: none;
+}
+
+/* ── Immerse Mode — DES-063 §2.1 ─────────────────────────────── */
+/* One mode merging former focus + present. Chrome disappears,
+   text scales to viewport. The reader said "just the text." */
+
+[data-mode="immerse"] {
   background: var(--color-bg) !important;
 }
 
-[data-mode="present"] header,
-[data-mode="present"] footer,
-[data-mode="present"] nav,
-[data-mode="present"] [data-no-present] {
+[data-mode="immerse"] header,
+[data-mode="immerse"] footer,
+[data-mode="immerse"] nav:not(.chapter-nav),
+[data-mode="immerse"] [data-no-immerse] {
   display: none !important;
 }
 
-/* Progressive font scaling: mobile 24px → wide 36px */
-[data-mode="present"] article {
-  font-size: 1.5rem !important;
-  line-height: 1.9 !important;
-  max-inline-size: 48rem !important;
-  margin-inline: auto !important;
-}
-
-@media (min-width: 640px) {
-  [data-mode="present"] article {
-    font-size: 1.75rem !important;
-  }
+/* Responsive text scaling: phone → TV */
+[data-mode="immerse"] article {
+  font-size: clamp(1.125rem, 2vw + 0.5rem, 2.25rem);
+  line-height: 1.9;
+  max-inline-size: 80ch;
+  margin-inline: auto;
 }
 
 @media (min-width: 1024px) {
-  [data-mode="present"] article {
-    font-size: 2rem !important;
-  }
-}
-
-@media (min-width: 1280px) {
-  [data-mode="present"] article {
-    font-size: 2.25rem !important;
+  [data-mode="immerse"] article {
+    line-height: 2.0;
   }
 }
 
@@ -144,7 +191,7 @@
   pointer-events: none;
 }
 
-/* ── Golden Thread — Cross-Chapter Connections (ADR-050) ──────── */
+/* ── Golden Thread — Cross-Chapter Connections ────────────────── */
 /* Paragraphs with cross-chapter relations get a subtle gold left
    accent — a literal golden thread in the margin. box-shadow
    avoids layout shift; all text stays perfectly aligned. */
@@ -173,9 +220,8 @@
   }
 }
 
-/* Hide golden thread in focus/present/quiet modes — calm technology */
-[data-mode="focus"] .golden-thread-passage,
-[data-mode="present"] .golden-thread-passage,
+/* Hide golden thread in immerse/quiet modes — calm technology */
+[data-mode="immerse"] .golden-thread-passage,
 [data-mode="quiet"] .golden-thread-passage {
   box-shadow: none !important;
 }

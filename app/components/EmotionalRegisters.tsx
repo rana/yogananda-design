@@ -118,7 +118,7 @@ interface VoiceConfig {
 
 const srfVoiceList: VoiceConfig[] = [
   { id: "contemplative", accent: "var(--color-gold)", accentContrast: "var(--color-navy)", label: "Contemplative", dot: "var(--color-gold)" },
-  { id: "communal", accent: "var(--color-marigold)", accentContrast: "#FFFFFF", label: "Communal", dot: "var(--color-marigold)" },
+  { id: "communal", accent: "var(--color-ochre)", accentContrast: "#FFFFFF", label: "Communal", dot: "var(--color-ochre)" },
 ];
 
 const yssVoiceList: VoiceConfig[] = [

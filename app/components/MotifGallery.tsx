@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type ColorVoice = "sacred" | "growth" | "devotion" | "warmth" | "crimson";
+type ColorVoice = "sacred" | "growth" | "devotion" | "ochre" | "crimson";
 
 const colorVoices: {
   id: ColorVoice;
@@ -14,7 +14,7 @@ const colorVoices: {
   { id: "sacred", cssClass: "motif-sacred", label: "Sacred", sanskrit: "Tejas", meaning: "Spiritual radiance" },
   { id: "growth", cssClass: "motif-growth", label: "Growth", sanskrit: "Prakṛti", meaning: "Living nature" },
   { id: "devotion", cssClass: "motif-devotion", label: "Devotion", sanskrit: "Nīla", meaning: "Meditative depth" },
-  { id: "warmth", cssClass: "motif-warmth", label: "Warmth", sanskrit: "Tapas", meaning: "Renunciant warmth" },
+  { id: "ochre", cssClass: "motif-ochre", label: "Ochre", sanskrit: "Kāṣāya", meaning: "Renunciant warmth" },
   { id: "crimson", cssClass: "motif-crimson", label: "Crimson", sanskrit: "Kumkum", meaning: "Auspicious power" },
 ];
 

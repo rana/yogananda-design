@@ -49,7 +49,7 @@
     },
     "orange": {
       "$value": "#EC8724",
-      "$description": "Bright orange. Secondary accent for events, CTAs, urgency. The marigold garland's vivid center.",
+      "$description": "Bright orange. Secondary accent for events, CTAs, urgency. The ochre garland's vivid center — gendā (गेंदा), the marigold flower at its most saturated.",
       "$extensions": {
         "org.yogananda.design": {
           "rationale": "From yssofindia.org Elementor global --e-global-color-7c571da: #EC8724."

@@ -157,7 +157,7 @@
 
 /* ── Voice: Communal ──────────────────────────────────────────
    The gathering. Events, community, welcome, outreach.
-   Marigold accent, charcoal text, white background.
+   Ochre accent, charcoal text, white background.
    Source: emotional-registers.language.json → voices.communal
 
    Note: contemplative voice is the default — :root values in
@@ -165,7 +165,7 @@
    communal needs explicit overrides. */
 
 [data-voice="communal"] {
-  --voice-accent: var(--color-marigold);
+  --voice-accent: var(--color-ochre);
   color: var(--color-charcoal);
   background-color: var(--color-surface);
 }
@@ -253,6 +253,31 @@
 [data-rasa="bhakti"] [data-register="sacred"] {
   --register-line-height: 1.9;
 }
+
+/* ── Rasa-aware motif voice ──────────────────────────────────
+   Chapter-closing motifs carry the color of their emotional register.
+   The rasa on the article cascades to descendant .motif-close elements.
+   śānta (default) keeps sacred gold. Non-default rasas shift:
+     karuṇā  → devotion (navy)  — meditative depth for compassion
+     vīra    → growth (olive)   — living energy for heroic resolve
+     bhakti  → ochre (orange)   — renunciant warmth for devotion
+     adbhuta → sacred (gold)    — wonder keeps the default radiance
+   Source: aesthetic-theory → rasa × motif voice correspondence */
+
+[data-rasa="karuna"] .motif-close  { --motif-color: var(--motif-devotion); }
+[data-rasa="vira"] .motif-close    { --motif-color: var(--motif-growth); }
+[data-rasa="bhakti"] .motif-close  { --motif-color: var(--motif-ochre); }
+
+/* ── Rasa-aware scene breaks ─────────────────────────────────
+   Scene breaks within non-default rasas modulate opacity subtly.
+   More intense rasas get slightly more visible structural marks;
+   gentler rasas soften them. The gold gradient remains — only
+   weight shifts. Publication crimson overrides take precedence. */
+
+[data-rasa="vira"] .reader-scene-break    { opacity: calc(var(--gold-decorative) * 1.15); }
+[data-rasa="karuna"] .reader-scene-break  { opacity: calc(var(--gold-decorative) * 0.85); }
+[data-rasa="bhakti"] .reader-scene-break  { opacity: calc(var(--gold-decorative) * 0.9); }
+[data-rasa="adbhuta"] .reader-scene-break { opacity: calc(var(--gold-decorative) * 1.1); }
 
 
 /* ── Publication overlay ──────────────────────────────────────

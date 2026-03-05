@@ -1,5 +1,5 @@
 {
-  "$description": "The attention gradient maps emphasis levels to visual treatment across the design system. It answers: 'How prominent should this element be?' Every element exists somewhere on this gradient, from interactive (demands attention) to texture (the ghost of physicality). The gradient is a dhvani gradient — it mirrors the three meaning levels from Indian aesthetic theory: vācya (stated, interactive), lakṣyārtha (indicated, decorative), vyañjanā (suggested, ambient through texture). See aesthetic-theory.language.json for the theoretical framework. Three accent voices — gold (contemplative), marigold (communal), crimson (publication) — each express this gradient with voice-shaped opacity sets. Gold has 6 levels (contemplation needs the finest gradations from decorative to texture). Crimson has 5 (structure, not atmosphere — no texture level). Marigold has 4 (energetic, not contemplative — no highlight or texture). The asymmetry IS the design: each voice uses exactly the opacity levels its purpose demands. An orthogonal color axis — the motif system's five botanical voices (sacred, growth, devotion, warmth, crimson) — intersects with the gradient through opacity. Motif opacity follows the gradient's attention levels; motif hue follows the lotus's own devotional palette. The two dimensions are independent.",
+  "$description": "The attention gradient maps emphasis levels to visual treatment across the design system. It answers: 'How prominent should this element be?' Every element exists somewhere on this gradient, from interactive (demands attention) to texture (the ghost of physicality). The gradient is a dhvani gradient — it mirrors the three meaning levels from Indian aesthetic theory: vācya (stated, interactive), lakṣyārtha (indicated, decorative), vyañjanā (suggested, ambient through texture). See aesthetic-theory.language.json for the theoretical framework. Three accent voices — gold (contemplative), ochre (communal), crimson (publication) — each express this gradient with voice-shaped opacity sets. Gold has 6 levels (contemplation needs the finest gradations from decorative to texture). Crimson has 5 (structure, not atmosphere — no texture level). Ochre has 4 (energetic, not contemplative — no highlight or texture). The asymmetry IS the design: each voice uses exactly the opacity levels its purpose demands. An orthogonal color axis — the motif system's five botanical voices (sacred, growth, devotion, warmth, crimson) — intersects with the gradient through opacity. Motif opacity follows the gradient's attention levels; motif hue follows the lotus's own devotional palette. The two dimensions are independent.",
 
   "levels": {
     "interactive": {
@@ -16,7 +16,7 @@
     },
     "prominent": {
       "purpose": "Important but not interactive. Draws the eye without requiring action.",
-      "note": "Prominent is expressed through typography (bold weight, display size) and text color at full opacity — not through gold/crimson/marigold accent opacity. No accent-opacity CSS variable or utility class exists for this level. See three-voice-architecture.note-on-prominent.",
+      "note": "Prominent is expressed through typography (bold weight, display size) and text color at full opacity — not through gold/crimson/ochre accent opacity. No accent-opacity CSS variable or utility class exists for this level. See three-voice-architecture.note-on-prominent.",
       "treatment": {
         "color": "theme-text at full opacity",
         "weight": "bold",
@@ -95,15 +95,17 @@
   },
 
   "communal-accent": {
-    "$description": "The marigold attention gradient for communal surfaces. When the gathering theme is active, the accent shifts from gold to marigold (#DC6A10). Marigold is energetic, warm, and welcoming — the joy of shared devotion. It does not need the contemplative gradient's fine distinctions.",
-    "accent-color": "marigold (#DC6A10, theme-adaptive via --color-gold remapping in gathering theme)",
+    "$description": "The ochre attention gradient for communal surfaces. When the gathering theme is active, the accent shifts from gold to ochre (#DC6A10). Ochre is energetic, warm, and welcoming — the joy of shared devotion. It does not need the contemplative gradient's fine distinctions.",
+    "etymology": "From kāṣāya (काषाय) — the ochre of renunciation. The color of the monastic robe, traditionally dyed with tree bark (myrobalan, jackfruit, turmeric). Also gendā (गेंदा) — the Hindi marigold, the garland of welcome. And gairika (गैरिक, from giri = mountain) — the earth pigment used continuously from Bhimbetka cave paintings (30,000+ BCE) through today's temple tilaka. Gold and ochre are two poles of one kāṣāya spectrum: gold is the fresh robe's yellow, ochre is the sun-worn cloth's orange. Female monastics wear the yellow end; male monastics the deeper orange. The design system honors both.",
+    "cultural-lineage": "The ochre tradition is the oldest continuous pigment in human history. Blombos Cave (South Africa, 75,000 BCE). Bhimbetka (India, 30,000+ BCE). Lascaux (France, 17,000 BCE). Aboriginal Australian ceremony (continuous to present). Ajanta frescoes. Temple tilaka. The renunciant's robe. The marigold garland offered at the threshold between the sacred and the human. Western ochre comes from Greek ōkhra (ὤχρα, pale yellow) — but the Indian tradition has its own older words: gairika, kāṣāya, geruā (गेरुआ, the specific ochre-orange of the monastic robe).",
+    "accent-color": "ochre (#DC6A10, theme-adaptive via --color-gold remapping in gathering theme)",
     "levels": {
-      "interactive":  { "marigold-opacity": 1.0,  "elements": ["event registration buttons", "community action links", "active navigation on communal surfaces"] },
-      "decorative":   { "marigold-opacity": 0.4,  "elements": ["decorative borders", "section ornaments on event pages", "marigold motif dividers"] },
-      "ambient":      { "marigold-opacity": 0.2,  "elements": ["background warmth indicators", "communal section separators"] },
-      "subliminal":   { "marigold-opacity": 0.06, "elements": ["hover backgrounds on communal cards", "selected state on event listings"] }
+      "interactive":  { "ochre-opacity": 1.0,  "elements": ["event registration buttons", "community action links", "active navigation on communal surfaces"] },
+      "decorative":   { "ochre-opacity": 0.4,  "elements": ["decorative borders", "section ornaments on event pages", "ochre motif dividers"] },
+      "ambient":      { "ochre-opacity": 0.2,  "elements": ["background warmth indicators", "communal section separators"] },
+      "subliminal":   { "ochre-opacity": 0.06, "elements": ["hover backgrounds on communal cards", "selected state on event listings"] }
     },
-    "absent-levels": "Marigold has no 'highlight' level (guiding through sustained reading is contemplative, not communal) and no 'texture' level (paper materiality belongs to the reading surface). Four levels is the correct count for a voice that says 'welcome and act,' not 'linger and contemplate.'"
+    "absent-levels": "Ochre has no 'highlight' level (guiding through sustained reading is contemplative, not communal) and no 'texture' level (paper materiality belongs to the reading surface). Four levels is the correct count for a voice that says 'welcome and act,' not 'linger and contemplate.'"
   },
 
   "three-voice-architecture": {
@@ -111,11 +113,11 @@
     "voices": {
       "gold":     { "levels": 6, "purpose": "Contemplation. The reading lamp.", "css-prefix": "gold-", "gradient": "interactive → decorative → ambient → highlight → subliminal → texture" },
       "crimson":  { "levels": 5, "purpose": "Publication. The book's skeleton.", "css-prefix": "crimson-", "gradient": "interactive → decorative → ambient → highlight → subliminal" },
-      "marigold": { "levels": 4, "purpose": "Communion. The gathering warmth.", "css-prefix": "marigold-", "gradient": "interactive → decorative → ambient → subliminal" }
+      "ochre":    { "levels": 4, "purpose": "Communion. The gathering warmth.", "css-prefix": "ochre-", "gradient": "interactive → decorative → ambient → subliminal" }
     },
     "note-on-prominent": "The levels section above lists seven attention levels including 'prominent.' Prominent is expressed through typography (bold weight, display size), not through accent color opacity. It therefore does not appear in any voice's opacity gradient. Similarly, 'texture' is expressed through SVG fractalNoise at 3% opacity, not through a utility class — only gold has the texture token, because only the contemplative voice simulates physicality.",
     "hue-dependent-calibration": "Warmer, more saturated hues (crimson #9B2335, terracotta #bb4f27) are perceptually heavier than lighter hues (gold #dcbd23). To achieve equivalent visual weight at the same attention level, they require lower opacity. Crimson ambient (0.25) is lower than gold ambient (0.3); crimson highlight (0.15) is lower than gold highlight (0.2). This principle applies wherever accent colors differ — it is not decorative tuning, it is perceptual calibration.",
-    "voice-selection": "Voice is determined by surface purpose, not content type. A Yogananda quote on a communal surface still renders in gold's sacred register — but the surrounding chrome uses marigold. See emotional-registers.language.json for the register × voice matrix."
+    "voice-selection": "Voice is determined by surface purpose, not content type. A Yogananda quote on a communal surface still renders in gold's sacred register — but the surrounding chrome uses ochre. See emotional-registers.language.json for the register × voice matrix."
   },
 
   "motif-integration": {
@@ -124,7 +126,7 @@
       "sacred":   { "css": "--motif-sacred (gold)", "symbolism": "tejas — spiritual radiance", "bridge": "Direct bridge to the contemplative voice. Default motif color." },
       "growth":   { "css": "--motif-growth (#6a6d2f)", "symbolism": "prakṛti — living nature", "bridge": "No direct voice mapping. The lotus's own vitality — the stem from which the bloom rises." },
       "devotion": { "css": "--motif-devotion (#192c55)", "symbolism": "nīla — meditative depth", "bridge": "Nearly identical to contemplative text color (#1A2744). The lotus rendered in the ink of the page." },
-      "warmth":   { "css": "--motif-warmth (#dd6c26)", "symbolism": "tapas — renunciant warmth", "bridge": "Close cousin of marigold (#DC6A10). The lotus's own burnt orange; marigold is the communal accent. They rhyme, not duplicate." },
+      "ochre":    { "css": "--motif-ochre (var(--color-ochre))", "symbolism": "kāṣāya — renunciant warmth", "bridge": "Unified with the communal accent. The lotus in the robe's own color — the ochre of renunciation. Previously 'warmth' (#dd6c26) and 'marigold' (#DC6A10), now recognized as one pigment." },
       "crimson":  { "css": "--motif-crimson (crimson)", "symbolism": "kumkum — auspicious power", "bridge": "The published book's structural color. Activates only under data-publication — structural motifs (divider, close) shift to crimson at decorative opacity. Breath motifs stay gold (reading rhythm is a portal feature, not a book structure)." }
     },
     "palette-unity": "These five voices are one devotional palette, not four-plus-one. Four were discovered archaeologically in the original yogananda.org lotus SVGs. The fifth was discovered in the AoY Kindle edition. The activation context differs (four always available, crimson only under data-publication) but the palette is continuous. Together they trace the Indian devotional spectrum: from the green of living nature through the gold of illumination to the crimson of sacred power.",
@@ -140,10 +142,31 @@
   },
 
   "border-hierarchy": {
-    "$description": "Border visibility follows the attention gradient. Most boundaries in this design language are implied (whitespace, background shifts), not drawn.",
-    "prominent": { "opacity": 0.3, "width": "2px", "use": "Section dividers, card borders on hover" },
-    "default":   { "opacity": 0.12, "width": "1px", "use": "Standard card borders, input fields" },
-    "subtle":    { "opacity": 0.06, "width": "1px", "use": "Internal dividers within a card, table rows" },
-    "none":      { "opacity": 0, "width": "0", "use": "Reading surfaces, clean content areas. Preferred." }
+    "$description": "Border visibility follows the attention gradient. Most boundaries in this design language are implied (whitespace, background shifts), not drawn. Two orthogonal axes: opacity (how much attention) and gradient (where attention gathers).",
+    "opacity-axis": {
+      "prominent": { "opacity": 0.3, "width": "2px", "use": "Section dividers, card borders on hover" },
+      "default":   { "opacity": 0.12, "width": "1px", "use": "Standard card borders, input fields" },
+      "subtle":    { "opacity": 0.06, "width": "1px", "use": "Internal dividers within a card, table rows" },
+      "none":      { "opacity": 0, "width": "0", "use": "Reading surfaces, clean content areas. Preferred." }
+    },
+    "gradient-axis": {
+      "$description": "Spatial attention dimension. The gradient flows along the container edge, expressing voice identity through color stops. Gold mediates — the bindu color at gradient center. The kāṣāya spectrum (gold → ochre) is a single pigment family at different stages of its journey; the gradient makes this continuity visible. Prāṇa made visible: pūraka (approach) as attention gathering at the container edge.",
+      "technique": "Dual background with background-clip. Inner layer shows surface color (padding-box); outer layer shows gradient (border-box). Works with border-radius. No pseudo-elements. Middle stop derived via color-mix(in oklch) for perceptually uniform darkening.",
+      "voices": {
+        "gold": { "stops": "accent → darkened accent → accent", "use": "Contemplative focus states. The reading lamp's glow." },
+        "ochre": { "stops": "ochre → gold → ochre", "use": "Communal focus states. The kāṣāya spectrum — renunciant cloth warming through gold." },
+        "crimson": { "stops": "crimson → gold → crimson", "use": "Publication containers. Rubrication tradition meeting the reading lamp." }
+      },
+      "triggers": ["focus-visible on interactive elements", "active text input", "elevated containers at interactive attention level"],
+      "forbidden": "Never decorative-only. Never animated. Never on reading surface text containers — the teaching is the bindu; its container must not call attention to itself.",
+      "css-classes": {
+        "base": ".gradient-border (technique setup + gold default)",
+        "voices": ".gradient-border-gold, .gradient-border-ochre, .gradient-border-crimson",
+        "focus": ".gradient-focus (opt-in :focus-visible replacement)",
+        "input": ".gradient-input-active (active text input state)"
+      },
+      "automatic-voice": "Gathering theme → ochre gradient. Publication context → crimson gradient. No manual class needed.",
+      "accessibility": "forced-colors: falls back to solid system border (ButtonText/Highlight). Print: falls back to 1px solid #999."
+    }
   }
 }

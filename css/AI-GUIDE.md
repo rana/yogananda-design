@@ -38,11 +38,11 @@ css/typography/fonts.css     ← @font-face declarations
 css/typography/classes.css   ← .reading-text, .display-text, etc.
 css/typography/features.css  ← drop caps, epigraphs, citations
 css/calm.css                 ← reduced motion, focus rings, sr-only
-css/attention.css            ← gold/marigold opacity utility classes
+css/attention.css            ← gold/ochre opacity utility classes
 css/patterns/reading-surface.css ← scroll indicator, dwell, focus mode
 css/patterns/print.css       ← @media print stylesheet
 css/patterns/preferences.css ← font size / line spacing user controls
-css/patterns/operations.css  ← @font-face IBM Plex Mono + ops patterns (chain, timeline, status, costs)
+css/patterns/stewardship.css ← @font-face IBM Plex Mono + stewardship vocabulary (tone, status, density, data typography)
 ```
 
 ### HTML Structure
@@ -103,7 +103,7 @@ Every design decision lives at the intersection of two orthogonal axes:
 
 **Voice** (horizontal — what kind of surface):
 - **Contemplative** — The library. Gold accent, navy text, cream background. Merriweather/Lora/Open Sans. For reading, study, meditation, archives.
-- **Communal** — The gathering. Marigold accent, charcoal text, white background. ArcherPro/Helvetica Neue. For events, registration, community, outreach.
+- **Communal** — The gathering. Ochre accent, charcoal text, white background. ArcherPro/Helvetica Neue. For events, registration, community, outreach.
 
 **Register** (vertical — how much reverence):
 - **Sacred** — Yogananda's own words. Maximum reverence. Expansive whitespace, reading typography, no UI overlays on text.
@@ -135,7 +135,7 @@ Gold is never arbitrary. It maps to a deliberate hierarchy:
 | Subliminal | 0.06 | `--gold-subliminal` | Felt, not seen | Paragraph hover background |
 | Texture | 0.03 | `--gold-texture` | Ghost of physicality | Paper texture noise overlay |
 
-When using marigold (communal voice), the same hierarchy applies via `--marigold-*` properties.
+When using ochre (communal voice), the same hierarchy applies via `--ochre-*` properties.
 
 **Rule**: If you're reaching for a gold value, ask which attention level it belongs to. If none fit, the element probably shouldn't be gold.
 
@@ -148,7 +148,7 @@ When using marigold (communal voice), the same hierarchy applies via `--marigold
 | `earth` | Red clay, Indian warmth | Warm reading, shared with YSS |
 | `dark` | Deep navy, SRF-respectful darkness | Evening reading |
 | `meditate` | Pre-dawn stillness, gold at 60% | Contemplation |
-| `gathering` | Open courtyard, marigold on white | Events and community |
+| `gathering` | Open courtyard, ochre on white | Events and community |
 
 | `ashram` | Sunlit courtyard, white + terracotta | Default YSS reading |
 | `sandstone` | Prayer hall lamplight, cream + devotional gold | Warm YSS reading |
@@ -158,7 +158,7 @@ When using marigold (communal voice), the same hierarchy applies via `--marigold
 ### Color Decisions
 
 - Never use raw hex values. Always reference `var(--color-*)` tokens.
-- Never mix voice palettes. Gold + navy = contemplative. Marigold + charcoal = communal. Don't cross them.
+- Never mix voice palettes. Gold + navy = contemplative. Ochre + charcoal = communal. Don't cross them.
 - Category colors (teal, indigo, amber) belong exclusively to the communal voice.
 - Borders are mostly implied (whitespace, background shifts), not drawn. When drawn, use `var(--color-border)` at default opacity.
 - Text hierarchy: primary (full opacity), secondary (`--color-text-secondary` at 70%), and below.
@@ -255,18 +255,18 @@ You are writing HTML and CSS. Here are the exact classes, properties, and data a
 .crimson-highlight    /* opacity: 0.15 — chapter nav hover */
 .crimson-subliminal   /* opacity: 0.06 — faint publication warmth */
 
-/* Marigold hierarchy */
-.marigold-interactive  /* opacity: 1.0 */
-.marigold-decorative   /* opacity: 0.4 */
-.marigold-ambient      /* opacity: 0.2 */
-.marigold-subliminal   /* opacity: 0.06 */
+/* Ochre hierarchy */
+.ochre-interactive  /* opacity: 1.0 */
+.ochre-decorative   /* opacity: 0.4 */
+.ochre-ambient      /* opacity: 0.2 */
+.ochre-subliminal   /* opacity: 0.06 */
 ```
 
 ### Custom Properties Reference
 
 All properties live on `:root` via `foundations.css`. Reference them with `var(--name)`.
 
-**Colors**: `--color-bg`, `--color-bg-secondary`, `--color-text`, `--color-text-secondary`, `--color-border`, `--color-gold`, `--color-surface`, `--color-navy`, `--color-cream`, `--color-marigold`, `--color-marigold-hover`, `--color-marigold-light`, `--color-charcoal`, `--color-border-neutral`, `--color-gold-dark`
+**Colors**: `--color-bg`, `--color-bg-secondary`, `--color-text`, `--color-text-secondary`, `--color-border`, `--color-gold`, `--color-surface`, `--color-navy`, `--color-cream`, `--color-ochre`, `--color-ochre-hover`, `--color-ochre-light`, `--color-charcoal`, `--color-border-neutral`, `--color-gold-dark`
 
 **Category**: `--color-category-teal`, `--color-category-indigo`, `--color-category-amber`
 
@@ -391,7 +391,7 @@ Common hex-to-token mappings:
 | `#FAF8F5` | `var(--color-bg)` / `var(--color-cream)` |
 | `#f0ece4` | `var(--color-bg-secondary)` |
 | `#9B2335` | `var(--color-crimson)` |
-| `#DC6A10` | `var(--color-marigold)` |
+| `#DC6A10` | `var(--color-ochre)` |
 | `150ms` | `var(--motion-interaction)` |
 | `300ms` | `var(--motion-content)` |
 | `800ms` | `var(--motion-contemplative)` |
@@ -406,9 +406,9 @@ The complete `reading.css` bundle is ~1,200 lines of CSS before minification. Af
 
 ---
 
-## For the Operator
+## For the Steward
 
-You are configuring runtime behavior — themes, accessibility, performance.
+You are tending the infrastructure that serves the teachings — configuring runtime behavior, monitoring system health, and caring for the digital garden.
 
 ### Theme Switching
 
@@ -459,12 +459,38 @@ You must still ensure:
 - Color is never the only means of conveying information
 - Touch targets are at least 44x44px
 
+### Stewardship — Operational Surfaces
+
+Import `css/patterns/stewardship.css` for operational dashboards. This provides vocabulary and atmosphere, not assembled components — the platform composes its own layouts.
+
+**System tone** — set `data-tone` on any element to modulate its atmosphere:
+```html
+<div data-tone="aligned">    <!-- Gold at subliminal — peace -->
+<div data-tone="attention">  <!-- Gold at ambient — gently present -->
+<div data-tone="concern">    <!-- Gold at decorative + gradient border -->
+<div data-tone="failure">    <!-- Gold at interactive + full border glow -->
+```
+
+**Data attributes:**
+- `data-tone="aligned | attention | concern | failure"` — system health atmosphere
+- `data-density="compact | comfortable"` — information density
+- `data-age="recent | today | older"` — temporal dhvani (recent events are stated, older events recede)
+
+**CSS classes:**
+- `.status-indicator` — 8px gold dot, opacity responds to `data-tone`
+- `.status-label` — uppercase label paired with indicator
+- `.tone-border` — gradient border that activates at concern/failure
+- `.data-text` / `.data-text-emphasis` / `.data-label` — data typography (IBM Plex Mono)
+- `.stewardship-narrative` — instructional-register prose (Merriweather, 65ch max)
+
+**Design principle:** Gold-only escalation. No crimson (that means publication). The same attention gradient that governs reading surfaces governs operational awareness. The narrative briefing is the bindu — everything else orbits it.
+
 ### Performance
 
 - Preload critical fonts: Merriweather 400 + Open Sans 400
 - Devanagari fonts load on demand (unicode-range subsetting)
 - The devotional display font (Asar) loads only on pages that use `.display-inspirational-text` or `--font-display-inspirational`
-- The operational data font (IBM Plex Mono) loads only when `patterns/operations.css` is imported (~30KB for both weights)
+- The operational data font (IBM Plex Mono) loads only when `patterns/stewardship.css` is imported (~30KB for both weights)
 - All CSS is static — no JavaScript required for any design token to work
 - Print stylesheet is built in — `@media print` handles everything
 
@@ -475,11 +501,14 @@ You must still ensure:
 ```
 VOICE:      contemplative (default) | communal
 REGISTER:   sacred → reverential → instructional → functional → ambient
-ACCENT:     gold (contemplative) | marigold (communal) | crimson (publication overlay)
+ACCENT:     gold (contemplative) | ochre (communal) | crimson (publication overlay)
 HIERARCHY:  interactive 1.0 → decorative 0.4 → ambient 0.3 → highlight 0.2 → subliminal 0.06 → texture 0.03
 PRINCIPLES: dhvani (suggest > state) | aucitya (propriety) | rasa (experiential flavor) | bindu (still center) | sahṛdaya (prepared reader) | prāṇa (breath rhythm) | alaṅkāra (ornament = structure)
 
-IMPORT:     css/index.css (core) | css/reading.css (reading surfaces)
+STEWARDSHIP: data-tone="aligned|attention|concern|failure" (gold-only escalation)
+             data-density="compact|comfortable" data-age="recent|today|older"
+
+IMPORT:     css/index.css (core) | css/reading.css (reading) | + stewardship.css (ops)
 HTML:       data-org="srf" data-theme="light" lang="en"
 FONTS:      self-hosted WOFF2, font-display: swap, zero external requests
 

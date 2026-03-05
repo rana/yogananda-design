@@ -2,9 +2,11 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 
-type ReadingMode = "normal" | "focus" | "present" | "quiet";
+type ReadingMode = "normal" | "focus" | "present" | "quiet" | "immerse";
 type FontSize = "default" | "large" | "larger";
 type LineSpacing = "default" | "relaxed" | "spacious";
+type Rasa = "shanta" | "adbhuta" | "karuna" | "vira" | "bhakti";
+type Voice = "contemplative" | "communal";
 
 const PARAGRAPH_COUNT = 3;
 
@@ -17,6 +19,8 @@ export default function ReadingExperience() {
   const [fontSize, setFontSize] = useState<FontSize>("default");
   const [lineSpacing, setLineSpacing] = useState<LineSpacing>("default");
   const [kbFocus, setKbFocus] = useState<number | null>(null);
+  const [rasa, setRasa] = useState<Rasa>("shanta");
+  const [voice, setVoice] = useState<Voice>("contemplative");
   const [sahrdayaWarmth, setSahrdayaWarmth] = useState(0);
   const surfaceRef = useRef<HTMLDivElement>(null);
 
@@ -40,7 +44,7 @@ export default function ReadingExperience() {
 
   const toggleDwell = useCallback(
     (index: number) => {
-      if (mode === "quiet" || mode === "present") return;
+      if (mode === "quiet" || mode === "present" || mode === "immerse") return;
       setDwellIndex((prev) => (prev === index ? null : index));
     },
     [mode],
@@ -106,10 +110,9 @@ export default function ReadingExperience() {
     paragraphs[kbFocus]?.scrollIntoView({ block: "nearest", behavior: "smooth" });
   }, [kbFocus]);
 
-  /* Reader preference: line spacing uses CSS classes (targets [data-paragraph] with !important).
-     Font size computed inline because .reading-text sets absolute 18px that percentage classes can't override. */
+  /* Reader preferences: CSS classes from preferences.css */
   const lineClass = lineSpacing === "spacious" ? "line-spacious" : lineSpacing === "relaxed" ? "line-relaxed" : "";
-  const articleFontSize = fontSize === "larger" ? "22px" : fontSize === "large" ? "20px" : "18px";
+  const fontClass = fontSize === "larger" ? "font-larger" : fontSize === "large" ? "font-large" : "";
 
   return (
     <section id="reading" className="showcase-section">
@@ -134,15 +137,15 @@ export default function ReadingExperience() {
           }}
         >
           The composed reading surface &mdash; where every layer converges.
-          Click a paragraph for dwell contemplation. Switch reading modes to
-          see how the surface adapts for solitary focus, group presentation,
-          or quiet reflection. Adjust font size and line spacing for reader
-          comfort. Toggle publication context for crimson structural voice.
+          Click a paragraph for dwell contemplation. Switch reading modes,
+          voice (contemplative vs communal), and rasa to see how the
+          surface adapts. All five content types demonstrated: prose, verse,
+          epigraph, dialogue, and caption.
         </p>
 
         {/* ── Context & Feature Controls ───────────────────────── */}
         <div
-          className={mode === "present" || mode === "focus" ? "hidden" : "flex gap-2 mb-3 flex-wrap"}
+          className={mode === "present" || mode === "focus" || mode === "immerse" ? "hidden" : "flex gap-2 mb-3 flex-wrap"}
         >
           <ToggleButton
             active={publication}
@@ -176,7 +179,7 @@ export default function ReadingExperience() {
 
         {/* ── Mode & Preference Controls ───────────────────────── */}
         <div
-          className={mode === "present" ? "hidden" : "flex gap-4 mb-6 flex-wrap items-center"}
+          className={mode === "present" || mode === "immerse" ? "hidden" : "flex gap-4 mb-6 flex-wrap items-center"}
         >
           {/* Reading mode — segmented control */}
           <div className="flex items-center gap-1.5">
@@ -185,11 +188,12 @@ export default function ReadingExperience() {
               value={mode}
               onChange={(m) => {
                 setMode(m);
-                if (m === "quiet" || m === "present") setDwellIndex(null);
+                if (m === "quiet" || m === "present" || m === "immerse") setDwellIndex(null);
               }}
               options={[
                 { value: "normal", label: "Normal" },
                 { value: "focus", label: "Focus" },
+                { value: "immerse", label: "Immerse", title: "Chrome disappears. Text scales to viewport." },
                 { value: "present", label: "Present" },
                 { value: "quiet", label: "Quiet" },
               ]}
@@ -259,22 +263,57 @@ export default function ReadingExperience() {
               ]}
             />
           </div>
+
+          <ControlDivider />
+
+          {/* Rasa — emotional register of the chapter */}
+          <div className="flex items-center gap-1.5">
+            <ControlLabel>Rasa</ControlLabel>
+            <SegmentedControl<Rasa>
+              value={rasa}
+              onChange={setRasa}
+              options={[
+                { value: "shanta", label: "Śānta", title: "Peace / Stillness" },
+                { value: "adbhuta", label: "Adbhuta", title: "Wonder / Awe" },
+                { value: "karuna", label: "Karuṇā", title: "Compassion" },
+                { value: "vira", label: "Vīra", title: "Heroic Courage" },
+                { value: "bhakti", label: "Bhakti", title: "Devotional Love" },
+              ]}
+            />
+          </div>
+
+          <ControlDivider />
+
+          {/* Voice — contemplative (default) or communal */}
+          <div className="flex items-center gap-1.5">
+            <ControlLabel>Voice</ControlLabel>
+            <SegmentedControl<Voice>
+              value={voice}
+              onChange={setVoice}
+              options={[
+                { value: "contemplative", label: "Contemplative", title: "Solitary reading — gold accent" },
+                { value: "communal", label: "Communal", title: "Gathering / event — ochre accent" },
+              ]}
+            />
+          </div>
         </div>
 
         {/* ── Reading surface ──────────────────────────────────── */}
         <div
           ref={surfaceRef}
-          className={`theme-transition rounded-md overflow-hidden ${lineClass}`.trim()}
+          className={`theme-transition rounded-md overflow-hidden ${lineClass} ${fontClass}`.trim()}
           style={{
             border: "1px solid var(--color-border)",
             position: "relative",
           }}
+          data-rasa={rasa}
+          {...(voice === "communal" ? { "data-voice": "communal" } : {})}
           {...(publication ? { "data-publication": "" } : {})}
           {...(isDwellActive ? { "data-dwell-active": "" } : {})}
           {...(mode !== "normal" ? { "data-mode": mode } : {})}
         >
-          {/* Exit Present — shown only in present mode */}
-          {mode === "present" && (
+          {/* Exit chrome-hiding modes */}
+          {(mode === "present" || mode === "immerse") && (
             <div style={{ padding: "8px 16px", textAlign: "right" }}>
               <button
                 onClick={() => setMode("normal")}
@@ -286,7 +325,7 @@ export default function ReadingExperience() {
                   border: "1px solid var(--color-border)",
                 }}
               >
-                Exit Present
+                {mode === "immerse" ? "Exit Immerse" : "Exit Present"}
               </button>
             </div>
           )}
@@ -308,12 +347,13 @@ export default function ReadingExperience() {
                 ? `color-mix(in srgb, var(--color-gold) ${Math.round(sahrdayaWarmth * 100)}%, var(--color-bg))`
                 : "var(--color-bg)",
               padding: "clamp(24px, 5vw, 48px)",
-              fontSize: articleFontSize,
-              lineHeight: 1.8,
               transition: "background-color 1200ms var(--easing-contemplative)",
             }}
           >
-            <div style={{ maxWidth: "42em", margin: "0 auto" }}>
+            <div
+              data-register="sacred"
+              style={{ margin: "0 auto" }}
+            >
               {/* Chapter label */}
               <div
                 className="small-caps"
@@ -421,6 +461,43 @@ export default function ReadingExperience() {
                 className="motif motif-lotus-03 motif-breath"
                 aria-hidden="true"
               />
+
+              {/* Dialogue — tighter rhythm, no drop cap */}
+              <div className="reader-dialogue">
+                <p>&ldquo;When will I find God?&rdquo; I whispered urgently.</p>
+                <p>&ldquo;You have found Him.&rdquo;</p>
+                <p>&ldquo;O no, sir, I don&rsquo;t think so!&rdquo;</p>
+                <p>My guru was smiling. &ldquo;I am sure you aren&rsquo;t aware of it, but you have. His seed is planted in you, and some day you will realize.&rdquo;</p>
+              </div>
+
+              {/* Book figure — photograph with caption */}
+              <figure className="book-figure">
+                {/* Placeholder for photograph — 3:2 aspect ratio */}
+                <div
+                  className="book-figure-img"
+                  role="img"
+                  aria-label="Sri Yukteswar with disciples at the Serampore hermitage"
+                  style={{
+                    aspectRatio: "3 / 2",
+                    maxWidth: "480px",
+                    background: "linear-gradient(135deg, color-mix(in srgb, var(--color-gold) 8%, var(--color-bg-secondary)), var(--color-bg-secondary))",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <span
+                    className="motif motif-lotus-01 motif-sacred"
+                    aria-hidden="true"
+                    style={{ width: "48px", height: "48px", opacity: 0.15 }}
+                  />
+                </div>
+                <figcaption className="book-caption">
+                  Sri Yukteswar with a group of disciples at the Serampore
+                  hermitage, circa 1935. Yogananda is seated at his
+                  guru&rsquo;s right.
+                </figcaption>
+              </figure>
 
               {/* Paragraph 3 — with footnote reference */}
               <Paragraph
@@ -622,7 +699,7 @@ export default function ReadingExperience() {
 
         {/* ── Feature legend ────────────────────────────────── */}
         <div
-          className={mode === "present" || mode === "focus" ? "hidden" : "grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4"}
+          className={mode === "present" || mode === "focus" || mode === "immerse" ? "hidden" : "grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4"}
         >
           {[
             {
@@ -658,6 +735,10 @@ export default function ReadingExperience() {
               desc: "Suppresses chrome. Only the reading column remains.",
             },
             {
+              label: "Immerse Mode",
+              desc: "Chrome disappears. Text scales to viewport. Focus + present unified.",
+            },
+            {
               label: "Present Mode",
               desc: "Group reading. Text scales 24px → 36px across breakpoints.",
             },
@@ -672,6 +753,22 @@ export default function ReadingExperience() {
             {
               label: "Epigraph",
               desc: "Decorative gold quotation mark. Centered italic at light weight.",
+            },
+            {
+              label: "Voice",
+              desc: "Contemplative (gold) or communal (ochre). Sacred text preserves typographic reverence in both.",
+            },
+            {
+              label: "Rasa",
+              desc: "Experiential atmosphere — whitespace, motion, motif color shift subtly per rasa.",
+            },
+            {
+              label: "Dialogue",
+              desc: "Tighter vertical rhythm. Drop cap suppressed. Pace of speech.",
+            },
+            {
+              label: "Caption",
+              desc: "Italic, secondary color, constrained width. Book figure labeling.",
             },
             {
               label: "Sahṛdaya Warmth",
@@ -796,7 +893,7 @@ function SegmentedControl<T extends string>({
 }: {
   value: T;
   onChange: (v: T) => void;
-  options: { value: T; label: string }[];
+  options: { value: T; label: string; title?: string }[];
 }) {
   return (
     <div className="flex" style={{ gap: "1px" }}>
@@ -804,6 +901,7 @@ function SegmentedControl<T extends string>({
         <button
           key={opt.value}
           onClick={() => onChange(opt.value)}
+          title={opt.title}
           className="theme-transition px-2.5 py-1 text-xs font-semibold cursor-pointer"
           style={{
             fontFamily: "var(--font-ui)",

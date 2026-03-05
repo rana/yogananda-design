@@ -1,0 +1,444 @@
+{
+  "$description": "Composition patterns for paginated media — PDF and print. The design language's homecoming: every governing principle (dhvani, aucitya, rasa, bindu, prāṇa, alaṅkāra) originates in manuscript and print tradition. The screen reading surface adapted these for scrolling; this pattern restores them to their native medium. This file describes the visual contract; consumers choose the rendering engine (Prince, Typst, WeasyPrint, Puppeteer). Two output variants: reader PDF (sRGB, screen-optimized, the seeker's artifact) and production PDF (CMYK + spot color, bleed, crop marks — the printer's master).",
+
+  "page-anatomy": {
+    "$description": "The page is a maṇḍala. The text block is the bindu — the still center from which all other elements radiate. Margins are not empty space; they are where the reader holds the teaching. Verso/recto awareness honors the codex tradition shared by Western bookmaking and Indian pustaka.",
+
+    "dimensions": {
+      "default": { "width": "6in", "height": "9in", "name": "Royal octavo — the AoY's approximate trim size" },
+      "compact": { "width": "5.5in", "height": "8.5in", "name": "Digest — for passage collections and devotional booklets" },
+      "contemplation-card": { "width": "4.25in", "height": "5.5in", "name": "A6 / quarter-letter — single-passage artifact" }
+    },
+
+    "margins": {
+      "$description": "Margin ratios follow the traditional book canon: gutter narrowest (the spine holds it), head next, fore-edge wider (the reader's thumb), foot widest (optical center sits above geometric center). The text block occupies approximately 60% of the page area — close to the golden section.",
+      "default-6x9": {
+        "gutter": "0.75in",
+        "head": "0.875in",
+        "fore-edge": "1.0in",
+        "foot": "1.125in",
+        "rationale": "Ratio approximately 3:3.5:4:4.5 — a gentle progression. The text block at these margins is roughly 4.25in × 7in on a 6×9 page."
+      },
+      "compact-5.5x8.5": {
+        "gutter": "0.625in",
+        "head": "0.75in",
+        "fore-edge": "0.875in",
+        "foot": "1.0in"
+      },
+      "contemplation-card": {
+        "all": "0.625in",
+        "rationale": "Equal margins. The passage is centered — no verso/recto distinction on a single card."
+      }
+    },
+
+    "verso-recto": {
+      "$description": "Chapters always begin on recto (right-hand, odd-numbered). The blank verso preceding a new chapter is not waste — it is recaka, the exhalation before the next breath. The reader experiences: teaching (kumbhaka) → blank verso (recaka) → chapter opening on recto (pūraka). Prāṇa expressed as page imposition.",
+      "recto": {
+        "running-header": "Chapter title — the reader knows where they are",
+        "folio": "Outer margin (fore-edge side), arabic numerals"
+      },
+      "verso": {
+        "running-header": "Book title — the reader knows what they are holding",
+        "folio": "Outer margin (fore-edge side), arabic numerals"
+      },
+      "running-header-typography": {
+        "font": "Open Sans 400 (UI role — running headers are infrastructure, not content)",
+        "size": "8pt",
+        "case": "small-caps with 0.08em letter-spacing",
+        "color": "text-secondary equivalent — present but subordinate"
+      },
+      "folio-typography": {
+        "font": "Open Sans 400",
+        "size": "8pt",
+        "style": "lining numerals"
+      },
+      "suppression": "Running headers and folios suppressed on: chapter-opening pages, blank versos, frontispiece, title page, half-title, dedication, copyright page"
+    }
+  },
+
+  "typographic-mapping": {
+    "$description": "Every screen typography token mapped to its paper equivalent. Paper does not emit light; type can be smaller and leading tighter while maintaining readability. But this design serves seekers who may need accessible sizing — two body-text presets are provided.",
+
+    "body": {
+      "standard": {
+        "font": "Merriweather 400",
+        "size": "11pt",
+        "leading": "15pt",
+        "line-height-ratio": 1.36,
+        "measure": "27em (approximately 65 characters — the optimal reading measure)",
+        "note": "11/15 is a classic book proportion. Tighter than the screen's 1.8 line-height because the eye tracks more easily on a physical surface with fixed text."
+      },
+      "accessible": {
+        "font": "Merriweather 400",
+        "size": "12pt",
+        "leading": "17pt",
+        "line-height-ratio": 1.42,
+        "measure": "27em",
+        "note": "For large-print editions or seekers who request accessible formatting. Still tighter than screen (1.8) but generous for print."
+      }
+    },
+
+    "display": {
+      "chapter-title": {
+        "font": "Lora 700",
+        "size": "18pt",
+        "leading": "22pt",
+        "note": "Lora at 18pt is majestic on paper. If publication overlay is active, color is crimson."
+      },
+      "chapter-label": {
+        "font": "Open Sans 400, small-caps, letter-spacing 0.05em",
+        "size": "9pt",
+        "note": "'CHAPTER XII' above the title. Crimson under publication overlay."
+      }
+    },
+
+    "reading-light": {
+      "font": "Merriweather 300",
+      "size": "11pt",
+      "leading": "15pt",
+      "note": "Epigraphs, block quotations, supporting voice. Same size as body, lighter weight."
+    },
+
+    "citation": {
+      "font": "Merriweather 300, italic",
+      "size": "9pt",
+      "leading": "12pt",
+      "note": "Full attribution. PRI-02: always present, never truncated — especially on paper where the artifact may circulate independently."
+    },
+
+    "display-inspirational": {
+      "font": "Asar 400",
+      "size": "14pt",
+      "leading": "20pt",
+      "note": "Dedication page, half-title, section openers. Asar's stone-inscription aesthetic finds its gravity on paper. Covers Latin and Devanagari in a single devotional voice."
+    },
+
+    "footnotes": {
+      "font": "Merriweather 400",
+      "size": "8.5pt",
+      "leading": "11pt",
+      "separator": "2em rule, 0.5pt weight, text-secondary color",
+      "note": "Below the text block, separated by a short rule. DPUB-ARIA roles from the screen pattern (doc-noteref, doc-endnotes, doc-backlink) have no equivalent on paper — footnote numbers and back-references handle navigation."
+    },
+
+    "hanging-punctuation": {
+      "status": "default",
+      "note": "What is progressive enhancement on screen (Safari-only) is standard on paper. Opening quotation marks and punctuation extend into the margin for optical alignment. All typesetting engines that support PDF generation support this."
+    },
+
+    "hyphenation": {
+      "enabled": true,
+      "min-word-length": 6,
+      "min-before": 3,
+      "min-after": 3,
+      "max-consecutive": 2,
+      "note": "Hyphenation is appropriate on paper where justified text is standard. On screen, the design language uses left-aligned (ragged right). On paper, justified with hyphenation produces the clean text block that the bindu model demands."
+    },
+
+    "justification": {
+      "body": "justified (with hyphenation)",
+      "verse": "centered (optical — see content-types.verse)",
+      "epigraph": "centered",
+      "citation": "right-aligned or centered below passage",
+      "note": "Justified body text is the codex tradition. The screen's ragged-right (text-align: start) is an adaptation for variable-width viewports; paper has fixed measure, so justification is proper."
+    }
+  },
+
+  "color-translation": {
+    "$description": "sRGB colors mapped to CMYK process and Pantone spot equivalents. The critical insight: gold at reduced opacity cannot be expressed as a CMYK tint (too muddy). Gold requires a spot color for fidelity on paper. Crimson and navy translate faithfully to process CMYK.",
+
+    "reader-pdf": {
+      "$description": "Reader PDF uses sRGB. Colors carry unchanged from screen tokens. This is the digital artifact — viewed on screen, not printed.",
+      "color-space": "sRGB",
+      "values": "Identical to foundation tokens"
+    },
+
+    "production-pdf": {
+      "$description": "Production PDF uses CMYK process color plus optional spot channels. These values are starting points for press proofing — actual ink formulation depends on paper stock and press calibration.",
+
+      "gold": {
+        "srgb": "#DCBD23",
+        "cmyk": { "c": 15, "m": 18, "y": 92, "k": 0 },
+        "pantone": "Pantone 7405 C (nearest match — warm, saturated gold)",
+        "recommendation": "Spot color. CMYK gold loses luminance at reduced densities. A Pantone spot at screen percentages (40%, 30%) retains the warmth that CMYK tints lose.",
+        "at-decorative-40pct": "CMYK tint unacceptable (muddy). Use spot at 40% screen."
+      },
+      "crimson": {
+        "srgb": "#9B2335",
+        "cmyk": { "c": 15, "m": 95, "y": 70, "k": 10 },
+        "pantone": "Pantone 200 C (nearest match)",
+        "recommendation": "Process CMYK is faithful. Spot color optional for exact match. Crimson is the most reliable accent in print — rubrication was always a printing color.",
+        "note": "The sepia theme's muted crimson (#8A1F2E) translates as a deeper, warmer press red. Natural aging of the printed page will deepen it further — this is desirable."
+      },
+      "navy": {
+        "srgb": "#1A2744",
+        "cmyk": { "c": 88, "m": 72, "y": 40, "k": 45 },
+        "recommendation": "Process CMYK. Rich four-color dark — warm and deep, not cold black. Body text in navy on cream stock is warmer than black and more distinguished."
+      },
+      "cream-paper": {
+        "$description": "The substrate. What is --color-bg (#FAF8F5) on screen becomes the paper itself. The design language's texture (0.03) and subliminal (0.06) attention levels are expressed as paper stock, not ink.",
+        "specification": "Natural white / cream, 80–100# text weight, warm tone (no optical brighteners). The paper IS the lowest two attention levels.",
+        "note": "Bright white stock violates the contemplative voice's prohibition on pure-white backgrounds (calm-technology.language.json). The paper stock embodies the same constraint."
+      },
+
+      "motif-voices": {
+        "sacred-gold": { "cmyk": { "c": 15, "m": 18, "y": 92, "k": 0 }, "spot": "Pantone 7405 C", "recommendation": "Spot color required for fidelity" },
+        "growth-olive": { "cmyk": { "c": 45, "m": 30, "y": 85, "k": 20 }, "recommendation": "Process CMYK acceptable" },
+        "devotion-navy": { "cmyk": { "c": 88, "m": 72, "y": 40, "k": 45 }, "recommendation": "Process CMYK — identical to body text navy" },
+        "warmth-orange": { "cmyk": { "c": 5, "m": 68, "y": 90, "k": 0 }, "recommendation": "Process CMYK acceptable — strong warm presence" },
+        "crimson-red": { "cmyk": { "c": 15, "m": 95, "y": 70, "k": 10 }, "recommendation": "Process CMYK acceptable — identical to publication crimson" }
+      },
+
+      "two-color-economy": {
+        "$description": "The minimum viable print run: black (navy) + one spot color (gold). This expresses the full contemplative voice — reading text in navy, accents in gold, motifs in gold at reduced screen. The publication overlay (crimson) requires a third color or substituting crimson for gold on publication pages.",
+        "black-channel": "Navy body text, headings, rules",
+        "spot-channel": "Gold accents, motifs, decorative elements at screen percentages (100%, 40%, 30%)"
+      }
+    }
+  },
+
+  "chapter-composition": {
+    "$description": "How a chapter is composed on the page. The chapter opening is pūraka — the breath that gathers. The body is kumbhaka — the held state, unlimited. The closing is recaka — the gentle release. Chapters always begin on recto.",
+
+    "opening": {
+      "page": "Always recto. Blank verso precedes if needed — the exhalation before the next breath.",
+      "running-header": "Suppressed on chapter-opening page",
+      "folio": "Suppressed on chapter-opening page (or placed at foot, centered)",
+      "vertical-start": "Text block begins at approximately 1/3 page height — the optical top third is breathing space",
+      "sequence": [
+        { "element": "chapter-label", "treatment": "Small-caps, 9pt, letter-spacing 0.05em. Crimson under publication overlay." },
+        { "element": "chapter-title", "treatment": "Lora 700, 18pt. Crimson under publication overlay. Generous space below (≥ 24pt)." },
+        { "element": "epigraph (optional)", "treatment": "Merriweather 300 italic, centered. Gold decorative quotation mark at left margin if typesetter supports positioned ornaments. Space below (≥ 18pt)." },
+        { "element": "first-paragraph", "treatment": "Drop capital: Merriweather 700, sized to 4 body-text lines. Crimson at decorative equivalent under publication overlay. Latin only (ADR-080 — Devanagari does not use drop capitals)." },
+        { "element": "body-text", "treatment": "Standard body typography. The teaching begins." }
+      ]
+    },
+
+    "body": {
+      "paragraphs": "First-line indent 1.5em. No indent on first paragraph after heading, epigraph, scene break, or block quotation — the typographic convention that signals a new movement.",
+      "page-breaks": {
+        "avoid-orphans": "Minimum 2 lines at top of page",
+        "avoid-widows": "Minimum 2 lines at bottom of page",
+        "keep-with-next": "Headings, epigraphs, figure captions — never strand at page bottom",
+        "avoid-break-inside": "Block quotations, figures, verse blocks, footnote groups"
+      }
+    },
+
+    "closing": {
+      "final-paragraph": "No special treatment — the chapter ends when the teaching ends",
+      "endnotes": "If present, separated by a 2em rule. Set in footnote typography (8.5pt). Appear on the same page spread as the chapter's end if possible.",
+      "colophon-ornament": "Optional: small gold lotus (motif-close role) centered below the final line, with ≥ 24pt space above. Alaṅkāra: simultaneously decorative (beauty) and structural (marks the chapter's end).",
+      "recaka-space": "Remaining page left blank. If chapter ends on recto, the verso is blank. The reader breathes before turning to the next chapter."
+    }
+  },
+
+  "content-types": {
+    "$description": "Paper expressions of the content type contract (CLAUDE.md §Content Type Contract). The closed vocabulary is the same; the visual treatment adapts to the medium.",
+
+    "prose": {
+      "treatment": "Standard body typography. Justified, hyphenated, first-line indent.",
+      "css-class-origin": "Default <p> — no special class on screen"
+    },
+
+    "verse": {
+      "treatment": "Optical centering — the longest line is centered on the text block, shorter lines left-aligned to the longest line's left edge. This differs from screen center-alignment (each line centered independently). Merriweather 300 italic, same size as body. Generous vertical space above and below (≥ 18pt). Line breaks preserved as authored — never reflowed.",
+      "css-class-origin": ".reader-verse",
+      "note": "Optical centering is what .reader-verse intends but CSS text-align: center cannot express. The PDF is where this intent is fulfilled."
+    },
+
+    "epigraph": {
+      "treatment": "Merriweather 300 italic, centered. Reduced measure (indent both margins by ≥ 2em). Gold decorative opening quotation mark positioned in the left margin if the typesetter supports it; otherwise, inline at decorative size. Generous vertical margins.",
+      "css-class-origin": ".reader-epigraph"
+    },
+
+    "caption": {
+      "treatment": "Merriweather 300 italic, 9pt. Below the figure, left-aligned to the figure's left edge. Text-secondary color equivalent.",
+      "css-class-origin": ".book-caption"
+    },
+
+    "dialogue": {
+      "treatment": "Same as prose but with tighter vertical rhythm between speaker turns. No drop-cap on dialogue-opening paragraphs.",
+      "css-class-origin": ".reader-dialogue"
+    },
+
+    "scene-break": {
+      "treatment": "Centered ornament: gold lotus at ambient opacity (motif-breath role), or a simple 3em centered rule at 0.5pt. Under publication overlay, ornament shifts to crimson. Vertical space above and below (≥ 12pt). If a scene break falls at a page boundary, the ornament is suppressed — the page turn itself is the break.",
+      "css-class-origin": ".reader-scene-break",
+      "hierarchy": "Chapter break (new recto page) > Section divider (lotus motif-divider) > Scene break (ornament or rule) > Paragraph break (whitespace + indent)"
+    }
+  },
+
+  "commentary-layout": {
+    "$description": "The commentary hierarchy (mūla/bhāṣya/ṭīkā/vārttika) in its native medium. On screen, commentary collapses and expands. On paper, commentary occupies distinct regions of the page. The tradition is the Talmudic page, the Sanskrit critical edition, the annotated literary text.",
+
+    "mula": {
+      "position": "Main text block. Full measure. Sacred register typography.",
+      "note": "The mūla is the bindu. All commentary orbits it."
+    },
+    "bhashya": {
+      "position": "Reduced measure — indented both margins by 1em, or set in a slightly smaller size (10pt) if inline. Or: a side column on wider formats. The bhāṣya is near-orbit — visually distinct but proximate.",
+      "typography": "Merriweather 400, 10pt/14pt. Same font family, reduced size and leading.",
+      "signal": "Italic chapter/section heading distinguishes bhāṣya from mūla."
+    },
+    "tika": {
+      "position": "Footnotes. Numbered references in the mūla link to notes at page bottom or chapter end.",
+      "typography": "Footnote typography (8.5pt/11pt).",
+      "note": "Ṭīkā is middle-orbit — available to the reader who seeks it, invisible to the reader who doesn't. On paper this maps perfectly to the footnote tradition."
+    },
+    "varttika": {
+      "position": "Appendix or endmatter. Never inline with the teaching. Separate section with its own running header.",
+      "typography": "Body typography at reduced size (10pt).",
+      "note": "Far-orbit. The reader who needs background context will find it at the back. The reader who doesn't will never encounter it during reading."
+    }
+  },
+
+  "motif-placement": {
+    "$description": "Botanical glyphs on the page. SVG motifs are resolution-independent and translate to PDF without quality loss. The five-voice color palette needs CMYK mapping (see color-translation.production-pdf.motif-voices).",
+
+    "roles": {
+      "chapter-ornament": {
+        "glyph": "Lotus glyph from the banner or landscape group (lotus-05, lotus-06, lotus-07, lotus-08, lotus-14, lotus-15, lotus-16)",
+        "position": "Centered above the chapter label on the opening page. The reader's first visual impression of the chapter.",
+        "size": "Width ≤ 1.5in. Height proportional.",
+        "color": "Sacred (gold) by default. Crimson under publication overlay.",
+        "opacity-equivalent": "Decorative (40% screen for spot color)"
+      },
+      "section-divider": {
+        "glyph": "Lotus motif-divider (the canonical two-path lotus or a richer glyph)",
+        "position": "Centered between sections. Vertical space ≥ 18pt above and below.",
+        "size": "Width ≤ 0.75in",
+        "color": "Sacred (gold). Crimson under publication overlay for structural dividers.",
+        "opacity-equivalent": "Decorative (40%)"
+      },
+      "scene-breath": {
+        "glyph": "Small lotus (motif-breath) or the canonical two-path lotus at reduced size",
+        "position": "Centered at scene breaks. Alternative to the swelled rule.",
+        "size": "Width ≤ 0.5in",
+        "color": "Sacred (gold) always — breath is a reading rhythm feature, not a book structure. Stays gold even under publication overlay.",
+        "opacity-equivalent": "Ambient (30%)"
+      },
+      "colophon": {
+        "glyph": "The canonical two-path lotus (motifs/srf/lotus.svg)",
+        "position": "Centered below the final line of a chapter or at the end of the book",
+        "size": "Width ≤ 0.5in",
+        "color": "Sacred (gold) at ambient",
+        "note": "The smallest, quietest motif appearance. The closing gesture."
+      }
+    },
+
+    "calm-technology": "Maximum one motif per page spread (two facing pages). Density beyond this competes with the teaching. Same restraint as screen (max one per content section). Motifs are ornamental and structural (alaṅkāra) — never merely decorative."
+  },
+
+  "photograph-roles": {
+    "$description": "Photographs on paper are content, not atmosphere. The screen atmosphere system's scroll-driven opacity modulation has no equivalent on a fixed page. A photograph is fully present or absent. But the role system (arrival, ambient, breath, transition) maps to print conventions.",
+
+    "frontispiece": {
+      "screen-origin": "Arrival role",
+      "position": "Full page, facing the title page (traditionally verso). The reader's first visual encounter.",
+      "treatment": "Full bleed or generous margin. No veil, no opacity — the photograph exists completely.",
+      "constraint": "Guru photograph rules apply with full force: never cropped, filtered, or digitally altered. Always with attribution. Respectful sizing."
+    },
+    "chapter-vignette": {
+      "screen-origin": "Ambient role",
+      "position": "Quarter-page or smaller, positioned at the chapter opening. Above the chapter label or in the outer margin.",
+      "treatment": "Optional screening to 15% on cream stock creates warmth without competing with text. Or: full density at small size.",
+      "constraint": "Never guru photographs as chapter vignettes. Landscape, nature, and location photographs only."
+    },
+    "absent-roles": {
+      "breath": "Does not translate. The breath between sections is whitespace on paper. The lotus motif handles section breaks.",
+      "transition": "Does not translate. Page turns handle transitions. The blank verso between chapters IS the transition."
+    },
+
+    "general-constraint": "Image guidelines (brand/image-guidelines.json) apply identically on paper. PRI-01: no AI-generated guru imagery. All SRF photographs require authorization."
+  },
+
+  "front-matter": {
+    "$description": "The pages before the teaching begins. Front matter is the pūraka of the entire book — the gathering breath before the first word.",
+
+    "sequence": [
+      { "page": "Half-title (recto)", "content": "Book title only. Asar 14pt, centered. No author, no subtitle. The quietest announcement.", "folio": "suppressed" },
+      { "page": "Frontispiece (verso, optional)", "content": "Full-page photograph if authorized. Otherwise blank.", "folio": "suppressed" },
+      { "page": "Title page (recto)", "content": "Full title, subtitle, author. Lora 700 for title, Merriweather 300 for subtitle, Open Sans small-caps for author. Gold lotus below.", "folio": "suppressed" },
+      { "page": "Copyright (verso)", "content": "Copyright notice, SRF attribution, print information. Open Sans 8pt.", "folio": "suppressed" },
+      { "page": "Dedication (recto, optional)", "content": "Asar italic, centered, generous vertical position (1/3 from top). The stone-inscription voice at its most intimate.", "folio": "suppressed" },
+      { "page": "Table of Contents (recto)", "content": "Chapter labels and titles with dot leaders to page numbers. Open Sans 9pt for labels, Merriweather 400 10pt for titles.", "folio": "begins (lowercase roman)" }
+    ],
+    "pagination": "Front matter uses lowercase roman numerals (i, ii, iii...). Arabic numerals begin with the first chapter."
+  },
+
+  "back-matter": {
+    "$description": "The recaka of the book. Endnotes, glossary, index, colophon.",
+    "sequence": [
+      { "section": "Endnotes (if not per-chapter)", "treatment": "Grouped by chapter. Chapter titles as section headings. Footnote typography." },
+      { "section": "Glossary", "treatment": "Sanskrit/Hindi terms with pronunciation and definition. Asar for headwords (both scripts), Merriweather for definitions." },
+      { "section": "Index (optional)", "treatment": "Two-column, Open Sans 8pt. Indented subentries." },
+      { "section": "Colophon (final recto)", "treatment": "Production details: typefaces used, paper stock, printing. A quiet celebration of craft. The colophon is alaṅkāra — simultaneously informative and beautiful." }
+    ]
+  },
+
+  "contemplation-card": {
+    "$description": "A single teaching passage as a self-contained artifact. The passage card pattern (reading-surface.pattern.json) expressed on paper. The sharable teaching — what a seeker prints to carry, pin to a wall, place on a desk.",
+
+    "dimensions": "4.25in × 5.5in (A6 / quarter-letter)",
+    "composition": {
+      "vertical-centering": "Passage and attribution centered vertically in the text block — the bindu occupies the optical center",
+      "passage": "Merriweather 400, 11pt, centered. Verse uses optical centering.",
+      "attribution": "Merriweather 300 italic, 9pt. Em-dash + non-breaking space + full attribution. Centered below passage. PRI-02: always present.",
+      "ornament": "Gold lotus (colophon role) centered below attribution. Small — width ≤ 0.375in.",
+      "book-title": "Open Sans 7pt, small-caps, centered at foot margin. The provenance."
+    },
+    "no-pagination": "No page number. A single page — numbering is meaningless.",
+    "no-running-header": "No header. The passage stands alone.",
+    "purpose": "This is the minimum viable PDF — testable, immediately useful, and maps to an existing pattern. It is also the most beautiful: a single teaching, framed with care, complete."
+  },
+
+  "production-variants": {
+    "reader-pdf": {
+      "$description": "The digital artifact. Viewed on screen, shared electronically, printed on home printers.",
+      "color-space": "sRGB",
+      "resolution": "Screen-optimized (72–150 dpi for images)",
+      "bleed": "None",
+      "marks": "None",
+      "fonts": "Embedded, subset",
+      "accessibility": "Tagged PDF with reading order, alt text, bookmarks for chapters"
+    },
+    "production-pdf": {
+      "$description": "The printer's master. Sent to press for physical production.",
+      "color-space": "CMYK + spot channels (gold Pantone)",
+      "resolution": "300 dpi minimum for images",
+      "bleed": "0.125in on all edges",
+      "marks": "Crop marks, registration marks, color bars",
+      "fonts": "Embedded, full character sets for languages used",
+      "accessibility": "Not applicable — the physical book is the accessible artifact"
+    }
+  },
+
+  "what-does-not-translate": {
+    "$description": "Screen-only features. Their absence on paper is not a deficiency — it is the medium's own kumbhaka. A page does not scroll, does not hover, does not respond to keystrokes. It holds still. The reader moves.",
+    "features": [
+      { "name": "Scroll-driven atmosphere", "why": "No scroll. Photographs are present or absent." },
+      { "name": "Hover states", "why": "No cursor. Every element exists at its resting state." },
+      { "name": "Dwell mode", "why": "Every paragraph is dwelt upon. The entire medium is dwell." },
+      { "name": "Keyboard navigation", "why": "The reader's fingers turn pages." },
+      { "name": "Reader modes (focus/present/quiet)", "why": "Paper is always focus mode — zero chrome, pure content." },
+      { "name": "Connectivity states", "why": "Paper is permanently offline. It requires no connection." },
+      { "name": "Theme switching", "why": "The paper stock and ink are the theme. Chosen once, at production." },
+      { "name": "Font size preferences", "why": "Choose standard or accessible body size at generation time." },
+      { "name": "Motif color voice switching", "why": "Color voice chosen at production. Spot color or process." },
+      { "name": "Texture opacity (0.03)", "why": "The paper IS the texture. The ghost of physicality becomes actual physicality." }
+    ],
+    "philosophical-note": "The screen design simulates paper's qualities (texture, warmth, cream tone, serif reading type). The PDF is where the simulation ends and the reality begins. The two lowest attention levels — subliminal and texture — become the substrate itself."
+  },
+
+  "rasa-on-paper": {
+    "$description": "Rasa modulates whitespace, motif choice, and typographic weight. On screen, it also modulates transition timing — which has no equivalent on paper. What carries: the spatial and ornamental dimensions of rasa expression.",
+    "treatments": {
+      "shanta": { "whitespace": "Most generous — maximum stillness", "motif-voice": "sacred (gold)", "note": "Peace. The default paper expression." },
+      "adbhuta": { "whitespace": "Expansive vertical — the page breathes upward", "motif-voice": "sacred or devotion", "note": "Wonder. Generous top margins on chapter openings." },
+      "karuna": { "whitespace": "Intimate — slightly tighter margins", "motif-voice": "warmth or sacred", "note": "Compassion. The measure draws in." },
+      "vira": { "whitespace": "Structured, disciplined spacing", "motif-voice": "crimson or sacred", "note": "Courage. The strongest structural presence." },
+      "bhakti": { "whitespace": "Generous, flowing", "motif-voice": "warmth or sacred", "note": "Devotion. The warmest ornamental voice." }
+    },
+    "scope": "Rasa treatment on paper is a refinement, not a requirement. A book can be beautifully composed without rasa-specific spacing. Where a chapter's rasa is known (from the enrichment pipeline), these tendencies inform the compositor's judgment."
+  }
+}

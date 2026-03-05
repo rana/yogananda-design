@@ -27,9 +27,9 @@ const voices = {
     label: "Communal",
     sanskrit: "Sangha",
     metaphor:
-      "The courtyard at convocation — marigold garlands, shared devotion",
-    accent: "var(--color-marigold)",
-    accentLabel: "Marigold #DC6A10",
+      "The courtyard at convocation — ochre garlands, shared devotion",
+    accent: "var(--color-ochre)",
+    accentLabel: "Ochre #DC6A10",
     text: "var(--color-text)",
     bg: "var(--color-surface, var(--color-bg))",
     displayFont: "var(--font-display-event)",
@@ -74,7 +74,7 @@ export default function VoiceCrossfade() {
         >
           Two voices serve two modes of seeking. The contemplative voice
           &mdash; gold, quiet, scholarly &mdash; for the seeker alone with
-          the text. The communal voice &mdash; marigold, warm, welcoming
+          the text. The communal voice &mdash; ochre, warm, welcoming
           &mdash; for seekers gathered together. Sacred content receives the
           same typographic reverence in both voices. Watch the chrome
           transform while the teaching holds steady.

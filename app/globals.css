@@ -9,10 +9,10 @@
 /* ── Design Language CSS ─────────────────────────────────────── */
 @import "../css/reading.css";
 
-/* ── Operational Patterns (opt-in) ──────────────────────────── */
-/* The showcase demonstrates operational patterns alongside
+/* ── Stewardship Patterns (opt-in) ─────────────────────────── */
+/* The showcase demonstrates stewardship vocabulary alongside
    reading patterns. Non-operational consumers never import this. */
-@import "../css/patterns/operations.css";
+@import "../css/patterns/stewardship.css";
 
 /* ── Photographic Atmosphere (opt-in) ─────────────────────── */
 /* The showcase opts into the atmosphere pattern layer.
@@ -261,7 +261,7 @@
    This is the design language's answer to yogananda.org's
    photographic backgrounds — atmosphere expressed through the
    system's own color vocabulary rather than external imagery.
-   The gold adapts per theme: gold → amber → terracotta → marigold.
+   The gold adapts per theme: gold → amber → terracotta → ochre.
 
    Pure CSS. No JS. Progressive enhancement.
    animation-timeline: scroll() ties the gradient to page scroll. */

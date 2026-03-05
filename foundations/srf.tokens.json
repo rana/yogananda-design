@@ -1,9 +1,9 @@
 {
-  "$description": "SRF (Self-Realization Fellowship) visual language. Two complementary voices serve SRF's dual mission of meditation and community. The Contemplative Voice (gold, navy, cream) is the library — deep reading, spiritual stillness, inner illumination. Derived from yogananda.org and the Online Meditation Center. The Communal Voice (marigold, charcoal, white) is the gathering — convocations, events, joyful welcome. Derived from convocation.yogananda.org. Both voices share the same semantic rules (calm technology, emotional registers, accessibility); each composes different accent, text, and background palettes. The contemplative voice is the default for reading surfaces; the communal voice serves event and outreach surfaces.",
+  "$description": "SRF (Self-Realization Fellowship) visual language. Two complementary voices serve SRF's dual mission of meditation and community. The Contemplative Voice (gold, navy, cream) is the library — deep reading, spiritual stillness, inner illumination. Derived from yogananda.org and the Online Meditation Center. The Communal Voice (ochre, charcoal, white) is the gathering — convocations, events, joyful welcome. Derived from convocation.yogananda.org. Both voices share the same semantic rules (calm technology, emotional registers, accessibility); each composes different accent, text, and background palettes. The contemplative voice is the default for reading surfaces; the communal voice serves event and outreach surfaces. Gold and ochre are two expressions of the kāṣāya (काषाय) spectrum — the yellow-to-orange arc of the Indian dye tradition that colors both the contemplative halo and the renunciant's robe.",
 
   "color": {
     "$type": "color",
-    "$description": "SRF color palette. Two accent pillars: gold (contemplative — the halo, inner light) and marigold (communal — the garland, warm welcome). Navy and charcoal serve as text colors for each voice. Cream backgrounds for contemplation; white for gathering.",
+    "$description": "SRF color palette. Two accent pillars: gold (contemplative — the halo, inner light) and ochre (communal — the garland, warm welcome). Both are kāṣāya (काषाय) — the dye spectrum of the Indian monastic robe: gold is the fresh robe, ochre is the sun-worn cloth. Navy and charcoal serve as text colors for each voice. Cream backgrounds for contemplation; white for gathering.",
 
     "gold": {
       "$value": "#dcbd23",
@@ -26,22 +26,22 @@
       "$description": "Surface white. Used sparingly — elevated cards in light theme. Even this is warmed by the cream context."
     },
 
-    "marigold": {
+    "ochre": {
       "$value": "#DC6A10",
-      "$description": "SRF Marigold. The warmth of community gathering, the burnt orange of marigold garlands offered in devotion. Primary accent for the communal voice — event surfaces, convocation pages, community-facing UX. Where gold says 'contemplate,' marigold says 'welcome.' Passes WCAG AA for large text on white (3.4:1); use for buttons, headings, and interactive elements, not body text.",
+      "$description": "SRF Ochre. From kāṣāya (काषाय) — the ochre of renunciation, the color of the monastic robe Yogananda wore. Also gendā (गेंदा) — the marigold garland offered in devotion. Primary accent for the communal voice — event surfaces, convocation pages, community-facing UX. Where gold says 'contemplate,' ochre says 'welcome.' The same pigment family as gold, deepened by sun and washing — gairika (गैरिक), the earth pigment used from Bhimbetka cave paintings through today's temple tilaka. Passes WCAG AA for large text on white (3.4:1); use for buttons, headings, and interactive elements, not body text.",
       "$extensions": {
         "org.yogananda.design": {
           "principle": "PRI-03",
-          "rationale": "Extracted from convocation.yogananda.org (2026). SRF uses this orange for all event and community surfaces. Marigold connects to Indian devotional tradition — garlands offered at temples, the warmth of communal worship.",
+          "rationale": "Extracted from convocation.yogananda.org (2026). SRF uses this orange for all event and community surfaces. Ochre connects to the deepest Indian color tradition — the kāṣāya robe, the gendā garland, the gairika earth pigment. Gold and ochre are the two poles of one monastic dye spectrum.",
           "evaluationTrigger": "If SRF event sites shift away from this orange, re-evaluate."
         }
       }
     },
-    "marigold-hover": {
+    "ochre-hover": {
       "$value": "#BE5706",
-      "$description": "Marigold deepened for hover and active states. The pressed-petal intensity of engagement. Passes WCAG AA for large text on white (4.2:1)."
+      "$description": "Ochre deepened for hover and active states. The pressed-petal intensity of engagement. Passes WCAG AA for large text on white (4.2:1)."
     },
-    "marigold-light": {
+    "ochre-light": {
       "$value": "#FCEFE9",
       "$description": "Warm peach. The communal voice's secondary surface — like cream but orange-warm rather than yellow-warm. Event page section backgrounds, highlighted content on gathering surfaces."
     },
@@ -60,7 +60,7 @@
     },
     "gold-dark": {
       "$value": "#C39314",
-      "$description": "Amber gold. A bridge between gold and marigold — gold deepened toward warmth. Appropriate for large text and decorative elements on white backgrounds (3.0:1). Not for body text — use charcoal or navy for that."
+      "$description": "Amber gold. A bridge between gold and ochre — gold deepened toward warmth, the kāṣāya spectrum's midpoint. Appropriate for large text and decorative elements on white backgrounds (3.0:1). Not for body text — use charcoal or navy for that."
     },
     "border-neutral": {
       "$value": "#EDEDED",
@@ -78,8 +78,8 @@
     "texture":      { "$type": "number", "$value": 0.03, "$description": "Paper texture noise overlay (SVG fractal noise). The ghost of physical pages." }
   },
 
-  "marigold-opacity": {
-    "$description": "Marigold at calibrated community-engagement levels. Four levels — intentionally fewer than gold's six. The communal voice is energetic, not contemplative: it needs action (interactive), decoration (decorative), background warmth (ambient), and subliminal presence. It does not need 'highlight' (guiding through sustained reading) or 'texture' (simulating physicality). The asymmetry is the design — each voice uses exactly the opacity levels its purpose demands.",
+  "ochre-opacity": {
+    "$description": "Ochre at calibrated community-engagement levels. Four levels — intentionally fewer than gold's six. The communal voice is energetic, not contemplative: it needs action (interactive), decoration (decorative), background warmth (ambient), and subliminal presence. It does not need 'highlight' (guiding through sustained reading) or 'texture' (simulating physicality). The asymmetry is the design — each voice uses exactly the opacity levels its purpose demands.",
     "interactive":  { "$type": "number", "$value": 1.0,  "$description": "CTAs, registration buttons, primary actions. Full warmth — the community is inviting you in." },
     "decorative":   { "$type": "number", "$value": 0.4,  "$description": "Section dividers, icon tints, schedule markers. Present but not urgent — the event continues around you." },
     "ambient":      { "$type": "number", "$value": 0.2,  "$description": "Background accent tints, card hover states (bg-accent/20). The warmth of a room full of fellow seekers." },
@@ -87,11 +87,11 @@
   },
 
   "category": {
-    "$description": "Categorical color set for multi-track content: event schedules, program types, content classifications. Four distinct hues that complement the marigold accent without competing. Extracted from the Convocation 2026 schedule interface.",
+    "$description": "Categorical color set for multi-track content: event schedules, program types, content classifications. Four distinct hues that complement the ochre accent without competing. Extracted from the Convocation 2026 schedule interface.",
     "teal": {
       "$type": "color",
       "$value": "#63A3A3",
-      "$description": "Teal. Cool, grounded — meditation sessions, quiet events, contemplative programs. The still water complement to marigold's warm fire."
+      "$description": "Teal. Cool, grounded — meditation sessions, quiet events, contemplative programs. The still water complement to ochre's warm fire."
     },
     "indigo": {
       "$type": "color",
@@ -164,13 +164,13 @@
       "surface":        { "$type": "color", "$value": "#0e1a30" }
     },
     "gathering": {
-      "$description": "The communal voice. Event sites, convocation pages, community-facing surfaces. Marigold accent on clean white — open, warm, modern, welcoming. Where the light theme is a library in daylight, the gathering theme is the temple courtyard alive with fellow seekers. Not a reading theme but a doing theme — registering, scheduling, connecting, arriving.",
+      "$description": "The communal voice. Event sites, convocation pages, community-facing surfaces. Ochre accent on clean white — open, warm, modern, welcoming. Where the light theme is a library in daylight, the gathering theme is the temple courtyard alive with fellow seekers. Not a reading theme but a doing theme — registering, scheduling, connecting, arriving.",
       "bg":             { "$type": "color", "$value": "#FFFFFF", "$description": "Pure white. The communal voice embraces clean white — open, modern, unintimidating. Not the library's aged paper but the courtyard's clear light." },
-      "bg-secondary":   { "$type": "color", "$value": "#FCEFE9", "$description": "Warm peach (marigold-light). Sections differentiated by a breath of orange warmth." },
+      "bg-secondary":   { "$type": "color", "$value": "#FCEFE9", "$description": "Warm peach (ochre-light). Sections differentiated by a breath of orange warmth." },
       "text":           { "$type": "color", "$value": "#4C4C4C", "$description": "Charcoal. Approachable, readable, emotionally neutral." },
       "text-secondary": { "$type": "color", "$value": "#4C4C4CA3", "$description": "Charcoal at 64% opacity." },
       "border":         { "$type": "color", "$value": "#EDEDED", "$description": "Neutral gray borders. Clean lines without navy's contemplative tint." },
-      "gold":           { "$type": "color", "$value": "#DC6A10", "$description": "In gathering theme, the accent slot is SRF marigold. The communal voice speaks in orange, not gold." },
+      "gold":           { "$type": "color", "$value": "#DC6A10", "$description": "In gathering theme, the accent slot is SRF ochre. The communal voice speaks in the kāṣāya robe's deeper orange, not gold's halo yellow." },
       "surface":        { "$type": "color", "$value": "#FFFFFF", "$description": "White surfaces. Cards and elevated elements share the open white ground." }
     }
   },

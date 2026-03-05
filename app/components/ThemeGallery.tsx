@@ -274,7 +274,7 @@ function SrfGallery({ hoveredTheme, setHoveredTheme }: { hoveredTheme: string | 
             </div>
             <div className="flex gap-3">
               {[
-                { name: "Marigold", color: "#DC6A10", desc: "Community, kirtan" },
+                { name: "Ochre", color: "#DC6A10", desc: "Community, kirtan" },
                 { name: "Teal", color: "#63A3A3", desc: "Meditation, quiet" },
                 { name: "Indigo", color: "#5D7BE3", desc: "Classes, study" },
                 { name: "Amber", color: "#CC9900", desc: "Keynotes, featured" },
@@ -286,6 +286,88 @@ function SrfGallery({ hoveredTheme, setHoveredTheme }: { hoveredTheme: string | 
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Direction 1: The Communal Voice — ochre's gathering expression */}
+      <div className="rounded-md overflow-hidden mt-6" style={{ border: "1px solid var(--color-border)" }}>
+        <div className="p-5" style={{ backgroundColor: "var(--color-bg)" }}>
+          <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ fontFamily: "var(--font-ui)", color: "#DC6A10" }}>
+            The Communal Voice
+          </div>
+          <p className="text-xs mb-4" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)", lineHeight: 1.6 }}>
+            From <em>gend&#x0101;</em> (&#x0917;&#x0947;&#x0902;&#x0921;&#x093E;) &mdash; the marigold garland tradition.
+            Event surfaces, gathering spaces, the temple courtyard.
+            Where gold says &lsquo;contemplate,&rsquo; ochre says &lsquo;welcome.&rsquo;
+          </p>
+          <div className="flex gap-3">
+            {[
+              { name: "Interactive", opacity: "1.0", desc: "CTAs, buttons" },
+              { name: "Decorative", opacity: "0.4", desc: "Dividers, icons" },
+              { name: "Ambient", opacity: "0.2", desc: "Background warmth" },
+              { name: "Subliminal", opacity: "0.06", desc: "Hover states" },
+            ].map((level) => (
+              <div key={level.name} className="text-center flex-1">
+                <div
+                  className="h-10 rounded-md mb-2"
+                  style={{ backgroundColor: "#DC6A10", opacity: parseFloat(level.opacity) }}
+                />
+                <div className="text-xs font-medium" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text)" }}>{level.name}</div>
+                <div className="token-value text-xs mt-0.5">{level.opacity}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Direction 2: The Kāṣāya Spectrum — ochre across themes */}
+      <div className="rounded-md overflow-hidden mt-4" style={{ border: "1px solid var(--color-border)" }}>
+        <div className="p-5" style={{ backgroundColor: "var(--color-bg)" }}>
+          <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ fontFamily: "var(--font-ui)", color: "#DC6A10" }}>
+            The K&#x0101;&#x1E63;&#x0101;ya Spectrum
+          </div>
+          <p className="text-xs mb-4" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)", lineHeight: 1.6 }}>
+            From <em>k&#x0101;&#x1E63;&#x0101;ya</em> (&#x0915;&#x093E;&#x0937;&#x093E;&#x092F;) &mdash; the ochre of renunciation.
+            Gold is the fresh robe&rsquo;s yellow; ochre is the sun-worn cloth&rsquo;s orange;
+            terracotta is the earth underfoot. One pigment family, three expressions.
+            The oldest continuous color tradition in human art &mdash; <em>gairika</em> (&#x0917;&#x0948;&#x0930;&#x093F;&#x0915;),
+            from Bhimbetka cave paintings to the monastic robe.
+          </p>
+          {/* The warm arc: gold → ochre → terracotta */}
+          <div className="flex gap-2 mb-4">
+            {[
+              { name: "Gold", color: "#DCBD23", role: "Contemplative" },
+              { name: "Gold Dark", color: "#C39314", role: "Bridge" },
+              { name: "Ochre", color: "#DC6A10", role: "Communal" },
+              { name: "Ochre Hover", color: "#BE5706", role: "Active" },
+              { name: "Terracotta", color: "#BB4F27", role: "YSS / Earth" },
+            ].map((c) => (
+              <div key={c.name} className="text-center flex-1">
+                <div className="h-10 rounded-md mb-2" style={{ backgroundColor: c.color }} />
+                <div className="text-xs font-medium" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text)" }}>{c.name}</div>
+                <div className="token-value text-xs mt-0.5">{c.color}</div>
+              </div>
+            ))}
+          </div>
+          {/* Ochre across themes (motif voice adaptation) */}
+          <div className="text-xs font-semibold uppercase tracking-wider mb-2 mt-4" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)" }}>
+            Ochre across themes
+          </div>
+          <div className="flex gap-3">
+            {[
+              { name: "Light", color: "#DC6A10" },
+              { name: "Sepia", color: "#C85E20" },
+              { name: "Earth", color: "#BB4F27" },
+              { name: "Dark", color: "#E8914A" },
+              { name: "Gathering", color: "#DC6A10" },
+            ].map((c) => (
+              <div key={c.name} className="text-center flex-1">
+                <div className="h-10 rounded-md mb-2" style={{ backgroundColor: c.color }} />
+                <div className="text-xs font-medium" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text)" }}>{c.name}</div>
+                <div className="token-value text-xs mt-0.5">{c.color}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

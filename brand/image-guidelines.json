@@ -78,11 +78,11 @@
   },
 
   "botanical-glyphs": {
-    "$description": "Extended lotus motif system. 12 distinct botanical illustrations — 11 from yogananda.org, 1 promoted registration mark — optimized to currentColor SVGs. Themed via CSS mask-image — color set by the design system, not the SVG. Five color voices: sacred (gold), growth (green), devotion (blue), warmth (orange), crimson (red).",
+    "$description": "Extended lotus motif system. 16 distinct botanical illustrations — 15 from yogananda.org, 1 promoted registration mark — optimized to currentColor SVGs. Themed via CSS mask-image — color set by the design system, not the SVG. Five color voices: sacred (gold), growth (green), devotion (blue), ochre (kāṣāya), crimson (red).",
     "catalog": "motifs/srf/glyphs.json",
     "css": "css/motifs.css",
     "directory": "motifs/srf/glyphs/",
-    "count": 12,
+    "count": 16,
     "shape-groups": {
       "banner": "lotus-05, lotus-06, lotus-08 — wide, ideal for dividers",
       "landscape": "lotus-02, lotus-04, lotus-07 — moderate width, dividers or ornaments",
@@ -93,7 +93,7 @@
       "sacred": "var(--motif-sacred) — gold, contemplative (default)",
       "growth": "var(--motif-growth) — green, nature/practical",
       "devotion": "var(--motif-devotion) — blue, depth/meditation",
-      "warmth": "var(--motif-warmth) — orange, energy/teaching",
+      "ochre": "var(--motif-ochre) — kāṣāya, renunciant warmth",
       "crimson": "var(--motif-crimson) — red, publication structure"
     },
     "usage-example": "<div class=\"motif motif-lotus-05 motif-divider\"></div>",

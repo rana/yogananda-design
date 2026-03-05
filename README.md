@@ -10,7 +10,7 @@ Built for **AI-first authorship**. Every token is self-documenting. Every constr
 |---|---|---|---|
 | **Metaphor** | Entering a library | The temple courtyard | Entering an ashram |
 | **Primary** | Navy #1a2744 | Charcoal #4C4C4C | Terracotta #bb4f27 |
-| **Accent** | Gold #dcbd23 | Marigold #DC6A10 | Terracotta #BB4F27 |
+| **Accent** | Gold #dcbd23 | Ochre #DC6A10 | Terracotta #BB4F27 |
 | **Background** | Warm Cream #FAF8F5 | White #FFFFFF | Warm Clay #f2e8de |
 | **Display** | Lora | ArcherPro | Merienda |
 | **Reading** | Merriweather | Merriweather | Merriweather |
@@ -42,7 +42,7 @@ yogananda-design/
 ├── semantics/                             → Layer 2: Design language rules
 │   ├── aesthetic-theory.language.json     → Governing principles (dhvani, rasa, bindu, prana)
 │   ├── emotional-registers.language.json  → Content-to-treatment mapping + rasa dimension
-│   ├── attention-gradient.language.json   → Three accent voices: gold, marigold, crimson
+│   ├── attention-gradient.language.json   → Three accent voices: gold, ochre, crimson
 │   ├── calm-technology.language.json      → Constraints and forbidden patterns
 │   ├── accessibility.language.json        → WCAG AA requirements
 │   ├── typography.language.json           → Typographic conventions per script
@@ -54,7 +54,8 @@ yogananda-design/
 │   ├── search.pattern.json                → Search interface, results
 │   ├── navigation.pattern.json            → Wayfinding, menus
 │   ├── contemplation.pattern.json         → Dwell, quiet corner
-│   └── transitions.pattern.json           → Arrivals, departures, chapter breath
+│   ├── transitions.pattern.json           → Arrivals, departures, chapter breath
+│   └── paginated.pattern.json            → Paginated book, PDF generation
 ├── css/                                   → Web expression (pure CSS)
 │   ├── index.css                          → Bundle: core design language
 │   ├── reading.css                        → Bundle: core + reading patterns

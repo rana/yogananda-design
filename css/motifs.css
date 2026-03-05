@@ -1,7 +1,7 @@
 /* ══════════════════════════════════════════════════════════════════
    Motif System — Botanical Glyphs & Icons
    ══════════════════════════════════════════════════════════════════
-   The lotus alphabet. 12 distinct botanical forms × 5 color voices
+   The lotus alphabet. 16 distinct botanical forms × 5 color voices
    = a rich ornamental type system for section dividers, chapter
    ornaments, breathing pauses, and decorative accents.
 
@@ -11,9 +11,9 @@
    The fifth (crimson) is native to the published book (discovered
    in the AoY Kindle edition). Together they trace: gold (tejas —
    spiritual radiance), olive-green (prakṛti — living nature), navy
-   (nīla — meditative depth), burnt orange (tapas — renunciant
-   warmth), and crimson (kumkum — auspicious power). The palette is
-   one palette; the activation context differs.
+   (nīla — meditative depth), ochre (kāṣāya — renunciant warmth),
+   and crimson (kumkum — auspicious power). The palette is one
+   palette; the activation context differs.
 
    Technique: CSS mask-image. The SVG provides shape; background-color
    provides fill. Theme-responsive color without inline SVG or
@@ -47,10 +47,10 @@
    Devotion (navy)  — nīla, meditative depth. Nearly identical to
                       contemplative text color (#1A2744). The lotus
                       rendered in the ink of the page.
-   Warmth (orange)  — tapas, renunciant warmth. Close cousin of
-                      marigold (#DC6A10) but distinct. The lotus's
-                      own burnt orange; marigold is the communal
-                      voice's accent. They rhyme, not duplicate.
+   Ochre (orange)   — kāṣāya, renunciant warmth. Unified with
+                      the communal accent (--color-ochre). The
+                      lotus in the robe's own color — the ochre
+                      of renunciation.
    Crimson (red)    — kumkum, auspicious power. The published
                       book's structural color. Activates only under
                       data-publication — the book claiming its
@@ -58,13 +58,16 @@
 
    Four voices discovered in original yogananda.org lotus SVGs.
    Fifth discovered in the AoY Kindle edition. Together they trace
-   the Indian devotional spectrum from nature to illumination. */
+   the Indian devotional spectrum from nature to illumination.
+   Ochre unifies the motif voice (formerly --motif-warmth #dd6c26)
+   with the communal accent (--color-ochre #DC6A10) — one pigment,
+   one variable, theme-adaptive. */
 
 :root {
   --motif-sacred: var(--color-gold);
   --motif-growth: #6a6d2f;
   --motif-devotion: #192c55;
-  --motif-warmth: #dd6c26;
+  --motif-ochre: var(--color-ochre);
   --motif-crimson: var(--color-crimson);
 }
 
@@ -76,26 +79,26 @@
 [data-theme="devotion"] {
   --motif-growth: #9fa258;
   --motif-devotion: #5d7be3;
-  --motif-warmth: #e8914a;
+  --motif-ochre: #e8914a;
 }
 
 @media (prefers-color-scheme: dark) {
   [data-theme="auto"] {
     --motif-growth: #9fa258;
     --motif-devotion: #5d7be3;
-    --motif-warmth: #e8914a;
+    --motif-ochre: #e8914a;
   }
 }
 
 /* Sepia — warm shift */
 [data-theme="sepia"] {
   --motif-growth: #7a7d3f;
-  --motif-warmth: #c85e20;
+  --motif-ochre: #c85e20;
 }
 
 /* Earth — terracotta influence */
 [data-theme="earth"] {
-  --motif-warmth: #bb4f27;
+  --motif-ochre: #bb4f27;
 }
 
 /* ── Base Motif ──────────────────────────────────────────────── */
@@ -246,7 +249,7 @@
 .motif-sacred   { --motif-color: var(--motif-sacred); }
 .motif-growth   { --motif-color: var(--motif-growth); }
 .motif-devotion { --motif-color: var(--motif-devotion); }
-.motif-warmth   { --motif-color: var(--motif-warmth); }
+.motif-ochre   { --motif-color: var(--motif-ochre); }
 .motif-crimson  { --motif-color: var(--motif-crimson); }
 
 /* ── Semantic Role Classes ───────────────────────────────────── */

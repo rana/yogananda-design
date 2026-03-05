@@ -203,7 +203,7 @@
   },
 
   "color-voices": {
-    "$description": "Five color voices of one devotional palette. Four discovered archaeologically from the original yogananda.org lotus SVGs; the fifth (crimson) from the AoY Kindle edition. Together they trace an Indian devotional spectrum: gold (tejas — spiritual radiance), olive-green (prakṛti — living nature), navy (nīla — meditative depth), burnt orange (tapas — renunciant warmth), crimson (kumkum — auspicious power). Default voice is sacred (gold). Colors respond to theme — dark themes (including YSS night and devotion) get lighter values for visibility. Crimson activates only under data-publication for structural motifs (divider, close); breath motifs stay gold. CSS: css/motifs.css. Semantics: attention-gradient.language.json motif-integration.",
+    "$description": "Five color voices of one devotional palette. Four discovered archaeologically from the original yogananda.org lotus SVGs; the fifth (crimson) from the AoY Kindle edition. Together they trace an Indian devotional spectrum: gold (tejas — spiritual radiance), olive-green (prakṛti — living nature), navy (nīla — meditative depth), ochre (kāṣāya — renunciant warmth), crimson (kumkum — auspicious power). Default voice is sacred (gold). Colors respond to theme — dark themes (including YSS night and devotion) get lighter values for visibility. Crimson activates only under data-publication for structural motifs (divider, close); breath motifs stay gold. CSS: css/motifs.css. Semantics: attention-gradient.language.json motif-integration.",
     "sacred": {
       "role": "Contemplative, spiritual illumination",
       "symbolism": "tejas — spiritual radiance",
@@ -226,10 +226,10 @@
       "dark": "#5d7be3",
       "source": "Original blue_dark from yogananda.org lotus SVGs"
     },
-    "warmth": {
+    "ochre": {
       "role": "Energy, teaching, dynamic expression",
-      "symbolism": "tapas — renunciant warmth",
-      "css": "--motif-warmth",
+      "symbolism": "kāṣāya — renunciant warmth",
+      "css": "--motif-ochre",
       "light": "#dd6c26",
       "dark": "#e8914a",
       "source": "Original orange_dark from yogananda.org lotus SVGs"

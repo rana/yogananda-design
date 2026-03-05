@@ -94,7 +94,7 @@ function SrfTypography() {
 
       {/* Communal Voice */}
       <div className="flex items-center gap-2 mb-4">
-        <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "var(--color-marigold)" }} />
+        <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "var(--color-ochre)" }} />
         <span className="text-xs font-semibold uppercase tracking-wider" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)" }}>
           Communal Voice
         </span>
@@ -102,7 +102,7 @@ function SrfTypography() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
         {/* ArcherPro */}
         <div className="theme-transition rounded-md p-6" style={{ backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)" }}>
-          <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ fontFamily: "var(--font-ui)", color: "var(--color-marigold)" }}>Display Event</div>
+          <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ fontFamily: "var(--font-ui)", color: "var(--color-ochre)" }}>Display Event</div>
           <div style={{ fontFamily: "var(--font-display-event)", fontSize: "32px", fontWeight: 500, lineHeight: 1.3, color: "var(--color-text)", marginBottom: "12px" }}>
             ArcherPro
           </div>
@@ -119,7 +119,7 @@ function SrfTypography() {
 
         {/* Helvetica Neue */}
         <div className="theme-transition rounded-md p-6" style={{ backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)" }}>
-          <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ fontFamily: "var(--font-ui)", color: "var(--color-marigold)" }}>UI Event</div>
+          <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ fontFamily: "var(--font-ui)", color: "var(--color-ochre)" }}>UI Event</div>
           <div style={{ fontFamily: "var(--font-ui-event)", fontSize: "32px", fontWeight: 400, lineHeight: 1.3, color: "var(--color-text)", marginBottom: "12px" }}>
             Helvetica Neue
           </div>

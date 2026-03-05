@@ -107,14 +107,14 @@
 
     "communal": {
       "$description": "The gathering. Event pages, convocation surfaces, community outreach, welcome experiences. The seeker is among fellow seekers. Warmth and invitation are the dominant sensations — the design says 'you belong here.' Used for any surface where the primary activity is gathering, registering, scheduling, sharing, or arriving together.",
-      "accent": "marigold (#DC6A10)",
-      "accent-opacity-set": "marigold-opacity",
+      "accent": "ochre (#DC6A10)",
+      "accent-opacity-set": "ochre-opacity",
       "text": "charcoal (#4C4C4C)",
       "background": "white (#FFFFFF)",
       "display-font": "display-event (ArcherPro, 500)",
       "ui-font": "ui-event (Helvetica Neue, 375)",
       "mood": "warm, welcoming, joyful, open",
-      "metaphor": "the temple courtyard at convocation — hundreds of seekers gathered under open sky, marigold garlands everywhere, the joy of shared devotion",
+      "metaphor": "the temple courtyard at convocation — hundreds of seekers gathered under open sky, ochre garlands everywhere, the joy of shared devotion",
       "surfaces": ["convocation site", "event registration", "community pages", "outreach and marketing", "volunteer coordination", "pilgrimage information"],
       "themes": ["gathering"],
       "when-to-use": "The seeker is joining, participating, registering, or connecting with others. The experience is communal, active, and welcoming. Community breadth over content depth."
@@ -149,12 +149,12 @@
     },
 
     "motif-color-voices": {
-      "$description": "The motif system's five color voices form one devotional palette, orthogonal to the three design accent voices (gold, marigold, crimson). They are the lotus's own colors — four discovered archaeologically from original yogananda.org SVGs, the fifth from the AoY Kindle edition. Together they trace an Indian devotional spectrum from the green of living nature to the crimson of sacred power. Each motif voice has a CSS custom property (--motif-*) and a utility class (.motif-*). See css/motifs.css.",
+      "$description": "The motif system's five color voices form one devotional palette, orthogonal to the three design accent voices (gold, ochre, crimson). They are the lotus's own colors — four discovered archaeologically from original yogananda.org SVGs, the fifth from the AoY Kindle edition. Together they trace an Indian devotional spectrum from the green of living nature to the crimson of sacred power. Each motif voice has a CSS custom property (--motif-*) and a utility class (.motif-*). See css/motifs.css.",
       "voices": {
         "sacred":   { "css": "--motif-sacred", "symbolism": "tejas — spiritual radiance", "bridge": "Direct bridge to the contemplative accent (gold). The default motif color. A gold lotus divider on a cream reading surface." },
         "growth":   { "css": "--motif-growth", "symbolism": "prakṛti — living nature", "bridge": "No direct design voice mapping. Purely botanical — the stem from which the bloom rises. Used editorially when the design calls for natural vitality." },
         "devotion": { "css": "--motif-devotion", "symbolism": "nīla — meditative depth", "bridge": "Nearly identical to contemplative text (#1A2744). A navy lotus rendered in the ink of the page. Particularly resonant on sepia and earth themes." },
-        "warmth":   { "css": "--motif-warmth", "symbolism": "tapas — renunciant warmth", "bridge": "Rhymes with marigold (#DC6A10) but is the lotus's own burnt orange. On communal surfaces, the lotus retains its botanical palette — warmth, not marigold." },
+        "ochre":    { "css": "--motif-ochre", "symbolism": "kāṣāya — renunciant warmth", "bridge": "Unified with the communal accent. The lotus in the robe's own color — the ochre of renunciation." },
         "crimson":  { "css": "--motif-crimson", "symbolism": "kumkum — auspicious power", "bridge": "The published book's structural color. Activates under data-publication for structural motifs (divider, close). Breath motifs stay gold — reading rhythm is portal, not book." }
       },
       "palette-unity": "These are not four-plus-one but five voices of a single palette with context-dependent activation. The Indian devotional color associations (tejas, prakṛti, nīla, tapas, kumkum) were latent in the original design choices, not imposed — they emerge from the intersection of SRF's Western bookmaking tradition and the lotus's Indian devotional heritage."
@@ -173,13 +173,13 @@
         },
         {
           "rule": "When sacred content appears on a communal surface, add extra whitespace around it.",
-          "rationale": "The Yogananda quote on an event page needs a clear boundary — breathing room that signals 'this is the teacher's voice, not the event's voice.' The surrounding marigold chrome should step back.",
+          "rationale": "The Yogananda quote on an event page needs a clear boundary — breathing room that signals 'this is the teacher's voice, not the event's voice.' The surrounding ochre chrome should step back.",
           "implementation": "Minimum 2rem additional block padding around sacred-register content on communal surfaces. The whitespace acts as a threshold — a visual silence separating the teacher's voice from the event's voice.",
           "source": "DES-022 (events section design)"
         },
         {
           "rule": "Commemorations (Mahasamadhi, Janmashtami) are sacred/contemplative register despite appearing on a communal surface.",
-          "rationale": "Commemorations honor a guru or divine figure. They use gold accent, not marigold, and receive sacred-register whitespace even on the /events page. The event is communal; the content it honors is sacred.",
+          "rationale": "Commemorations honor a guru or divine figure. They use gold accent, not ochre, and receive sacred-register whitespace even on the /events page. The event is communal; the content it honors is sacred.",
           "source": "DES-022"
         },
         {

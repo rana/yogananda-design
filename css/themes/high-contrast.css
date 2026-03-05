@@ -10,7 +10,7 @@
    2. forced-colors: active — Windows High Contrast Mode. The OS
       takes control of all colors. We ensure interactive elements,
       borders, and focus rings remain visible by mapping to system
-      color tokens. Gold/marigold/crimson accents yield to the
+      color tokens. Gold/ochre/crimson accents yield to the
       system palette — DES-025 requirement.
 
    Non-negotiable (PRI-07).
@@ -55,7 +55,7 @@
    with system tokens. Our job is to ensure nothing disappears:
    - Borders must use system colors (not custom properties)
    - Focus rings must remain visible via Highlight/ButtonText
-   - Decorative gold/crimson/marigold accents gracefully vanish
+   - Decorative gold/crimson/ochre accents gracefully vanish
      (they carried no information — PRI-07 color-independence)
    - Interactive elements retain visible boundaries
    - SVG decorations hidden (they render as flat silhouettes) */
@@ -120,10 +120,10 @@
   .gold-ambient,
   .gold-highlight,
   .gold-subliminal,
-  .marigold-interactive,
-  .marigold-decorative,
-  .marigold-ambient,
-  .marigold-subliminal,
+  .ochre-interactive,
+  .ochre-decorative,
+  .ochre-ambient,
+  .ochre-subliminal,
   .crimson-interactive,
   .crimson-decorative,
   .crimson-ambient,
@@ -148,5 +148,19 @@
   /* Drop capital: inherits text color in forced-colors (no gold) */
   .drop-cap::first-letter {
     color: CanvasText;
+  }
+
+  /* Gradient borders: fall back to solid system border.
+     background-clip technique produces invisible borders in
+     forced-colors mode — replace with explicit border-color. */
+  .gradient-border,
+  .gradient-focus:focus-visible,
+  .gradient-input-active {
+    background: none;
+    border: 2px solid ButtonText;
+  }
+
+  .gradient-focus:focus-visible {
+    border-color: Highlight;
   }
 }

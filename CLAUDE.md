@@ -24,10 +24,10 @@ The canonical visual design language for the Yogananda digital ecosystem. Two or
 Quantifiable design tokens: colors, typography, spacing, duration, shadows. Organization-specific files (SRF, YSS) plus shared foundations. Locale overrides for script-specific typography.
 
 **Layer 2: Semantics** (`semantics/*.language.json`) — Custom format
-Design language rules: emotional registers (with rasa experiential dimension), attention gradients (three accent voices), calm technology constraints, aesthetic theory (governing principles from the Indian literary tradition), accessibility requirements, typographic conventions, photographic atmosphere, multi-script visual adaptation, responsive strategy. References Layer 1 tokens by name.
+Design language rules: emotional registers (with rasa experiential dimension), attention gradients (three accent voices), calm technology constraints, aesthetic theory (governing principles from the Indian literary tradition), accessibility requirements, typographic conventions, photographic atmosphere, multi-script visual adaptation, responsive strategy, stewardship (operational surface vocabulary). References Layer 1 tokens by name.
 
 **Layer 3: Patterns** (`patterns/*.pattern.json`) — Custom format
-Composition recipes: pre-composed molecules (passage card, search result, chapter transition). Named combinations of Layer 1 tokens governed by Layer 2 semantics. Implementation-agnostic.
+Composition recipes: pre-composed molecules (passage card, search result, chapter transition, paginated book). Named combinations of Layer 1 tokens governed by Layer 2 semantics. Implementation-agnostic.
 
 **Web Expression** (`css/`) — Pure CSS
 The design language expressed as CSS custom properties, utility classes, and composition patterns. Framework-agnostic — works with any web technology. Two entry points:
@@ -45,12 +45,14 @@ css/
   typography/classes.css   ← .reading-text, .display-text, .ui-text + Hindi + communal
   typography/features.css  ← .drop-cap, .reader-epigraph, .reader-citation, .book-figure, .reader-scene-break, .reader-verse
   calm.css                 ← Layer 2: Focus rings, reduced-motion, text-only, sr-only
-  attention.css            ← Layer 2: Gold/marigold/crimson at named attention levels
+  attention.css            ← Layer 2: Gold/ochre/crimson at named attention levels
+  registers.css            ← Layer 2: Emotional register voice overrides (communal)
   motifs.css               ← Motif system: botanical glyphs × 5 color voices, mask-image
   patterns/reading-surface.css  ← Layer 3: Dwell, focus, present, quiet, golden thread
   patterns/print.css            ← Layer 3: Print stylesheet
   patterns/preferences.css      ← Layer 3: Font size, line spacing user preferences
   patterns/atmosphere.css       ← Layer 3: Optional photographic atmosphere (opt-in)
+  patterns/stewardship.css      ← Layer 3: Stewardship vocabulary + IBM Plex Mono (opt-in)
   index.css                ← Bundle: all core files
   reading.css              ← Bundle: core + reading patterns
 ```
@@ -74,6 +76,8 @@ css/
 | **Adding photographic atmosphere** | + `semantics/atmosphere.language.json` + `brand/image-guidelines.json` |
 | **Choosing an icon or motif** | `motifs/srf/glyphs.json` + `css/motifs.css` + `motifs/srf/` or `motifs/yss/` + `brand/image-guidelines.json` |
 | **Understanding the brand** | `brand/image-guidelines.json` + organization token file `$description` fields |
+| **Generating PDF output** | + `patterns/paginated.pattern.json` + `semantics/typography.language.json` + `semantics/attention-gradient.language.json` |
+| **Building operational surfaces** | + `semantics/stewardship.language.json` + `semantics/attention-gradient.language.json` |
 
 ### For web surfaces consuming CSS:
 
@@ -85,6 +89,7 @@ css/
 | **SRF surface** | Default — no extra import needed |
 | **YSS surface** | Same imports + set `data-org="yss"` on `<html>` |
 | **Surface with photographs** | + `css/patterns/atmosphere.css` (opt-in, not in bundles) |
+| **Operational surface** (platform, dashboard) | + `css/patterns/stewardship.css` (opt-in, not in bundles) |
 
 ## File Format Reference
 
@@ -127,7 +132,7 @@ This design system serves the **Yogananda digital ecosystem**:
 - **yogananda-teachings** (portal) — SRF design language. The reading room. First and primary consumer.
 - **yogananda-platform** — Infrastructure dashboard. Lighter brand touch.
 - **YSS surface** — YSS design language. The ashram. Second consumer.
-- **PDF generation** (ADR-050) — Shared tokens for consistent output across media.
+- **PDF generation** (ADR-050) — Paginated pattern (`patterns/paginated.pattern.json`) for books, chapters, and contemplation cards. The design language's native medium.
 - **Any future Yogananda digital property** — the design language, not any single site.
 
 ## Sibling Repos

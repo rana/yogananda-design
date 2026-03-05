@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 
-type Accent = "gold" | "marigold" | "crimson";
+type Accent = "gold" | "ochre" | "crimson";
 
 const accents: { id: Accent; label: string; voice: string; cssVar: string }[] = [
   { id: "gold", label: "Gold", voice: "Contemplative", cssVar: "var(--color-gold)" },
-  { id: "marigold", label: "Marigold", voice: "Communal", cssVar: "var(--color-marigold)" },
+  { id: "ochre", label: "Ochre", voice: "Communal", cssVar: "var(--color-ochre)" },
   { id: "crimson", label: "Crimson", voice: "Publication", cssVar: "var(--color-crimson)" },
 ];
 
@@ -19,7 +19,7 @@ interface Level {
   elements: string;
 }
 
-/* Voice-shaped asymmetry: gold 6, crimson 5, marigold 4. The asymmetry is the design.
+/* Voice-shaped asymmetry: gold 6, crimson 5, ochre 4. The asymmetry is the design.
    CSS classes from attention.css; CSS vars from foundations.css. Texture has no class
    (expressed via SVG fractalNoise, not opacity). */
 const levelsByAccent: Record<Accent, Level[]> = {
@@ -38,11 +38,11 @@ const levelsByAccent: Record<Accent, Level[]> = {
     { name: "Highlight", opacity: 0.15, cssClass: "crimson-highlight", cssVar: "--crimson-highlight", purpose: "Guiding navigation through structure", elements: "Chapter navigation hover, current chapter marker" },
     { name: "Subliminal", opacity: 0.06, cssClass: "crimson-subliminal", cssVar: "--crimson-subliminal", purpose: "Faint publication warmth", elements: "Background tint in publication context" },
   ],
-  marigold: [
-    { name: "Interactive", opacity: 1.0, cssClass: "marigold-interactive", cssVar: "--marigold-interactive", purpose: "Communal energy — invitation to participate", elements: "Event CTAs, registration buttons, active links" },
-    { name: "Decorative", opacity: 0.4, cssClass: "marigold-decorative", cssVar: "--marigold-decorative", purpose: "Warm presence without urgency", elements: "Category badges, event type indicators" },
-    { name: "Ambient", opacity: 0.2, cssClass: "marigold-ambient", cssVar: "--marigold-ambient", purpose: "Background orientation for events", elements: "Section dividers, calendar markers" },
-    { name: "Subliminal", opacity: 0.06, cssClass: "marigold-subliminal", cssVar: "--marigold-subliminal", purpose: "Communal warmth without distraction", elements: "Hover backgrounds, active section tint" },
+  ochre: [
+    { name: "Interactive", opacity: 1.0, cssClass: "ochre-interactive", cssVar: "--ochre-interactive", purpose: "Communal energy — invitation to participate", elements: "Event CTAs, registration buttons, active links" },
+    { name: "Decorative", opacity: 0.4, cssClass: "ochre-decorative", cssVar: "--ochre-decorative", purpose: "Warm presence without urgency", elements: "Category badges, event type indicators" },
+    { name: "Ambient", opacity: 0.2, cssClass: "ochre-ambient", cssVar: "--ochre-ambient", purpose: "Background orientation for events", elements: "Section dividers, calendar markers" },
+    { name: "Subliminal", opacity: 0.06, cssClass: "ochre-subliminal", cssVar: "--ochre-subliminal", purpose: "Communal warmth without distraction", elements: "Hover backgrounds, active section tint" },
   ],
 };
 
@@ -133,7 +133,7 @@ export default function AttentionGradient() {
         >
           Three accent voices at calibrated opacity levels. Gold (contemplative)
           uses six levels from interactive to texture. Crimson (publication) uses
-          five — structure, not atmosphere. Marigold (communal) uses four —
+          five — structure, not atmosphere. Ochre (communal) uses four —
           energy, not contemplation. The asymmetry is the design.
         </p>
 
@@ -309,7 +309,148 @@ export default function AttentionGradient() {
             );
           })}
         </div>
+
+        {/* ── Gradient Borders — Spatial Attention Axis ─────────── */}
+        <GradientBorderDemo />
       </div>
     </section>
+  );
+}
+
+/* ── Gradient Border Showcase ──────────────────────────────────── */
+
+const gradientBorders: { voice: string; label: string; description: string; stops: string }[] = [
+  { voice: "gold", label: "Gold — Contemplative", description: "The reading lamp's glow. accent → darkened → accent.", stops: "gold → gold-dark → gold" },
+  { voice: "ochre", label: "Ochre — Communal", description: "The kāṣāya spectrum. Renunciant cloth warming through gold.", stops: "ochre → gold → ochre" },
+  { voice: "crimson", label: "Crimson — Publication", description: "Rubrication meets the reading lamp.", stops: "crimson → gold → crimson" },
+];
+
+function GradientBorderDemo() {
+  return (
+    <div className="mt-12">
+      <h3
+        className="display-text mb-2"
+        style={{ fontSize: "clamp(18px, 2.5vw, 24px)", color: "var(--color-text)" }}
+      >
+        Gradient Borders
+      </h3>
+      <p
+        className="mb-6"
+        style={{
+          fontFamily: "var(--font-ui)",
+          fontSize: "14px",
+          color: "var(--color-text-secondary)",
+          lineHeight: 1.6,
+          maxWidth: "600px",
+        }}
+      >
+        Where opacity asks <em>how much</em> attention, gradient borders ask{" "}
+        <em>where</em> attention gathers. Gold mediates every gradient — the bindu
+        color at the center. The ochre gradient is the kāṣāya spectrum made visible:
+        one pigment family at different stages of its journey.
+      </p>
+
+      {/* Three voice gradient border demos */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        {gradientBorders.map((gb) => (
+          <div key={gb.voice} className="space-y-2">
+            <div
+              className={`gradient-border gradient-border-${gb.voice}`}
+              style={{
+                padding: "20px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "4px",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "var(--font-ui)",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  color: "var(--color-text)",
+                }}
+              >
+                {gb.label}
+              </span>
+              <span
+                style={{
+                  fontFamily: "var(--font-ui)",
+                  fontSize: "12px",
+                  color: "var(--color-text-secondary)",
+                }}
+              >
+                {gb.description}
+              </span>
+            </div>
+            <div
+              className="flex items-center gap-2"
+              style={{ fontFamily: "var(--font-ui)", fontSize: "11px", color: "var(--color-text-secondary)" }}
+            >
+              <code className="token-value">.gradient-border-{gb.voice}</code>
+              <span style={{ opacity: 0.5 }}>{gb.stops}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Focus ring demo */}
+      <div className="space-y-3">
+        <div
+          style={{
+            fontFamily: "var(--font-ui)",
+            fontSize: "13px",
+            fontWeight: 600,
+            color: "var(--color-text)",
+          }}
+        >
+          Focus Ring
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <button
+            className="gradient-focus"
+            style={{
+              padding: "8px 20px",
+              fontFamily: "var(--font-ui)",
+              fontSize: "14px",
+              color: "var(--color-text)",
+              backgroundColor: "var(--color-bg-secondary)",
+              border: "1px solid var(--color-border)",
+              borderRadius: "var(--radius-default)",
+              cursor: "pointer",
+            }}
+          >
+            Tab to focus
+          </button>
+          <input
+            type="text"
+            placeholder="Focus this input"
+            className="gradient-focus"
+            style={{
+              padding: "8px 14px",
+              fontFamily: "var(--font-ui)",
+              fontSize: "14px",
+              color: "var(--color-text)",
+              backgroundColor: "var(--color-surface)",
+              border: "1px solid var(--color-border)",
+              borderRadius: "var(--radius-default)",
+              width: "200px",
+            }}
+          />
+        </div>
+        <p
+          style={{
+            fontFamily: "var(--font-ui)",
+            fontSize: "12px",
+            color: "var(--color-text-secondary)",
+            opacity: 0.7,
+          }}
+        >
+          <code className="token-value">.gradient-focus</code> replaces the flat gold outline
+          on <code className="token-value">:focus-visible</code> with a directional gradient ring.
+          Voice follows context automatically.
+        </p>
+      </div>
+    </div>
   );
 }

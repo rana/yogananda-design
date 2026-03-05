@@ -66,7 +66,7 @@
     "$description": "What photographs may serve as atmosphere, governed by the image guidelines in brand/image-guidelines.json. The taxonomy reflects both institutional respect and aesthetic propriety.",
 
     "nature-landscape": {
-      "subjects": ["Mountains (Himalayas, Sierra Nevada)", "Ocean (Encinitas coast, Pacific)", "Sky (dawn, dusk, clear blue, clouds)", "Gardens (Lake Shrine gardens, temple gardens)", "Flowers (lotus, marigold garlands)", "Trees (redwoods, banyan, bodhi)"],
+      "subjects": ["Mountains (Himalayas, Sierra Nevada)", "Ocean (Encinitas coast, Pacific)", "Sky (dawn, dusk, clear blue, clouds)", "Gardens (Lake Shrine gardens, temple gardens)", "Flowers (lotus, gendā/marigold garlands)", "Trees (redwoods, banyan, bodhi)"],
       "permitted-roles": ["arrival", "ambient", "breath", "ground"],
       "notes": "The safest and most versatile category. Nature photographs establish sense of place without institutional or devotional specificity. Ideal for ground and breath roles where the photograph must be entirely abstract."
     },

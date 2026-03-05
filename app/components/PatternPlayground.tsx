@@ -463,9 +463,9 @@ function SrfColorPalette() {
   ];
 
   const communalColors = [
-    { name: "Marigold", value: srfTokens.color.marigold.$value },
-    { name: "Marigold Hover", value: srfTokens.color["marigold-hover"].$value },
-    { name: "Marigold Light", value: srfTokens.color["marigold-light"].$value },
+    { name: "Ochre", value: srfTokens.color.ochre.$value },
+    { name: "Ochre Hover", value: srfTokens.color["ochre-hover"].$value },
+    { name: "Ochre Light", value: srfTokens.color["ochre-light"].$value },
     { name: "Charcoal", value: srfTokens.color.charcoal.$value },
     { name: "Gold Dark", value: srfTokens.color["gold-dark"].$value },
   ];
@@ -498,8 +498,8 @@ function SrfColorPalette() {
 
       <div className="theme-transition rounded-md p-5" style={{ backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)" }}>
         <div className="flex items-center gap-2 mb-4">
-          <div style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "var(--color-marigold)" }} />
-          <h3 className="text-xs font-semibold uppercase tracking-wider" style={{ fontFamily: "var(--font-ui)", color: "var(--color-marigold)" }}>
+          <div style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "var(--color-ochre)" }} />
+          <h3 className="text-xs font-semibold uppercase tracking-wider" style={{ fontFamily: "var(--font-ui)", color: "var(--color-ochre)" }}>
             Communal Palette
           </h3>
         </div>

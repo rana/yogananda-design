@@ -2,18 +2,18 @@
    Attention Level Classes
    ══════════════════════════════════════════════════════════════════
    Three accent voices at calibrated opacity levels. Gold
-   (contemplative), marigold (communal), and crimson (publication) —
+   (contemplative), ochre (communal), and crimson (publication) —
    a deliberate hierarchy from interactive to subliminal.
 
    Each voice uses exactly the opacity levels its purpose demands:
-   gold 5 classes, crimson 5, marigold 4. The asymmetry is the
+   gold 5 classes, crimson 5, ochre 4. The asymmetry is the
    design. (Gold has 6 token levels but texture is expressed via
    SVG fractalNoise, not via an opacity class. Prominent is a
    seventh attention level expressed through typography weight/size,
    not through accent opacity — it appears in no voice's class set.)
 
    Requires: foundations.css
-   Source: foundations/srf.tokens.json → gold-opacity, marigold-opacity
+   Source: foundations/srf.tokens.json → gold-opacity, ochre-opacity
            foundations/shared.tokens.json → crimson-opacity
            semantics/attention-gradient.language.json
    ══════════════════════════════════════════════════════════════════ */
@@ -26,12 +26,12 @@
 .gold-highlight   { color: var(--color-gold); opacity: var(--gold-highlight); }
 .gold-subliminal  { color: var(--color-gold); opacity: var(--gold-subliminal); }
 
-/* ── Marigold (Communal Voice) ───────────────────────────────── */
+/* ── Ochre (Communal Voice) ──────────────────────────────────── */
 
-.marigold-interactive { color: var(--color-marigold); opacity: var(--marigold-interactive); }
-.marigold-decorative  { color: var(--color-marigold); opacity: var(--marigold-decorative); }
-.marigold-ambient     { color: var(--color-marigold); opacity: var(--marigold-ambient); }
-.marigold-subliminal  { color: var(--color-marigold); opacity: var(--marigold-subliminal); }
+.ochre-interactive { color: var(--color-ochre); opacity: var(--ochre-interactive); }
+.ochre-decorative  { color: var(--color-ochre); opacity: var(--ochre-decorative); }
+.ochre-ambient     { color: var(--color-ochre); opacity: var(--ochre-ambient); }
+.ochre-subliminal  { color: var(--color-ochre); opacity: var(--ochre-subliminal); }
 
 /* ── Crimson (Publication Voice) ────────────────────────────── */
 /* The printed book's structural voice. Chapter titles, section
@@ -43,3 +43,99 @@
 .crimson-ambient     { color: var(--color-crimson); opacity: var(--crimson-ambient); }
 .crimson-highlight   { color: var(--color-crimson); opacity: var(--crimson-highlight); }
 .crimson-subliminal  { color: var(--color-crimson); opacity: var(--crimson-subliminal); }
+
+
+/* ══════════════════════════════════════════════════════════════════
+   Gradient Borders — Spatial Attention Axis
+   ══════════════════════════════════════════════════════════════════
+   A gradient border expresses voice identity through directional
+   color flow along the container edge. Where opacity classes ask
+   "how much attention?", gradient borders ask "where does attention
+   gather?" The two axes are orthogonal.
+
+   Gold mediates every gradient. For gold's own gradient, the middle
+   stop darkens via color-mix. For ochre and crimson, the middle
+   stop IS gold — the kāṣāya spectrum and the rubrication tradition
+   each passing through the contemplative center.
+
+   Prāṇa made visible: the gradient is pūraka (approach) — attention
+   gathering at the container edge, flowing toward the still center
+   within. The held state (kumbhaka) is the content inside.
+
+   Alaṅkāra test: (1) focus indication, (2) voice expression via
+   color stops, (3) perceived depth without shadow, (4) automatic
+   theme adaptation via custom properties. Four purposes.
+
+   Calm technology: functional triggers only. Never decorative-only.
+   Never animated. Never on reading surface text containers (the
+   teaching is the bindu — its container must not call attention).
+
+   Requires: foundations.css (gradient tokens, color tokens)
+   Source: semantics/attention-gradient.language.json → gradient-axis
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Base Gradient Border ──────────────────────────────────────── */
+/* Sets up the dual-background technique. The inner background
+   clips to padding-box (surface color visible), the gradient
+   clips to border-box (visible only in the border region).
+   Consumers set --gradient-border to choose the voice. */
+
+.gradient-border {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--color-surface, var(--color-bg)), var(--color-surface, var(--color-bg))) padding-box,
+    var(--gradient-border, var(--gradient-border-gold)) border-box;
+  border-radius: var(--radius-default);
+}
+
+/* ── Voice Modifiers ───────────────────────────────────────────── */
+
+.gradient-border-gold    { --gradient-border: var(--gradient-border-gold); }
+.gradient-border-ochre   { --gradient-border: var(--gradient-border-ochre); }
+.gradient-border-crimson { --gradient-border: var(--gradient-border-crimson); }
+
+/* ── Gradient Focus Ring ───────────────────────────────────────── */
+/* Opt-in replacement for the flat gold outline on :focus-visible.
+   The ring glows with directional warmth instead of a uniform
+   solid. Apply .gradient-focus to any focusable element. The
+   default :focus-visible outline (calm.css) still fires for
+   elements without this class — this is progressive enhancement. */
+
+.gradient-focus:focus-visible {
+  outline: none;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--color-surface, var(--color-bg)), var(--color-surface, var(--color-bg))) padding-box,
+    var(--gradient-border, var(--gradient-border-gold)) border-box;
+  border-radius: var(--radius-default);
+}
+
+/* ── Active Input ──────────────────────────────────────────────── */
+/* For text inputs and search fields receiving active input.
+   The border warms from neutral to gradient, signaling
+   "I am receiving your words." Consumers apply this class
+   on focus or via JavaScript during active composition. */
+
+.gradient-input-active {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--color-surface, var(--color-bg)), var(--color-surface, var(--color-bg))) padding-box,
+    var(--gradient-border, var(--gradient-border-gold)) border-box;
+  border-radius: var(--radius-default);
+}
+
+/* ── Voice-Automatic Selection ─────────────────────────────────── */
+/* Gradient voice follows context: gathering → ochre,
+   publication → crimson. No manual class needed. */
+
+[data-theme="gathering"] .gradient-border,
+[data-theme="gathering"] .gradient-focus:focus-visible,
+[data-theme="gathering"] .gradient-input-active {
+  --gradient-border: var(--gradient-border-ochre);
+}
+
+[data-publication] .gradient-border,
+[data-publication] .gradient-focus:focus-visible,
+[data-publication] .gradient-input-active {
+  --gradient-border: var(--gradient-border-crimson);
+}

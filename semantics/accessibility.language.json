@@ -26,7 +26,7 @@
       "enforcement": "prefers-contrast: more → high-contrast.css overrides. No action needed at the design system level — the existing mechanism handles this."
     },
     "forced-colors": {
-      "$description": "Windows High Contrast Mode support via @media (forced-colors: active). When the OS takes control of all colors, the design language yields gracefully. Gold, marigold, and crimson accents are replaced by system color tokens (Highlight, LinkText, ButtonText). Decorative SVGs are hidden (they render as flat monochrome silhouettes). Interactive elements maintain visible borders. Focus rings use system Highlight. DES-025 Display Resilience requirement.",
+      "$description": "Windows High Contrast Mode support via @media (forced-colors: active). When the OS takes control of all colors, the design language yields gracefully. Gold, ochre, and crimson accents are replaced by system color tokens (Highlight, LinkText, ButtonText). Decorative SVGs are hidden (they render as flat monochrome silhouettes). Interactive elements maintain visible borders. Focus rings use system Highlight. DES-025 Display Resilience requirement.",
       "principle": "PRI-07",
       "specification": "DES-025",
       "css-file": "css/themes/high-contrast.css",
@@ -36,7 +36,7 @@
         "links": "LinkText / VisitedText — system link semantics preserved",
         "scroll-indicator": "Highlight at full opacity — replaces gold ambient",
         "golden-thread": "Highlight as border-inline-start — replaces gold box-shadow",
-        "attention-classes": "LinkText at full opacity — all three accent voices (gold, marigold, crimson) yield to system palette",
+        "attention-classes": "LinkText at full opacity — all three accent voices (gold, ochre, crimson) yield to system palette",
         "scene-breaks": "GrayText — horizontal rules remain visible",
         "decorative-elements": "Hidden (opacity: 0) — SVG decorations carry no information"
       },

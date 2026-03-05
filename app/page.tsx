@@ -17,8 +17,9 @@ import ResponsiveStrategy from "./components/ResponsiveStrategy";
 import CalmTechnologyAudit from "./components/CalmTechnologyAudit";
 import AccessibilityLab from "./components/AccessibilityLab";
 import PrintPreview from "./components/PrintPreview";
+import BookComposition from "./components/BookComposition";
 import PhotographicAtmosphere from "./components/PhotographicAtmosphere";
-import OperationalSurface from "./components/OperationalSurface";
+import Stewardship from "./components/Stewardship";
 import PatternPlayground from "./components/PatternPlayground";
 import Footer from "./components/Footer";
 
@@ -51,8 +52,9 @@ export default function Home() {
           design language's answer to photographic backgrounds. */}
       <div className="showcase-atmosphere" aria-hidden="true" />
 
+      <a href="#main" className="skip-nav">Skip to main content</a>
       <Nav />
-      <main>
+      <main id="main">
         {/* ── Arrival ─────────────────────────────────────────── */}
         <Hero />
 
@@ -91,8 +93,9 @@ export default function Home() {
         <CalmTechnologyAudit />
         <AccessibilityLab />
         <PrintPreview />
+        <BookComposition />
         <PhotographicAtmosphere />
-        <OperationalSurface />
+        <Stewardship />
         <PatternPlayground />
       </main>
       <Footer />

@@ -111,7 +111,7 @@
 
     "ibm-plex-mono": {
       "role": "data",
-      "description": "Operational data font. Monospace for commit hashes, deploy IDs, cost figures, environment chains. Humanist warmth harmonizes with Merriweather at reading sizes. @font-face in patterns/operations.css (zero-cost for non-operational consumers).",
+      "description": "Operational data font. Monospace for commit hashes, deploy IDs, cost figures, environment chains. Humanist warmth harmonizes with Merriweather at reading sizes. @font-face in patterns/stewardship.css (zero-cost for non-operational consumers).",
       "license": "SIL Open Font License 1.1",
       "source": "Google Fonts (self-hosted)",
       "variants": [
@@ -141,7 +141,7 @@
     "full-latin": "~620KB (all 25 woff2 files)",
     "full-devanagari": "~242KB (Noto Serif Devanagari ~124KB + Noto Sans Devanagari ~118KB)",
     "asar-devotional": "~179KB (Latin ~22KB + Devanagari ~157KB)",
-    "ibm-plex-mono-operational": "~30KB (400 + 500 weights, loaded only via patterns/operations.css)",
-    "note": "Font loading is progressive — only critical-path fonts are preloaded. Devanagari fonts and Asar load on demand via unicode-range subsetting. Hindi readers pay ~242KB extra; Latin-only readers pay nothing. Asar loads only on pages that use the devotional display voice. IBM Plex Mono loads only when patterns/operations.css is imported — zero cost for non-operational consumers."
+    "ibm-plex-mono-operational": "~30KB (400 + 500 weights, loaded only via patterns/stewardship.css)",
+    "note": "Font loading is progressive — only critical-path fonts are preloaded. Devanagari fonts and Asar load on demand via unicode-range subsetting. Hindi readers pay ~242KB extra; Latin-only readers pay nothing. Asar loads only on pages that use the devotional display voice. IBM Plex Mono loads only when patterns/stewardship.css is imported — zero cost for non-operational consumers."
   }
 }

@@ -103,7 +103,7 @@
 /* ── Operational Data Voice ────────────────────────────────────── */
 /* Monospace for commit hashes, deploy IDs, cost figures, chains.
    Tabular numerals for column alignment in dense data displays.
-   @font-face loaded via patterns/operations.css — never downloaded
+   @font-face loaded via patterns/stewardship.css — never downloaded
    by non-operational consumers. */
 
 .data-text {

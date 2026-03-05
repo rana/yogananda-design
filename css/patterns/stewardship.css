@@ -1,0 +1,323 @@
+/* ══════════════════════════════════════════════════════════════════
+   Stewardship Patterns — Operational Surface Vocabulary
+   ══════════════════════════════════════════════════════════════════
+   The design language for tending infrastructure in service of the
+   teachings. Not assembled components — vocabulary and atmosphere.
+   The platform (and any operational consumer) composes its own
+   layouts from this vocabulary.
+
+   Core concept: system tone. data-tone modulates the entire surface
+   through gold-only escalation — the same attention gradient that
+   governs reading surfaces, applied to operational awareness.
+
+   IBM Plex Mono (@font-face below) loads ONLY when this file is
+   imported. Non-operational consumers never download these fonts.
+
+   Activation:
+     @import '@yogananda/design/css/patterns/stewardship.css';
+
+   Requires: foundations.css, attention.css
+   Source: semantics/stewardship.language.json
+   ══════════════════════════════════════════════════════════════════ */
+
+
+/* ── @font-face: IBM Plex Mono ─────────────────────────────────
+   Self-hosted WOFF2. Latin subset only (~15KB per weight).
+   Loaded here so non-operational consumers pay zero cost.
+   Fallback metrics computed for CLS prevention (PRI-05). */
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../fonts/ibm-plex-mono/ibm-plex-mono-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../../fonts/ibm-plex-mono/ibm-plex-mono-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* CLS-safe fallback (PRI-05) */
+@font-face {
+  font-family: "IBM Plex Mono Fallback";
+  src: local("Cascadia Code"), local("Menlo"), local("Consolas");
+  size-adjust: 102%;
+  ascent-override: 88%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   System Tone — Atmosphere Modulation
+   ══════════════════════════════════════════════════════════════════
+   data-tone on any element modulates its atmosphere. Gold-only:
+   the same hue at different opacities communicates escalation.
+   No crimson (publication), no arbitrary status colors.
+
+   Set at root level for aggregate health, at card level for
+   individual project health. CSS responds at any DOM level.
+
+   Dhvani gradient: aligned suggests health by saying almost
+   nothing; failure states the problem by saying everything.
+   ══════════════════════════════════════════════════════════════════ */
+
+[data-tone="aligned"] {
+  --tone-accent: var(--gold-subliminal);   /* 0.06 — barely there */
+  --tone-border: var(--opacity-whisper);   /* 0.06 */
+  --tone-weight: 400;
+}
+
+[data-tone="attention"] {
+  --tone-accent: var(--gold-ambient);      /* 0.3 — gently present */
+  --tone-border: var(--opacity-muted);     /* 0.12 */
+  --tone-weight: 400;
+}
+
+[data-tone="concern"] {
+  --tone-accent: var(--gold-decorative);   /* 0.4 — clearly present */
+  --tone-border: var(--opacity-subdued);   /* 0.15 */
+  --tone-weight: 500;
+}
+
+[data-tone="failure"] {
+  --tone-accent: var(--gold-interactive);  /* 1.0 — unmistakable */
+  --tone-border: var(--opacity-primary);   /* 0.70 */
+  --tone-weight: 600;
+}
+
+
+/* ── Status Indicator ──────────────────────────────────────────
+   The one molecule the design system owns for stewardship.
+   Gold dot at tone-appropriate opacity. Always paired with a
+   text label — color is never the only channel.
+   ══════════════════════════════════════════════════════════════ */
+
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-gold);
+  opacity: var(--tone-accent, var(--gold-ambient));
+  flex-shrink: 0;
+  transition: opacity var(--motion-interaction) var(--easing-standard);
+}
+
+.status-label {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  font-weight: var(--tone-weight, 400);
+}
+
+
+/* ── Tone Border ──────────────────────────────────────────────
+   Gradient border that activates based on system tone.
+   Uses the gradient-border technique from attention.css.
+   Gold voice only — the stewardship surface is contemplative.
+
+   Absent for aligned/attention. Present for concern/failure.
+   Alaṅkāra: ornament + structural boundary + severity signal.
+   ══════════════════════════════════════════════════════════════ */
+
+.tone-border {
+  border: 2px solid transparent;
+  border-radius: var(--radius-default);
+  transition: border-color var(--motion-interaction) var(--easing-standard);
+}
+
+/* Aligned / attention: no gradient border — simple transparent */
+[data-tone="aligned"] .tone-border,
+[data-tone="attention"] .tone-border,
+.tone-border[data-tone="aligned"],
+.tone-border[data-tone="attention"] {
+  border-color: transparent;
+  background: none;
+}
+
+/* Concern: gradient border at reduced intensity.
+   Intensity is baked into the gradient colors via color-mix, NOT via
+   element-level opacity (which would fade all child content too). */
+[data-tone="concern"] .tone-border,
+.tone-border[data-tone="concern"] {
+  background:
+    linear-gradient(var(--color-surface, var(--color-bg)), var(--color-surface, var(--color-bg))) padding-box,
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-gold) 30%, transparent),
+      color-mix(in srgb, color-mix(in oklch, var(--color-gold) 60%, #000) 30%, transparent),
+      color-mix(in srgb, var(--color-gold) 30%, transparent)
+    ) border-box;
+}
+
+/* Failure: gradient border at full intensity */
+[data-tone="failure"] .tone-border,
+.tone-border[data-tone="failure"] {
+  background:
+    linear-gradient(var(--color-surface, var(--color-bg)), var(--color-surface, var(--color-bg))) padding-box,
+    var(--gradient-border-gold) border-box;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   Data Typography
+   ══════════════════════════════════════════════════════════════════
+   Three typographic roles for operational data. Monospace for
+   genuinely technical identifiers. Tabular-nums on UI font for
+   numbers in language context. Reading font for narrative.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* .data-text is defined in typography/classes.css — not duplicated here.
+   Stewardship adds emphasis and label variants only. */
+
+.data-text-emphasis {
+  font-family: var(--font-data);
+  font-size: var(--density-font-size, 0.8125rem);
+  line-height: var(--density-line-height, 1.4);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+}
+
+.data-label {
+  font-family: var(--font-ui);
+  font-size: var(--density-label-size, 0.6875rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-secondary);
+}
+
+/* Narrative — instructional register for operator-facing prose */
+.stewardship-narrative {
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-inline-size: 65ch;
+  color: var(--color-text);
+}
+
+.stewardship-narrative code {
+  font-family: var(--font-data);
+  font-size: 0.875em;
+  padding-inline: 0.25em;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-small);
+}
+
+.stewardship-narrative > * + * {
+  margin-block-start: var(--space-default);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   Density Modulation
+   ══════════════════════════════════════════════════════════════════
+   Compact for the prepared operator (sahṛdaya) who reads tone.
+   Comfortable for the new operator who needs labels and space.
+   ══════════════════════════════════════════════════════════════════ */
+
+[data-density="compact"] {
+  --density-gap: var(--space-tight);
+  --density-padding: var(--space-compact);
+  --density-font-size: 0.8125rem;
+  --density-label-size: 0.6875rem;
+  --density-line-height: 1.3;
+}
+
+[data-density="comfortable"] {
+  --density-gap: var(--space-compact);
+  --density-padding: var(--space-default);
+  --density-font-size: 0.875rem;
+  --density-label-size: 0.8125rem;
+  --density-line-height: 1.5;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   Temporal Dhvani
+   ══════════════════════════════════════════════════════════════════
+   Time as a suggestion gradient. Recent events are stated (full
+   opacity). Older events are indicated (reduced). Historical
+   events are suggested (receding). The timeline fades into the
+   past — not through animation but through opacity at render time.
+
+   The consumer defines age boundaries (what counts as "recent"
+   depends on context). These are the suggested default values.
+   ══════════════════════════════════════════════════════════════════ */
+
+[data-age="recent"] { opacity: var(--opacity-full); }         /* 1.0 — stated */
+[data-age="today"]  { opacity: var(--opacity-primary); }      /* 0.7 — indicated */
+[data-age="older"]  { opacity: var(--opacity-secondary); }    /* 0.3 — suggested */
+
+
+/* ══════════════════════════════════════════════════════════════════
+   Accessibility — Reduced Motion & High Contrast
+   ══════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .status-indicator,
+  .tone-border {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .status-indicator {
+    opacity: 1;
+    border: 1px solid currentColor;
+  }
+
+  .tone-border[data-tone="concern"],
+  .tone-border[data-tone="failure"],
+  [data-tone="concern"] .tone-border,
+  [data-tone="failure"] .tone-border {
+    border: 2px solid currentColor;
+    background: none;
+  }
+}
+
+/* Forced colors (Windows High Contrast) */
+@media (forced-colors: active) {
+  .status-indicator {
+    background-color: ButtonText;
+    opacity: 1;
+    forced-color-adjust: none;
+  }
+
+  .tone-border {
+    border-color: ButtonText;
+    background: none;
+  }
+}
+
+/* Print: no gradient tricks, solid borders */
+@media print {
+  .tone-border[data-tone="concern"],
+  .tone-border[data-tone="failure"],
+  [data-tone="concern"] .tone-border,
+  [data-tone="failure"] .tone-border {
+    border: 1px solid #999;
+    background: none;
+  }
+
+  .status-indicator {
+    border: 1px solid #999;
+    opacity: 1;
+  }
+}

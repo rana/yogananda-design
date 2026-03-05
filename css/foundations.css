@@ -24,7 +24,7 @@
   --color-text: #1a2744;
   --color-text-secondary: #1a2744b3;
   --color-border: #1a27441f;
-  --color-gold: #dcbd23;       /* Semantic accent — shifts to marigold (gathering) or terracotta (YSS) */
+  --color-gold: #dcbd23;       /* Semantic accent — shifts to ochre (gathering) or terracotta (YSS) */
   --color-surface: #ffffff;
 
   /* Brand constants (do not change with theme) */
@@ -32,20 +32,22 @@
   --color-cream: #FAF8F5;
 
   /* ── Communal voice colors ─────────────────────────────────────
-     Marigold + charcoal + white.
+     Ochre + charcoal + white.
      The gathering. Convocations, events, joyful welcome.
+     Kāṣāya (काषाय) — the ochre of renunciation. Same pigment
+     family as gold, deepened by sun and washing.
      Source: foundations/srf.tokens.json */
 
-  --color-marigold: #DC6A10;
-  --color-marigold-hover: #BE5706;
-  --color-marigold-light: #FCEFE9;
+  --color-ochre: #DC6A10;
+  --color-ochre-hover: #BE5706;
+  --color-ochre-light: #FCEFE9;
   --color-charcoal: #4C4C4C;
   --color-border-neutral: #EDEDED;
   --color-gold-dark: #C39314;
 
   /* ── Category colors ───────────────────────────────────────────
      Semantic grouping for content categories.
-     Muted, warm, never competing with gold or marigold. */
+     Muted, warm, never competing with gold or ochre. */
 
   --color-category-teal: #63A3A3;
   --color-category-indigo: #5D7BE3;
@@ -60,7 +62,7 @@
 
   /* ── Crimson opacity levels ──────────────────────────────────
      Publication attention hierarchy. Parallels gold-opacity
-     (contemplative) and marigold-opacity (communal).
+     (contemplative) and ochre-opacity (communal).
      Source: foundations/shared.tokens.json → crimson-opacity */
 
   --crimson-interactive: 1.0;  /* Chapter titles, section dividers */
@@ -80,14 +82,14 @@
   --gold-subliminal: 0.06;   /* Paragraph hover background */
   --gold-texture: 0.03;      /* Paper texture noise overlay */
 
-  /* ── Marigold opacity levels ───────────────────────────────────
+  /* ── Ochre opacity levels ──────────────────────────────────────
      Communal voice attention hierarchy.
-     Source: foundations/srf.tokens.json → marigold-opacity */
+     Source: foundations/srf.tokens.json → ochre-opacity */
 
-  --marigold-interactive: 1.0;
-  --marigold-decorative: 0.4;
-  --marigold-ambient: 0.2;
-  --marigold-subliminal: 0.06;
+  --ochre-interactive: 1.0;
+  --ochre-decorative: 0.4;
+  --ochre-ambient: 0.2;
+  --ochre-subliminal: 0.06;
 
   /* ── Motion ────────────────────────────────────────────────────
      All motion is functional, never decorative (PRI-08).
@@ -148,7 +150,7 @@
   --font-ui-event: "Helvetica Neue", Helvetica, system-ui, -apple-system, sans-serif;
 
   /* Operational data — monospace for commit hashes, deploy IDs, costs.
-     @font-face in patterns/operations.css (zero-cost for non-operational consumers). */
+     @font-face in patterns/stewardship.css (zero-cost for non-operational consumers). */
   --font-data: "IBM Plex Mono", ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
 
   /* ── Radius ────────────────────────────────────────────────────
@@ -195,6 +197,41 @@
   --reading-focus-zone: 35;
   --reading-line-length-latin: 70;
   --reading-line-length-devanagari: 45;
+
+  /* ── Gradient Borders ─────────────────────────────────────────
+     Spatial attention axis. The gradient flows along the container
+     edge, expressing voice identity through color stops. Gold is
+     always the mediating tone — the bindu color at gradient center.
+
+     Technique: dual background with background-clip. Inner layer
+     shows surface color (padding-box); outer shows gradient
+     (border-box). Works with border-radius. No pseudo-elements.
+
+     color-mix(in oklch) derives the middle stop from the current
+     accent — perceptually uniform darkening on warm hues. Each
+     theme's gradient is made of its own accent automatically.
+
+     Functional only: focus, active input, elevated containers.
+     Source: semantics/attention-gradient.language.json → gradient-axis */
+
+  --gradient-border-gold: linear-gradient(
+    135deg,
+    var(--color-gold),
+    color-mix(in oklch, var(--color-gold) 60%, #000),
+    var(--color-gold)
+  );
+  --gradient-border-ochre: linear-gradient(
+    135deg,
+    var(--color-ochre),
+    var(--color-gold),
+    var(--color-ochre)
+  );
+  --gradient-border-crimson: linear-gradient(
+    135deg,
+    var(--color-crimson),
+    var(--color-gold),
+    var(--color-crimson)
+  );
 
   /* ── Shadow ───────────────────────────────────────────────────
      Minimal. The design language prefers borders and background

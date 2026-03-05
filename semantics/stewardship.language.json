@@ -1,0 +1,203 @@
+{
+  "$description": "Stewardship: the design language for operational surfaces. The operator is a steward (sevak) — tending infrastructure in service of the teachings reaching seekers. This file defines the vocabulary and atmosphere for surfaces where humans monitor, maintain, and care for the digital systems that carry Yogananda's words. Not a different voice from the contemplative — the contemplative voice at its functional register, with the operator's unique relationship to the system made visible through tone modulation. Load this file alongside calm-technology.language.json and attention-gradient.language.json for any operational UX work.",
+
+  "relationship": {
+    "$description": "The operator's relationship to the system. In SRF's tradition, this is seva (selfless service) — karma yoga through infrastructure. The operator doesn't command the system; the operator tends it. The system doesn't belong to the operator; it belongs to the mission. This relationship shapes every design decision: the surface should feel like a garden, not a control room.",
+    "model": "gardener",
+    "tradition": "seva (seva, selfless service) — the same spirit that maintains the physical temples, gardens, and archives at SRF centers. The digital infrastructure is another form of this service.",
+    "western-correlate": "Stewardship — caring for something that belongs to another. The English word captures the relationship without prescribing the motivation.",
+    "design-implication": "The operational surface should feel tended, not controlled. Calm by default, warm under concern, clear under failure. The operator watches and responds; the surface does not demand or interrupt."
+  },
+
+  "tone-vocabulary": {
+    "$description": "System tone communicates overall health through atmosphere modulation. Rather than individual status indicators changing color, the entire surface breathes with the system's state. Tone is a dhvani gradient: aligned suggests health by saying almost nothing; failure states the problem by saying everything clearly. Set data-tone on any element — root level for aggregate health, card level for individual project health. The CSS responds identically at any DOM level.",
+    "data-attribute": "data-tone",
+    "tones": {
+      "aligned": {
+        "$description": "The garden grows. All systems healthy. The operator's experience is shanta (peace) — the absence of anxiety, not the presence of a green checkmark.",
+        "rasa": "shanta",
+        "gold-level": "subliminal (0.06)",
+        "gradient-border": "none",
+        "border-opacity": "whisper (0.06)",
+        "font-weight": 400,
+        "design-intent": "Near-invisible. The operator's eye should pass over aligned elements without stopping. Peace needs no announcement. The design of 'nothing wrong' is the hardest and most important thing to get right."
+      },
+      "attention": {
+        "$description": "Something has shifted. Not wrong, but present. A gentle warming — the gardener notices a dry patch.",
+        "rasa": "awareness (not a classical rasa — the mild alertness before action)",
+        "gold-level": "ambient (0.3)",
+        "gradient-border": "none",
+        "border-opacity": "muted (0.12)",
+        "font-weight": 400,
+        "design-intent": "Gently present. The status indicator is visible but not calling. The operator sees it during a glance and may choose to investigate or not."
+      },
+      "concern": {
+        "$description": "This needs tending. Resolution required but not urgent. The gardener kneels to examine a plant.",
+        "rasa": "vira (resolve — the energy to act, not anxiety)",
+        "gold-level": "decorative (0.4)",
+        "gradient-border": "present at ambient opacity",
+        "border-opacity": "subdued (0.15)",
+        "font-weight": 500,
+        "design-intent": "Clearly present. The gradient border appears — a warm gold glow around the concerned element. This is the phase transition between awareness and action. The border is simultaneously ornament, structural boundary, and severity signal (alankara)."
+      },
+      "failure": {
+        "$description": "Act now. The channel carrying the teachings is obstructed. Full clarity, no ambiguity.",
+        "rasa": "vira (acute resolve — disciplined response, not panic)",
+        "gold-level": "interactive (1.0)",
+        "gradient-border": "present at interactive opacity",
+        "border-opacity": "primary (0.70)",
+        "font-weight": 600,
+        "design-intent": "Unmistakable. Full gold at interactive opacity. Gradient border at full intensity. Typography at semibold. Everything the design language has for demanding attention, deployed. But still gold — still the contemplative accent, still within the design language. Not a red alert from a different visual system."
+      }
+    },
+    "escalation-principle": "The same hue at different opacities communicates everything. The operator learns to read opacity as urgency — the same perceptual skill the reader develops for the attention gradient on reading surfaces. Gold-only: no crimson (which means publication), no arbitrary status colors. One hue, one gradient, four states.",
+    "two-channel-resolution": "Gold opacity alone cannot distinguish all four states on small indicators (0.3 vs 0.4 is subtle). The gradient border system provides the second channel: absent for aligned/attention, present for concern/failure. Two channels resolve the ambiguity — gold intensity for lower states, gradient border intensity for upper states."
+  },
+
+  "triage-protocol": {
+    "$description": "The operator's workflow mapped to the attention gradient. The design system supports progressive disclosure from glance to action — the sahrdaya (prepared operator) reads tone at the glance level; the new operator needs explicit data at the investigate level.",
+    "phases": {
+      "glance": {
+        "duration": "< 1 second",
+        "attention-level": "ambient to subliminal",
+        "what-the-operator-sees": "Overall system tone. Is the garden peaceful or alert? The narrative briefing's opening line. The aggregate data-tone on the root element.",
+        "design-support": "Tone modulation at root level. The surface feels peaceful or warm or tense before the operator reads any data."
+      },
+      "orient": {
+        "duration": "< 5 seconds",
+        "attention-level": "decorative to ambient",
+        "what-the-operator-sees": "Which subsystem needs attention. The specific card with a non-aligned tone. The gradient border drawing the eye.",
+        "design-support": "Per-card data-tone. Gradient borders on concerned/failed elements. The operator's eye is drawn to warmth."
+      },
+      "investigate": {
+        "duration": "< 30 seconds",
+        "attention-level": "interactive to prominent",
+        "what-the-operator-sees": "Specific data: commit hashes, timestamps, error messages, deployment details. Full data typography, tabular layout.",
+        "design-support": "Data typography (monospace for hashes, tabular-nums for amounts). Density modulation (compact for experienced operators, comfortable for new ones)."
+      },
+      "act": {
+        "duration": "variable",
+        "attention-level": "interactive",
+        "what-the-operator-sees": "Action affordances: promote buttons, reconcile links, links to external tools (Vercel, Neon, GitHub).",
+        "design-support": "Standard interactive gold for action elements. Touch targets at comfortable size (minimum 44px, 48px preferred for primary actions). Clear, present, unambiguous."
+      }
+    }
+  },
+
+  "bindu": {
+    "$description": "The narrative briefing is the bindu (still center) of the operational surface. It answers the only question that matters: 'How are the teachings reaching seekers right now?' Everything else orbits it — summary statistics at near orbit, project cards at middle orbit, cost details at far orbit. The orbital model from aesthetic-theory.language.json applies directly.",
+    "center": "Narrative briefing — natural language system summary",
+    "near": "Summary statistics (projects, environments, sync state)",
+    "middle": "Project cards, deployment timeline",
+    "far": "Cost breakdown, review comments, reconciliation actions",
+    "treatment": "The narrative receives instructional register treatment with reading typography. It is the teaching-equivalent for the operator — what they came to read. Everything else is functional register supporting it."
+  },
+
+  "temporal-dhvani": {
+    "$description": "Time as a suggestion gradient. Recent events are vacya (stated) — full opacity, full detail. Older events are lakshyartha (indicated) — reduced opacity, available but receding. Historical events are vyanjana (suggested) — available on demand or simply absent. The deploy timeline fades into the past, not through animation but through opacity at render time.",
+    "data-attribute": "data-age",
+    "principle": "The design system defines the technique (opacity stepping for temporal recency) and the data attribute. The consumer defines the age boundaries — what counts as 'recent' depends on context (minutes for deploys, days for costs).",
+    "suggested-values": {
+      "recent": { "opacity": "full (1.0)", "guidance": "Happened within the operator's current attention span. Stated." },
+      "today": { "opacity": "primary (0.7)", "guidance": "Happened recently but not in the current moment. Indicated." },
+      "older": { "opacity": "secondary (0.30)", "guidance": "Historical. Available but receding. Suggested." }
+    },
+    "note": "Values are suggested, not prescribed. The consumer maps its own temporal boundaries to these or defines custom data-age values. The design system provides the CSS for the suggested set."
+  },
+
+  "data-typography": {
+    "$description": "When to use monospace (--font-data / IBM Plex Mono) vs. tabular-nums on the UI font (--font-ui / Open Sans).",
+    "monospace": {
+      "when": "Commit hashes, deployment IDs, branch names, code snippets, API responses — genuinely technical identifiers that benefit from character-aligned columns.",
+      "css": ".data-text { font-family: var(--font-data); font-variant-numeric: tabular-nums; }",
+      "font": "IBM Plex Mono 400 (data) and 500 (emphasis), Latin subset, ~15KB per weight"
+    },
+    "tabular-ui": {
+      "when": "Dollar amounts, percentages, durations, counts — numbers that need column alignment but live in a language context, not a code context.",
+      "css": "font-variant-numeric: tabular-nums on var(--font-ui)",
+      "font": "Open Sans with tabular-nums feature"
+    },
+    "narrative": {
+      "when": "Briefing text, explanatory prose, help content — language that explains the system state in human terms.",
+      "css": "var(--font-reading) at instructional register settings",
+      "treatment": "Merriweather at 1rem, 1.7 line-height, 65ch max-inline-size — the same treatment as instructional register elsewhere in the design system"
+    }
+  },
+
+  "density": {
+    "$description": "Density modulation for operational data. Two levels: compact for the prepared operator (sahrdaya) who reads tone and needs minimal chrome; comfortable for the new operator who needs labels, spacing, and explicit information.",
+    "data-attribute": "data-density",
+    "levels": {
+      "compact": {
+        "line-height": 1.3,
+        "spacing": "tight to compact (4px-8px gaps)",
+        "font-size": "0.8125rem (13px) for data, 0.75rem (12px) for labels",
+        "when": "The operator knows the system. Glance-level information density."
+      },
+      "comfortable": {
+        "line-height": 1.5,
+        "spacing": "compact to default (8px-16px gaps)",
+        "font-size": "0.875rem (14px) for data, 0.8125rem (13px) for labels",
+        "when": "New operator, accessibility preference, or mobile where touch targets need room."
+      }
+    }
+  },
+
+  "gradient-border-participation": {
+    "$description": "The gradient border system (defined in attention-gradient.language.json) participates in stewardship through tone-triggered activation. Gold voice only — the operational surface is contemplative, not communal or publication.",
+    "voice": "gold only",
+    "activation": {
+      "aligned": "No gradient border. Borders at subtle opacity or none.",
+      "attention": "No gradient border. Borders at default opacity.",
+      "concern": "Gradient border at ambient opacity on the concerned element. The gold glow appears.",
+      "failure": "Gradient border at interactive opacity on the failed element. Full gold glow."
+    },
+    "css-integration": "The .tone-border class applies the gradient-border technique. data-tone controls when and how intensely it activates. The platform wraps its project cards in .tone-border containers.",
+    "alankara": "The gradient border serves three simultaneous purposes: ornament (beautiful gold glow), structural boundary (card edge definition), and severity signal (presence/intensity maps to concern/failure). This is alankara — intrinsic ornament that is load-bearing."
+  },
+
+  "theme-participation": {
+    "$description": "Operational surfaces participate in the standard theme system. No custom operational themes. The stewardship vocabulary responds to data-theme like any other surface.",
+    "themes": {
+      "light": "Cream background, gold accents. The garden in daylight.",
+      "sepia": "Warmer cream, amber gold. Warm afternoon light.",
+      "earth": "Red clay undertones, Indian warmth. Works naturally.",
+      "dark": "Navy background, gold accents. The garden at night — the operator watching by lamplight.",
+      "meditate": "Pre-dawn stillness. Note: reduced perceptual contrast may affect status legibility. The platform may choose to exclude this theme from its theme picker."
+    },
+    "note": "Gathering theme (communal voice) and YSS themes are available but unlikely on a platform dashboard. The design system does not restrict — the platform chooses."
+  },
+
+  "sevak-awareness": {
+    "$description": "Optional: the stewardship surface can display a service metric — how many seekers the infrastructure currently serves. This grounds the operational work in its purpose. The number is aspirational to implement (requires edge analytics or similar) but the design vocabulary is ready when the data is.",
+    "data-attribute": "data-serving",
+    "treatment": "Instructional register, reading font, prominent attention level (bold, display size). Placed near the narrative briefing — the two form a pair: what the system does (narrative) and who it serves (count).",
+    "example": "847 seekers today",
+    "required": false
+  },
+
+  "status-indicator": {
+    "$description": "The one molecule the design system owns for stewardship. A small visual element (dot or mark) that communicates tone through gold opacity. The design system prescribes its appearance — every operational consumer renders status the same way, the same as every reading consumer renders verse the same way.",
+    "css-class": ".status-indicator",
+    "technique": "Inline-block dot, 8px, border-radius pill. Background: var(--color-gold). Opacity: set by data-tone via custom properties.",
+    "accessibility": "Always paired with a text label. The dot is decorative (aria-hidden). Color is never the only channel — the label provides the status name.",
+    "high-contrast": "In prefers-contrast: more, the dot uses solid black/white with a visible border, overriding opacity-based communication."
+  },
+
+  "calm-technology-notes": {
+    "$description": "How calm technology applies specifically to stewardship surfaces.",
+    "differences-from-reading": [
+      "Operational surfaces may use compact density — tighter spacing than reading surfaces permit. This is proper (aucitya) because the operator's task is scanning data, not sustained immersion.",
+      "Monospace typography is appropriate for genuinely technical data. This is the one context where making technology visible is proper — the operator needs to see the infrastructure clearly.",
+      "Gradient borders activate based on system state, not user interaction. This is functional, not decorative — the glow communicates severity."
+    ],
+    "unchanged": [
+      "No decorative animation. Transitions are functional only.",
+      "prefers-reduced-motion: reduce disables all transitions.",
+      "Touch targets minimum 44px.",
+      "No push notifications, no gamification, no time-pressure UI.",
+      "No skeleton loaders — data is present or honestly absent.",
+      "All interactive elements have :focus-visible indicators."
+    ]
+  }
+}

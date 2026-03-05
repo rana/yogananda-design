@@ -73,6 +73,7 @@ export default function CommentaryHierarchy() {
         {/* ── Level 1: Mula — Root Text — Sacred Register ────────── */}
         <div
           className="theme-transition rounded-md"
+          data-register="sacred"
           style={{
             backgroundColor: "var(--color-surface)",
             border: "1px solid var(--color-border)",
@@ -119,6 +120,7 @@ export default function CommentaryHierarchy() {
         {/* ── Level 2: Bhashya — Commentary — Reverential Register ── */}
         <div
           className="theme-transition rounded-md"
+          data-register="reverential"
           style={{
             backgroundColor: "var(--color-bg-secondary)",
             border: "1px solid var(--color-border)",
@@ -131,16 +133,7 @@ export default function CommentaryHierarchy() {
             {" "}&middot; Reverential Register &middot; Near Orbit
           </div>
 
-          <p
-            style={{
-              fontFamily: "var(--font-reading)",
-              fontSize: "16px",
-              lineHeight: 1.75,
-              color: "var(--color-text)",
-              maxWidth: "600px",
-              margin: 0,
-            }}
-          >
+          <p style={{ margin: 0 }}>
             {content.bhashya}
           </p>
         </div>
@@ -148,6 +141,7 @@ export default function CommentaryHierarchy() {
         {/* ── Level 3: Tika — Annotation — Instructional Register ── */}
         <div
           className="theme-transition rounded-md"
+          data-register="instructional"
           style={{
             backgroundColor: "var(--color-bg)",
             border: "1px solid var(--color-border)",
@@ -196,17 +190,7 @@ export default function CommentaryHierarchy() {
           </div>
 
           {tikaOpen && (
-            <p
-              style={{
-                fontFamily: "var(--font-ui)",
-                fontSize: "14px",
-                lineHeight: 1.6,
-                color: "var(--color-text-secondary)",
-                maxWidth: "560px",
-                marginTop: "8px",
-                marginBottom: 0,
-              }}
-            >
+            <p style={{ marginTop: "8px", marginBottom: 0 }}>
               {content.tika}
             </p>
           )}
@@ -214,6 +198,7 @@ export default function CommentaryHierarchy() {
 
         {/* ── Level 4: Varttika — Background — Functional Register ── */}
         <div
+          data-register="functional"
           style={{
             borderTop: "1px solid var(--color-border)",
             paddingTop: "12px",
@@ -227,17 +212,50 @@ export default function CommentaryHierarchy() {
 
           <p
             style={{
-              fontFamily: "var(--font-ui)",
-              fontSize: "12px",
-              lineHeight: 1.5,
-              color: "var(--color-text-secondary)",
               opacity: 0.6,
-              maxWidth: "560px",
               margin: 0,
             }}
           >
             {content.varttika}
           </p>
+        </div>
+
+        {/* ── Nested Cascade Demo ──────────────────────────────────── */}
+        {/* The registers cascade: sacred wraps reverential wraps
+            instructional. Each nesting level automatically adjusts
+            font size, adds left border, and shifts color. This is
+            how the CSS in registers.css works in a real reading
+            surface — commentary nested inside the teaching. */}
+        <div
+          className="theme-transition rounded-md mt-10"
+          style={{
+            backgroundColor: "var(--color-surface)",
+            border: "1px solid var(--color-border)",
+            padding: "clamp(24px, 4vw, 40px)",
+          }}
+        >
+          <div style={{ ...labelStyle, marginBottom: "16px" }}>
+            <span style={{ fontWeight: 600 }}>Nested Cascade</span>
+            {" "}&middot; How registers compose in a real reading surface
+          </div>
+
+          <div data-register="sacred">
+            <p>
+              {content.mula.text}
+            </p>
+
+            <div data-register="reverential">
+              <p>
+                {content.bhashya}
+              </p>
+
+              <div data-register="instructional">
+                <p style={{ marginBottom: 0 }}>
+                  {content.tika}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

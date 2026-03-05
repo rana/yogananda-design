@@ -1254,7 +1254,7 @@ function ForcedColorsDemo() {
           lineHeight: 1.5,
         }}
       >
-        Windows High Contrast Mode. The OS controls all colors. Gold, marigold,
+        Windows High Contrast Mode. The OS controls all colors. Gold, ochre,
         and crimson yield to system tokens. Interactive elements stay visible.
         Nothing is lost except decorative beauty.
       </p>

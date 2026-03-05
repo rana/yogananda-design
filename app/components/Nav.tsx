@@ -28,7 +28,8 @@ const sections: { id: string; label: string; movement: Movement }[] = [
   { id: "calm", label: "Calm", movement: "structure" },
   { id: "accessibility", label: "A11y", movement: "structure" },
   { id: "print", label: "Print", movement: "structure" },
-  { id: "operations", label: "Ops", movement: "structure" },
+  { id: "book", label: "Book", movement: "structure" },
+  { id: "stewardship", label: "Stewardship", movement: "structure" },
   { id: "patterns", label: "Patterns", movement: "structure" },
 ];
 

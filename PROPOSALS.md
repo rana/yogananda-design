@@ -27,7 +27,7 @@ packages/
       VoiceCrossfade.tsx     ← contemplative/communal voice with crossfade
       CommentaryStack.tsx    ← mula/bhashya/tika/varttika nesting
       RasaContainer.tsx      ← rasa-aware whitespace/timing/accent
-      AttentionMark.tsx       ← gold/crimson/marigold at named attention levels
+      AttentionMark.tsx       ← gold/crimson/ochre at named attention levels
       BreathTransition.tsx   ← three-phase prana timing
       PrintWrapper.tsx       ← print-citation visibility, chrome removal
     index.ts                 ← barrel export
@@ -53,7 +53,7 @@ CSS layer remains framework-agnostic (`css/index.css` or `css/reading.css`). The
 2. Extract primitives into `packages/react/` — separate demo chrome from behavior
 3. Publish to GitHub Packages — `@yogananda/react@0.1.0`
 4. Integrate into `yogananda-teachings` — replace hand-rolled components
-5. Validate with YSS surface when activated (PRO-043)
+5. Validate with YSS surface when activated (yogananda-teachings PRO-043)
 
 ### Why not now
 
@@ -70,7 +70,7 @@ Extracting before the showcase is stable means refactoring twice. The showcase i
 
 ### Problem
 
-Foundation color tokens use hand-tuned hex values. The voice-shaped opacity asymmetry (gold ambient 0.3 vs. crimson ambient 0.25 vs. marigold ambient 0.2) was calibrated perceptually — correct, but without a formal model explaining *why* warmer/more-saturated hues need lower opacity for equivalent perceptual weight. Accessibility contrast compliance is verified manually, not guaranteed algorithmically.
+Foundation color tokens use hand-tuned hex values. The voice-shaped opacity asymmetry (gold ambient 0.3 vs. crimson ambient 0.25 vs. ochre ambient 0.2) was calibrated perceptually — correct, but without a formal model explaining *why* warmer/more-saturated hues need lower opacity for equivalent perceptual weight. Accessibility contrast compliance is verified manually, not guaranteed algorithmically.
 
 ### Insight
 
@@ -82,7 +82,7 @@ Google's HCT (Hue-Chroma-Tone) color space synthesizes CAM16 hue/chroma linearit
 
 ### Proposal
 
-1. **Audit existing tokens in HCT space.** Convert all foundation hex values (#DCBD23 gold, #9B2335 crimson, #DC6A10 marigold, etc.) to HCT coordinates. Document the actual tone relationships between background/foreground pairs.
+1. **Audit existing tokens in HCT space.** Convert all foundation hex values (#DCBD23 gold, #9B2335 crimson, #DC6A10 ochre, etc.) to HCT coordinates. Document the actual tone relationships between background/foreground pairs.
 2. **Validate opacity asymmetry mathematically.** Map the voice-shaped opacity gradients to HCT chroma/tone and verify that the hand-tuned values correspond to perceptual equivalence.
 3. **Add HCT coordinates to token `$extensions`.** Each color token gains `"hct": { "hue": N, "chroma": N, "tone": N }` alongside the hex `$value`. The hex remains canonical for consumption; HCT is metadata for reasoning.
 4. **Document the contrast guarantee.** Add a `"contrast-guarantee"` property to foreground/background token pairs showing the HCT tone delta and the WCAG ratio it guarantees.

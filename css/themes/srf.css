@@ -70,10 +70,10 @@
 
 /* ── Gathering — communal voice white ────────────────────────── */
 /* Events, convocations, community pages. White background,
-   marigold accent. The warmth of welcome, not contemplation.
-   Note: --color-gold becomes marigold (#DC6A10) — the semantic
+   ochre accent. The warmth of welcome, not contemplation.
+   Note: --color-gold becomes ochre (#DC6A10) — the semantic
    accent shifts from contemplative to communal. All gold-*
-   attention classes render in marigold automatically. */
+   attention classes render in ochre automatically. */
 
 [data-theme="gathering"] {
   --color-bg: #FFFFFF;
