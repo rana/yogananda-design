@@ -23,17 +23,15 @@
   },
 
   "page-transitions": {
-    "within-book": {
-      "$description": "Navigating between chapters of the same book. The 'Breath Between Chapters' (DES-012).",
-      "exit": "current chapter fades out (content, 300ms)",
-      "pause": "brief moment of pure background (200-400ms)",
-      "enter": "new chapter fades in (contemplative, 800ms)",
-      "scroll": "auto-scroll to top of new chapter (smooth scroll, respects reduced-motion)"
+    "$implementation": "CSS View Transitions API. Two mechanisms: @view-transition { navigation: auto } for MPA navigations, Next.js experimental.viewTransition for SPA (client-side) navigations. Both use the same ::view-transition-old(root) / ::view-transition-new(root) cross-fade. Uniform contemplative pace for all navigations — no per-element view-transition-names, no tiered timing.",
+    "$rationale": "Every page turn is a threshold crossing. The portal breathes between pages at a single, unhurried pace. Departures are swift (the seeker has already decided to leave). Arrivals are contemplative (the new teaching unfolds). Asymmetric timing: 300ms out, 800ms in.",
+    "all-navigations": {
+      "$description": "All page navigations share the same contemplative cross-fade. Books → book landing, book landing → chapter, chapter → chapter, home → search — all identical. The portal does not distinguish 'important' navigations from 'ordinary' ones. Every page deserves a breath.",
+      "exit": "current page fades out (content, 300ms, easing-accelerate)",
+      "enter": "new page fades in (contemplative, 800ms, easing-contemplative)",
+      "mechanism": "::view-transition-old(root) and ::view-transition-new(root) with custom @keyframes. No per-element view-transition-names needed."
     },
-    "to-different-page": {
-      "$description": "Navigating between major pages (home → search, search → reader). Standard page navigation — no special transitions. The router handles it.",
-      "approach": "no custom page transitions. Next.js App Router default behavior. Fast is better than animated."
-    },
+    "reduced-motion": "all view transition animations disabled via @media (prefers-reduced-motion: reduce). Pages swap instantly. No fallback animation.",
     "within-page": {
       "$description": "State changes on the same page — filters, sorts, panel reveals.",
       "duration": "content (300ms)",
