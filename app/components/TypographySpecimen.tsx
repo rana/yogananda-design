@@ -294,7 +294,7 @@ function YssTypography() {
           </div>
           <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--color-border)" }}>
             <div className="text-xs" style={{ fontFamily: "var(--font-ui)", color: "var(--color-text-secondary)", lineHeight: 1.5 }}>
-              Self-hosted. The serif companion to Noto Sans for immersive Hindi reading. Mirrors the Merriweather reading experience with 1.9 line-height for shirorekha clearance (ADR-080).
+              Self-hosted. The serif companion to Noto Sans for immersive Hindi reading. Mirrors the Merriweather reading experience with 1.9 line-height for shirorekha clearance (FTR-131).
             </div>
           </div>
         </div>

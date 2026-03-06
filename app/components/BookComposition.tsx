@@ -1144,7 +1144,7 @@ function PhotographAcrossMedia() {
               "Atmosphere photographs (veiled, not read): aggressive compression is acceptable. The veil hides artifacts. Target < 50KB per atmosphere image.",
               "Content photographs (.book-figure): moderate compression. Quality 75-85 in WebP. The image is read, not felt — artifacts matter.",
               "loading=\"lazy\" on all images below the fold. Atmosphere images are always below the fold or scroll-triggered.",
-              "Text-only mode (.text-only): all images hidden via display: none. Pure text — no image downloads. ADR-006.",
+              "Text-only mode (.text-only): all images hidden via display: none. Pure text — no image downloads. FTR-006.",
               "Reduced data (prefers-reduced-data / .data-constrained): atmosphere images hidden, content images retained at lowest srcset resolution.",
               "2G connections (PRI-05): the page must work without any images loading. Every image needs meaningful alt text. Captions must make sense without the image.",
             ],

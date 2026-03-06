@@ -8,7 +8,7 @@ import { useState } from "react";
    prevent magic numbers, interaction detection prevents viewport
    assumptions.
 
-   Source: semantics/responsive-strategy.language.json, DES-049
+   Source: semantics/responsive-strategy.language.json, FTR-044
    ────────────────────────────────────────────────────────────── */
 
 const viewportTiers = [

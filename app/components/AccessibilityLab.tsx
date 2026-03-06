@@ -1438,7 +1438,7 @@ function SkipNavDemo() {
         First focusable element on every page. Hidden until Tab-focused, then
         slides down as a banner. Keyboard users skip directly to{" "}
         <code style={{ fontSize: "11px" }}>&lt;main id=&quot;main&quot;&gt;</code>.
-        DES-025 requirement.
+        FTR-043 requirement.
       </p>
       <div
         className="theme-transition rounded-md overflow-hidden"

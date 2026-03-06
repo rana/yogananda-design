@@ -104,6 +104,6 @@ The difference is not incremental. It is the difference between access and exclu
 
 ## In This Ecosystem
 
-The Yogananda teachings portal serves a global audience. India alone has 500+ million internet users, the majority on budget Android devices with intermittent 2G/3G connectivity. Hindi is planned (PRO-043). Tamil, Telugu, Kannada may follow via YSS. The rendering architecture must serve these users with the same dignity and care as users on modern devices with fast connections.
+The Yogananda teachings portal serves a global audience. India alone has 500+ million internet users, the majority on budget Android devices with intermittent 2G/3G connectivity. Hindi is planned (FTR-119). Tamil, Telugu, Kannada may follow via YSS. The rendering architecture must serve these users with the same dignity and care as users on modern devices with fast connections.
 
 Server Components are not a technical preference. They are the architectural expression of PRI-05: **2G connections work; luxuries degrade gracefully.** The teaching arrives first. Everything else enhances.

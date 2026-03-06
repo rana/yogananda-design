@@ -88,8 +88,8 @@ The stewardship redesign is coherent and well-aligned with the project's aesthet
 
 Pass 2 findings 1-5 status after stewardship work:
 - **#1 (CLAUDE.md CSS tree):** Resolved — tree now includes stewardship.css and registers.css
-- **#2 (PRO-043):** Still open — unrelated to stewardship work
-- **#3 (ADR-050 dual meaning):** Still open — unrelated to stewardship work
+- **#2 (FTR-119):** Still open — unrelated to stewardship work
+- **#3 (FTR-030 dual meaning):** Still open — unrelated to stewardship work
 - **#4 (registers.css in load table):** Still open — unrelated to stewardship work
 - **#5 (PRI index):** Still open — unrelated to stewardship work
 

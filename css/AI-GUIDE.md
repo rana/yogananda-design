@@ -314,7 +314,7 @@ The em-dash (U+2014) + non-breaking space (U+00A0) pattern is mandatory. Never u
 
 ### Fonts
 
-Self-hosted WOFF2 files are required (GDPR compliance, ADR-099). Copy the `fonts/` directory to your `public/fonts/`. The CSS references fonts via absolute paths (`/fonts/...`) from your web root.
+Self-hosted WOFF2 files are required (GDPR compliance, FTR-085). Copy the `fonts/` directory to your `public/fonts/`. The CSS references fonts via absolute paths (`/fonts/...`) from your web root.
 
 Required font files:
 ```

@@ -9,7 +9,7 @@ import { useState } from "react";
    specific treatment.
 
    Source: semantics/emotional-registers.language.json
-          media-register-guidance section, DES-021, DES-022
+          media-register-guidance section, FTR-057, FTR-049
    ────────────────────────────────────────────────────────────── */
 
 type MediaType = "video" | "audio" | "photography";

@@ -6,7 +6,7 @@
    adjustments, and loading strategy differ per script — but the
    emotional register remains invariant.
 
-   Source: semantics/localization.language.json, DES-017
+   Source: semantics/localization.language.json, FTR-058
    ─────────────────────────────────────────────────────────────── */
 
 const scripts = [

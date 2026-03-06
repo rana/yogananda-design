@@ -4,7 +4,7 @@ Deferred architectural proposals. Each captures intent, rationale, and enough de
 
 ---
 
-## PRO-001: React Component Library Extraction
+## FTR-098: React Component Library Extraction
 
 **Status:** Proposed
 **Priority:** After showcase stabilization
@@ -53,7 +53,7 @@ CSS layer remains framework-agnostic (`css/index.css` or `css/reading.css`). The
 2. Extract primitives into `packages/react/` — separate demo chrome from behavior
 3. Publish to GitHub Packages — `@yogananda/react@0.1.0`
 4. Integrate into `yogananda-teachings` — replace hand-rolled components
-5. Validate with YSS surface when activated (yogananda-teachings PRO-043)
+5. Validate with YSS surface when activated (yogananda-teachings FTR-119)
 
 ### Why not now
 
@@ -61,7 +61,7 @@ Extracting before the showcase is stable means refactoring twice. The showcase i
 
 ---
 
-## PRO-002: HCT Color Science Foundation
+## FTR-078: HCT Color Science Foundation
 
 **Status:** Proposed
 **Priority:** Medium — strengthens existing tokens without changing visual output
@@ -101,11 +101,11 @@ The current tokens work. This is a deepening of the foundation, not a correction
 
 ---
 
-## PRO-003: Spring Physics for Prāṇa Motion
+## FTR-136: Spring Physics for Prāṇa Motion
 
 **Status:** Proposed
 **Priority:** Low — current cubic-bezier implementation serves well; spring is a refinement
-**Depends on:** PRO-001 (React extraction) would make spring motion a library concern
+**Depends on:** FTR-098 (React extraction) would make spring motion a library concern
 **Source:** Analysis of M3 Expressive spring physics model (Designing Google Material Design 3.md)
 
 ### Problem
@@ -142,11 +142,11 @@ The kumbhaka (held state) is not a spring parameter — it is the spring's resol
 
 ### Why not now
 
-Cubic-bezier serves correctly. Spring physics require a JavaScript runtime (CSS `linear()` can approximate but cannot respond to gesture velocity). This becomes actionable when the React component library (PRO-001) provides a natural home for spring-based motion primitives.
+Cubic-bezier serves correctly. Spring physics require a JavaScript runtime (CSS `linear()` can approximate but cannot respond to gesture velocity). This becomes actionable when the React component library (FTR-098) provides a natural home for spring-based motion primitives.
 
 ---
 
-## PRO-004: Harmonic Ratio Audit
+## FTR-137: Harmonic Ratio Audit
 
 **Status:** Proposed
 **Priority:** Medium — would crystallize what may already be true
@@ -179,7 +179,7 @@ A design system with named harmonic ratios is self-similar across scales — Yog
 
 ---
 
-## PRO-005: Concentric Radius Convention
+## FTR-114: Concentric Radius Convention
 
 **Status:** Proposed
 **Priority:** Low — a pattern-level convention, not a foundation change
@@ -220,7 +220,7 @@ This is a composition convention, not a new token. It would live in a patterns f
 
 ---
 
-## PRO-006: Light-Over-Shadow Elevation Principle
+## FTR-115: Light-Over-Shadow Elevation Principle
 
 **Status:** Proposed
 **Priority:** Low — documenting what is already true

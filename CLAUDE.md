@@ -132,7 +132,7 @@ This design system serves the **Yogananda digital ecosystem**:
 - **yogananda-teachings** (portal) — SRF design language. The reading room. First and primary consumer.
 - **yogananda-platform** — Infrastructure dashboard. Lighter brand touch.
 - **YSS surface** — YSS design language. The ashram. Second consumer.
-- **PDF generation** (ADR-050) — Paginated pattern (`patterns/paginated.pattern.json`) for books, chapters, and contemplation cards. The design language's native medium.
+- **PDF generation** (FTR-030) — Paginated pattern (`patterns/paginated.pattern.json`) for books, chapters, and contemplation cards. The design language's native medium.
 - **Any future Yogananda digital property** — the design language, not any single site.
 
 ## Sibling Repos
@@ -147,12 +147,12 @@ Identifiers in this repo that consuming portals depend on (the design system's d
 
 | Identifier | Topic | Consumed By |
 |-----------|-------|------------|
-| **PRI-05** | Global-first (2G connections work) | yogananda-teachings DES-039, DES-060 |
-| **PRI-07** | WCAG 2.1 AA minimums | yogananda-teachings DES-025 |
-| **PRI-08** | Calm technology | yogananda-teachings DES-044, reading surfaces |
-| **ADR-006** | Text-only mode for low-bandwidth | yogananda-teachings DES-005, DES-049 |
-| **ADR-080** | Devanagari typography (no drop-caps) | yogananda-teachings DES-017 |
-| **ADR-099** | Self-hosted fonts (GDPR) | yogananda-teachings font loading |
+| **PRI-05** | Global-first (2G connections work) | yogananda-teachings FTR-095, FTR-096 |
+| **PRI-07** | WCAG 2.1 AA minimums | yogananda-teachings FTR-043 |
+| **PRI-08** | Calm technology | yogananda-teachings FTR-056, reading surfaces |
+| **FTR-006** | Text-only mode for low-bandwidth | yogananda-teachings FTR-022, FTR-044 |
+| **FTR-131** | Devanagari typography (no drop-caps) | yogananda-teachings FTR-058 |
+| **FTR-085** | Self-hosted fonts (GDPR) | yogananda-teachings font loading |
 
 **Identifier scope:** This repo owns visual design identifiers (PRI principles, ADR design decisions). Consuming portals own their own product identifiers (DES features, ADR implementation decisions). Namespaces are intentionally separate — the design system is a dependency, not a co-owner.
 
