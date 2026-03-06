@@ -859,17 +859,17 @@ const imageCategories = [
   },
   {
     category: "SRF Properties",
-    rules: "Lake Shrine, Encinitas Hermitage, Mother Center, Hidden Valley. SRF surfaces only (data-org='srf').",
+    rules: "Lake Shrine, Encinitas Hermitage, Mother Center, Hidden Valley. Always with location attribution.",
     screen: "Arrival and ambient roles only.",
     paper: "Section plates with attribution. Establishes sense of place.",
-    crossMedia: "Organization-restricted. Never on YSS surfaces.",
+    crossMedia: "Shared heritage. Either organization may feature any property with attribution.",
   },
   {
     category: "Event Photography",
-    rules: "Convocation, group meditation, ceremonies. Communal voice only (gathering theme). Sufficient veil to prevent individual identification.",
-    screen: "Arrival role only. Always veiled.",
-    paper: "Rarely used. If present, large format with atmospheric treatment to prevent identification.",
-    crossMedia: "Privacy constraint is absolute across all media.",
+    rules: "Convocation, group meditation, ceremonies. Communal voice only (gathering theme).",
+    screen: "Arrival role only. Atmospheric treatment (blur, overlay, reduced opacity).",
+    paper: "Rarely used. If present, large format with atmospheric treatment.",
+    crossMedia: "Consent-aware across all media. Prefer crowd-scale or architectural framing.",
   },
 ];
 
