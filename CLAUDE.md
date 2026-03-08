@@ -127,7 +127,7 @@ Named compositions referencing foundation tokens. Format: `{ "pattern-name": { "
 
 ## Package Distribution
 
-Published to npm as **`@yogananda/design`**. Consumers install via `npm install @yogananda/design` or `pnpm add @yogananda/design`.
+Published to npm as **`@yogananda-tech/design`**. Consumers install via `npm install @yogananda-tech/design` or `pnpm add @yogananda-tech/design`.
 
 **Release workflow:** `npm version patch|minor|major` → `git push --tags` → GitHub Actions publishes to npm with provenance attestation. No build step — the source is the distributable.
 
