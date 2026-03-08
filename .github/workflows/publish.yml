@@ -1,0 +1,36 @@
+# Publish to npm — @yogananda/design
+#
+# Triggered by version tags (v*). Publishes the design system package
+# to the npm public registry with provenance attestation.
+#
+# Workflow: npm version minor → git push --tags → auto-publish
+# No build step — the source IS the distributable (CSS, JSON, fonts).
+
+name: Publish
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+  id-token: write    # npm provenance attestation
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Publish
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

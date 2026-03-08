@@ -125,6 +125,17 @@ Custom format for rules, constraints, and mappings. Each file is self-describing
 
 Named compositions referencing foundation tokens. Format: `{ "pattern-name": { "description": "...", "tokens": { role: "token.path" }, "rules": [...] } }`. Implementation-agnostic — translate to CSS, React, Swift, PDF as needed.
 
+## Package Distribution
+
+Published to npm as **`@yogananda/design`**. Consumers install via `npm install @yogananda/design` or `pnpm add @yogananda/design`.
+
+**Release workflow:** `npm version patch|minor|major` → `git push --tags` → GitHub Actions publishes to npm with provenance attestation. No build step — the source is the distributable.
+
+**Versioning covenant:**
+- **Patch** — token value adjustment, bug fix, typo
+- **Minor** — new pattern, new token, new theme, new opt-in CSS file
+- **Major** — token/file renamed or removed, CSS selector renamed, breaking path change
+
 ## Ecosystem Context
 
 This design system serves the **Yogananda digital ecosystem**:
