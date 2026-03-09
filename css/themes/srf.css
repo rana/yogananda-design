@@ -55,6 +55,7 @@
 
 /* ── Meditate — deeper dark for contemplation ────────────────── */
 /* Darker than dark. Gold softened to 60% — peripheral, not focal.
+   Crimson stays opaque (dusty rose) — publication voice remains legible.
    For extended meditation-adjacent reading. */
 
 [data-theme="meditate"] {
@@ -64,7 +65,8 @@
   --color-text-secondary: #9a9590;
   --color-border: #253050;
   --color-gold: #e8cf4a99;
-  --color-crimson: #E04A5E99;
+  --color-crimson: #C4606F;
+  --crimson-decorative: 0.85;
   --color-surface: #0e1a30;
 }
 
